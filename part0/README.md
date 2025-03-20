@@ -22,7 +22,7 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 
 ## Fundamentals of Web Apps:
 
-[This chapter](https://fullstackopen.com/en/part0/fundamentals_of_web_apps) is an introduction to the basics of web development and a bit of history and comparison between the traditional web development and the modern web development approach using `Single Page Applications`.
+[This chapter](https://fullstackopen.com/en/part0/fundamentals_of_web_apps) is an introduction to the basics of web development and a bit of history and comparison between the traditional web development and the modern web development approach using `Single Page Applications (SPA)`.
 
 ### Exercises:
 
@@ -34,9 +34,9 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 
 - [Exercise 0.4](./exercise04.md): New note diagram.
 
-- [Exercise 0.5](./exercise05.md): Single page app diagram.
+- [Exercise 0.5](./exercise05.md): Single Page Application diagram.
 
-- [Exercise 0.6](./exercise06.md): New note in Single page app diagram.
+- [Exercise 0.6](./exercise06.md): New note in Single Page Application diagram.
 
 ---
 ---
