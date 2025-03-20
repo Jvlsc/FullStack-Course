@@ -1,6 +1,6 @@
 # Exercise 0.5: Single page app diagram
 
-Create a diagram depicting the situation where the user goes to the single-page app version of the notes app at https://studies.cs.helsinki.fi/exampleapp/spa.
+Create a diagram depicting the situation where the user goes to the [Single Page App](https://studies.cs.helsinki.fi/exampleapp/spa) version of the notes app.
 
 ---
 ---
@@ -12,13 +12,18 @@ Create a diagram depicting the situation where the user goes to the single-page 
     ![image0](/.github/images/part0/05_00.png)
 
 
-2. The page requests the `main.css` and `spa.js` files (GET requests):
+2. The browser parses the HTML and requests the additional resources required by the page:
+   - The CSS file (`main.css`) for styling
+   - The JavaScript file (`spa.js`) containing the SPA functionality
 
     ![image1](/.github/images/part0/05_01.png)
     ![image2](/.github/images/part0/05_02.png)
     ![image3](/.github/images/part0/05_03.png)
 
-3. The `spa.js` file requests the `JSON` data (GET request) and renders the notes:
+3. The browser executes the JavaScript code in `spa.js`, which:
+   - Makes an asynchronous `GET request` to fetch the notes data in `JSON` format
+   - Parses the received `JSON` data
+   - Dynamically renders the notes to the DOM without requiring additional page loads
 
     ![image4](/.github/images/part0/05_04.png)
     ![image5](/.github/images/part0/05_05.png)
@@ -65,7 +70,7 @@ sequenceDiagram
 
 ## Conclusion:
 
-The diagram above shows the process of the user going to the Single Page App version of the notes app. The process is similar to the traditional web application.
+This diagram illustrates the key characteristics of a Single Page Application (SPA). Initially is basically the same as the tradditional web page, but after the initial load, the page doesn't reload when displaying content. The `JavaScript` code can fetch data asynchronously and render it dynamically (client-side rendering).
 
 
 ---

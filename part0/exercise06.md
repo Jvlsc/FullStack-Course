@@ -1,13 +1,13 @@
 # Exercise 0.6: New note in Single page app diagram
 
-Create a diagram depicting the situation where the user creates a new note using the single-page version of the app.
+Create a diagram depicting the situation where the user creates a new note using the [Single Page App](https://studies.cs.helsinki.fi/exampleapp/spa) version of the notes app.
 
 ---
 ---
 
 ## Process:
 
-1. The user creates a new note using the [single-page](https://studies.cs.helsinki.fi/exampleapp/spa) version of the app and writes "Hi SPA! :)" into the text field and clicks the `Save` button:
+1. The user creates a new note using the [single-page](https://studies.cs.helsinki.fi/exampleapp/spa) version of the app by entering "Hi SPA! :)" into the text field and clicking the `Save` button:
 
     ![image0](/.github/images/part0/06_00.png)
 
@@ -23,7 +23,11 @@ Create a diagram depicting the situation where the user creates a new note using
     ![image1](/.github/images/part0/06_01.png)
     ![image2](/.github/images/part0/06_02.png)
 
-3. To send the new note to the server, the `spa.js` file sends a `POST` request to the `/exampleapp/new_note_spa` endpoint:
+3. To send the new note to the server, the `spa.js` file performs the following actions:
+   - Constructs a POST request to the `/exampleapp/new_note_spa` endpoint
+   - Sets the Content-Type header to `application/json`
+   - Converts the note object to a JSON string and sends it as the request payload
+   - The server processes the request and responds with a `201 Created` status
 
     ![image3](/.github/images/part0/06_03.png)
     ![image4](/.github/images/part0/06_04.png)
@@ -54,7 +58,10 @@ sequenceDiagram
 
 ## Conclusion:
 
-The diagram above shows the process of the user creating a new note using the single-page version of the app. The difference between this process and the traditional web application is that the new note is rendered in the page without reloading the page improving the user experience and reducing the number of `HTTP` requests to a simple `POST` request.
+The diagram illustrates the process of creating a new note in a single-page application (SPA). The key difference from traditional web applications are:
+
+- **Enhances user experience** by providing immediate feedback without reloading the page.
+- **Reduces network traffic** by only sending/receiving necessary data (1 HTTP request instead of 5).
 
 ---
 ---

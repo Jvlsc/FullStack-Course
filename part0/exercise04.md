@@ -1,18 +1,24 @@
 # Exercise 0.4: New note diagram
 
-Create a diagram depicting the situation where the user creates a new note on the page https://studies.cs.helsinki.fi/exampleapp/notes by writing something into the text field and clicking the Save button.
+Create a diagram depicting the situation where the user creates a new note on the [traditional web application](https://studies.cs.helsinki.fi/exampleapp/notes).
 
 ---
 ---
 
 ## Process:
 
-1. The user navigates to the [page](https://studies.cs.helsinki.fi/exampleapp/notes).
-2. The user writes "Hello Guys! :)" into the text field of the `POST` request form and clicks the `Save` button:
+1. The user navigates to the [notes page](https://studies.cs.helsinki.fi/exampleapp/notes) where the browser loads HTML, CSS, JavaScript, and the existing notes data.
+
+2. The user enters "Hello Guys! :)" into the text field and clicks the `Save` button, submitting the form:
 
     ![image0](/.github/images/part0/04_00.png)
 
-3. The new note is saved to the server and the user is redirected to the page again displaying the new created note:
+3. The form submission initiates the following sequence:
+   - The browser sends a POST request to the server's `/exampleapp/new_note` endpoint
+   - The server processes the new note, adds it to its data store
+   - The server responds with a 302 status code, redirecting the browser back to the notes page
+   - The browser reloads the entire page, requesting all resources again
+   - The updated list of notes (including the new one) is displayed:
 
     ![image1](/.github/images/part0/04_01.png)
 
@@ -65,7 +71,10 @@ sequenceDiagram
 
 ## Conclusion:
 
-The diagram above shows the process of the user creating a new note in a traditional web application. The problem with this approach is that the page is reloaded once the new note is created, producing 4 additional `HTTP` requests and bad user experience.
+This diagram illustrates the traditional web application approach to handling form submissions. Key observations:
+
+- **User experience**: The server responds with a redirect (HTTP 302) rather than directly rendering the new note, so the entire page must reload after form submission.
+- **Network traffic**: Multiple HTTP requests are required to reload all resources (HTML, CSS, JavaScript, data) after creating a new note.
 
 ---
 ---
