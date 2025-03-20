@@ -7,11 +7,11 @@ Create a diagram depicting the situation where the user creates a new note using
 
 ## Process:
 
-1. The user creates a new note using the [single-page](https://studies.cs.helsinki.fi/exampleapp/spa) version of the app by entering "Hi SPA! :)" into the text field and clicking the `Save` button:
+1. The user creates a new note by entering `Hi SPA! :)` into the text field and clicking the `Save` button:
 
     ![image0](/.github/images/part0/06_00.png)
 
-2. The `spa.js` file, when the DOM is fully loaded, captures the notes form using its ID `notes_form` and adds a handler to the form's `submit` event that:
+2. The `spa.js` file, when the DOM is fully loaded, adds a handler to the form's `submit` event that:
     - Prevents the default form behavior (page reload).
     - Extracts the content from the text field.
     - Creates a new note object with the content and current date.
@@ -24,9 +24,9 @@ Create a diagram depicting the situation where the user creates a new note using
     ![image2](/.github/images/part0/06_02.png)
 
 3. To send the new note to the server, the `spa.js` file performs the following actions:
-   - Constructs a POST request to the `/exampleapp/new_note_spa` endpoint
-   - Sets the Content-Type header to `application/json`
-   - Converts the note object to a JSON string and sends it as the request payload
+   - Constructs a `POST` request to the `/exampleapp/new_note_spa` endpoint
+   - Sets the `Content-Type` header to `application/json`
+   - Converts the note object to a `JSON` string and sends it as the request payload
    - The server processes the request and responds with a `201 Created` status
 
     ![image3](/.github/images/part0/06_03.png)
@@ -45,7 +45,7 @@ sequenceDiagram
 
     Note right of browser: The user writes "Hi SPA! :)" into the text field and clicks the `Save` button.
 
-    Note right of browser: The new note is rendered in the page.
+    Note right of browser: The new note is created and rendered in the page.
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa | payload: {"content":"Hi SPA! :)","date":"2025...}
     activate server
