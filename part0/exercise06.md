@@ -58,7 +58,7 @@ sequenceDiagram
 
 ## Conclusion:
 
-The diagram illustrates the process of creating a new note in a single-page application (SPA). The key difference from traditional web applications are:
+The diagram illustrates the process of creating a new note in a `Single Page Application (SPA)`. The key difference from traditional web applications are:
 
 - **Enhances user experience** by providing immediate feedback without reloading the page.
 - **Reduces network traffic** by only sending/receiving necessary data (1 HTTP request instead of 5).

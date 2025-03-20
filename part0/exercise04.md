@@ -14,10 +14,10 @@ Create a diagram depicting the situation where the user creates a new note on th
     ![image0](/.github/images/part0/04_00.png)
 
 3. The form submission initiates the following sequence:
-   - The browser sends a POST request to the server's `/exampleapp/new_note` endpoint
-   - The server processes the new note, adds it to its data store
-   - The server responds with a 302 status code, redirecting the browser back to the notes page
-   - The browser reloads the entire page, requesting all resources again
+   - The browser sends a `POST` request to the server's `/exampleapp/new_note` endpoint
+   - The server processes the new note, adds it to its data store.
+   - The server responds with a `302` status code, redirecting the browser back to the notes page.
+   - The browser reloads the entire page, requesting all resources again.
    - The updated list of notes (including the new one) is displayed:
 
     ![image1](/.github/images/part0/04_01.png)
@@ -43,17 +43,17 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
-    server-->>browser: HTML document
+    server-->>browser: HTML Document
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
-    server-->>browser: the css file
+    server-->>browser: The CSS file
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
     activate server
-    server-->>browser: the JavaScript file
+    server-->>browser: The JavaScript file
     deactivate server
 
     Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server

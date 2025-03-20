@@ -7,12 +7,12 @@ Create a diagram depicting the situation where the user goes to the [Single Page
 
 ## Process:
 
-1. The user navigates to the [page](https://studies.cs.helsinki.fi/exampleapp/spa) (GET request):
+1. The user navigates to the [notes page](https://studies.cs.helsinki.fi/exampleapp/spa) (`GET` request):
 
     ![image0](/.github/images/part0/05_00.png)
 
 
-2. The browser parses the HTML and requests the additional resources required by the page:
+2. The browser parses the HTML and requests the additional resources required by the page (`GET` requests):
    - The CSS file (`main.css`) for styling
    - The JavaScript file (`spa.js`) containing the SPA functionality
 
@@ -21,9 +21,9 @@ Create a diagram depicting the situation where the user goes to the [Single Page
     ![image3](/.github/images/part0/05_03.png)
 
 3. The browser executes the JavaScript code in `spa.js`, which:
-   - Makes an asynchronous `GET request` to fetch the notes data in `JSON` format
-   - Parses the received `JSON` data
-   - Dynamically renders the notes to the DOM without requiring additional page loads
+   - Makes an asynchronous `GET` request to fetch the notes data.
+   - Parses the received `JSON` data.
+   - Dynamically renders the notes to the `DOM` without page reloading.
 
     ![image4](/.github/images/part0/05_04.png)
     ![image5](/.github/images/part0/05_05.png)
@@ -46,12 +46,12 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
-    server-->>browser: the css file
+    server-->>browser: The CSS file
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
     activate server
-    server-->>browser: the JavaScript file
+    server-->>browser: The JavaScript file
     deactivate server
 
     Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
@@ -70,7 +70,7 @@ sequenceDiagram
 
 ## Conclusion:
 
-This diagram illustrates the key characteristics of a Single Page Application (SPA). Initially is basically the same as the tradditional web page, but after the initial load, the page doesn't reload when displaying content. The `JavaScript` code can fetch data asynchronously and render it dynamically (client-side rendering).
+This diagram illustrates the key characteristics of a `Single Page Application (SPA)`. The initial loading process is similar to a traditional web application, but the fundamental difference emerges afterward: the page doesn't reload when interacting with or displaying content. Instead, the `JavaScript` code fetches data asynchronously and renders it dynamically on the client side.
 
 
 ---
