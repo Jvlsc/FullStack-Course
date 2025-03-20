@@ -24,10 +24,10 @@ Create a diagram depicting the situation where the user creates a new note using
     ![image2](/.github/images/part0/06_02.png)
 
 3. To send the new note to the server, the `spa.js` file performs the following actions:
-   - Constructs a `POST` request to the `/exampleapp/new_note_spa` endpoint
-   - Sets the `Content-Type` header to `application/json`
-   - Converts the note object to a `JSON` string and sends it as the request payload
-   - The server processes the request and responds with a `201 Created` status
+   - Constructs a `POST` request to the `/exampleapp/new_note_spa` endpoint.
+   - Sets the `Content-Type` header to `application/json`.
+   - Converts the note object to a `JSON` string and sends it as the request payload.
+   - The server processes the request and responds with a `201 Created` status.
 
     ![image3](/.github/images/part0/06_03.png)
     ![image4](/.github/images/part0/06_04.png)
@@ -60,7 +60,7 @@ sequenceDiagram
 
 The diagram illustrates the process of creating a new note in a `Single Page Application (SPA)`. The key difference from traditional web applications are:
 
-- **Enhances user experience** by providing immediate feedback without reloading the page.
+- **Enhances user experience** by rendering the new note immediately without reloading the page.
 - **Reduces network traffic** by only sending/receiving necessary data (1 HTTP request instead of 5).
 
 ---

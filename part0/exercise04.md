@@ -14,7 +14,7 @@ Create a diagram depicting the situation where the user creates a new note on th
     ![image0](/.github/images/part0/04_00.png)
 
 3. The form submission initiates the following sequence:
-   - The browser sends a `POST` request to the server's `/exampleapp/new_note` endpoint
+   - The browser sends a `POST` request to the server's `/exampleapp/new_note` endpoint.
    - The server processes the new note, adds it to its data storage.
    - The server responds with a `302` status code, redirecting the browser back to the notes page.
    - The browser reloads the entire page, requesting all resources again.
@@ -73,8 +73,8 @@ sequenceDiagram
 
 This diagram illustrates the traditional web application approach to handling form submissions. Key observations:
 
-- **User experience**: The server responds with a redirect (`HTTP 302`) rather than directly rendering the new note, so the entire page must reload after form submission.
-- **Network traffic**: Multiple `HTTP` requests are required to reload all resources (HTML, CSS, JavaScript, data) after creating a new note.
+- **User experience**: The server responds with a redirect (`HTTP 302`), so the entire page must reload after form submission instead of rendering the new note.
+- **Network traffic**: Five `HTTP` requests are required to reload all resources (HTML, CSS, JavaScript, data) after creating a new note.
 
 ---
 ---
