@@ -73,7 +73,7 @@ sequenceDiagram
 
 This diagram illustrates the traditional web application approach to handling form submissions. Key observations:
 
-- **User experience**: The server responds with a redirect (`HTTP 302`), so the entire page must reload after form submission instead of rendering the new note.
+- **User experience**: The server responds with a redirect (`HTTP 302`), so the entire page must reload after form submission.
 - **Network traffic**: Five `HTTP` requests are required to reload all resources (HTML, CSS, JavaScript, data) after creating a new note.
 
 ---
