@@ -7,7 +7,7 @@ Create a diagram depicting the situation where the user creates a new note on th
 
 ## Process:
 
-1. The user navigates to the page: [Link](https://studies.cs.helsinki.fi/exampleapp/notes).
+1. The user navigates to the [page](https://studies.cs.helsinki.fi/exampleapp/notes).
 2. The user writes "Hello Guys! :)" into the text field of the `POST` request form and clicks the `Save` button:
 
     ![image0](/.github/images/part0/04_00.png)
@@ -27,6 +27,8 @@ Create a diagram depicting the situation where the user creates a new note on th
 sequenceDiagram
     participant browser
     participant server
+
+    Note right of browser: The user writes "Hello Guys! :)" into the text field and clicks the `Save` button.
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note | payload: note="Hello Guys! :)"
     activate server

@@ -22,6 +22,7 @@ Create a diagram depicting the situation where the user goes to the single-page 
 
     ![image4](/.github/images/part0/05_04.png)
     ![image5](/.github/images/part0/05_05.png)
+    ![image6](/.github/images/part0/05_06.png)
 
 ---
 ---
