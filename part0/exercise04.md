@@ -13,6 +13,7 @@ Create a diagram depicting the situation where the user creates a new note on th
     ![image0](/.github/images/part0/04_00.png)
 
 3. The new note is saved to the server and the user is redirected to the page again displaying the new created note:
+
     ![image1](/.github/images/part0/04_01.png)
 
     ![image2](/.github/images/part0/04_02.png)
@@ -62,7 +63,7 @@ sequenceDiagram
 
 ## Conclusion:
 
-The diagram above shows the process of the user creating a new note in a traditional web application. The problem with this approach is that the page is reloaded once the new note is created, producing 5 HTTP requests and bad user experience.
+The diagram above shows the process of the user creating a new note in a traditional web application. The problem with this approach is that the page is reloaded once the new note is created, producing 4 additional `HTTP` requests and bad user experience.
 
 ---
 ---
