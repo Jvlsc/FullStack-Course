@@ -9,7 +9,7 @@
 ---
 ---
 
-## Introduction
+## Introduction:
 
 This repository will contain the solutions for the exercises and projects of the Full Stack Web Development course:
 
@@ -19,7 +19,7 @@ This repository will contain the solutions for the exercises and projects of the
 ---
 ---
 
-## Course Content
+## Course Content:
 
 - [Part 0 - Fundamentals of Web apps](./part0)
 
@@ -52,7 +52,7 @@ This repository will contain the solutions for the exercises and projects of the
 ---
 ---
 
-## Contact
+## Contact:
 
 - Javier Velasco: <Jvlsc@proton.me>
 

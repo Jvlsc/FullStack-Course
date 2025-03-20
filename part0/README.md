@@ -1,4 +1,4 @@
-# Part 0 - Fundamentals of Web apps:
+# Part 0 - Fundamentals of Web apps
 
 In this part, we will familiarize ourselves with the practicalities of taking the course. After that, we will have an overview of the basics of web development and also talk about the advances in web application development during the last few decades.
 
@@ -7,13 +7,13 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 
 ## Table of Contents:
 
-- [General info](#general-info)
-- [Fundamentals of Web apps](#fundamentals-of-web-apps)
+- [General Info](#general-info)
+- [Fundamentals of Web Apps](#fundamentals-of-web-apps)
 
 ---
 ---
 
-## General info
+## General Info:
 
 [This chapter](https://fullstackopen.com/en/part0/general_info) is an introduction to the course and the practicalities of taking it. There is no exercise involved in this chapter.
 
@@ -22,7 +22,7 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 ---
 ---
 
-## Fundamentals of Web apps
+## Fundamentals of Web Apps:
 
 [This chapter](https://fullstackopen.com/en/part0/fundamentals_of_web_apps) is an introduction to the basics of web development and a bit of history of the traditional web development versus the modern web development.
 
