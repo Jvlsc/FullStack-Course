@@ -5,6 +5,15 @@ Create a diagram depicting the situation where the user goes to the [Single Page
 ---
 ---
 
+## Table of Contents:
+
+- [Process](#process)
+- [Diagram](#diagram)
+- [Conclusion](#conclusion)
+
+---
+---
+
 ## Process:
 
 1. The user navigates to the [notes page](https://studies.cs.helsinki.fi/exampleapp/spa) (`GET` request):

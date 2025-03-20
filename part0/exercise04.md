@@ -5,6 +5,15 @@ Create a diagram depicting the situation where the user creates a new note on th
 ---
 ---
 
+## Table of Contents:
+
+- [Process](#process)
+- [Diagram](#diagram)
+- [Conclusion](#conclusion)
+
+---
+---
+
 ## Process:
 
 1. The user navigates to the [notes page](https://studies.cs.helsinki.fi/exampleapp/notes) where the browser loads HTML, CSS, JavaScript, and the existing notes data.

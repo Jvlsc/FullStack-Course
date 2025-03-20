@@ -5,6 +5,15 @@ Create a diagram depicting the situation where the user creates a new note using
 ---
 ---
 
+## Table of Contents:
+
+- [Process](#process)
+- [Diagram](#diagram)
+- [Conclusion](#conclusion)
+
+---
+---
+
 ## Process:
 
 1. The user creates a new note by entering `Hi SPA! :)` into the text field and clicking the `Save` button:
