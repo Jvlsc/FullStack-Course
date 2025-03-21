@@ -35,9 +35,9 @@ In [this chapter](https://fullstackopen.com/en/part1/java_script), we will revie
 
 ### Exercises:
 
-- **[Exercise 1.3]()**: Course Information (Step 3).
-- **[Exercise 1.4]()**: Course Information (Step 4).
-- **[Exercise 1.5]()**: Course Information (Step 5).
+- **[Exercise 1.3](https://github.com/Jvlsc/FullStack-Course/blob/389169b5ec00893e55c48fecaa76029a4c69a6d1/part1/courseinfo/src/App.jsx)**: Course Information (Step 3).
+- **[Exercise 1.4](https://github.com/Jvlsc/FullStack-Course/blob/ff6827fa80d775641eab8e49be608e98bce52bcd/part1/courseinfo/src/App.jsx)**: Course Information (Step 4).
+- **[Exercise 1.5](https://github.com/Jvlsc/FullStack-Course/blob/85cc04562e100a264945ba30ebc358c159fbffa4/part1/courseinfo/src/App.jsx)**: Course Information (Step 5).
 
 ---
 ---
