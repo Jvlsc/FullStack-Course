@@ -7,9 +7,9 @@ Create a diagram depicting the situation where the user creates a new note using
 
 ## Table of Contents:
 
-- [Process](#process)
-- [Diagram](#diagram)
-- [Conclusion](#conclusion)
+- **[Process](#process)**
+- **[Diagram](#diagram)**
+- **[Conclusion](#conclusion)**
 
 ---
 ---

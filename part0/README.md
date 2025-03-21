@@ -7,8 +7,8 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 
 ## Table of Contents:
 
-- [General Info](#general-info)
-- [Fundamentals of Web Apps](#fundamentals-of-web-apps)
+- **[General Info](#general-info)**
+- **[Fundamentals of Web Apps](#fundamentals-of-web-apps)**
 
 ---
 ---
@@ -32,11 +32,11 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 
 - **Exercise 0.3**: Learn about the basics of HTML forms by reading Mozilla's tutorial: [Your first form](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form).
 
-- [Exercise 0.4](./exercise04.md): New note diagram.
+- **[Exercise 0.4](./exercise04.md)**: New note diagram.
 
-- [Exercise 0.5](./exercise05.md): Single Page Application diagram.
+- **[Exercise 0.5](./exercise05.md)**: Single Page Application diagram.
 
-- [Exercise 0.6](./exercise06.md): New note in Single Page Application diagram.
+- **[Exercise 0.6](./exercise06.md)**: New note in Single Page Application diagram.
 
 ---
 ---
