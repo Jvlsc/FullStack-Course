@@ -7,10 +7,10 @@ In this part, we will familiarize ourselves with the React-library, which we wil
 
 ## Table of Contents:
 
-- **[Introduction to React](/part1/introduction_to_react/)**
-- **[JavaScript](/part1/javascript/)**
-- **[Component State, Event Handlers](/part1/component_state_event_handlers/)**
-- **[A More Complex State, Debugging React Apps](/part1/a_more_complex_state_debugging_react_apps/)**
+- **[Introduction to React](#introduction-to-react)**
+- **[JavaScript](#javascript)**
+- **[Component State, Event Handlers](#component-state-event-handlers)**
+- **[A More Complex State, Debugging React Apps](#a-more-complex-state-debugging-react-apps)**
 
 ---
 ---
