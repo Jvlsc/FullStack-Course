@@ -23,8 +23,8 @@ The easiest way to get started by far is by using a tool called [Vite](https://v
 
 ### Exercises:
 
-- **[Exercise 1.1](/part1/courseinfo/)**: Course Information (Step 1).
-- **[Exercise 1.2](/part1/courseinfo/)**: Course Information (Step 2).
+- **[Exercise 1.1](https://github.com/Jvlsc/FullStack-Course/blob/dd568d464ab0500cd3adef853b0e48c412c667e8/part1/courseinfo/src/App.jsx)**: Course Information (Step 1).
+- **[Exercise 1.2](https://github.com/Jvlsc/FullStack-Course/blob/7c0799b408edfb5a9a21938ce81cfed6005803f4/part1/courseinfo/src/App.jsx)**: Course Information (Step 2).
 
 ---
 ---
