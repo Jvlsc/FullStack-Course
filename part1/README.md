@@ -31,6 +31,14 @@ The easiest way to get started by far is by using a tool called [Vite](https://v
 
 ## JavaScript:
 
+In [this chapter](https://fullstackopen.com/en/part1/java_script), we will review some of the most important features of JavaScript.
+
+### Exercises:
+
+- **[Exercise 1.3]()**: Course Information (Step 3).
+- **[Exercise 1.4]()**: Course Information (Step 4).
+- **[Exercise 1.5]()**: Course Information (Step 5).
+
 ---
 ---
 
