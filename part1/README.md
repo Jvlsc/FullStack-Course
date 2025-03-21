@@ -17,9 +17,7 @@ In this part, we will familiarize ourselves with the React-library, which we wil
 
 ## Introduction to React:
 
-In [this chapter](https://fullstackopen.com/en/part1/introduction_to_react), we will start getting familiar with probably the most important topic of this course, namely the [React library](https://react.dev/). 
-
-The easiest way to get started by far is by using a tool called [Vite](https://vitejs.dev/).
+In [this chapter](https://fullstackopen.com/en/part1/introduction_to_react), we will start getting familiar with probably the most important topic of this course, namely the [React library](https://react.dev/). The easiest way to get started by far is by using a tool called [Vite](https://vitejs.dev/).
 
 ### Exercises:
 
@@ -43,6 +41,12 @@ In [this chapter](https://fullstackopen.com/en/part1/java_script), we will revie
 ---
 
 ## Component State, Event Handlers:
+
+In [this chapter](https://fullstackopen.com/es/part1/estado_del_componente_controladores_de_eventos), we will learn how to manage the state of our components and how to handle events.
+
+### Exercises:
+
+- **There is no exercise for this chapter.**
 
 ---
 ---
