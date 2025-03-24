@@ -12,7 +12,12 @@ const Button = ({ onClick, text }) => {
 
 // Statistic Line Component:
 const StatisticLine = ({ text, value }) => {
-  return <p>{text}: {value}</p>
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
 }
 
 // Statistics Component:
@@ -22,14 +27,16 @@ const Statistics = ({ good, neutral, bad, text }) => {
     const average = (good - bad) / total
     const positive = (good / total) * 100
     return (
-      <div>
-        <StatisticLine text={text.good} value={good} />
-        <StatisticLine text={text.neutral} value={neutral} />
-        <StatisticLine text={text.bad} value={bad} />
-        <StatisticLine text={text.all} value={total} />
-        <StatisticLine text={text.average} value={average.toFixed(2)} />
-        <StatisticLine text={text.positive} value={positive.toFixed(2)} />
-      </div>
+      <table>
+        <tbody>
+          <StatisticLine text={text.good} value={good} />
+          <StatisticLine text={text.neutral} value={neutral} />
+          <StatisticLine text={text.bad} value={bad} />
+          <StatisticLine text={text.all} value={total} />
+          <StatisticLine text={text.average} value={average.toFixed(2)} />
+          <StatisticLine text={text.positive} value={positive.toFixed(2)} />
+        </tbody>
+      </table>
     )
   } else {
     return <div><p>{text.noFeedback}</p></div>
