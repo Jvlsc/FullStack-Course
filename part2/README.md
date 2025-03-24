@@ -63,10 +63,10 @@ In [this chapter](https://fullstackopen.com/en/part2/altering_data_in_server), w
 
 ### Exercises:
 
-- **[Exercise 2.12]()**: The Phonebook (Step 7).
-- **[Exercise 2.13]()**: The Phonebook (Step 8).
-- **[Exercise 2.14]()**: The Phonebook (Step 9).
-- **[Exercise 2.15]()**: The Phonebook (Step 10).
+- **[Exercise 2.12](https://github.com/Jvlsc/FullStack-Course/blob/e0c2428bc173892fd1b906280cce6bba76bb9e2f/part2/phonebook/src/App.jsx)**: The Phonebook (Step 7).
+- **[Exercise 2.13](https://github.com/Jvlsc/FullStack-Course/blob/e0c2428bc173892fd1b906280cce6bba76bb9e2f/part2/phonebook/src/App.jsx)**: The Phonebook (Step 8) -> Already solved in 2.12.
+- **[Exercise 2.14](https://github.com/Jvlsc/FullStack-Course/blob/12f0c0399c0b91414eb2ce0235d0ad0245bdff0e/part2/phonebook/src/App.jsx)**: The Phonebook (Step 9).
+- **[Exercise 2.15](https://github.com/Jvlsc/FullStack-Course/blob/4d9da7164424b31d824907b02b4df5c1acaffc04/part2/phonebook/src/App.jsx)**: The Phonebook (Step 10).
 
 ---
 ---
