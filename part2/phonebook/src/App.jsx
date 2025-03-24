@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // Filter Component:
 const Filter = ({ filter, handleFilterChange }) => {
@@ -39,7 +40,7 @@ const Person = ({ person }) => {
 const Persons = ({ persons }) => {
   return (
     <ul>
-      {persons.map(person => <Person key={person.name} person={person} />)}
+      {persons.map(person => <Person key={person.id} person={person} />)}
     </ul>
   )
 }
@@ -47,15 +48,21 @@ const Persons = ({ persons }) => {
 // App Component:
 const App = () => {
   // State Variables: 
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+
+  // Effect Hook - Fetch Initial Data:
+  useEffect(() => {
+    console.log('Fetching initial data...')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('Data fetched successfully', response.data)
+        setPersons(response.data)
+      })
+  }, [])
 
   // Filter Persons (Case Insensitive):
   // Filter by name or number (Additional Feature).
@@ -85,7 +92,8 @@ const App = () => {
     // Add New Person to Phonebook:
     const personObject = { 
       name: newName,
-      number: newNumber
+      number: newNumber,
+      id: persons.length + 1
     }
 
     // Update Phonebook and Reset Forms:
