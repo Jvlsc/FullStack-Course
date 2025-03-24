@@ -73,9 +73,19 @@ In [this chapter](https://fullstackopen.com/en/part2/altering_data_in_server), w
 
 ## Adding Styles to React App:
 
-In [this chapter](https://fullstackopen.com/en/part2/adding_styles_to_react_app)
+In [this chapter](https://fullstackopen.com/en/part2/adding_styles_to_react_app), we will learn how to add styles to our React app.
 
-### Exercises:
+### Exercises (Phonebook):
+
+- **[Exercise 2.16]()**: The Phonebook (Step 11).
+- **[Exercise 2.17]()**: The Phonebook (Step 12).
+
+### Exercises (Countries):
+
+- **[Exercise 2.18]()**: Countries (Step 1).
+- **[Exercise 2.19]()**: Countries (Step 2).
+- **[Exercise 2.20]()**: Countries (Step 3).
+
 
 ---
 ---

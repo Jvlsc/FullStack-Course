@@ -12,6 +12,8 @@ The exercises corresponding to this project are:
 - **Exercise 2.13**: The Phonebook (Step 8).
 - **Exercise 2.14**: The Phonebook (Step 9).
 - **Exercise 2.15**: The Phonebook (Step 10).
+- **Exercise 2.16**: The Phonebook (Step 11).
+- **Exercise 2.17**: The Phonebook (Step 12).
 
 ---
 ---

@@ -1,49 +1,17 @@
 import { useState, useEffect } from 'react'
+
+// Import Components:
+import Filter from './components/Filter'
+import Notification from './components/Notification'
+import PersonForm from './components/PersonForm'
+import Persons from './components/Persons'
+
+// Import Services:
 import phonebookService from './services/phonebook'
 
-// Filter Component:
-const Filter = ({ filter, handleFilterChange }) => {
-  return (
-    <div>
-      Filter Shown with: <input value={filter} onChange={handleFilterChange} />
-    </div>
-  )
-}
+// Constants:
+const NOTIFICATION_TIMEOUT = 3000
 
-// PersonForm Component:
-const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNumberChange }) => {
-  return (
-    <form onSubmit={addPerson}>
-      <div>
-        Name: <input value={newName} onChange={handleNameChange} />
-      </div>
-      <div>
-        Number: <input value={newNumber} onChange={handleNumberChange} />
-      </div>
-      <div>
-        <button type="submit">add</button>
-      </div>
-    </form>
-  )
-}
-
-// Person Component:
-const Person = ({ person, onDelete }) => {
-  return (
-    <li>
-      {person.name}: {person.number} <button onClick={() => onDelete(person.id)}>Delete</button>
-    </li>
-  )
-}
-
-// Persons Component:
-const Persons = ({ persons, onDelete }) => {
-  return (
-    <ul>
-      {persons.map(person => <Person key={person.id} person={person} onDelete={onDelete} />)}
-    </ul>
-  )
-}
 
 // App Component:
 const App = () => {
@@ -52,6 +20,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [notification, setNotification] = useState(null)
 
   // Effect Hook - Fetch Initial Data:
   useEffect(() => {
@@ -63,6 +32,11 @@ const App = () => {
       })
       .catch(error => {
         console.log('Error Fetching Data:', error)
+        setNotification({
+          message: 'Error fetching data',
+          type: 'error'
+        })
+        setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
       })
   }, [])
 
@@ -94,12 +68,22 @@ const App = () => {
           .update(existingPerson.id, updatedPerson)
           .then(response => {
             console.log('Person Updated:', response)
+            setNotification({
+              message: `Contact '${newName}' was updated`,
+              type: 'success'
+            })
+            setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
             setPersons(persons.map(person => person.id === existingPerson.id ? response : person))
             setNewName('')
             setNewNumber('')
           })
           .catch(error => {
             console.log('Error Updating Person:', error)
+            setNotification({
+              message: `Error updating '${newName}' contact`,
+              type: 'error'
+            })
+            setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
           })
       }
       return
@@ -117,12 +101,22 @@ const App = () => {
       .create(personObject)
       .then(response => {
         console.log('New Person Added:', response)
+        setNotification({
+          message: `New contact '${newName}' was added to the phonebook`,
+          type: 'success'
+        })
+        setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
         setPersons(persons.concat(response))
         setNewName('')
         setNewNumber('')
       })
       .catch(error => {
         console.log('Error Adding New Person:', error)
+        setNotification({
+          message: `Error adding '${newName}' contact`,
+          type: 'error'
+        })
+        setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
       })
   }
 
@@ -155,10 +149,28 @@ const App = () => {
         .remove(id)
         .then(() => {
           console.log('Person Deleted: ', person.name)
-          setPersons(persons.filter(p => p.id !== id))
+          setNotification({
+            message: `Contact '${person.name}' was deleted`,
+            type: 'success'
+          })
+          setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
+          setPersons(persons.filter(person => person.id !== id))
         })
         .catch(error => {
           console.log('Error Deleting Person:', error)
+          if (error.response.status === 404) {
+            setNotification({
+              message: `Contact '${person.name}' not found (Already deleted)`,
+              type: 'error'
+            })
+            setPersons(persons.filter(person => person.id !== id))
+          } else {
+            setNotification({
+              message: `Error deleting '${person.name}' contact`,
+              type: 'error'
+            })
+          }
+          setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
         })
     }
   }
@@ -166,6 +178,8 @@ const App = () => {
   return (
     <>
       <h1>Phonebook</h1>
+      <Notification notification={notification} />
+      <br />
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <br />
       <h2>Add New Contact:</h2>
