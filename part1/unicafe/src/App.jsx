@@ -13,19 +13,22 @@ const Button = ({ onClick, text }) => {
 // Stats Component:
 const Stats = ({ good, neutral, bad, text }) => {
   const total = good + neutral + bad
-  const average = total === 0 ? 0 : (good - bad) / total
-  const positive = total === 0 ? 0 : (good / total) * 100
-
-  return (
-    <div>
-      <p>{text.good}: {good}</p>
-      <p>{text.neutral}: {neutral}</p>
-      <p>{text.bad}: {bad}</p>
-      <p>{text.all}: {total}</p>
-      <p>{text.average}: {average.toFixed(2)}</p>
-      <p>{text.positive}: {positive.toFixed(2)}%</p>
-    </div>
-  )
+  if (total !== 0) {
+    const average = (good - bad) / total
+    const positive = (good / total) * 100
+    return (
+      <div>
+        <p>{text.good}: {good}</p>
+        <p>{text.neutral}: {neutral}</p>
+        <p>{text.bad}: {bad}</p>
+        <p>{text.all}: {total}</p>
+        <p>{text.average}: {average.toFixed(2)}</p>
+        <p>{text.positive}: {positive.toFixed(2)}%</p>
+      </div>
+    )
+  } else {
+    return <div><p>{text.noFeedback}</p></div>
+  }
 }
 
 const App = () => {
@@ -51,7 +54,8 @@ const App = () => {
       bad: 'Bad',
       all: 'All',
       average: 'Average',
-      positive: 'Positive'
+      positive: 'Positive',
+      noFeedback: 'No feedback given'
     }
   }
 
