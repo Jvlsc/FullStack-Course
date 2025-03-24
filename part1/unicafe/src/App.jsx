@@ -8,8 +8,21 @@ const Button = ({ onClick, text }) => {
   return <button onClick={onClick}>{text}</button>
 }
 
-const Stats = ({ name, value }) => {
-  return <p>{name}: {value}</p>
+const Stats = ({ good, neutral, bad, text }) => {
+  const total = good + neutral + bad
+  const average = total === 0 ? 0 : (good - bad) / total
+  const positive = total === 0 ? 0 : (good / total) * 100
+
+  return (
+    <div>
+      <p>{text.good}: {good}</p>
+      <p>{text.neutral}: {neutral}</p>
+      <p>{text.bad}: {bad}</p>
+      <p>{text.all}: {total}</p>
+      <p>{text.average}: {average.toFixed(2)}</p>
+      <p>{text.positive}: {positive.toFixed(2)}%</p>
+    </div>
+  )
 }
 
 const App = () => {
@@ -28,6 +41,14 @@ const App = () => {
       good: 'Good',
       neutral: 'Neutral',
       bad: 'Bad'
+    },
+    stats: {
+      good: 'Good',
+      neutral: 'Neutral',
+      bad: 'Bad',
+      all: 'All',
+      average: 'Average',
+      positive: 'Positive'
     }
   }
 
@@ -41,9 +62,7 @@ const App = () => {
       </div>
       <div>
         <Header text={data.headers.stats} />
-        <Stats name={data.buttons.good} value={good} />
-        <Stats name={data.buttons.neutral} value={neutral} />
-        <Stats name={data.buttons.bad} value={bad} />
+        <Stats good={good} neutral={neutral} bad={bad} text={data.stats} />
       </div>
     </>
   )
