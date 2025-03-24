@@ -29,19 +29,19 @@ const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNum
 }
 
 // Person Component:
-const Person = ({ person }) => {
+const Person = ({ person, onDelete }) => {
   return (
     <li>
-      {person.name}: {person.number}
+      {person.name}: {person.number} <button onClick={() => onDelete(person.id)}>delete</button>
     </li>
   )
 }
 
 // Persons Component:
-const Persons = ({ persons }) => {
+const Persons = ({ persons, onDelete }) => {
   return (
     <ul>
-      {persons.map(person => <Person key={person.id} person={person} />)}
+      {persons.map(person => <Person key={person.id} person={person} onDelete={onDelete} />)}
     </ul>
   )
 }
@@ -134,6 +134,22 @@ const App = () => {
     setFilter(event.target.value)
   }
 
+  // Event Handler - Delete Contact:
+  const handleDelete = (id) => {
+    const person = persons.find(person => person.id === id)
+    if (window.confirm(`Delete ${person.name}?`)) {
+      phonebookService
+        .remove(id)
+        .then(() => {
+          console.log('Person Deleted: ', person.name)
+          setPersons(persons.filter(p => p.id !== id))
+        })
+        .catch(error => {
+          console.log('Error Deleting Person:', error)
+        })
+    }
+  }
+
   return (
     <>
       <h1>Phonebook</h1>
@@ -149,7 +165,7 @@ const App = () => {
       />
       <br />
       <h2>Numbers:</h2>
-      <Persons persons={filteredPersons} />
+      <Persons persons={filteredPersons} onDelete={handleDelete} />
     </>
   )
 }
