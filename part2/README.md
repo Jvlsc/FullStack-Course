@@ -48,9 +48,11 @@ In [this chapter](https://fullstackopen.com/en/part2/forms), we will learn how t
 
 ## Getting Data from Server:
 
-In [this chapter](https://fullstackopen.com/en/part2/getting_data_from_server)
+In [this chapter](https://fullstackopen.com/en/part2/getting_data_from_server), we will learn how to fetch data from a server using the `useEffect` hook.
 
 ### Exercises:
+
+- **[Exercise 2.11](https://github.com/Jvlsc/FullStack-Course/blob/147ad4921ecc9fb9141d8906f2ea08c9abbcfb02/part2/phonebook/src/App.jsx)**: The Phonebook (Step 6).
 
 ---
 ---
