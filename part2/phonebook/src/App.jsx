@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 // App Component:
 const App = () => {
+  
   // State Variables: 
   const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]) 
   const [newName, setNewName] = useState('')
@@ -10,6 +11,14 @@ const App = () => {
   const addPerson = (event) => {
     event.preventDefault()
     console.log('Add Contact Button Clicked', event.target)
+    
+    // Check if name already exists
+    if (persons.some(person => person.name === newName)) {
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
+
+    // Add New Person to Phonebook:
     const personObject = { name: newName }
     setPersons(persons.concat(personObject))
     setNewName('')
