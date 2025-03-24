@@ -31,9 +31,9 @@ const App = () => {
         setPersons(response)
       })
       .catch(error => {
-        console.log('Error Fetching Data:', error)
+        console.log('Error fetching Phonebook:', error)
         setNotification({
-          message: 'Error fetching data',
+          message: 'Error fetching Phonebook',
           type: 'error'
         })
         setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
@@ -50,7 +50,7 @@ const App = () => {
   // Event Handler - Add Contact:
   const addPerson = (event) => {
     event.preventDefault()
-    console.log('Add Contact Button Clicked', event.target)
+    console.log('Add contact button clicked', event.target)
     
     // Check if name is empty:
     // (Additional Feature)
@@ -67,7 +67,7 @@ const App = () => {
         phonebookService
           .update(existingPerson.id, updatedPerson)
           .then(response => {
-            console.log('Person Updated:', response)
+            console.log('Contact updated:', response)
             setNotification({
               message: `Contact '${newName}' was updated`,
               type: 'success'
@@ -78,7 +78,7 @@ const App = () => {
             setNewNumber('')
           })
           .catch(error => {
-            console.log('Error Updating Person:', error)
+            console.log('Error updating contact:', error)
             setNotification({
               message: `Error updating '${newName}' contact`,
               type: 'error'
@@ -100,9 +100,9 @@ const App = () => {
     phonebookService
       .create(personObject)
       .then(response => {
-        console.log('New Person Added:', response)
+        console.log('New contact added:', response)
         setNotification({
-          message: `New contact '${newName}' was added to the phonebook`,
+          message: `New contact '${newName}' was added to the Phonebook`,
           type: 'success'
         })
         setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
@@ -111,7 +111,7 @@ const App = () => {
         setNewNumber('')
       })
       .catch(error => {
-        console.log('Error Adding New Person:', error)
+        console.log('Error adding new contact:', error)
         setNotification({
           message: `Error adding '${newName}' contact`,
           type: 'error'
@@ -144,11 +144,11 @@ const App = () => {
   // Event Handler - Delete Contact:
   const handleDelete = (id) => {
     const person = persons.find(person => person.id === id)
-    if (window.confirm(`Delete ${person.name}?`)) {
+    if (window.confirm(`Delete ${person.name} Contact?`)) {
       phonebookService
         .remove(id)
         .then(() => {
-          console.log('Person Deleted: ', person.name)
+          console.log('Contact deleted: ', person.name)
           setNotification({
             message: `Contact '${person.name}' was deleted`,
             type: 'success'
@@ -157,7 +157,7 @@ const App = () => {
           setPersons(persons.filter(person => person.id !== id))
         })
         .catch(error => {
-          console.log('Error Deleting Person:', error)
+          console.log('Error deleting contact:', error)
           if (error.response.status === 404) {
             setNotification({
               message: `Contact '${person.name}' not found (Already deleted)`,
