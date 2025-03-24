@@ -55,7 +55,7 @@ In [this chapter](https://fullstackopen.com/es/part1/estado_del_componente_contr
 
 In [this chapter](https://fullstackopen.com/es/part1/un_estado_mas_complejo_depurando_aplicaciones_react), we will learn how to manage more complex state and how to debug React apps.
 
-### Exercises:
+### Exercises (Unicafe):
 
 - **[Exercise 1.6](https://github.com/Jvlsc/FullStack-Course/blob/e81af4ff4ae8c40ebe9bb4e5f7c6d25bad7642b4/part1/unicafe/src/App.jsx)**: Unicafe (Step 1).
 - **[Exercise 1.7](https://github.com/Jvlsc/FullStack-Course/blob/c4698dbb6b2e9e7754f603a886374d5d9350e659/part1/unicafe/src/App.jsx)**: Unicafe (Step 2).
@@ -64,7 +64,11 @@ In [this chapter](https://fullstackopen.com/es/part1/un_estado_mas_complejo_depu
 - **[Exercise 1.10](https://github.com/Jvlsc/FullStack-Course/blob/53dad38943f1f921783b28f3dd09e10774698cbb/part1/unicafe/src/App.jsx)**: Unicafe (Step 5) -> Partially done in 1.6.
 - **[Exercise 1.11](https://github.com/Jvlsc/FullStack-Course/blob/22b8b2a4f5d3b4d06d3014e1da653a567f3f7929/part1/unicafe/src/App.jsx)**: Unicafe (Step 6).
 
+### Exercises (Anecdotes):
 
+- **[Exercise 1.12](https://github.com/Jvlsc/FullStack-Course/blob/ae08cffe28c52ecc5f2447f98ca1f0ef0b3e31b1/part1/anecdotes/src/App.jsx)**: Anecdotes (Step 1).
+- **[Exercise 1.13](https://github.com/Jvlsc/FullStack-Course/blob/99c8c1156dcdc5cb81cea5a9772840725d7abb83/part1/anecdotes/src/App.jsx)**: Anecdotes (Step 2).
+- **[Exercise 1.14](https://github.com/Jvlsc/FullStack-Course/blob/1f94b2ac1d11695d2242e5123f3e5b24766ab415/part1/anecdotes/src/App.jsx)**: Anecdotes (Step 3).
 
 ---
 ---
