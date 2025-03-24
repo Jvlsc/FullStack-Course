@@ -22,11 +22,11 @@ In [this chapter](https://fullstackopen.com/en/part2/rendering_a_collection_modu
 
 ### Exercises:
 
-- **[Exercise 2.1]()**: Course information (Step 6).
-- **[Exercise 2.2]()**: Course information (Step 7).
-- **[Exercise 2.3]()**: Course information (Step 8).
-- **[Exercise 2.4]()**: Course information (Step 9).
-- **[Exercise 2.5]()**: Course information (Step 10).
+- **[Exercise 2.1](https://github.com/Jvlsc/FullStack-Course/blob/6e91543f9a1bdab1a98d32f8da7787826b371658/part2/courseinfo/src/App.jsx)**: Course information (Step 6).
+- **[Exercise 2.2](https://github.com/Jvlsc/FullStack-Course/blob/2b0c020dc62989814b545df9a2d59dc5b7f07dad/part2/courseinfo/src/App.jsx)**: Course information (Step 7).
+- **[Exercise 2.3](https://github.com/Jvlsc/FullStack-Course/blob/2b0c020dc62989814b545df9a2d59dc5b7f07dad/part2/courseinfo/src/App.jsx)**: Course information (Step 8).
+- **[Exercise 2.4](https://github.com/Jvlsc/FullStack-Course/blob/66e458731901782b0a249649e3f25485e5f9561c/part2/courseinfo/src/App.jsx)**: Course information (Step 9).
+- **[Exercise 2.5](https://github.com/Jvlsc/FullStack-Course/blob/2b0c699da03e389cd5aca7092a808f57affcdf12/part2/courseinfo/src/App.jsx)**: Course information (Step 10).
 
 ---
 ---
