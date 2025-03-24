@@ -59,9 +59,14 @@ In [this chapter](https://fullstackopen.com/en/part2/getting_data_from_server), 
 
 ## Altering Data in Server:
 
-In [this chapter](https://fullstackopen.com/en/part2/altering_data_in_server)
+In [this chapter](https://fullstackopen.com/en/part2/altering_data_in_server), we will learn how to alter data in a server using the `axios` library.
 
 ### Exercises:
+
+- **[Exercise 2.12]()**: The Phonebook (Step 7).
+- **[Exercise 2.13]()**: The Phonebook (Step 8).
+- **[Exercise 2.14]()**: The Phonebook (Step 9).
+- **[Exercise 2.15]()**: The Phonebook (Step 10).
 
 ---
 ---
