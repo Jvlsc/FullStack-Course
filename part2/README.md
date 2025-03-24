@@ -37,11 +37,11 @@ In [this chapter](https://fullstackopen.com/en/part2/forms), we will learn how t
 
 ### Exercises:
 
-- **[Exercise 2.6]()**: The Phonebook (Step 1).
-- **[Exercise 2.7]()**: The Phonebook (Step 2).
-- **[Exercise 2.8]()**: The Phonebook (Step 3).
-- **[Exercise 2.9]()**: The Phonebook (Step 4).
-- **[Exercise 2.10]()**: The Phonebook (Step 5).
+- **[Exercise 2.6](https://github.com/Jvlsc/FullStack-Course/blob/22350268f946ef3d45fa8d89931c9f24965c16f1/part2/phonebook/src/App.jsx)**: The Phonebook (Step 1).
+- **[Exercise 2.7](https://github.com/Jvlsc/FullStack-Course/blob/43b96ff970c46074e5f55f8a476dc31c208627cc/part2/phonebook/src/App.jsx)**: The Phonebook (Step 2).
+- **[Exercise 2.8](https://github.com/Jvlsc/FullStack-Course/blob/99b4db16ecf0c2e4721e62f54eeb4ca55d61bd50/part2/phonebook/src/App.jsx)**: The Phonebook (Step 3).
+- **[Exercise 2.9](https://github.com/Jvlsc/FullStack-Course/blob/e89ceb32384c90eb60865dcf2d7d3521fc6b6434/part2/phonebook/src/App.jsx)**: The Phonebook (Step 4).
+- **[Exercise 2.10](https://github.com/Jvlsc/FullStack-Course/blob/f67bee207aef2451e13029608841587153f38ff0/part2/phonebook/src/App.jsx)**: The Phonebook (Step 5).
 
 ---
 ---
