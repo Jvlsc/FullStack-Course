@@ -1,8 +1,13 @@
 import { useState } from 'react'
 
 // Anecdote Component:
-const Anecdote = ({ anecdote }) => {
-  return <p>{anecdote}</p>
+const Anecdote = ({ anecdote, votes, text }) => {
+  return (
+    <div>
+      <p>{anecdote}</p>
+      <p> {'>>>'} {text.prefix} {votes} {text.suffix}</p>
+    </div>
+  )
 }
 
 // Button Component:
@@ -12,9 +17,6 @@ const Button = ({ handleClick, text }) => {
 
 // App Component:
 const App = () => {
-  // Save selected anecdote index in state:
-  const [selected, setSelected] = useState(0)
-  
   // Collection of anecdotes:
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -30,22 +32,45 @@ const App = () => {
   // Strings data:
   const stringsData = {
     buttons: {
-      next: 'Next Anecdote'
+      next: 'Next Anecdote',
+      vote: 'Vote'
+    },
+    anecdote: {
+      prefix: 'Has',
+      suffix: 'votes'
     }
   }
 
+  // Save selected anecdote index in state:
+  const [selected, setSelected] = useState(0)
+
+  // Save votes array in state (Initialized with zeros):
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
+
   // Function to handle random anecdote selection:
-  // The random index is generated using the Math.random() function which returns a random number between 0 and 1.
-  // The Math.floor() function is used to round the random number down to the nearest integer.
-  // The random index is then used to set the selected anecdote to the anecdote at the random index.
+  // Math.random() function returns a random number between [0,1).
+  // Math.floor() function rounds the random number down to the nearest integer.
+  // The random index is then used to set the selected anecdote.
   const handleRandomAnecdote = () => {
     const randomIndex = Math.floor(Math.random() * anecdotes.length)
+    console.log('Random Index:', randomIndex)
     setSelected(randomIndex)
+  }
+
+  // Function to handle voting:
+  // Create a copy of the votes array and increment the vote count for the selected anecdote.
+  // Then update the votes array with the new vote count.
+  const handleVote = () => {
+    const newVotes = [...votes]
+    newVotes[selected] += 1
+    console.log('New Votes:', newVotes)
+    setVotes(newVotes)
   }
 
   return (
     <>
-      <Anecdote anecdote={anecdotes[selected]} />
+      <Anecdote anecdote={anecdotes[selected]} votes={votes[selected]} text={stringsData.anecdote} />
+      <Button handleClick={handleVote} text={stringsData.buttons.vote} />
       <Button handleClick={handleRandomAnecdote} text={stringsData.buttons.next} />
     </>
   )
