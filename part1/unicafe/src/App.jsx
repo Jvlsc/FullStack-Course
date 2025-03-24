@@ -10,20 +10,25 @@ const Button = ({ onClick, text }) => {
   return <button onClick={onClick}>{text}</button>
 }
 
-// Stats Component:
-const Stats = ({ good, neutral, bad, text }) => {
+// Statistic Line Component:
+const StatisticLine = ({ text, value }) => {
+  return <p>{text}: {value}</p>
+}
+
+// Statistics Component:
+const Statistics = ({ good, neutral, bad, text }) => {
   const total = good + neutral + bad
   if (total !== 0) {
     const average = (good - bad) / total
     const positive = (good / total) * 100
     return (
       <div>
-        <p>{text.good}: {good}</p>
-        <p>{text.neutral}: {neutral}</p>
-        <p>{text.bad}: {bad}</p>
-        <p>{text.all}: {total}</p>
-        <p>{text.average}: {average.toFixed(2)}</p>
-        <p>{text.positive}: {positive.toFixed(2)}%</p>
+        <StatisticLine text={text.good} value={good} />
+        <StatisticLine text={text.neutral} value={neutral} />
+        <StatisticLine text={text.bad} value={bad} />
+        <StatisticLine text={text.all} value={total} />
+        <StatisticLine text={text.average} value={average.toFixed(2)} />
+        <StatisticLine text={text.positive} value={positive.toFixed(2)} />
       </div>
     )
   } else {
@@ -69,7 +74,7 @@ const App = () => {
       </div>
       <div>
         <Header text={data.headers.stats} />
-        <Stats good={good} neutral={neutral} bad={bad} text={data.stats} />
+        <Statistics good={good} neutral={neutral} bad={bad} text={data.stats} />
       </div>
     </>
   )
