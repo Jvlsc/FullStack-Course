@@ -4,9 +4,20 @@ import { useState } from 'react'
 const App = () => {
 
   // State Variables: 
-  const [persons, setPersons] = useState([{ name: 'Arto Hellas', number: '040-1234567' }]) 
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
+  ])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [filter, setFilter] = useState('')
+
+  // Filter Persons (Case Insensitive):
+  const filteredPersons = persons.filter(person => 
+    person.name.toLowerCase().includes(filter.toLowerCase())
+  )
 
   // Event Handler - Add Contact:
   const addPerson = (event) => {
@@ -45,7 +56,7 @@ const App = () => {
   }
 
   // Event Handler - Handle Number Change:
-  // Check if number is valid: Only numbers and dashes (Additional Feature).
+  // Allow only numbers and dashes (Additional Feature).
   const handleNumberChange = (event) => {
     console.log(event.target.value)
     if (event.target.value === '' || /^[0-9-]*$/.test(event.target.value)) {
@@ -53,9 +64,20 @@ const App = () => {
     } 
   }
 
+  // Event Handler - Handle Filter Change:
+  const handleFilterChange = (event) => {
+    console.log(event.target.value)
+    setFilter(event.target.value)
+  }
+
   return (
     <div>
       <h2>Phonebook:</h2>
+      <div>
+        Filter Shown with: <input value={filter} onChange={handleFilterChange} />
+      </div>
+      <br />
+      <h2>Add New Contact:</h2>
       <form onSubmit={addPerson}>
         <div>
           · Name: <input value={newName} onChange={handleNameChange} />
@@ -67,12 +89,10 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
-
       <br />
-
       <h2>Numbers:</h2>
       <ul>
-        {persons.map(person => <li key={person.name}>{person.name}: {person.number}</li>)}
+        {filteredPersons.map(person => <li key={person.name}>{person.name}: {person.number}</li>)}
       </ul>
     </div>
   )
