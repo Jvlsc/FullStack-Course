@@ -77,8 +77,8 @@ In [this chapter](https://fullstackopen.com/en/part2/adding_styles_to_react_app)
 
 ### Exercises (Phonebook):
 
-- **[Exercise 2.16]()**: The Phonebook (Step 11).
-- **[Exercise 2.17]()**: The Phonebook (Step 12).
+- **[Exercise 2.16](https://github.com/Jvlsc/FullStack-Course/blob/832c711d861d01709d8cd6077e03e78378af3c66/part2/phonebook/src/App.jsx)**: The Phonebook (Step 11).
+- **[Exercise 2.17](https://github.com/Jvlsc/FullStack-Course/blob/832c711d861d01709d8cd6077e03e78378af3c66/part2/phonebook/src/App.jsx)**: The Phonebook (Step 12) -> Already solved in 2.16.
 
 ### Exercises (Countries):
 
