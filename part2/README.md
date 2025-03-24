@@ -33,9 +33,15 @@ In [this chapter](https://fullstackopen.com/en/part2/rendering_a_collection_modu
 
 ## Forms:
 
-In [this chapter](https://fullstackopen.com/en/part2/forms)
+In [this chapter](https://fullstackopen.com/en/part2/forms), we will learn how to handle user input in React with States.
 
 ### Exercises:
+
+- **[Exercise 2.6]()**: The Phonebook (Step 1).
+- **[Exercise 2.7]()**: The Phonebook (Step 2).
+- **[Exercise 2.8]()**: The Phonebook (Step 3).
+- **[Exercise 2.9]()**: The Phonebook (Step 4).
+- **[Exercise 2.10]()**: The Phonebook (Step 5).
 
 ---
 ---
