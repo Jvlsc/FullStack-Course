@@ -34,7 +34,7 @@ const Statistics = ({ good, neutral, bad, text }) => {
           <StatisticLine text={text.bad} value={bad} />
           <StatisticLine text={text.all} value={total} />
           <StatisticLine text={text.average} value={average.toFixed(2)} />
-          <StatisticLine text={text.positive} value={positive.toFixed(2)} />
+          <StatisticLine text={text.positive} value={positive.toFixed(2) + ' %'} />
         </tbody>
       </table>
     )
