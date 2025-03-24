@@ -53,5 +53,18 @@ In [this chapter](https://fullstackopen.com/es/part1/estado_del_componente_contr
 
 ## A More Complex State, Debugging React Apps:
 
+In [this chapter](https://fullstackopen.com/es/part1/un_estado_mas_complejo_depurando_aplicaciones_react), we will learn how to manage more complex state and how to debug React apps.
+
+### Exercises:
+
+- **[Exercise 1.6](https://github.com/Jvlsc/FullStack-Course/blob/e81af4ff4ae8c40ebe9bb4e5f7c6d25bad7642b4/part1/unicafe/src/App.jsx)**: Unicafe (Step 1).
+- **[Exercise 1.7](https://github.com/Jvlsc/FullStack-Course/blob/c4698dbb6b2e9e7754f603a886374d5d9350e659/part1/unicafe/src/App.jsx)**: Unicafe (Step 2).
+- **[Exercise 1.8](https://github.com/Jvlsc/FullStack-Course/blob/881caddb8fb24916f9a8a21a757681aab5012f3a/part1/unicafe/src/App.jsx)**: Unicafe (Step 3) -> Already done in 1.7.
+- **[Exercise 1.9](https://github.com/Jvlsc/FullStack-Course/blob/35aa804f88b07dc69320e0bfd39061850e3c61f9/part1/unicafe/src/App.jsx)**: Unicafe (Step 4).
+- **[Exercise 1.10](https://github.com/Jvlsc/FullStack-Course/blob/53dad38943f1f921783b28f3dd09e10774698cbb/part1/unicafe/src/App.jsx)**: Unicafe (Step 5) -> Partially done in 1.6.
+- **[Exercise 1.11](https://github.com/Jvlsc/FullStack-Course/blob/22b8b2a4f5d3b4d06d3014e1da653a567f3f7929/part1/unicafe/src/App.jsx)**: Unicafe (Step 6).
+
+
+
 ---
 ---
