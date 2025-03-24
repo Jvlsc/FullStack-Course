@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+// Header Component:
+const Header = ({ text }) => {
+  return <h1>{text}:</h1>
+}
+
 // Anecdote Component:
 const Anecdote = ({ anecdote, votes, text }) => {
   return (
@@ -31,6 +36,10 @@ const App = () => {
 
   // Strings data:
   const stringsData = {
+    header: {
+      title: 'Anecdote of the day',
+      mostVoted: 'Anecdote with most votes'
+    },
     buttons: {
       next: 'Next Anecdote',
       vote: 'Vote'
@@ -67,11 +76,26 @@ const App = () => {
     setVotes(newVotes)
   }
 
+  // Find the anecdote with most votes:
+  // Math.max() function returns the highest value in an array.
+  // votes.indexOf() function returns the index of the FIRST occurrence of a value in an array.
+  const maxVotes = Math.max(...votes)
+  const mostVotedIndex = votes.indexOf(maxVotes)
+
   return (
     <>
-      <Anecdote anecdote={anecdotes[selected]} votes={votes[selected]} text={stringsData.anecdote} />
-      <Button handleClick={handleVote} text={stringsData.buttons.vote} />
-      <Button handleClick={handleRandomAnecdote} text={stringsData.buttons.next} />
+      <div>
+        <Header text={stringsData.header.title} />
+        <Anecdote anecdote={anecdotes[selected]} votes={votes[selected]} text={stringsData.anecdote} />
+        <Button handleClick={handleVote} text={stringsData.buttons.vote} />
+        <Button handleClick={handleRandomAnecdote} text={stringsData.buttons.next} />
+      </div>
+      <br />
+      <br />
+      <div>
+        <Header text={stringsData.header.mostVoted} />
+        <Anecdote anecdote={anecdotes[mostVotedIndex]} votes={votes[mostVotedIndex]} text={stringsData.anecdote} />
+      </div>
     </>
   )
 }
