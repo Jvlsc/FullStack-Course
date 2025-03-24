@@ -1,13 +1,16 @@
 import { useState } from 'react'
 
+// Header Component:
 const Header = ({ text }) => {
   return <h1>{text}:</h1>
 }
 
+// Button Component:
 const Button = ({ onClick, text }) => {
   return <button onClick={onClick}>{text}</button>
 }
 
+// Stats Component:
 const Stats = ({ good, neutral, bad, text }) => {
   const total = good + neutral + bad
   const average = total === 0 ? 0 : (good - bad) / total
