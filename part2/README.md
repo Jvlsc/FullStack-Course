@@ -82,9 +82,9 @@ In [this chapter](https://fullstackopen.com/en/part2/adding_styles_to_react_app)
 
 ### Exercises (Countries):
 
-- **[Exercise 2.18]()**: Countries (Step 1).
-- **[Exercise 2.19]()**: Countries (Step 2).
-- **[Exercise 2.20]()**: Countries (Step 3).
+- **[Exercise 2.18](https://github.com/Jvlsc/FullStack-Course/blob/3e8dae81514627d68a6105d909ec4fd8c4c3e196/part2/countries/src/App.jsx)**: Countries (Step 1).
+- **[Exercise 2.19](https://github.com/Jvlsc/FullStack-Course/blob/60cac93527732e8ed4e1168b4f49bb2e3d82df94/part2/countries/src/App.jsx)**: Countries (Step 2).
+- **[Exercise 2.20](https://github.com/Jvlsc/FullStack-Course/blob/e2d336086f997280eca13448e6c501db4ee5b1eb/part2/countries/src/App.jsx)**: Countries (Step 3).
 
 
 ---
