@@ -28,7 +28,7 @@ In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express)
 - **[Exercise 3.5](https://github.com/Jvlsc/FullStack-Course/blob/7dfacf566d76a69313827df0296bc3218e660d1a/part3/phonebook/index.js)**: The Phonebook Backend (Step 5).
 - **[Exercise 3.6](https://github.com/Jvlsc/FullStack-Course/blob/08256db6d64910b82228d805945940c07943dfbf/part3/phonebook/index.js)**: The Phonebook Backend (Step 6).
 - **[Exercise 3.7](https://github.com/Jvlsc/FullStack-Course/blob/dc0dd9762f66e3ecb0a30fc9ff4582dd028df2f9/part3/phonebook/index.js)**: The Phonebook Backend (Step 7).
-- **[Exercise 3.8](https://github.com/Jvlsc/FullStack-Course/blob/360b08dd4c06180024239754b986e89cb620419f/part3/phonebook/index.js)**: The Phonebook Backend (Step 8).
+- **[Exercise 3.8](https://github.com/Jvlsc/FullStack-Course/blob/9351a42eb6c95d6401737e1e05c0ed8d2139a0c1/part3/phonebook/index.js)**: The Phonebook Backend (Step 8).
 
 ---
 ---
