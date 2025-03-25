@@ -21,12 +21,12 @@ In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express)
 
 ### Exercises:
 
-- **[Exercise 3.1]()**: XXXXX (Step 1).
-- **[Exercise 3.2]()**: XXXXX (Step 2).
-- **[Exercise 3.3]()**: XXXXX (Step 3).
-- **[Exercise 3.4]()**: XXXXX (Step 4).
-- **[Exercise 3.5]()**: XXXXX (Step 5).
-- **[Exercise 3.6]()**: XXXXX (Step 6).
+- **[Exercise 3.1]()**: The Phonebook Backend (Step 1).
+- **[Exercise 3.2]()**: The Phonebook Backend (Step 2).
+- **[Exercise 3.3]()**: The Phonebook Backend (Step 3).
+- **[Exercise 3.4]()**: The Phonebook Backend (Step 4).
+- **[Exercise 3.5]()**: The Phonebook Backend (Step 5).
+- **[Exercise 3.6]()**: The Phonebook Backend (Step 6).
 - **[Exercise 3.7]()**: XXXXX (Step 7).
 - **[Exercise 3.8]()**: XXXXX (Step 8).
 
