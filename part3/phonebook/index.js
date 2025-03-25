@@ -21,8 +21,8 @@ morgan.token('post-body', (request) => {
 // Configure Morgan for logging with custom format
 app.use(morgan(':method :url | :status | :res[content-length] bytes | :response-time ms | :post-body |'))
 
-  // Middleware (Express json-parser):
-  // Parse JSON Request Bodies
+// Middleware (Express json-parser):
+// Parse JSON Request Bodies
 app.use(express.json())
 
 
