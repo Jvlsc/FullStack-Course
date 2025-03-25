@@ -1,11 +1,16 @@
 // Import the Express.js:
 const express = require('express')
 
+// Server Port:
+const PORT = 3001
+
 // Express Instance:
 const app = express()
 
-// Server Port:
-const PORT = 3001
+// Middleware
+// Parse JSON Request Bodies
+app.use(express.json())
+
 
 // Initial Phonebook Data:
 let data = [
@@ -65,6 +70,21 @@ app.get('/api/persons/:id', (request, response) => {
   } else {
     response.status(404).end()
   }
+})
+
+// [POST] - Create Person Route:
+// Creates a new person in the phonebook
+// Generates ID as a random number between 1 and 1000000
+app.post('/api/persons', (request, response) => {
+  const body = request.body
+  const randomId = Math.floor(Math.random() * 1000000) + 1
+  const person = {
+    id: randomId.toString(),
+    name: body.name,
+    number: body.number
+  }
+  data = data.concat(person)
+  response.json(person)
 })
 
 // [DELETE] - Delete Person Route:
