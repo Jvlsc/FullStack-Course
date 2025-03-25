@@ -27,8 +27,8 @@ In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express)
 - **[Exercise 3.4]()**: The Phonebook Backend (Step 4).
 - **[Exercise 3.5]()**: The Phonebook Backend (Step 5).
 - **[Exercise 3.6]()**: The Phonebook Backend (Step 6).
-- **[Exercise 3.7]()**: XXXXX (Step 7).
-- **[Exercise 3.8]()**: XXXXX (Step 8).
+- **[Exercise 3.7]()**: The Phonebook Backend (Step 7).
+- **[Exercise 3.8]()**: The Phonebook Backend (Step 8).
 
 ---
 ---

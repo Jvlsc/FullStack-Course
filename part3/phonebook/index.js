@@ -1,5 +1,6 @@
-// Import the Express.js:
+// Import the Express.js and Morgan:
 const express = require('express')
+const morgan = require('morgan')
 
 // Server Port:
 const PORT = 3001
@@ -7,7 +8,11 @@ const PORT = 3001
 // Express Instance:
 const app = express()
 
-// Middleware
+// Middleware (Morgan):
+// Configure Morgan for logging with 'tiny' format
+app.use(morgan('tiny'))
+
+// Middleware (Express json-parser):
 // Parse JSON Request Bodies
 app.use(express.json())
 
