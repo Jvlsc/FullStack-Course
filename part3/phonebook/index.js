@@ -1,12 +1,17 @@
-// Import the Express.js and Morgan:
+// Import the Express.js, Morgan, and CORS:
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 
 // Server Port:
 const PORT = 3001
 
 // Express Instance:
 const app = express()
+
+// Middleware (CORS):
+// Allow all origins (for development purposes)
+app.use(cors())
 
 // Middleware (Morgan):
 // Create a custom token for POST body
