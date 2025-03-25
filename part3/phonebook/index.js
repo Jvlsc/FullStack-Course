@@ -55,6 +55,18 @@ app.get('/api/persons', (request, response) => {
   response.json(data)
 })
 
+// [GET] - Single Person Route:
+// Returns a single person's data based on their ID
+app.get('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  const person = data.find(person => person.id === id)
+  if (person) {
+    response.json(person)
+  } else {
+    response.status(404).end()
+  }
+})
+
 // Start the Server:
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
