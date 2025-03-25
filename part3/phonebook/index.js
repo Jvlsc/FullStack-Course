@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 // Server Port:
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 
 // Express Instance:
 const app = express()

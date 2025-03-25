@@ -12,3 +12,14 @@ GET http://localhost:3001/error
 
 ###
 
+GET https://phonebook-blue-lake-542.fly.dev/
+
+###
+
+GET https://phonebook-blue-lake-542.fly.dev/info
+
+###
+
+GET https://phonebook-blue-lake-542.fly.dev/error
+
+###

@@ -3,27 +3,41 @@
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
-{
-  "name": "John Doe",
-  "number": "1234567890"
-}
+{ "name": "John Doe", "number": "1234567890" }
 
 ###
 
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
-{
-  "number": "1234567890"
-}
+{ "name": "John Doe" }
 
 ###
 
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
-{
-  "name": "John Doe"
-}
+{ "number": "1234567890" }
+
+###
+
+POST https://phonebook-blue-lake-542.fly.dev/api/persons
+Content-Type: application/json
+
+{ "name": "John Doe", "number": "1234567890" }
+
+###
+
+POST https://phonebook-blue-lake-542.fly.dev/api/persons
+Content-Type: application/json
+
+{ "name": "John Doe" }
+
+###
+
+POST https://phonebook-blue-lake-542.fly.dev/api/persons
+Content-Type: application/json
+
+{ "number": "1234567890" }
 
 ###

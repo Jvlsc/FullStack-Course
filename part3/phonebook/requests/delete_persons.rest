@@ -20,4 +20,22 @@ DELETE http://localhost:3001/api/persons/100
 
 ###
 
+DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/1
 
+###
+
+DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/2
+
+###
+
+DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/3
+
+###
+
+DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/4
+
+###
+
+DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/100
+
+###
