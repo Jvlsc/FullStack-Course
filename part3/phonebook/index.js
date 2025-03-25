@@ -1,17 +1,12 @@
-// Import the Express.js, Morgan, and CORS:
+// Import the Express.js, Morgan:
 const express = require('express')
 const morgan = require('morgan')
-const cors = require('cors')
 
 // Server Port:
 const PORT = process.env.PORT || 3001
 
 // Express Instance:
 const app = express()
-
-// Middleware (CORS):
-// Allow all origins (for development purposes)
-app.use(cors())
 
 // Middleware (Morgan):
 // Create a custom token for POST body
@@ -30,6 +25,9 @@ app.use(morgan(':method :url | :status | :res[content-length] bytes | :response-
 // Parse JSON Request Bodies
 app.use(express.json())
 
+// Middleware (Express static):
+// Serve static files from the dist directory
+app.use(express.static('dist'))
 
 // Initial Phonebook Data:
 let data = [

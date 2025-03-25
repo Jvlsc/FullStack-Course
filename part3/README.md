@@ -17,7 +17,7 @@ In this part our focus shifts towards the backend, that is, towards implementing
 
 ## Node.js and Express:
 
-In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express)
+In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express), we will implement a simple REST API in Node.js by using the Express library locally.
 
 ### Exercises:
 
@@ -35,7 +35,7 @@ In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express)
 
 ## Deploying app to internet:
 
-In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet)
+In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet), we will deploy our application to the internet. The service we will use is [Fly.io](https://fly.io/).
 
 ### Exercises:
 
