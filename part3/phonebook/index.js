@@ -67,6 +67,19 @@ app.get('/api/persons/:id', (request, response) => {
   }
 })
 
+// [DELETE] - Delete Person Route:
+// Deletes a person from the phonebook based on their ID
+app.delete('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  const person = data.find(person => person.id === id)
+  if (!person) { 
+    return response.status(404).end()
+  } else {
+    data = data.filter(person => person.id !== id)
+    response.status(204).end()
+  }
+})
+
 // Start the Server:
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
