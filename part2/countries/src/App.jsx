@@ -17,7 +17,10 @@ const App = () => {
 
   // Save Countries and Filter in State:
   const [countries, setCountries] = useState(null)
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState({
+    text: '',
+    strict: false
+  })
   const [notification, setNotification] = useState({
     type: 'success',
     message: 'Loading countries data...'
@@ -39,25 +42,34 @@ const App = () => {
 
   // Handle Filter Change:
   const handleFilterChange = (event) => {
-    console.log('Filter:', event.target.value)
-    setFilter(event.target.value)
+    console.log(`Filter: ${event.target.value} | Strict: ${false}`)
+    setFilter({ text: event.target.value, strict: false })
   }
 
   // Handle Show Country Button Click:
   const handleShowCountry = (officialName) => {
     console.log('Show country:', officialName)
-    setFilter(officialName)
+    setFilter({ text: officialName, strict: true })
   }
 
   // Filter Countries (Case Insensitive):
   // (Search by official name or common name)
   let filteredCountries = []
   if (countries !== null) {
-    filteredCountries = countries.filter(country => 
-      country.name.official.toLowerCase().includes(filter.toLowerCase()) ||
-      country.name.common.toLowerCase().includes(filter.toLowerCase())
-    )
+    filteredCountries = countries.filter(country => {
+      const searchText = filter.text.toLowerCase()
+      const officialName = country.name.official.toLowerCase()
+      const commonName = country.name.common.toLowerCase()
+      if (filter.strict) {
+        // Strict filtering: Official name must match exactly
+        return officialName === searchText
+      } else {
+        // Non-strict filtering: Partial match allowed
+        return officialName.includes(searchText) || commonName.includes(searchText)
+      }
+    })
   }
+  console.log('Filtered Countries:', filteredCountries)
 
   // Render App:
   // - Show loading message if countries data is not loaded
@@ -79,7 +91,7 @@ const App = () => {
             </>
           )
       }
-    </> 
+    </>
   )
 }
 
