@@ -43,6 +43,12 @@ const App = () => {
     setFilter(event.target.value)
   }
 
+  // Handle Show Country Button Click:
+  const handleShowCountry = (officialName) => {
+    console.log('Show country:', officialName)
+    setFilter(officialName)
+  }
+
   // Filter Countries (Case Insensitive):
   // (Search by official name or common name)
   let filteredCountries = []
@@ -69,11 +75,11 @@ const App = () => {
             <>
               <Filter filter={filter} handleFilterChange={handleFilterChange} />
               <br />
-              <Countries countries={filteredCountries} />
+              <Countries countries={filteredCountries} handleShowCountry={handleShowCountry} />
             </>
           )
       }
-    </>
+    </> 
   )
 }
 

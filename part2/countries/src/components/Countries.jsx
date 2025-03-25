@@ -17,12 +17,19 @@ const CountryDetails = ({ country }) => {
 }
 
 // Country Component:
-const Country = ({ country }) => {
-  return <h4>· {country.name.common} [{country.name.official}]</h4>
+const Country = ({ country, handleShowCountry }) => {
+  return (
+    <h4>
+      · {country.name.common} [{country.name.official}] &nbsp;
+      <button onClick={() => handleShowCountry(country.name.official)}>
+        Show Details
+      </button>
+    </h4>
+  )
 }
 
 // Countries Component:
-const Countries = ({ countries }) => {
+const Countries = ({ countries, handleShowCountry }) => {
   console.log('Countries:', countries)
   if (countries.length === 0) {
     return (
@@ -39,7 +46,9 @@ const Countries = ({ countries }) => {
   if (countries.length > 1 && countries.length <= 10) {
     return (
       <div>
-        {countries.map(country => <Country key={country.name.official} country={country} />)}
+        {countries.map(country => 
+          <Country key={country.name.official} country={country} handleShowCountry={handleShowCountry} />
+        )}
       </div>
     )
   }
