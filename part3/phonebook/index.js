@@ -37,6 +37,18 @@ app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
+// [GET] - Info Route:
+// Displays current time and number of entries in the phonebook
+app.get('/info', (request, response) => {
+  response.send(`
+    <div>
+      <h1>Phonebook Information</h1>
+      <h4>· Phonebook has info for ${data.length} people</h4>
+      <h4>· ${new Date().toString()}</h4>
+    </div>
+  `)
+})
+
 // [GET] - All Persons Route:
 // Returns the entire phonebook data as JSON
 app.get('/api/persons', (request, response) => {
