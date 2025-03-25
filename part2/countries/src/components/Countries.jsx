@@ -93,7 +93,7 @@ const Countries = ({ countries, handleShowCountry }) => {
     return (
       <div>
         {countries.map(country => 
-          <Country key={country.name.official} country={country} handleShowCountry={handleShowCountry} />
+          <Country key={country.cca3} country={country} handleShowCountry={handleShowCountry} />
         )}
       </div>
     )
