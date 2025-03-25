@@ -77,12 +77,34 @@ app.get('/api/persons/:id', (request, response) => {
 // Generates ID as a random number between 1 and 1000000
 app.post('/api/persons', (request, response) => {
   const body = request.body
-  const randomId = Math.floor(Math.random() * 1000000) + 1
+
+  // Check if name is missing
+  if (!body.name) {
+    return response.status(400).json({ 
+      error: 'name is missing' 
+    })
+  }
+
+  // Check if number is missing
+  if (!body.number) {
+    return response.status(400).json({ 
+      error: 'number is missing' 
+    })
+  }
+
+  // Check if name is unique
+  if (data.find(person => person.name === body.name)) {
+    return response.status(400).json({ 
+      error: 'Name must be unique' 
+    })
+  }
+
   const person = {
-    id: randomId.toString(),
+    id: (Math.floor(Math.random() * 1000000) + 1).toString(),
     name: body.name,
     number: body.number
   }
+
   data = data.concat(person)
   response.json(person)
 })
