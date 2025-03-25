@@ -9,11 +9,20 @@ const PORT = 3001
 const app = express()
 
 // Middleware (Morgan):
-// Configure Morgan for logging with 'tiny' format
-app.use(morgan('tiny'))
+// Create a custom token for POST body
+morgan.token('post-body', (request) => {
+  if (request.method === 'POST') {
+    return JSON.stringify(request.body)
+  }
+  return ''
+})
 
-// Middleware (Express json-parser):
-// Parse JSON Request Bodies
+// Middleware (Morgan):
+// Configure Morgan for logging with custom format
+  app.use(morgan(':method :url | :status | :res[content-length] bytes | :response-time ms | :post-body |'))
+
+  // Middleware (Express json-parser):
+  // Parse JSON Request Bodies
 app.use(express.json())
 
 
