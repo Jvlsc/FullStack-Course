@@ -17,7 +17,7 @@ const password = process.argv[2]
 const appName = 'Cluster0'
 
 // MongoDB - Cluster:
-const cluster = 'cluster0'
+const cluster = 'cluster0.6ewvyzg'
 
 // MongoDB - Database:
 const database = 'phonebook'
@@ -25,8 +25,11 @@ const database = 'phonebook'
 // MongoDB - Database Collection:
 const collection = 'people'
 
+// MongoDB - Database Model:
+const model = 'Person'
+
 // MongoDB - Database URL:
-const url = `mongodb+srv://${user}:${password}@${cluster}.6ewvyzg.mongodb.net/${database}?retryWrites=true&w=majority&appName=${appName}`
+const url = `mongodb+srv://${user}:${password}@${cluster}.mongodb.net/${database}?retryWrites=true&w=majority&appName=${appName}`
 
 // MongoDB - Strict Query Disabled:
 mongoose.set('strictQuery', false)
@@ -41,7 +44,7 @@ mongoose.connect(url)
     })
 
     // Create the Person Model:
-    const Person = mongoose.model('Person', personSchema, collection)
+    const Person = mongoose.model(model, personSchema, collection)
 
     // If only password is provided, list all entries
     if (process.argv.length === 3) {

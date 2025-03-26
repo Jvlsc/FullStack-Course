@@ -1,25 +1,22 @@
-###
-
+### [Local][GET] - Root:
 GET http://localhost:3001/
 
-###
 
+### [Local][GET] - Info:
 GET http://localhost:3001/info
 
-###
 
+### [Local][GET] - Error:
 GET http://localhost:3001/error
 
-###
 
+### [Remote][GET] - Root:
 GET https://phonebook-blue-lake-542.fly.dev/
 
-###
 
+### [Remote][GET] - Info:
 GET https://phonebook-blue-lake-542.fly.dev/info
 
-###
 
+### [Remote][GET] - Error:
 GET https://phonebook-blue-lake-542.fly.dev/error
-
-###

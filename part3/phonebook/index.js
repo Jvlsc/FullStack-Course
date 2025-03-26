@@ -1,9 +1,12 @@
+// Import the dotenv Module:
+require('dotenv').config()
+
 // Import the Express.js, Morgan:
 const express = require('express')
 const morgan = require('morgan')
 
-// Server Port:
-const PORT = process.env.PORT || 3001
+// Import the MongoDB - Person Model:
+const Person = require('./models/person')
 
 // Express Instance:
 const app = express()
@@ -19,7 +22,7 @@ morgan.token('post-body', (request) => {
 
 // Middleware (Morgan):
 // Configure Morgan for logging with custom format
-app.use(morgan(':method :url | :status | :res[content-length] bytes | :response-time ms | :post-body |'))
+app.use(morgan('[Express] :method :url | :status | :res[content-length] bytes | :response-time ms | :post-body |'))
 
 // Middleware (Express json-parser):
 // Parse JSON Request Bodies
@@ -53,12 +56,6 @@ let data = [
   }
 ]
 
-// [GET] - Root Route:
-// Returns a simple HTML greeting
-app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
-
 // [GET] - Info Route:
 // Displays current time and number of entries in the phonebook
 app.get('/info', (request, response) => {
@@ -74,19 +71,29 @@ app.get('/info', (request, response) => {
 // [GET] - All Persons Route:
 // Returns the entire phonebook data as JSON
 app.get('/api/persons', (request, response) => {
-  response.json(data)
+  Person.find({})
+    .then(persons => {
+      console.log(`[MongoDB] Fetched ${persons.length} persons`)
+      response.json(persons)
+    })
+    .catch(error => {
+      console.log(`[MongoDB] Error Fetching Persons: ${error.message}`)
+      response.status(500).end()
+    })
 })
 
 // [GET] - Single Person Route:
 // Returns a single person's data based on their ID
 app.get('/api/persons/:id', (request, response) => {
-  const id = request.params.id
-  const person = data.find(person => person.id === id)
-  if (person) {
-    response.json(person)
-  } else {
-    response.status(404).end()
-  }
+  Person.findById(request.params.id)
+    .then(person => {
+      console.log(`[MongoDB] Fetched person: ${person.name} - ${person.number}`)
+      response.json(person)
+    })
+    .catch(error => {
+      console.log(`[MongoDB] Error Fetching Person: ${error.message}`)
+      response.status(404).end()
+    })
 })
 
 // [POST] - Create Person Route:
@@ -112,7 +119,7 @@ app.post('/api/persons', (request, response) => {
   // Check if name is unique
   if (data.find(person => person.name === body.name)) {
     return response.status(400).json({ 
-      error: 'Name must be unique' 
+      error: 'name must be unique' 
     })
   }
 
@@ -140,6 +147,6 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 // Start the Server:
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT, () => {
+  console.log(`[Express] Server running on port ${process.env.PORT}`)
 })

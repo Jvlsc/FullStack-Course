@@ -48,17 +48,17 @@ In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet),
 
 ## Saving data to MongoDB:
 
-In [this chapter](https://fullstackopen.com/en/part3/saving_data_to_mongo_db)
+In [this chapter](https://fullstackopen.com/en/part3/saving_data_to_mongo_db), we will save the application's data to a MongoDB database in MongoDB Atlas.
 
 ### Exercises:
 
-- **[Exercise 3.12]()**: XXXXX (Step 12).
-- **[Exercise 3.13]()**: XXXXX (Step 13).
-- **[Exercise 3.14]()**: XXXXX (Step 14).
-- **[Exercise 3.15]()**: XXXXX (Step 15).
-- **[Exercise 3.16]()**: XXXXX (Step 16).
-- **[Exercise 3.17]()**: XXXXX (Step 17).
-- **[Exercise 3.18]()**: XXXXX (Step 18).
+- **[Exercise 3.12]()**: The Phonebook Database (Step 12).
+- **[Exercise 3.13]()**: The Phonebook Database (Step 13).
+- **[Exercise 3.14]()**: The Phonebook Database (Step 14).
+- **[Exercise 3.15]()**: The Phonebook Database (Step 15).
+- **[Exercise 3.16]()**: The Phonebook Database (Step 16).
+- **[Exercise 3.17]()**: The Phonebook Database (Step 17).
+- **[Exercise 3.18]()**: The Phonebook Database (Step 18).
 
 ---
 ---
