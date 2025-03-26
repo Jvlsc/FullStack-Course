@@ -147,6 +147,6 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 // Start the Server:
-app.listen(process.env.PORT, () => {
-  console.log(`[Express] Server running on port ${process.env.PORT}`)
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`[Express] Server running on port ${process.env.SERVER_PORT}`)
 })
