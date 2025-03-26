@@ -41,7 +41,7 @@ In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet),
 
 - **[Exercise 3.9](https://github.com/Jvlsc/FullStack-Course/blob/b3c954fd2b0df8a0d61cc74fae91cee0a2d3a10b/part3/phonebook/index.js)**: The Phonebook Backend (Step 9).
 - **[Exercise 3.10](https://github.com/Jvlsc/FullStack-Course/blob/09ae2ec753bfe81d466ddc5dd5ca95a5c80bee7f/part3/phonebook/index.js)**: The Phonebook Backend (Step 10).
-- **[Exercise 3.11](https://github.com/Jvlsc/FullStack-Course/blob/ec2ba62d53b2318302295af1e35fd55e7e83e8b7/part3/phonebook/index.js)**: The Phonebook Backend (Step 11).
+- **[Exercise 3.11](https://github.com/Jvlsc/FullStack-Course/blob/16bb38d1b5c7a5fb47ad44c08d1e4c41b16d550b/part3/phonebook/index.js)**: The Phonebook Backend (Step 11).
 
 ---
 ---
