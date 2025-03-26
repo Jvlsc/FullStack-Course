@@ -98,7 +98,6 @@ app.get('/api/persons/:id', (request, response) => {
 
 // [POST] - Create Person Route:
 // Creates a new person in the phonebook
-// Generates ID as a random number between 1 and 1000000
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
@@ -116,21 +115,22 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
-  // Check if name is unique
-  if (data.find(person => person.name === body.name)) {
-    return response.status(400).json({ 
-      error: 'name must be unique' 
-    })
-  }
-
-  const person = {
-    id: (Math.floor(Math.random() * 1000000) + 1).toString(),
+  // Create a new person:
+  const person = new Person({
     name: body.name,
-    number: body.number
-  }
+    number: body.number,
+  })
 
-  data = data.concat(person)
-  response.json(person)
+  // Save the new person to the database:
+  person.save()
+    .then(savedPerson => {
+      console.log(`[MongoDB] Saved Person: ${savedPerson.name} - ${savedPerson.number}`)
+      response.json(savedPerson)
+    })
+    .catch(error => {
+      console.log(`[MongoDB] Error Saving Person: ${error.message}`)
+      response.status(500).end()
+    })
 })
 
 // [DELETE] - Delete Person Route:
