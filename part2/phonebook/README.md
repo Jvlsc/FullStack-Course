@@ -17,3 +17,80 @@ The exercises corresponding to this project are:
 
 ---
 ---
+
+## Quick Start:
+
+**Install dependencies:**
+
+```bash
+npm install
+```
+
+**Run the project (dev mode):**
+
+```bash
+npm run dev
+```
+
+**Build the project:**
+
+```bash
+npm run build
+```
+
+---
+---
+
+## Backend:
+
+This frontend is ready to be embedded into the backend project. In development mode, `Vite` will automatically proxy requests to a localhost backend server. See `vite.config.js` for the proxy configuration:
+
+```javascript
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    }
+  },
+})
+
+```
+
+This will proxy any request to the `/api` endpoint to the `http://localhost:3001/api` local backend server.
+
+---
+---
+
+## JSON Server Backend:
+
+A quick way to start a backend is to use the `json-server` package already installed in the project. There is an available command to start the server in the `package.json` file:
+
+```bash
+npm run server
+```
+
+This command will launch the `json-server` with the `db.json` file located in the root of the project. This server will provide a fake REST API for the frontend to consume in `/persons` endpoint. 
+
+Don't forget to adapt the `vite.config.js` file to the proxy configuration to remove the `/api` prefix:
+
+```javascript
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    }
+  },
+})
+```
+
+---
+---

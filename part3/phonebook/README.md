@@ -15,4 +15,104 @@ The exercises corresponding to this project are:
 - **Exercise 3.11**: The Phonebook Backend (Step 11).
 
 ---
+
+The project is deployed to [Fly.io](https://fly.io/) and the URL is: 
+
+- https://phonebook-blue-lake-542.fly.dev
+
+---
+---
+
+## Quick Start:
+
+**Install dependencies:**
+
+```bash
+npm install
+```
+
+**Run the project (production mode):**
+
+```bash
+npm run start
+```
+
+**Run the project (development mode):**
+
+```bash
+npm run dev
+```
+
+---
+---
+
+## Deploying the Project:
+
+**Build the Frontend:** This command will build the frontend of `part2` and copy the files to the backend project in the `dist` folder. *Note: This command doesn't work in `PowerShell`. If you are in Windows, use `Git Bash` or `WSL`*:
+
+```bash
+npm run build:ui
+```
+
+
+**Deploy the Backend:**
+
+```bash
+npm run deploy
+```
+
+**Build the Frontend + Deploy the Backend:**
+
+```bash
+npm run deploy:full
+```
+
+**Open the Deployed Backend:**
+
+```bash
+npm run open
+```
+
+**Deployed Backend Logs:**
+
+```bash
+npm run logs:prod
+```
+
+---
+---
+
+## Useful Fly Commands:
+
+**Ping the Deployed Backend:**
+
+```bash
+fly ping -o personal
+```
+
+**List all Apps:**
+
+```bash
+fly apps list
+```
+
+**List all Services:**
+
+```bash
+fly services list 
+```
+
+**Scale the Number of Instances:**
+
+```bash
+fly scale count 1
+```
+
+**List all IP Addresses:**
+
+```bash
+fly ips list
+```
+
+---
 ---

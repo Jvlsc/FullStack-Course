@@ -10,3 +10,26 @@ The exercises corresponding to this project are:
 
 ---
 ---
+
+## Quick Start:
+
+**Install dependencies:**
+
+```bash
+npm install
+```
+
+**Run the project (dev mode):**
+
+```bash
+npm run dev
+```
+
+**Build the project:**
+
+```bash
+npm run build
+```
+
+---
+---
