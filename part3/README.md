@@ -35,7 +35,7 @@ In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express), we wi
 
 ## Deploying app to internet:
 
-In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet), we will deploy our application to the internet. The service we will use is [Fly.io](https://fly.io/).
+In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet), we will deploy our application to the internet. The service we will use is Fly.io. The project is available at this link: **[Phonebook Service.](https://phonebook-blue-lake-542.fly.dev)**
 
 ### Exercises:
 
@@ -52,14 +52,14 @@ In [this chapter](https://fullstackopen.com/en/part3/saving_data_to_mongo_db), w
 
 ### Exercises:
 
-- **[Exercise 3.12]()**: The Phonebook Database (Step 12).
-- **[Exercise 3.13]()**: The Phonebook Database (Step 13).
-- **[Exercise 3.14]()**: The Phonebook Database (Step 14).
-- **[Exercise 3.15]()**: The Phonebook Database (Step 15).
-- **[Exercise 3.16]()**: The Phonebook Database (Step 16).
-- **[Exercise 3.17]()**: The Phonebook Database (Step 17).
-- **[Exercise 3.18]()**: The Phonebook Database (Step 18).
-
+- **[Exercise 3.12](https://github.com/Jvlsc/FullStack-Course/blob/53a8a624991845863b17aa9f4df277dcffcf409e/part3/phonebook/mongo.js)**: The Phonebook Database (Step 12).
+- **[Exercise 3.13](https://github.com/Jvlsc/FullStack-Course/blob/db6cf2e67afad1650e70ddb2295de115d9fe871e/part3/phonebook/models/person.js)**: The Phonebook Database (Step 13).
+- **[Exercise 3.14](https://github.com/Jvlsc/FullStack-Course/blob/ec0d85d9cbe25b184ba3cbd41b00de8fe4fe58d4/part3/phonebook/index.js)**: The Phonebook Database (Step 14).
+- **[Exercise 3.15](https://github.com/Jvlsc/FullStack-Course/blob/cb973d7d619b4e3db199965088b9fd07d76c6200/part3/phonebook/index.js)**: The Phonebook Database (Step 15).
+- **[Exercise 3.16](https://github.com/Jvlsc/FullStack-Course/blob/538dfb593038b988c9a733d902c02bba6135bed5/part3/phonebook/index.js)**: The Phonebook Database (Step 16).
+- **[Exercise 3.17](https://github.com/Jvlsc/FullStack-Course/blob/4b2bdd578ef94a3bd6e0147d10ba3f7bb11f2798/part3/phonebook/index.js)**: The Phonebook Database (Step 17).
+- **[Exercise 3.18](https://github.com/Jvlsc/FullStack-Course/blob/8ae8966baa5c9c398c2bdc79beec8ffc04179ff6/part3/phonebook/index.js)**: The Phonebook Database (Step 18).
+- **[Additional Exercise](https://github.com/Jvlsc/FullStack-Course/blob/63980f8e33f9615bea53b8172b6721d2103266c1/part3/phonebook/index.js)**: Prevent create a new Person via API if already existe another with the same `name` in the Database.
 ---
 ---
 
