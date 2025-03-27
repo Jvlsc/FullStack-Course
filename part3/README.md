@@ -69,14 +69,14 @@ In [this chapter](https://fullstackopen.com/en/part3/saving_data_to_mongo_db), w
 
 ## Validation and ESLint:
 
-In [this chapter](https://fullstackopen.com/en/part3/validation_and_es_lint)
+In [this chapter](https://fullstackopen.com/en/part3/validation_and_es_lint), we will implement validation and ESLint in our backend.
 
 ### Exercises:
 
-- **[Exercise 3.19]()**: The Phonebook Database (Step 7).
-- **[Exercise 3.20]()**: The Phonebook Database (Step 8).
-- **[Exercise 3.21]()**: Deploying the Database Backend to Production.
-- **[Exercise 3.22]()**: Lint Configuration.
+- **[Exercise 3.19](https://github.com/Jvlsc/FullStack-Course/blob/75a5e2fc00dac7b059a622fc2108c99bb6fdbcd2/part3/phonebook/models/person.js)**: The Phonebook Database (Step 7).
+- **[Exercise 3.20](https://github.com/Jvlsc/FullStack-Course/blob/ce6313dd0700fe671f2952f0de1aaa7d62214ea2/part3/phonebook/models/person.js)**: The Phonebook Database (Step 8).
+- **[Exercise 3.21](https://github.com/Jvlsc/FullStack-Course/blob/446d7e8e60cf7fe5feebabb43252a87d31732775/part3/phonebook/index.js)**: Deploying the Database Backend to Production.
+- **[Exercise 3.22](https://github.com/Jvlsc/FullStack-Course/blob/57848c1f4198772a6982d658efdf8dff84b6930b/part3/phonebook/eslint.config.mjs)**: Lint Configuration.
 
 ---
 ---
