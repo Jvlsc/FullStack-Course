@@ -102,20 +102,30 @@ app.post('/api/persons', (request, response, next) => {
     return response.status(400).json({ error: 'number is missing' })
   }
 
-  // Create a new person:
-  const person = new Person({
-    name: name,
-    number: number,
-  })
+  // Check if person already exists
+  Person.findOne({ name: name })
+    .then(existingPerson => {
+      if (existingPerson) {
+        console.log(`[MongoDB] Error Creating Person (Person Already Exists)`)
+        return response.status(400).json({ error: `Person ${name} already exists` })
+      }
+      
+      // Create a new person:
+      const person = new Person({ name: name, number: number })
 
-  // Save the new person to the database:
-  person.save()
-    .then(savedPerson => {
-      console.log(`[MongoDB] Saved Person: ${savedPerson.name} - ${savedPerson.number}`)
-      response.json(savedPerson)
+      // Save the new person to the database:
+      return person.save()
+        .then(savedPerson => {
+          console.log(`[MongoDB] Saved Person: ${savedPerson.name} - ${savedPerson.number}`)
+          response.json(savedPerson)
+        })
+        .catch(error => {
+          console.log(`[MongoDB] Error Saving Person: ${error}`)
+          next(error)
+        })
     })
     .catch(error => {
-      console.log(`[MongoDB] Error Saving Person: ${error}`)
+      console.log(`[MongoDB] Error Checking Person Existence: ${error}`)
       next(error)
     })
 })
