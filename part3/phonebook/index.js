@@ -104,26 +104,24 @@ app.get('/api/persons/:id', (request, response, next) => {
 // [POST] - Create Person Route:
 // Creates a new person in the phonebook
 app.post('/api/persons', (request, response, next) => {
-  const body = request.body
+  const { name, number } = request.body
 
   // Check if name is missing
-  if (!body.name) {
-    return response.status(400).json({ 
-      error: 'name is missing' 
-    })
+  if (!name) {
+    console.log(`[Express] Error Creating Person (Name Missing)`)
+    return response.status(400).json({ error: 'name is missing' })
   }
 
   // Check if number is missing
-  if (!body.number) {
-    return response.status(400).json({ 
-      error: 'number is missing' 
-    })
+  if (!number) {
+    console.log(`[Express] Error Creating Person (Number Missing)`)
+    return response.status(400).json({ error: 'number is missing' })
   }
 
   // Create a new person:
   const person = new Person({
-    name: body.name,
-    number: body.number,
+    name: name,
+    number: number,
   })
 
   // Save the new person to the database:
@@ -134,6 +132,52 @@ app.post('/api/persons', (request, response, next) => {
     })
     .catch(error => {
       console.log(`[MongoDB] Error Saving Person: ${error}`)
+      next(error)
+    })
+})
+
+// [PUT] - Update Person Route:
+// Updates a person's data based on their ID
+app.put('/api/persons/:id', (request, response, next) => {
+  const { name, number } = request.body
+
+  // Check if name is missing
+  if (!name) {
+    console.log(`[Express] Error Creating Person (Name Missing)`)
+    return response.status(400).json({ error: 'name is missing' })
+  }
+
+  // Check if number is missing
+  if (!number) {
+    console.log(`[Express] Error Updating Person (Number Missing)`)
+    return response.status(400).json({ error: 'number is missing' })
+  }
+
+  // Find the person by ID:
+  Person.findById(request.params.id)
+    .then(person => {
+      if (!person) {
+        console.log(`[MongoDB] Person not Found`)
+        return response.status(404).send({ error: 'Person not found' })
+      }
+
+      // Update the person's name and number:
+      person.name = name
+      person.number = number
+
+      // Save the updated person to the database:
+      return person.save()
+        .then((updatedPerson) => {
+          console.log(`[MongoDB] Updated Person: ${updatedPerson.name} - ${updatedPerson.number}`)
+          response.json(updatedPerson)
+        })
+        .catch(error => {
+          console.log(`[MongoDB] Error Updating Person (Saving): ${error}`)
+          next(error)
+        })
+    })
+    .catch(error => {
+      console.log(`[MongoDB] Error Updating Person (Finding): ${error}`)
       next(error)
     })
 })
@@ -155,7 +199,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
 // Middleware (Error Handler):
 // Create a custom error handler middleware
 const errorHandler = (error, request, response, next) => {
-  // CastError: Detected in GET /api/persons/:id
+  // CastError: Detected in GET y PUT /api/persons/:id
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'Malformatted id' })
   }

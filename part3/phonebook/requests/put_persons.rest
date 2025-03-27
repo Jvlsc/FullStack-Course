@@ -1,0 +1,40 @@
+### [Local][PUT] - Update Person:
+PUT http://localhost:3001/api/persons/67e465804394d9cb6bc79655
+Content-Type: application/json
+
+{ "name": "John Doe", "number": "1234567890" }
+
+### [Local][PUT] - Update Person (Missing Name):
+PUT http://localhost:3001/api/persons/67e465804394d9cb6bc79655
+Content-Type: application/json
+
+{ "number": "1234567890" }
+
+### [Local][PUT] - Update Person (Missing Number):
+PUT http://localhost:3001/api/persons/67e465804394d9cb6bc79655
+Content-Type: application/json
+
+{ "name": "John Doe" }
+
+
+### [Remote][PUT] - Update Person:
+PUT https://phonebook-blue-lake-542.fly.dev/api/persons/67e465804394d9cb6bc79655
+Content-Type: application/json
+
+{ "name": "John Doe", "number": "1234567890" }
+
+
+### [Remote][PUT] - Update Person (Missing Name):
+PUT https://phonebook-blue-lake-542.fly.dev/api/persons/67e465804394d9cb6bc79655
+Content-Type: application/json
+
+{ "number": "1234567890" }
+
+
+### [Remote][PUT] - Update Person (Missing Number):
+PUT https://phonebook-blue-lake-542.fly.dev/api/persons/67e465804394d9cb6bc79655
+Content-Type: application/json
+
+{ "name": "John Doe" }
+
+
