@@ -32,40 +32,24 @@ app.use(express.json())
 // Serve static files from the dist directory
 app.use(express.static('dist'))
 
-// Initial Phonebook Data:
-let data = [
-  { 
-    id: "1",
-    name: "Arto Hellas", 
-    number: "040-123456"
-  },
-  { 
-    id: "2",
-    name: "Ada Lovelace", 
-    number: "39-44-5323523"
-  },
-  { 
-    id: "3",
-    name: "Dan Abramov", 
-    number: "12-43-234345"
-  },
-  { 
-    id: "4",
-    name: "Mary Poppendieck", 
-    number: "39-23-6423122"
-  }
-]
-
 // [GET] - Info Route:
 // Displays current time and number of entries in the phonebook
-app.get('/info', (request, response) => {
-  response.send(`
-    <div>
-      <h1>Phonebook Information</h1>
-      <h4>· Phonebook has info for ${data.length} people</h4>
-      <h4>· ${new Date().toString()}</h4>
-    </div>
-  `)
+app.get('/info', (request, response, next) => {
+  Person.find({})
+  .then(persons => {
+    console.log(`[MongoDB] Fetched ${persons.length} persons`)
+    response.send(`
+      <div>
+        <h1>Phonebook Information</h1>
+        <h4>· Phonebook has info for ${persons.length} people</h4>
+        <h4>· ${new Date().toString()}</h4>
+      </div>
+    `)
+  })
+  .catch(error => {
+    console.log(`[MongoDB] Error Fetching Persons: ${error}`)
+    next(error)
+  })
 })
 
 // [GET] - All Persons Route:
