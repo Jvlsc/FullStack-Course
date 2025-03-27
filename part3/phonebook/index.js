@@ -70,40 +70,40 @@ app.get('/info', (request, response) => {
 
 // [GET] - All Persons Route:
 // Returns the entire phonebook data as JSON
-app.get('/api/persons', (request, response) => {
+app.get('/api/persons', (request, response, next) => {
   Person.find({})
     .then(persons => {
       console.log(`[MongoDB] Fetched ${persons.length} persons`)
       response.json(persons)
     })
     .catch(error => {
-      console.log(`[MongoDB] Error Fetching Persons: ${error.message}`)
-      response.status(500).end()
+      console.log(`[MongoDB] Error Fetching Persons: ${error}`)
+      next(error)
     })
 })
 
 // [GET] - Single Person Route:
 // Returns a single person's data based on their ID
-app.get('/api/persons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response, next) => {
   Person.findById(request.params.id)
     .then(person => {
       if (person) {
         console.log(`[MongoDB] Fetched Person: ${person.name} - ${person.number}`)
         response.json(person)
       } else {
-        console.log(`[MongoDB] Person not found`)
+        console.log(`[MongoDB] Person not Found`)
         response.status(404).end()
       }
     })
     .catch(error => {
-      console.log(`[MongoDB] Error Fetching Person: ${error.message}`)
-      response.status(400).send({ error: 'Malformatted id' })
+      console.log(`[MongoDB] Error Fetching Person: ${error}`)
+      next(error)
     })
 })
 
 // [POST] - Create Person Route:
 // Creates a new person in the phonebook
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
 
   // Check if name is missing
@@ -133,24 +133,50 @@ app.post('/api/persons', (request, response) => {
       response.json(savedPerson)
     })
     .catch(error => {
-      console.log(`[MongoDB] Error Saving Person: ${error.message}`)
-      response.status(500).end()
+      console.log(`[MongoDB] Error Saving Person: ${error}`)
+      next(error)
     })
 })
 
 // [DELETE] - Delete Person Route:
 // Deletes a person from the phonebook based on their ID
-app.delete('/api/persons/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
     .then(result => {
       console.log(`[MongoDB] Deleted Person: ${result.name} - ${result.number}`)
       response.status(204).end()
     })
     .catch(error => {
-      console.log(`[MongoDB] Error Deleting Person: ${error.message}`)
-      response.status(400).send({ error: 'Malformatted id' })
+      console.log(`[MongoDB] Error Deleting Person: ${error}`)
+      next(error)
     })
 })
+
+// Middleware (Error Handler):
+// Create a custom error handler middleware
+const errorHandler = (error, request, response, next) => {
+  // CastError: Detected in GET /api/persons/:id
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'Malformatted id' })
+  }
+
+  // TypeError: Detected in DELETE /api/persons/:id
+  if (error.name === 'TypeError') {
+    return response.status(400).json({ error: 'Malformatted id' })
+  }
+
+  // MongooseError: Detected when MongoDB Connection Fails
+  if (error.name === 'MongooseError') {
+    response.status(500).send({ error: 'Check MongoDB Connection' })
+  }
+
+  // Unexpected Error: If any other error occurs
+  response.status(500).send({ error: 'Unexpected Error' })
+}
+
+// Middleware (Error Handler):
+// Error handling middleware
+app.use(errorHandler)
 
 // Start the Server:
 app.listen(process.env.SERVER_PORT, () => {
