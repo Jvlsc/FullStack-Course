@@ -208,6 +208,11 @@ const errorHandler = (error, request, response, next) => {
     response.status(500).send({ error: 'Check MongoDB Connection' })
   }
 
+  // ValidationError: MongoDB Validation Error
+  if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
+
   // Unexpected Error: If any other error occurs
   response.status(500).send({ error: 'Unexpected Error' })
 }

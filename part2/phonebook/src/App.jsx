@@ -10,7 +10,7 @@ import Persons from './components/Persons'
 import phonebookService from './services/phonebook'
 
 // Constants:
-const NOTIFICATION_TIMEOUT = 3000
+const NOTIFICATION_TIMEOUT = 5000
 
 
 // App Component:
@@ -80,7 +80,7 @@ const App = () => {
           .catch(error => {
             console.log('Error updating contact:', error)
             setNotification({
-              message: `Error updating '${newName}' contact`,
+              message: `Error updating '${newName}' contact: ${error.response.data.error}`,
               type: 'error'
             })
             setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
@@ -113,7 +113,7 @@ const App = () => {
       .catch(error => {
         console.log('Error adding new contact:', error)
         setNotification({
-          message: `Error adding '${newName}' contact`,
+          message: `Error adding '${newName}' contact: ${error.response.data.error}`,
           type: 'error'
         })
         setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
