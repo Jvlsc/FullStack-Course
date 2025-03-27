@@ -87,12 +87,17 @@ app.get('/api/persons', (request, response) => {
 app.get('/api/persons/:id', (request, response) => {
   Person.findById(request.params.id)
     .then(person => {
-      console.log(`[MongoDB] Fetched person: ${person.name} - ${person.number}`)
-      response.json(person)
+      if (person) {
+        console.log(`[MongoDB] Fetched Person: ${person.name} - ${person.number}`)
+        response.json(person)
+      } else {
+        console.log(`[MongoDB] Person not found`)
+        response.status(404).end()
+      }
     })
     .catch(error => {
       console.log(`[MongoDB] Error Fetching Person: ${error.message}`)
-      response.status(404).end()
+      response.status(400).send({ error: 'Malformatted id' })
     })
 })
 
@@ -136,14 +141,15 @@ app.post('/api/persons', (request, response) => {
 // [DELETE] - Delete Person Route:
 // Deletes a person from the phonebook based on their ID
 app.delete('/api/persons/:id', (request, response) => {
-  const id = request.params.id
-  const person = data.find(person => person.id === id)
-  if (!person) { 
-    return response.status(404).end()
-  } else {
-    data = data.filter(person => person.id !== id)
-    response.status(204).end()
-  }
+  Person.findByIdAndDelete(request.params.id)
+    .then(result => {
+      console.log(`[MongoDB] Deleted Person: ${result.name} - ${result.number}`)
+      response.status(204).end()
+    })
+    .catch(error => {
+      console.log(`[MongoDB] Error Deleting Person: ${error.message}`)
+      response.status(400).send({ error: 'Malformatted id' })
+    })
 })
 
 // Start the Server:

@@ -2,11 +2,7 @@
 GET http://localhost:3001/api/persons
 
 
-### [Local][GET] - Single Person (Success):
-GET http://localhost:3001/api/persons/67e421508e8294e32c80b099
-
-
-### [Local][GET] - Single Person (Error):
+### [Local][GET] - Single Person:
 GET http://localhost:3001/api/persons/1
 
 
@@ -14,9 +10,5 @@ GET http://localhost:3001/api/persons/1
 GET https://phonebook-blue-lake-542.fly.dev/api/persons
 
 
-### [Remote][GET] - Single Person (Success):
-GET https://phonebook-blue-lake-542.fly.dev/api/persons/1
-
-
-### [Remote][GET] - Single Person (Error):
-GET https://phonebook-blue-lake-542.fly.dev/api/persons/67e421508e8294e32c80b099
+### [Remote][GET] - Single Person:
+GET https://phonebook-blue-lake-542.fly.dev/api/persons/67e452e38d7cff4ec9653112

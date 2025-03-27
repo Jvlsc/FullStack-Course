@@ -1,43 +1,40 @@
-###
-
+### [Local][POST] - Create Person:
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 { "name": "John Doe", "number": "1234567890" }
 
-###
 
+### [Local][POST] - Create Person (Number missing):
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 { "name": "John Doe" }
 
-###
 
+### [Local][POST] - Create Person (Name missing):
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 { "number": "1234567890" }
 
-###
 
+### [Remote][POST] - Create Person:
 POST https://phonebook-blue-lake-542.fly.dev/api/persons
 Content-Type: application/json
 
 { "name": "John Doe", "number": "1234567890" }
 
-###
 
+### [Remote][POST] - Create Person (Number missing):
 POST https://phonebook-blue-lake-542.fly.dev/api/persons
 Content-Type: application/json
 
 { "name": "John Doe" }
 
-###
 
+### [Remote][POST] - Create Person (Name missing):
 POST https://phonebook-blue-lake-542.fly.dev/api/persons
 Content-Type: application/json
 
 { "number": "1234567890" }
-
-###

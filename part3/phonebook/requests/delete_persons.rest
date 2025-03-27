@@ -1,41 +1,6 @@
-###
+### [Local][DELETE] - Delete Person:
+DELETE http://localhost:3001/api/persons/67e465804394d9cb6bc79655
 
-DELETE http://localhost:3001/api/persons/1
 
-###
-
-DELETE http://localhost:3001/api/persons/2
-
-###
-
-DELETE http://localhost:3001/api/persons/3
-
-###
-
-DELETE http://localhost:3001/api/persons/4
-
-###
-
-DELETE http://localhost:3001/api/persons/100
-
-###
-
-DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/1
-
-###
-
+### [Remote][DELETE] - Delete Person:
 DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/2
-
-###
-
-DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/3
-
-###
-
-DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/4
-
-###
-
-DELETE https://phonebook-blue-lake-542.fly.dev/api/persons/100
-
-###
