@@ -36,20 +36,20 @@ app.use(express.static('dist'))
 // Displays current time and number of entries in the phonebook
 app.get('/info', (request, response, next) => {
   Person.find({})
-  .then(persons => {
-    console.log(`[MongoDB] Fetched ${persons.length} persons`)
-    response.send(`
+    .then(persons => {
+      console.log(`[MongoDB] Fetched ${persons.length} persons`)
+      response.send(`
       <div>
         <h1>Phonebook Information</h1>
         <h4>· Phonebook has info for ${persons.length} people</h4>
         <h4>· ${new Date().toString()}</h4>
       </div>
     `)
-  })
-  .catch(error => {
-    console.log(`[MongoDB] Error Fetching Persons: ${error}`)
-    next(error)
-  })
+    })
+    .catch(error => {
+      console.log(`[MongoDB] Error Fetching Persons: ${error}`)
+      next(error)
+    })
 })
 
 // [GET] - All Persons Route:
@@ -75,7 +75,7 @@ app.get('/api/persons/:id', (request, response, next) => {
         console.log(`[MongoDB] Fetched Person: ${person.name} - ${person.number}`)
         response.json(person)
       } else {
-        console.log(`[MongoDB] Person not Found`)
+        console.log('[MongoDB] Person not Found')
         response.status(404).end()
       }
     })
@@ -94,10 +94,10 @@ app.post('/api/persons', (request, response, next) => {
   Person.findOne({ name: name })
     .then(existingPerson => {
       if (existingPerson) {
-        console.log(`[MongoDB] Error Creating Person (Person Already Exists)`)
+        console.log('[MongoDB] Error Creating Person (Person Already Exists)')
         return response.status(400).json({ error: `Person ${name} already exists` })
       }
-      
+
       // Create a new person:
       const person = new Person({ name: name, number: number })
 
@@ -127,7 +127,7 @@ app.put('/api/persons/:id', (request, response, next) => {
   Person.findById(request.params.id)
     .then(person => {
       if (!person) {
-        console.log(`[MongoDB] Person not Found`)
+        console.log('[MongoDB] Person not Found')
         return response.status(404).send({ error: 'Person not found' })
       }
 
@@ -190,7 +190,8 @@ const errorHandler = (error, request, response, next) => {
   }
 
   // Unexpected Error: If any other error occurs
-  response.status(500).send({ error: 'Unexpected Error' })
+  //return response.status(500).send({ error: 'Unexpected Error' })
+  next(error)
 }
 
 // Middleware (Error Handler):

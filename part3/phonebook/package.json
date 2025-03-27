@@ -10,6 +10,7 @@
     "start": "node index.js",
     "dev": "node --watch index.js",
     "debug": "node --inspect index.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf dist && cd ../../part2/phonebook/ && npm run build && cp -r dist ../../part3/phonebook",
     "deploy": "fly deploy",
@@ -24,6 +25,9 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.7.9"
+    "@eslint/js": "^9.23.0",
+    "@flydotio/dockerfile": "^0.7.9",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
+    "eslint": "^9.23.0"
   }
 }

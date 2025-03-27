@@ -21,24 +21,24 @@ const personSchema = new mongoose.Schema({
   number: {
     type: String,
     minLength: 8,
-    required: [true, 'Phone number is required'],
     validate: {
       validator: (v) => {
         // Check if the number only contains one hyphen:
         if (!v.includes('-')) return false
         const parts = v.split('-')
         if (parts.length !== 2) return false
-        
+
         // Check if both parts contain only numbers:
         if (!/^\d+$/.test(parts[0]) || !/^\d+$/.test(parts[1])) return false
-        
+
         // Check if first part contains only 2 or 3 numbers:
         if (parts[0].length < 2 || parts[0].length > 3) return false
-        
+
         return true
       },
       message: props => `${props.value} is not a valid phone number! Must be in format XX-XXXXXXX or XXX-XXXXXXXX`
-    }
+    },
+    required: [true, 'Phone number is required']
   }
 })
 
@@ -55,10 +55,10 @@ personSchema.set('toJSON', {
 mongoose.set('strictQuery', false)
 
 // MongoDB - Connecting to the Database:
-console.log(`[MongoDB] Connecting to MongoDB...`)
+console.log('[MongoDB] Connecting to MongoDB...')
 mongoose.connect(url)
-  .then(result => {
-    console.log(`[MongoDB] Connected to MongoDB`)
+  .then(() => {
+    console.log('[MongoDB] Connected to MongoDB')
   })
   .catch(error => {
     console.log(`[MongoDB] Error Connecting to MongoDB: ${error.message}`)

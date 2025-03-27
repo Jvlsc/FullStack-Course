@@ -55,10 +55,10 @@ mongoose.connect(url)
           mongoose.connection.close()
         })
         .catch(error => {
-          console.error('Error fetching persons:', error) 
+          console.error('Error fetching persons:', error)
           mongoose.connection.close()
         })
-    } 
+    }
     // If name and number are provided, add new entry
     else if (process.argv.length === 5) {
       const person = new Person({
@@ -66,7 +66,7 @@ mongoose.connect(url)
         number: process.argv[4],
       })
       person.save()
-        .then(result => {
+        .then(() => {
           console.log(`added ${process.argv[3]} number ${process.argv[4]} to phonebook`)
           mongoose.connection.close()
         })
@@ -74,7 +74,7 @@ mongoose.connect(url)
           console.error('Error adding person:', error)
           mongoose.connection.close()
         })
-    } 
+    }
     // If wrong number of arguments
     else {
       console.log('Usage: node mongo.js <password> [name] [number]')
