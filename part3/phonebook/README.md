@@ -13,6 +13,17 @@ The exercises corresponding to this project are:
 - **Exercise 3.9**: The Phonebook Backend (Step 9).
 - **Exercise 3.10**: The Phonebook Backend (Step 10).
 - **Exercise 3.11**: The Phonebook Backend (Step 11).
+- **Exercise 3.12**: Command-line database.
+- **Exercise 3.13**: The Phonebook Database (Step 1).
+- **Exercise 3.14**: The Phonebook Database (Step 2).
+- **Exercise 3.15**: The Phonebook Database (Step 3).
+- **Exercise 3.16**: The Phonebook Database (Step 4).
+- **Exercise 3.17**: The Phonebook Database (Step 5).
+- **Exercise 3.18**: The Phonebook Database (Step 6).
+- **Exercise 3.19**: The Phonebook Database (Step 7).
+- **Exercise 3.20**: The Phonebook Database (Step 8).
+- **Exercise 3.21**: Deploying the Database Backend to Production.
+- **Exercise 3.22**: Lint Configuration.
 
 ---
 
