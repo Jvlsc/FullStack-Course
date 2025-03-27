@@ -90,18 +90,6 @@ app.get('/api/persons/:id', (request, response, next) => {
 app.post('/api/persons', (request, response, next) => {
   const { name, number } = request.body
 
-  // Check if name is missing
-  if (!name) {
-    console.log(`[Express] Error Creating Person (Name Missing)`)
-    return response.status(400).json({ error: 'name is missing' })
-  }
-
-  // Check if number is missing
-  if (!number) {
-    console.log(`[Express] Error Creating Person (Number Missing)`)
-    return response.status(400).json({ error: 'number is missing' })
-  }
-
   // Check if person already exists
   Person.findOne({ name: name })
     .then(existingPerson => {
@@ -134,18 +122,6 @@ app.post('/api/persons', (request, response, next) => {
 // Updates a person's data based on their ID
 app.put('/api/persons/:id', (request, response, next) => {
   const { name, number } = request.body
-
-  // Check if name is missing
-  if (!name) {
-    console.log(`[Express] Error Creating Person (Name Missing)`)
-    return response.status(400).json({ error: 'name is missing' })
-  }
-
-  // Check if number is missing
-  if (!number) {
-    console.log(`[Express] Error Updating Person (Number Missing)`)
-    return response.status(400).json({ error: 'number is missing' })
-  }
 
   // Find the person by ID:
   Person.findById(request.params.id)

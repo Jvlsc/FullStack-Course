@@ -2,7 +2,7 @@
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
-{ "name": "John Doe", "number": "1234567890" }
+{ "name": "John Doe", "number": "12-34567890" }
 
 
 ### [Local][POST] - Create Person (Number missing):
@@ -16,14 +16,14 @@ Content-Type: application/json
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
-{ "number": "1234567890" }
+{ "number": "12-34567890" }
 
 
 ### [Remote][POST] - Create Person:
 POST https://phonebook-blue-lake-542.fly.dev/api/persons
 Content-Type: application/json
 
-{ "name": "John Doe", "number": "1234567890" }
+{ "name": "John Doe", "number": "12-34567890" }
 
 
 ### [Remote][POST] - Create Person (Number missing):
@@ -37,4 +37,4 @@ Content-Type: application/json
 POST https://phonebook-blue-lake-542.fly.dev/api/persons
 Content-Type: application/json
 
-{ "number": "1234567890" }
+{ "number": "12-34567890" }
