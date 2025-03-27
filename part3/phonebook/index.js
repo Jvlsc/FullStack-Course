@@ -168,6 +168,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 // Middleware (Error Handler):
 // Create a custom error handler middleware
+// eslint-disable-next-line no-unused-vars
 const errorHandler = (error, request, response, next) => {
   // CastError: Detected in GET y PUT /api/persons/:id
   if (error.name === 'CastError') {
@@ -184,14 +185,13 @@ const errorHandler = (error, request, response, next) => {
     response.status(500).send({ error: 'Check MongoDB Connection' })
   }
 
-  // ValidationError: MongoDB Validation Error
+  // ValidationError: Detected in MongoDB Validation Error
   if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message })
   }
 
   // Unexpected Error: If any other error occurs
-  //return response.status(500).send({ error: 'Unexpected Error' })
-  next(error)
+  return response.status(500).send({ error: 'Unexpected Error' })
 }
 
 // Middleware (Error Handler):
