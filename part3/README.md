@@ -35,7 +35,11 @@ In [this chapter](https://fullstackopen.com/en/part3/node_js_and_express), we wi
 
 ## Deploying app to internet:
 
-In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet), we will deploy our application to the internet. The service we will use is Fly.io. The project is available at this link: **[Phonebook Service.](https://phonebook-blue-lake-542.fly.dev)**
+In [this chapter](https://fullstackopen.com/en/part3/deploying_app_to_internet), we will deploy our application to the internet. The service we will use is [Fly.io](https://fly.io/).
+
+#### The project is available at this link: 
+
+- **[Phonebook Service.](https://phonebook-blue-lake-542.fly.dev)**
 
 ### Exercises:
 
