@@ -16,9 +16,9 @@ The exercises corresponding to this project are:
 
 ---
 
-The project is deployed to [Fly.io](https://fly.io/) and the URL is: 
+#### The project is deployed in [Fly.io](https://fly.io/) and is available at this URL: 
 
-- https://phonebook-blue-lake-542.fly.dev
+- [Phonebook Service.](https://phonebook-blue-lake-542.fly.dev)
 
 ---
 ---
