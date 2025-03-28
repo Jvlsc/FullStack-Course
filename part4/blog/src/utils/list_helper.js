@@ -4,4 +4,10 @@ const dummy = (blogs) => {
   return 1
 }
 
-module.exports = { dummy }
+// Total Likes Function:
+const totalLikes = (blogs) => {
+  return blogs.reduce((sum, blog) => sum + blog.likes, 0)
+}
+
+// Export Functions:
+module.exports = { dummy, totalLikes }
