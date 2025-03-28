@@ -17,7 +17,7 @@ In this part, we will continue our work on the backend. Our first major theme wi
 
 ## Structure of Backend Application:
 
-In [this chapter](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing), we will 
+In [this chapter](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing), we will learn how to structure our backend application.
 
 ### Exercises:
 
