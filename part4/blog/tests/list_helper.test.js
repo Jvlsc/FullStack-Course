@@ -118,3 +118,21 @@ describe('Tests - mostBlogs Function:', () => {
     assert.deepStrictEqual(result, { author: 'Robert C. Martin', blogs: 3 })
   })
 })
+
+// Tests - Most Likes Function:
+describe('Tests - mostLikes Function:', () => {
+  test('Returns the author with the most likes in an empty list of blogs...', () => {
+    const result = listHelper.mostLikes([])
+    assert.strictEqual(result, null)
+  })
+
+  test('Returns the author with the most likes in a list of blogs with one blog...', () => {
+    const result = listHelper.mostLikes([blogs[0]])
+    assert.deepStrictEqual(result, { author: 'Michael Chan', likes: 7 })
+  })
+
+  test('Returns the author with the most likes in a list of blogs with multiple blogs...', () => {
+    const result = listHelper.mostLikes(blogs)
+    assert.deepStrictEqual(result, { author: 'Robert C. Martin', likes: 22 })
+  })
+})
