@@ -100,3 +100,21 @@ describe('Tests - favoriteBlog Function:', () => {
     assert.deepStrictEqual(result, blogs[5])
   })
 })
+
+// Tests - Most Blogs Function:
+describe('Tests - mostBlogs Function:', () => {
+  test('Returns the author with the most blogs in an empty list of blogs...', () => {
+    const result = listHelper.mostBlogs([])
+    assert.strictEqual(result, null)
+  })
+
+  test('Returns the author with the most blogs in a list of blogs with one blog...', () => {
+    const result = listHelper.mostBlogs([blogs[0]])
+    assert.deepStrictEqual(result, { author: 'Michael Chan', blogs: 1 })
+  })
+
+  test('Returns the author with the most blogs in a list of blogs with multiple blogs...', () => {
+    const result = listHelper.mostBlogs(blogs)
+    assert.deepStrictEqual(result, { author: 'Robert C. Martin', blogs: 3 })
+  })
+})
