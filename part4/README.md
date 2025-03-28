@@ -21,13 +21,13 @@ In [this chapter](https://fullstackopen.com/en/part4/structure_of_backend_applic
 
 ### Exercises:
 
-- **[Exercise 4.1]()**: Blog List (Step 1).
-- **[Exercise 4.2]()**: Blog List (Step 2).
-- **[Exercise 4.3]()**: Helper Functions and Unit Tests (Step 1).
-- **[Exercise 4.4]()**: Helper Functions and Unit Tests (Step 2).
-- **[Exercise 4.5]()**: Helper Functions and Unit Tests (Step 3).
-- **[Exercise 4.6]()**: Helper Functions and Unit Tests (Step 4).
-- **[Exercise 4.7]()**: Helper Functions and Unit Tests (Step 5).
+- **[Exercise 4.1](https://github.com/Jvlsc/FullStack-Course/blob/181af69091222873666df00359ac8befbff04a48/part4/blog/index.js)**: Blog List (Step 1).
+- **[Exercise 4.2](https://github.com/Jvlsc/FullStack-Course/blob/773a7ae4cb5a16ae1c614986b90773bc06105e6a/part4/blog/src/index.js)**: Blog List (Step 2).
+- **[Exercise 4.3](https://github.com/Jvlsc/FullStack-Course/blob/50b23fb0f6f11187b3c232b26ec4c5a99bf3d08c/part4/blog/tests/list_helper.test.js)**: Helper Functions and Unit Tests (Step 1).
+- **[Exercise 4.4](https://github.com/Jvlsc/FullStack-Course/blob/97949bf44fc10dcb653d8cd75c9d3916f63284be/part4/blog/tests/list_helper.test.js)**: Helper Functions and Unit Tests (Step 2).
+- **[Exercise 4.5](https://github.com/Jvlsc/FullStack-Course/blob/92ac2b063618423977a3bbdd2e5e3c5e03d2d4fc/part4/blog/tests/list_helper.test.js)**: Helper Functions and Unit Tests (Step 3).
+- **[Exercise 4.6](https://github.com/Jvlsc/FullStack-Course/blob/3cf119f871b6be5f3d4e822f9b9daf5d3164d8e1/part4/blog/tests/list_helper.test.js)**: Helper Functions and Unit Tests (Step 4).
+- **[Exercise 4.7](https://github.com/Jvlsc/FullStack-Course/blob/58df0711d508822f930ea03fa119c08eaaef22f6/part4/blog/tests/list_helper.test.js)**: Helper Functions and Unit Tests (Step 5).
 
 ---
 ---

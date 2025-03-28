@@ -33,6 +33,18 @@ npm run start
 npm run dev
 ```
 
+**Run tests:**
+
+```bash
+npm run test
+```
+
+**Run linting:**
+
+```bash
+npm run lint
+```
+
 ---
 ---
 
