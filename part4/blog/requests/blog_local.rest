@@ -1,0 +1,32 @@
+### [GET] - Get All Blogs:
+GET http://localhost:3003/api/blogs
+
+
+### [GET] - Get a Single Blog:
+GET http://localhost:3003/api/blogs/66f290000000000000000000
+
+
+### [POST] - Create a New Blog:
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{ 
+    "title": "Code with John",
+    "author": "John Doe",
+    "url": "https://codewithjohn.com",
+    "likes": 100
+}
+
+### [PUT] - Update a Blog:
+PUT http://localhost:3003/api/blogs/66f290000000000000000000
+Content-Type: application/json
+
+{
+    "title": "Code with John",
+    "author": "John Doe",
+    "url": "https://codewithjohn.com/updated",
+    "likes": 200
+}
+
+### [DELETE] - Delete a Blog:
+DELETE http://localhost:3003/api/blogs/66f290000000000000000000
