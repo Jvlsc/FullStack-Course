@@ -59,7 +59,7 @@ const blogs = [
 
 // Tests - Dummy Function:
 describe('Tests - dummy Function:', () => {
-  test('Returns one', () => {
+  test('Returns one always...', () => {
     const result = listHelper.dummy(blogs)
     assert.strictEqual(result, 1)
   })
@@ -67,7 +67,17 @@ describe('Tests - dummy Function:', () => {
 
 // Tests - Total Likes Function:
 describe('Tests - totalLikes Function:', () => {
-  test('Returns the total number of likes', () => {
+  test('Returns the total number of likes in an empty list of blogs...', () => {
+    const result = listHelper.totalLikes([])
+    assert.strictEqual(result, 0)
+  })
+
+  test('Returns the total number of likes in a list of blogs with one blog...', () => {
+    const result = listHelper.totalLikes([blogs[0]])
+    assert.strictEqual(result, 7)
+  })
+
+  test('Returns the total number of likes in a list of blogs with multiple blogs...', () => {
     const result = listHelper.totalLikes(blogs)
     assert.strictEqual(result, 36)
   })
