@@ -52,7 +52,7 @@ const blogs = [
     title: 'Type wars',
     author: 'Robert C. Martin',
     url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html',
-    likes: 2,
+    likes: 12,
     __v: 0,
   },
 ]
@@ -79,6 +79,24 @@ describe('Tests - totalLikes Function:', () => {
 
   test('Returns the total number of likes in a list of blogs with multiple blogs...', () => {
     const result = listHelper.totalLikes(blogs)
-    assert.strictEqual(result, 36)
+    assert.strictEqual(result, 46)
+  })
+})
+
+// Tests - Favorite Blog Function:
+describe('Tests - favoriteBlog Function:', () => {
+  test('Returns the favorite blog in an empty list of blogs...', () => {
+    const result = listHelper.favoriteBlog([])
+    assert.strictEqual(result, null)
+  })
+
+  test('Returns the favorite blog in a list of blogs with one blog...', () => {
+    const result = listHelper.favoriteBlog([blogs[0]])
+    assert.deepStrictEqual(result, blogs[0])
+  })
+
+  test('Returns the favorite blog in a list of blogs with multiple blogs...', () => {
+    const result = listHelper.favoriteBlog(blogs)
+    assert.deepStrictEqual(result, blogs[5])
   })
 })
