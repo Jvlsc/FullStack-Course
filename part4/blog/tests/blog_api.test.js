@@ -17,7 +17,6 @@ const api = supertest(app)
 //HTTP API Tests:
 describe('TESTS - HTTP API:', () => {
   beforeEach(async () => {
-    console.log('Cleaning and Populating Database...')
     await helper.cleanAndPopulateBlogsDB()
   })
 
@@ -108,6 +107,52 @@ describe('TESTS - HTTP API:', () => {
       const blogsInDb = await helper.blogsInDb()
 
       assert.strictEqual(blogsInDb.length, helper.blogs.length)
+    })
+  })
+
+  // [PUT] Route Tests:
+  describe('[PUT /api/blogs/:id] - Update a blog:', () => {
+    // Test - Check if a blog can be updated:
+    test('A blog can be updated and response is correct...', async () => {
+      // Request all blogs from DB and Get First Blog:
+      const blogsInDb = await helper.blogsInDb()
+      const blogToUpdate = blogsInDb[0]
+
+      // Send update request to API:
+      await api.put(`/api/blogs/${blogToUpdate.id}`)
+        .send({ likes: 101 })
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+    })
+
+    // Test - Check if a blog can be updated correctly:
+    test('A blog can be updated correctly...', async () => {
+      // Request all blogs from DB and Get First Blog:
+      const blogsInDb = await helper.blogsInDb()
+      const blogToUpdate = blogsInDb[0]
+
+      // Get Original Likes:
+      const originalLikes = blogToUpdate.likes
+
+      // Send update request to API:
+      const response = await api.put(`/api/blogs/${blogToUpdate.id}`)
+        .send({ likes: originalLikes + 1 })
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+
+      // Check if the blog was updated correctly:
+      assert.strictEqual(response.body.likes, originalLikes + 1)
+    })
+
+    // Test - Check error if blog ID is malformed:
+    test('Fails with status code 400 if blog ID is malformed...', async () => {
+      // Request all blogs from DB and Get First Blog:
+      const invalidId = '1234'
+
+      // Send update request to API:
+      await api.put(`/api/blogs/${invalidId}`)
+        .send({ likes: 101 })
+        .expect(400)
     })
   })
 

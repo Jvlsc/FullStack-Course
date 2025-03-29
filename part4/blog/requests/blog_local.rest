@@ -17,16 +17,31 @@ Content-Type: application/json
     "likes": 100
 }
 
+
+### [POST] - Create a New Blog (Invalid Data):
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{ 
+    "author": "John Doe",
+    "url": "https://codewithjohn.com",
+    "likes": 100
+}
+
+
 ### [PUT] - Update a Blog:
-PUT http://localhost:3003/api/blogs/66f290000000000000000000
+PUT http://localhost:3003/api/blogs/67e6c772892b9d5da14c9fbf
 Content-Type: application/json
 
 {
-    "title": "Code with John",
-    "author": "John Doe",
-    "url": "https://codewithjohn.com/updated",
-    "likes": 200
+    "likes": 101
 }
+
+
+### [PUT] - Update a Blog (Malformatted ID):
+PUT http://localhost:3003/api/blogs/1312
+Content-Type: application/json
+
 
 ### [DELETE] - Delete a Blog:
 DELETE http://localhost:3003/api/blogs/67e6d7d898aff0a6f37e0ee3

@@ -18,6 +18,20 @@ blogRouter.post('/', async (request, response) => {
   response.status(201).json(savedBlog)
 })
 
+// [PUT] Route - Update a Blog:
+blogRouter.put('/:id', async (request, response) => {
+  const updatedBlog = await Blog.findByIdAndUpdate(
+    request.params.id,
+    { $set: { likes: request.body.likes } },
+    {
+      new: true,
+      runValidators: true,
+      context: 'query',
+    }
+  )
+  response.json(updatedBlog)
+})
+
 // [DELETE] Route - Delete a Blog:
 blogRouter.delete('/:id', async (request, response) => {
   await Blog.findByIdAndDelete(request.params.id)

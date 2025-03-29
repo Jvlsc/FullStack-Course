@@ -3,7 +3,7 @@ const morgan = require('morgan')
 
 // Create a custom token for POST body
 morgan.token('post-body', (request) => {
-  if (request.method === 'POST') {
+  if (request.method === 'POST' || request.method === 'PUT') {
     return JSON.stringify(request.body)
   }
   return ''
