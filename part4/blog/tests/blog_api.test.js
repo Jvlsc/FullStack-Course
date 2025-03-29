@@ -56,6 +56,18 @@ describe('TESTS - HTTP API:', () => {
 
   // [GET] Route Tests (Get Single Blog):
   describe('[GET /api/blogs/:id] - Get a Single Blog:', () => {
+    // Test - Check if a single blog request response is correct:
+    test('A single blog request response is correct...', async () => {
+      // Request all blogs from DB and Get First Blog:
+      const blogsInDb = await helper.blogsInDb()
+      const blogToGet = blogsInDb[0]
+
+      // Send GET request to API:
+      await api.get(`/api/blogs/${blogToGet.id}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+    })
+
     // Test - Check if a single blog is returned correctly:
     test('A single blog is returned correctly...', async () => {
       // Request all blogs from DB and Get First Blog:
@@ -70,6 +82,16 @@ describe('TESTS - HTTP API:', () => {
       assert.strictEqual(response.body.title, blogToGet.title)
     })
 
+    // Test - Check if blog ID is malformed:
+    test('Fails with statuscode 400 if blog ID is malformed...', async () => {
+      // Malformatted ID:
+      const invalidId = '1234'
+
+      // Send GET request to API:
+      await api.get(`/api/blogs/${invalidId}`)
+        .expect(400)
+    })
+
     // Test - Check if a blog does not exist:
     test('Fails with statuscode 404 if blog does not exist...', async () => {
       // Get Non-Existing ID:
@@ -79,16 +101,6 @@ describe('TESTS - HTTP API:', () => {
       await api
         .get(`/api/blogs/${validNonexistingId}`)
         .expect(404)
-    })
-
-    // Test - Check if blog ID is malformed:
-    test('Fails with statuscode 400 if blog ID is malformed...', async () => {
-      // Malformatted ID:
-      const invalidId = '1234'
-
-      // Send GET request to API:
-      await api.get(`/api/blogs/${invalidId}`)
-        .expect(400)
     })
   })
 
@@ -233,6 +245,16 @@ describe('TESTS - HTTP API:', () => {
       // Send delete request to API:
       await api.delete(`/api/blogs/${invalidId}`)
         .expect(400)
+    })
+
+    // Test - Check error if blog does not exist:
+    test('Fails with status code 404 if blog does not exist...', async () => {
+      // Get Non-Existing ID:
+      const validNonexistingId = await helper.nonExistingId()
+
+      // Send delete request to API:
+      await api.delete(`/api/blogs/${validNonexistingId}`)
+        .expect(404)
     })
   })
 

@@ -44,8 +44,12 @@ blogRouter.put('/:id', async (request, response) => {
 
 // [DELETE] Route - Delete a Blog:
 blogRouter.delete('/:id', async (request, response) => {
-  await Blog.findByIdAndDelete(request.params.id)
-  response.status(204).end()
+  const deletedBlog = await Blog.findByIdAndDelete(request.params.id)
+  if (!deletedBlog) {
+    response.status(404).end()
+  } else {
+    response.status(204).end()
+  }
 })
 
 // Export the Blog Router:
