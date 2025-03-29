@@ -10,7 +10,11 @@ morgan.token('post-body', (request) => {
 })
 
 // Morgan Middleware:
-const requestLogger = morgan('[Express] :method :url | :status | :res[content-length] bytes | :response-time ms | :post-body |')
-
-// Export the Morgan Middleware:
-module.exports = requestLogger
+if (process.env.NODE_ENV !== 'test') {
+  const requestLogger = morgan('[Express] :method :url | :status | :res[content-length] bytes | :response-time ms | :post-body |')
+  module.exports = requestLogger
+} else {
+  module.exports = (request, response, next) => {
+    next()
+  }
+}

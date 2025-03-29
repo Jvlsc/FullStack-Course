@@ -9,6 +9,13 @@ The exercises corresponding to this project are:
 - **Exercise 4.5**: Helper Functions and Unit Tests (Step 3).
 - **Exercise 4.6**: Helper Functions and Unit Tests (Step 4).
 - **Exercise 4.7**: Helper Functions and Unit Tests (Step 5).
+- **Exercise 4.8**: Blog List Tests (Step 1).
+- **Exercise 4.9**: Blog List Tests (Step 2).
+- **Exercise 4.10**: Blog List Tests (Step 3).
+- **Exercise 4.11**: Blog List Tests (Step 4).
+- **Exercise 4.12**: Blog List Tests (Step 5).
+- **Exercise 4.13**: Blog List Tests Expansion (Step 1).
+- **Exercise 4.14**: Blog List Tests Expansion (Step 2).
 
 ---
 ---
@@ -39,10 +46,22 @@ npm run dev
 npm run test
 ```
 
-**Run linting:**
+**Run linting (All):**
 
 ```bash
-npm run lint
+npm run lint:all
+```
+
+**Run linting (API):**
+
+```bash
+npm run lint:api
+```
+
+**Run linting (List):**
+
+```bash
+npm run lint:list
 ```
 
 ---

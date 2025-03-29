@@ -1,11 +1,15 @@
 // Info Logger:
 const info = (...params) => {
-  console.log(...params)
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(...params)
+  }
 }
 
 // Error Logger:
 const error = (...params) => {
-  console.error(...params)
+  if (process.env.NODE_ENV !== 'test') {
+    console.error(...params)
+  }
 }
 
 // Export the Logger Module:

@@ -1,16 +1,14 @@
-// Import the Express Router:
+// Import the Express Router and Express-Async-Errors:
 const blogRouter = require('express').Router()
+require('express-async-errors')
 
 // Import the Blog Model:
 const Blog = require('../models/blog')
 
 // [GET] Route - Get All Blogs:
-blogRouter.get('/', (request, response, next) => {
-  Blog.find({})
-    .then(blogs => {
-      response.json(blogs)
-    })
-    .catch(error => next(error))
+blogRouter.get('/', async (request, response) => {
+  const blogs = await Blog.find({})
+  response.json(blogs)
 })
 
 // [POST] Route - Create a New Blog:
