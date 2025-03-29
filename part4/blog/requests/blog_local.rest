@@ -42,6 +42,15 @@ PUT http://localhost:3003/api/blogs/67e6c772892b9d5da14c9fbf
 Content-Type: application/json
 
 {
+    "likes": 102
+}
+
+
+### [PUT] - Update a Blog (Non-Existing ID):
+PUT http://localhost:3003/api/blogs/67e6c772892b9d5da14c9fb1
+Content-Type: application/json
+
+{
     "likes": 101
 }
 
@@ -49,6 +58,10 @@ Content-Type: application/json
 ### [PUT] - Update a Blog (Malformatted ID):
 PUT http://localhost:3003/api/blogs/1312
 Content-Type: application/json
+
+{
+    "likes": 101
+}
 
 
 ### [DELETE] - Delete a Blog:

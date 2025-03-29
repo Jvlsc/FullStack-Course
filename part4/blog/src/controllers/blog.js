@@ -39,7 +39,11 @@ blogRouter.put('/:id', async (request, response) => {
       context: 'query',
     }
   )
-  response.json(updatedBlog)
+  if (!updatedBlog) {
+    response.status(404).end()
+  } else {
+    response.json(updatedBlog)
+  }
 })
 
 // [DELETE] Route - Delete a Blog:

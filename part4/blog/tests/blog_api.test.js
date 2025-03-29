@@ -204,6 +204,17 @@ describe('TESTS - HTTP API:', () => {
         .send({ likes: 101 })
         .expect(400)
     })
+
+    // Test - Check error if blog does not exist:
+    test('Fails with status code 404 if blog does not exist...', async () => {
+      // Get Non-Existing ID:
+      const validNonexistingId = await helper.nonExistingId()
+
+      // Send update request to API:
+      await api.put(`/api/blogs/${validNonexistingId}`)
+        .send({ likes: 101 })
+        .expect(404)
+    })
   })
 
   // [DELETE] Route Tests:
