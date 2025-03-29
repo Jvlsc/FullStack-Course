@@ -12,13 +12,10 @@ blogRouter.get('/', async (request, response) => {
 })
 
 // [POST] Route - Create a New Blog:
-blogRouter.post('/', (request, response, next) => {
+blogRouter.post('/', async (request, response) => {
   const blog = new Blog(request.body)
-  blog.save()
-    .then(result => {
-      response.status(201).json(result)
-    })
-    .catch(error => next(error))
+  const savedBlog = await blog.save()
+  response.status(201).json(savedBlog)
 })
 
 // Export the Blog Router:
