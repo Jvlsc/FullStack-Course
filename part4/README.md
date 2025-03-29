@@ -41,7 +41,7 @@ In [this chapter](https://fullstackopen.com/en/part4/testing_the_backend), we wi
 - **[Exercise 4.8]()**: Blog List Tests (Step 1).
 - **[Exercise 4.9]()**: Blog List Tests (Step 2).
 - **[Exercise 4.10]()**: Blog List Tests (Step 3).
-- **[Exercise 4.11]()**: Blog List Tests (Step 4).
+- **[Exercise 4.11]()**: Blog List Tests (Step 4) -> Already solved in 4.9.
 - **[Exercise 4.12]()**: Blog List Tests (Step 5).
 - **[Exercise 4.13]()**: Blog List Expansions (Step 1).
 - **[Exercise 4.14]()**: Blog List Expansions (Step 2).

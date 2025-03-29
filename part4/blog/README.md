@@ -58,7 +58,13 @@ npm run lint:all
 npm run lint:api
 ```
 
-**Run linting (List):**
+**Run linting (Blog Model):**
+
+```bash
+npm run lint:model
+```
+
+**Run linting (List Helper):**
 
 ```bash
 npm run lint:list
