@@ -53,6 +53,12 @@ const blogs = [
   },
 ]
 
+// Populate Database with Test Blogs:
+const cleanAndPopulateBlogsDB = async () => {
+  await Blog.deleteMany({})
+  await Blog.insertMany(blogs)
+}
+
 // Non Existing Blog ID:
 const nonExistingId = async () => {
   const blog = new Blog({
@@ -76,6 +82,7 @@ const blogsInDb = async () => {
 // Export the Test Helper:
 module.exports = {
   blogs,
+  cleanAndPopulateBlogsDB,
   nonExistingId,
   blogsInDb,
 }
