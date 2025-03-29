@@ -27,10 +27,11 @@ const mostBlogs = (blogs) => {
   if (blogs.length === 0) return null
 
   // Find the number of blogs by author:
-  const blogsByAuthor = {}
-  blogs.forEach((blog) => {
-    blogsByAuthor[blog.author] = (blogsByAuthor[blog.author] || 0) + 1
-  })
+  // Use reduce to count blogs by author in a more functional style
+  const blogsByAuthor = blogs.reduce((counts, blog) => {
+    counts[blog.author] = (counts[blog.author] || 0) + 1
+    return counts
+  }, {})
 
   // Find the author with the most blogs
   // In case of a tie, return the last one:
@@ -46,10 +47,11 @@ const mostLikes = (blogs) => {
   if (blogs.length === 0) return null
 
   // Find the number of likes by author:
-  const likesByAuthor = {}
-  blogs.forEach((blog) => {
-    likesByAuthor[blog.author] = (likesByAuthor[blog.author] || 0) + blog.likes
-  })
+  // Use reduce to count likes by author in a more functional style
+  const likesByAuthor = blogs.reduce((counts, blog) => {
+    counts[blog.author] = (counts[blog.author] || 0) + blog.likes
+    return counts
+  }, {})
 
   // Find the author with the most likes:
   // In case of a tie, return the last one:
