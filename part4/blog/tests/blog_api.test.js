@@ -146,7 +146,7 @@ describe('TESTS - HTTP API:', () => {
 
     // Test - Check error if blog ID is malformed:
     test('Fails with status code 400 if blog ID is malformed...', async () => {
-      // Request all blogs from DB and Get First Blog:
+      // Malformatted ID:
       const invalidId = '1234'
 
       // Send update request to API:
@@ -185,6 +185,16 @@ describe('TESTS - HTTP API:', () => {
 
       assert.strictEqual(blogsInDbAfterDelete.length, blogsInDb.length - 1)
       assert.ok(!titles.includes(blogToDelete.title))
+    })
+
+    // Test - Check error if blog ID is malformed:
+    test('Fails with status code 400 if blog ID is malformed...', async () => {
+      // Malformatted ID:
+      const invalidId = '1234'
+
+      // Send delete request to API:
+      await api.delete(`/api/blogs/${invalidId}`)
+        .expect(400)
     })
   })
 
