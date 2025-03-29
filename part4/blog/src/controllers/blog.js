@@ -11,6 +11,16 @@ blogRouter.get('/', async (request, response) => {
   response.json(blogs)
 })
 
+// [GET] Route - Get a Single Blog:
+blogRouter.get('/:id', async (request, response) => {
+  const blog = await Blog.findById(request.params.id)
+  if (!blog) {
+    response.status(404).end()
+  } else {
+    response.json(blog)
+  }
+})
+
 // [POST] Route - Create a New Blog:
 blogRouter.post('/', async (request, response) => {
   const blog = new Blog(request.body)

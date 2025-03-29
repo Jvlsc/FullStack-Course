@@ -3,7 +3,15 @@ GET http://localhost:3003/api/blogs
 
 
 ### [GET] - Get a Single Blog:
-GET http://localhost:3003/api/blogs/66f290000000000000000000
+GET http://localhost:3003/api/blogs/67e6c744892b9d5da14c9fbc
+
+
+### [GET] - Get a Single Blog (Non-Existing ID):
+GET http://localhost:3003/api/blogs/67e6c744892b9d5da14c9fb1
+
+
+### [GET] - Get a Single Blog (Malformatted ID):
+GET http://localhost:3003/api/blogs/1234
 
 
 ### [POST] - Create a New Blog:
@@ -44,7 +52,7 @@ Content-Type: application/json
 
 
 ### [DELETE] - Delete a Blog:
-DELETE http://localhost:3003/api/blogs/67e6d7d898aff0a6f37e0ee3
+DELETE http://localhost:3003/api/blogs/67e840320f2d495800c65e40
 
 
 ### [DELETE] - Delete a Blog (Malformatted ID):

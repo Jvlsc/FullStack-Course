@@ -20,7 +20,7 @@ describe('TESTS - HTTP API:', () => {
     await helper.cleanAndPopulateBlogsDB()
   })
 
-  // [GET] Route Tests:
+  // [GET] Route Tests (All Blogs):
   describe('[GET /api/blogs] - Get All Blogs:', () => {
     // Test - Check if Blogs are Returned as JSON correctly:
     test('All blogs are returned correctly as JSON...', async () => {
@@ -51,6 +51,44 @@ describe('TESTS - HTTP API:', () => {
       const titles = response.body.map(blog => blog.title)
 
       assert.ok(titles.includes(helper.blogs[0].title))
+    })
+  })
+
+  // [GET] Route Tests (Get Single Blog):
+  describe('[GET /api/blogs/:id] - Get a Single Blog:', () => {
+    // Test - Check if a single blog is returned correctly:
+    test('A single blog is returned correctly...', async () => {
+      // Request all blogs from DB and Get First Blog:
+      const blogsInDb = await helper.blogsInDb()
+      const blogToGet = blogsInDb[0]
+
+      // Send GET request to API:
+      const response = await api.get(`/api/blogs/${blogToGet.id}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+
+      assert.strictEqual(response.body.title, blogToGet.title)
+    })
+
+    // Test - Check if a blog does not exist:
+    test('Fails with statuscode 404 if blog does not exist...', async () => {
+      // Get Non-Existing ID:
+      const validNonexistingId = await helper.nonExistingId()
+
+      // Send GET request to API:
+      await api
+        .get(`/api/blogs/${validNonexistingId}`)
+        .expect(404)
+    })
+
+    // Test - Check if blog ID is malformed:
+    test('Fails with statuscode 400 if blog ID is malformed...', async () => {
+      // Malformatted ID:
+      const invalidId = '1234'
+
+      // Send GET request to API:
+      await api.get(`/api/blogs/${invalidId}`)
+        .expect(400)
     })
   })
 
