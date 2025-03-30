@@ -14,8 +14,17 @@ The exercises corresponding to this project are:
 - **Exercise 4.10**: Blog List Tests (Step 3).
 - **Exercise 4.11**: Blog List Tests (Step 4).
 - **Exercise 4.12**: Blog List Tests (Step 5).
-- **Exercise 4.13**: Blog List Tests Expansion (Step 1).
-- **Exercise 4.14**: Blog List Tests Expansion (Step 2).
+- **Exercise 4.13**: Blog List Expansion (Step 1).
+- **Exercise 4.14**: Blog List Expansion (Step 2).
+- **Exercise 4.15**: Blog List Expansion (Step 3).
+- **Exercise 4.16**: Blog List Expansion (Step 4).
+- **Exercise 4.17**: Blog List Expansion (Step 5).
+- **Exercise 4.18**: Blog List Expansion (Step 6).
+- **Exercise 4.19**: Blog List Expansion (Step 7).
+- **Exercise 4.20**: Blog List Expansion (Step 8).
+- **Exercise 4.21**: Blog List Expansion (Step 9).
+- **Exercise 4.22**: Blog List Expansion (Step 10).
+- **Exercise 4.23**: Blog List Expansion (Step 11).
 
 ---
 ---
