@@ -4,6 +4,12 @@ const Blog = require('../models/blog')
 // Import User Model:
 const User = require('../models/user')
 
+// Import the JSON Web Token:
+const jwt = require('jsonwebtoken')
+
+// Import the Config Module:
+const config = require('../utils/config')
+
 // Test Blogs Data:
 const blogs = [
   {
@@ -68,7 +74,7 @@ const users = [
     _id: '5a422a851b54a676234d17f8',
     username: 'root',
     name: 'Root User',
-    passwordHash: 'rootpasswordhash',
+    passwordHash: '$2b$10$hEgfAhfxxcblC0WpShYUBupgppJH2y5yCzv.NDhtt9cytUVuiqTCa',
     blogs: [],
     __v: 0,
   },
@@ -76,7 +82,7 @@ const users = [
     _id: '5a422a851b54a676234d17f7',
     username: 'testuser',
     name: 'Test User',
-    passwordHash: 'testpasswordhash',
+    passwordHash: '$2b$10$hEgfAhfxxcblC0WpShYUBupgppJH2y5yCzv.NDhtt9cytUVuiqTCa',
     blogs: [],
     __v: 0,
   },
@@ -135,6 +141,12 @@ const usersInDb = async () => {
   return users.map(user => user.toJSON())
 }
 
+// Get Token:
+const getToken = async () => {
+  const user = await User.findOne({ username: users[0].username })
+  return jwt.sign({ id: user._id }, config.SERVER_SECRET)
+}
+
 // Export the Test Helper:
 module.exports = {
   blogs,
@@ -145,4 +157,5 @@ module.exports = {
   nonExistingUserId,
   blogsInDb,
   usersInDb,
+  getToken,
 }

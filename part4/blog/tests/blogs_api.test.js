@@ -88,31 +88,35 @@ describe('TESTS - Blogs HTTP API:', () => {
   // [POST] Route Tests (Create a new blog):
   describe('[POST /api/blogs] - Create a new blog:', () => {
     test('A new blog can be added and response is correct...', async () => {
+      const token = await helper.getToken()
+
       const newBlog = {
         title: helper.blogs[0].title,
         author: helper.blogs[0].author,
         url: helper.blogs[0].url,
-        likes: helper.blogs[0].likes,
-        user: helper.users[0]._id
+        likes: helper.blogs[0].likes
       }
 
       await api.post('/api/blogs')
         .send(newBlog)
+        .set('Authorization', `Bearer ${token}`)
         .expect(201)
         .expect('Content-Type', /application\/json/)
     })
 
     test('A new blog can be added correctly...', async () => {
+      const token = await helper.getToken()
+
       const newBlog = {
         title: helper.blogs[0].title,
         author: helper.blogs[0].author,
         url: helper.blogs[0].url,
-        likes: helper.blogs[0].likes,
-        user: helper.users[0]._id
+        likes: helper.blogs[0].likes
       }
 
       await api.post('/api/blogs')
         .send(newBlog)
+        .set('Authorization', `Bearer ${token}`)
         .expect(201)
         .expect('Content-Type', /application\/json/)
 
@@ -122,21 +126,59 @@ describe('TESTS - Blogs HTTP API:', () => {
       assert.strictEqual(blogsInDb[blogsInDb.length - 1].title, newBlog.title)
     })
 
-    test('Fails with status code 400 if new blog data is invalid...', async () => {
+    test('Check if likes is missing, it defaults to 0...', async () => {
+      const token = await helper.getToken()
+
       const newBlog = {
+        title: helper.blogs[0].title,
         author: helper.blogs[0].author,
-        url: helper.blogs[0].url,
-        likes: helper.blogs[0].likes,
-        user: helper.users[0]._id
+        url: helper.blogs[0].url
       }
 
       await api.post('/api/blogs')
         .send(newBlog)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+      const blogsInDb = await helper.blogsInDb()
+
+      assert.strictEqual(blogsInDb[blogsInDb.length - 1].likes, 0)
+    })
+
+    test('Fails with status code 400 if new blog data is invalid...', async () => {
+      const token = await helper.getToken()
+
+      const newBlog = {
+        author: helper.blogs[0].author,
+        url: helper.blogs[0].url,
+        likes: helper.blogs[0].likes
+      }
+
+      await api.post('/api/blogs')
+        .send(newBlog)
+        .set('Authorization', `Bearer ${token}`)
         .expect(400)
 
       const blogsInDb = await helper.blogsInDb()
 
       assert.strictEqual(blogsInDb.length, helper.blogs.length)
+    })
+
+    test('Fails with status code 401 if token is invalid...', async () => {
+      const invalidToken = 'invalidtoken'
+
+      const newBlog = {
+        title: helper.blogs[0].title,
+        author: helper.blogs[0].author,
+        url: helper.blogs[0].url,
+        likes: helper.blogs[0].likes
+      }
+
+      await api.post('/api/blogs')
+        .send(newBlog)
+        .set('Authorization', `Bearer ${invalidToken}`)
+        .expect(401)
     })
   })
 
@@ -186,18 +228,26 @@ describe('TESTS - Blogs HTTP API:', () => {
   // [DELETE] Route Tests (Delete a blog):
   describe('[DELETE /api/blogs/:id] - Delete a blog:', () => {
     test('A blog can be deleted and response is correct...', async () => {
+      const token = await helper.getToken()
+
       const blogsInDb = await helper.blogsInDb()
       const blogToDelete = blogsInDb[0]
 
-      await api.delete(`/api/blogs/${blogToDelete.id}`)
+      await api
+        .delete(`/api/blogs/${blogToDelete.id}`)
+        .set('Authorization', `Bearer ${token}`)
         .expect(204)
     })
 
     test('A blog can be deleted correctly...', async () => {
+      const token = await helper.getToken()
+
       const blogsInDb = await helper.blogsInDb()
       const blogToDelete = blogsInDb[0]
 
-      await api.delete(`/api/blogs/${blogToDelete.id}`)
+      await api
+        .delete(`/api/blogs/${blogToDelete.id}`)
+        .set('Authorization', `Bearer ${token}`)
         .expect(204)
 
       const blogsInDbAfterDelete = await helper.blogsInDb()
@@ -208,17 +258,39 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
 
     test('Fails with status code 400 if blog ID is malformed...', async () => {
+      const token = await helper.getToken()
+
       const invalidId = '1234'
 
-      await api.delete(`/api/blogs/${invalidId}`)
+      await api
+        .delete(`/api/blogs/${invalidId}`)
+        .set('Authorization', `Bearer ${token}`)
         .expect(400)
+        .expect('Content-Type', /application\/json/)
+    })
+
+    test('Fails with status code 401 if token is invalid...', async () => {
+      const invalidToken = 'invalidtoken'
+
+      const blogsInDb = await helper.blogsInDb()
+      const blogToDelete = blogsInDb[0]
+
+      await api
+        .delete(`/api/blogs/${blogToDelete.id}`)
+        .set('Authorization', `Bearer ${invalidToken}`)
+        .expect(401)
+        .expect('Content-Type', /application\/json/)
     })
 
     test('Fails with status code 404 if blog does not exist...', async () => {
+      const token = await helper.getToken()
       const validNonexistingBlogId = await helper.nonExistingBlogId()
 
-      await api.delete(`/api/blogs/${validNonexistingBlogId}`)
+      await api
+        .delete(`/api/blogs/${validNonexistingBlogId}`)
+        .set('Authorization', `Bearer ${token}`)
         .expect(404)
+        .expect('Content-Type', /application\/json/)
     })
   })
 
