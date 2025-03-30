@@ -14,15 +14,6 @@ const User = require('../models/user')
 // Import the Config Module:
 const config = require('../utils/config')
 
-// Extract the Token from the Authorization Header:
-const getTokenFrom = request => {
-  const authorization = request.get('authorization')
-  if (authorization && authorization.startsWith('Bearer ')) {
-    return authorization.replace('Bearer ', '')
-  }
-  return null
-}
-
 // [GET] Route - Get All Blogs:
 blogRouter.get('/', async (request, response) => {
   const blogs = await Blog
@@ -49,13 +40,11 @@ blogRouter.get('/:id', async (request, response) => {
 blogRouter.post('/', async (request, response) => {
   const body = request.body
 
-  const decodedToken = jwt.verify(getTokenFrom(request), config.SERVER_SECRET)
-  if (!decodedToken.id) {
-    return response.status(401).json({ error: 'Token Invalid' })
-  }
+  const decodedToken = jwt.verify(request.token, config.SERVER_SECRET)
+  if (!decodedToken.id) return response.status(401).json({ error: 'Invalid Token' })
 
   const user = await User.findById(decodedToken.id)
-  if (!user) return response.status(401).json({ error: 'Token Invalid' })
+  if (!user) return response.status(401).json({ error: 'Invalid Token' })
 
   const blog = new Blog({
     title: body.title,

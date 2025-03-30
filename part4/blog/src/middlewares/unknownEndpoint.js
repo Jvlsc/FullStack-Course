@@ -7,5 +7,5 @@ const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'Unknown Endpoint' })
 }
 
-// Export the Unknown Endpoint:
+// Export the unknownEndpoint Middleware:
 module.exports = unknownEndpoint

@@ -1,7 +1,7 @@
 // Import the Logger Module:
 const logger = require('../utils/logger')
 
-// Error Handler:
+// Error Handler Middleware:
 const errorHandler = (error, request, response, next) => {
   logger.error(`[MongoDB] Error in Request ${request.method} ${request.path}: ${error}`)
 
@@ -27,21 +27,17 @@ const errorHandler = (error, request, response, next) => {
 
   // JsonWebTokenError: Detected in POST /api/blogs when token is invalid/missing
   if (error.name === 'JsonWebTokenError') {
-    return response.status(401).json({
-      error: 'Invalid Token'
-    })
+    return response.status(401).json({ error: 'Invalid Token' })
   }
 
   // TokenExpiredError: Detected in POST /api/blogs when token is expired
   if (error.name === 'TokenExpiredError') {
-    return response.status(401).json({
-      error: 'Token Expired'
-    })
+    return response.status(401).json({ error: 'Token Expired' })
   }
 
 
   next(error)
 }
 
-// Export the Middleware Module:
+// Export the errorHandler Middleware:
 module.exports = errorHandler

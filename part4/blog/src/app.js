@@ -12,6 +12,7 @@ const blogRouter = require('./controllers/blogs')
 const errorHandler = require('./middlewares/errorHandler')
 const requestLogger = require('./middlewares/requestLogger')
 const unknownEndpoint = require('./middlewares/unknownEndpoint')
+const tokenExtractor = require('./middlewares/tokenExtractor')
 
 // Import Utils:
 const config = require('./utils/config')
@@ -45,6 +46,9 @@ app.use(requestLogger)
 
 // Middleware - Static Files:
 app.use(express.static('public'))
+
+// Middleware - Token Extractor:
+app.use(tokenExtractor)
 
 // Routes:
 app.use('/api/login', loginRouter)
