@@ -77,10 +77,10 @@ describe('TESTS - Users HTTP API:', () => {
     })
 
     test('Fails with statuscode 404 if user does not exist...', async () => {
-      const validNonexistingId = await helper.nonExistingId()
+      const validNonexistingUserId = await helper.nonExistingUserId()
 
       await api
-        .get(`/api/users/${validNonexistingId}`)
+        .get(`/api/users/${validNonexistingUserId}`)
         .expect(404)
     })
   })
@@ -151,6 +151,46 @@ describe('TESTS - Users HTTP API:', () => {
       const usersAtEnd = await helper.usersInDb()
 
       assert(response.body.error.includes('expected `username` to be unique'))
+      assert.strictEqual(usersAtEnd.length, usersAtStart.length)
+    })
+
+    test('Fails with status code 400 if new username is not at least 3 characters long...', async () => {
+      const usersAtStart = await helper.usersInDb()
+
+      const newUser = {
+        username: 'ab',
+        name: helper.users[0].name,
+        password: helper.users[0].passwordHash
+      }
+
+      const response = await api.post('/api/users')
+        .send(newUser)
+        .expect(400)
+        .expect('Content-Type', /application\/json/)
+
+      const usersAtEnd = await helper.usersInDb()
+
+      assert(response.body.error.includes('User validation failed'))
+      assert.strictEqual(usersAtEnd.length, usersAtStart.length)
+    })
+
+    test('Fails with status code 400 if new password is not provided or is less than 3 characters long...', async () => {
+      const usersAtStart = await helper.usersInDb()
+
+      const newUser = {
+        username: 'ghost',
+        name: helper.users[0].name,
+        password: ''
+      }
+
+      const response = await api.post('/api/users')
+        .send(newUser)
+        .expect(400)
+        .expect('Content-Type', /application\/json/)
+
+      const usersAtEnd = await helper.usersInDb()
+
+      assert(response.body.error.includes('password must be at least 3 characters long'))
       assert.strictEqual(usersAtEnd.length, usersAtStart.length)
     })
   })

@@ -6,10 +6,15 @@ const config = require('../utils/config')
 
 // Defining the User Schema:
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  username: { type: String, minlength: 3, required: true, unique: true },
   name: { type: String, required: true },
   passwordHash: { type: String, required: true },
-  blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: config.MONGODB_BLOGS_MODEL }]
+  blogs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: config.MONGODB_BLOGS_MODEL
+    }
+  ]
 }, {
   collection: config.MONGODB_USERS_COLLECTION,
   timestamps: true

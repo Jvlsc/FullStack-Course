@@ -90,7 +90,7 @@ const cleanAndPopulateUsersDB = async () => {
 }
 
 // Non Existing Blog ID:
-const nonExistingId = async () => {
+const nonExistingBlogId = async () => {
   const blog = new Blog({
     title: blogs[0].title,
     author: blogs[0].author,
@@ -106,9 +106,9 @@ const nonExistingId = async () => {
 // Non Existing User ID:
 const nonExistingUserId = async () => {
   const user = new User({
-    username: users[0].username,
+    username: 'ghost',
     name: users[0].name,
-    passwordHash: users[0].passwordHash,
+    passwordHash: users[0].passwordHash
   })
   await user.save()
   await user.deleteOne()
@@ -134,7 +134,7 @@ module.exports = {
   users,
   cleanAndPopulateBlogsDB,
   cleanAndPopulateUsersDB,
-  nonExistingId,
+  nonExistingBlogId,
   nonExistingUserId,
   blogsInDb,
   usersInDb,
