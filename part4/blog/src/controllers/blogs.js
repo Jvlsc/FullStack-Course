@@ -30,7 +30,7 @@ blogRouter.get('/:id', async (request, response) => {
     .populate('user', { username: 1, name: 1 })
 
   if (!blog) {
-    response.status(404).end()
+    response.status(404).json({ error: 'Blog Not Found' })
   } else {
     response.json(blog)
   }
@@ -73,7 +73,7 @@ blogRouter.put('/:id', async (request, response) => {
     }
   )
   if (!updatedBlog) {
-    response.status(404).end()
+    response.status(404).json({ error: 'Blog Not Found' })
   } else {
     response.json(updatedBlog)
   }
@@ -81,11 +81,24 @@ blogRouter.put('/:id', async (request, response) => {
 
 // [DELETE] Route - Delete a Blog:
 blogRouter.delete('/:id', async (request, response) => {
+  const decodedToken = jwt.verify(request.token, config.SERVER_SECRET)
+  if (!decodedToken.id) return response.status(401).json({ error: 'Invalid Token' })
+
+  const user = await User.findById(decodedToken.id)
+  if (!user) return response.status(401).json({ error: 'Invalid Token' })
+
+  const blog = await Blog.findById(request.params.id)
+  if (!blog) return response.status(404).json({ error: 'Blog Not Found' })
+
+  if (blog.user.toString() !== user.id.toString()) {
+    return response.status(401).json({ error: 'Unauthorized' })
+  }
+
   const deletedBlog = await Blog.findByIdAndDelete(request.params.id)
   if (!deletedBlog) {
-    response.status(404).end()
+    response.status(404).json({ error: 'Blog Not Found' })
   } else {
-    response.status(204).end()
+    response.status(204).json(deletedBlog)
   }
 })
 
