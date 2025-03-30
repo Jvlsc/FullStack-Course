@@ -25,6 +25,21 @@ const errorHandler = (error, request, response, next) => {
     response.status(500).send({ error: 'Check MongoDB Connection' })
   }
 
+  // JsonWebTokenError: Detected in POST /api/blogs when token is invalid/missing
+  if (error.name === 'JsonWebTokenError') {
+    return response.status(401).json({
+      error: 'Invalid Token'
+    })
+  }
+
+  // TokenExpiredError: Detected in POST /api/blogs when token is expired
+  if (error.name === 'TokenExpiredError') {
+    return response.status(401).json({
+      error: 'Token Expired'
+    })
+  }
+
+
   next(error)
 }
 

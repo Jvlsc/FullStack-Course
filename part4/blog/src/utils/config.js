@@ -19,10 +19,12 @@ const MONGODB_USERS_MODEL = process.env.NODE_ENV === 'test' ? process.env.TEST_M
 
 // Environment Variables - Express Server:
 const SERVER_PORT = process.env.NODE_ENV === 'test' ? process.env.TEST_SERVER_PORT : process.env.SERVER_PORT
+const SERVER_SECRET = process.env.NODE_ENV === 'test' ? process.env.TEST_SERVER_SECRET : process.env.SERVER_SECRET
 
 // Export the Config Module:
 module.exports = {
   SERVER_PORT,
+  SERVER_SECRET,
   MONGODB_URI,
   MONGODB_BLOGS_COLLECTION,
   MONGODB_BLOGS_MODEL,

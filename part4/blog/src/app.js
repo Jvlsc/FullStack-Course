@@ -4,8 +4,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 
 // Import Controllers:
-const blogRouter = require('./controllers/blogs')
+const loginRouter = require('./controllers/login')
 const userRouter = require('./controllers/users')
+const blogRouter = require('./controllers/blogs')
 
 // Import Middlewares:
 const errorHandler = require('./middlewares/errorHandler')
@@ -46,8 +47,9 @@ app.use(requestLogger)
 app.use(express.static('public'))
 
 // Routes:
-app.use('/api/blogs', blogRouter)
+app.use('/api/login', loginRouter)
 app.use('/api/users', userRouter)
+app.use('/api/blogs', blogRouter)
 
 // Middleware - Unknown Endpoint:
 app.use(unknownEndpoint)
