@@ -66,15 +66,15 @@ In [this chapter](https://fullstackopen.com/en/part4/token_authentication), we w
 
 ### Exercises:
 
-- **[Exercise 4.15]()**: Blog List Expansions (Step 3).
-- **[Exercise 4.16]()**: Blog List Expansions (Step 4).
-- **[Exercise 4.17]()**: Blog List Expansions (Step 5).
-- **[Exercise 4.18]()**: Blog List Expansions (Step 6).
-- **[Exercise 4.19]()**: Blog List Expansions (Step 7).
-- **[Exercise 4.20]()**: Blog List Expansions (Step 8).
-- **[Exercise 4.21]()**: Blog List Expansions (Step 9).
-- **[Exercise 4.22]()**: Blog List Expansions (Step 10).
-- **[Exercise 4.23]()**: Blog List Expansions (Step 11).
+- **[Exercise 4.15](https://github.com/Jvlsc/FullStack-Course/blob/62876732f9bdd850eaeccbd46180ee4bdc24eb71/part4/blog/src/controllers/users.js)**: Blog List Expansions (Step 3).
+- **[Exercise 4.16](https://github.com/Jvlsc/FullStack-Course/blob/bfb49053252f6cfda347517a8132d04ffb47fe78/part4/blog/src/controllers/users.js)**: Blog List Expansions (Step 4).
+- **[Exercise 4.17](https://github.com/Jvlsc/FullStack-Course/blob/baa3188088bd9a13f6209974a7c916992e1e6a04/part4/blog/src/controllers/blogs.js)**: Blog List Expansions (Step 5) -> Already solved in 4.15.
+- **[Exercise 4.18](https://github.com/Jvlsc/FullStack-Course/blob/35fbd98fe5b9930eec7dd05ad164d4c74b8a069c/part4/blog/src/controllers/login.js)**: Blog List Expansions (Step 6).
+- **[Exercise 4.19](https://github.com/Jvlsc/FullStack-Course/blob/a4ea6097534c52ada811a6042987c04519efe8c1/part4/blog/src/controllers/blogs.js)**: Blog List Expansions (Step 7).
+- **[Exercise 4.20](https://github.com/Jvlsc/FullStack-Course/blob/c75b89353658b6a20c3932c5510958ed8935c969/part4/blog/src/middlewares/tokenExtractor.js)**: Blog List Expansions (Step 8).
+- **[Exercise 4.21](https://github.com/Jvlsc/FullStack-Course/blob/4ac5d12ff5032c8719500e6b6f1297eea4d0ed88/part4/blog/src/controllers/blogs.js)**: Blog List Expansions (Step 9).
+- **[Exercise 4.22](https://github.com/Jvlsc/FullStack-Course/blob/3158b0f09561eef291204fc6a2a004b1bf91bdd5/part4/blog/src/middlewares/userExtractor.js)**: Blog List Expansions (Step 10).
+- **[Exercise 4.23](https://github.com/Jvlsc/FullStack-Course/blob/f3ba08d1918cd3f85a699aa917464db40886ebba/part4/blog/tests/blogs_api.test.js)**: Blog List Expansions (Step 11).
 
 ---
 ---
