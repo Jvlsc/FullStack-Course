@@ -1,6 +1,9 @@
 // Import Blog Model:
 const Blog = require('../models/blog')
 
+// Import User Model:
+const User = require('../models/user')
+
 // Test Blogs Data:
 const blogs = [
   {
@@ -53,10 +56,37 @@ const blogs = [
   },
 ]
 
+// Test Users Data:
+const users = [
+  {
+    _id: '5a422a851b54a676234d17f8',
+    username: 'root',
+    name: 'Root User',
+    passwordHash: 'rootpasswordhash',
+    blogs: [],
+    __v: 0,
+  },
+  {
+    _id: '5a422a851b54a676234d17f7',
+    username: 'testuser',
+    name: 'Test User',
+    passwordHash: 'testpasswordhash',
+    blogs: [],
+    __v: 0,
+  },
+]
+
+
 // Populate Database with Test Blogs:
 const cleanAndPopulateBlogsDB = async () => {
   await Blog.deleteMany({})
   await Blog.insertMany(blogs)
+}
+
+// Populate Database with Test Users:
+const cleanAndPopulateUsersDB = async () => {
+  await User.deleteMany({})
+  await User.insertMany(users)
 }
 
 // Non Existing Blog ID:
@@ -73,16 +103,39 @@ const nonExistingId = async () => {
   return blog._id.toString()
 }
 
+// Non Existing User ID:
+const nonExistingUserId = async () => {
+  const user = new User({
+    username: users[0].username,
+    name: users[0].name,
+    passwordHash: users[0].passwordHash,
+  })
+  await user.save()
+  await user.deleteOne()
+
+  return user._id.toString()
+}
+
 // Blogs in Database:
 const blogsInDb = async () => {
   const blogs = await Blog.find({})
   return blogs.map(blog => blog.toJSON())
 }
 
+// Users in Database:
+const usersInDb = async () => {
+  const users = await User.find({})
+  return users.map(user => user.toJSON())
+}
+
 // Export the Test Helper:
 module.exports = {
   blogs,
+  users,
   cleanAndPopulateBlogsDB,
+  cleanAndPopulateUsersDB,
   nonExistingId,
+  nonExistingUserId,
   blogsInDb,
+  usersInDb,
 }

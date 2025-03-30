@@ -15,6 +15,11 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).json({ error: error.message })
   }
 
+  // MongoServerError: Detected in POST /api/users
+  if (error.name === 'MongoServerError' && error.message.includes('E11000 duplicate key error')) {
+    return response.status(400).json({ error: 'expected `username` to be unique' })
+  }
+
   // MongooseError: Detected when MongoDB Connection Fails
   if (error.name === 'MongooseError') {
     response.status(500).send({ error: 'Check MongoDB Connection' })

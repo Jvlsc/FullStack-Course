@@ -49,34 +49,58 @@ npm run start
 npm run dev
 ```
 
-**Run tests:**
+**Run tests (All):**
 
 ```bash
-npm run test
+npm run test:all
 ```
 
-**Run linting (All):**
+**Run Tests (All APIs):**
 
 ```bash
-npm run lint:all
+npm run test:api
 ```
 
-**Run linting (API):**
+**Run Tests (Blogs API):**
 
 ```bash
-npm run lint:api
+npm run test:api:blogs
 ```
 
-**Run linting (Blog Model):**
+**Run Tests (Users API):**
 
 ```bash
-npm run lint:model
+npm run test:api:users
 ```
 
-**Run linting (List Helper):**
+**Run Tests (All Models):**
 
 ```bash
-npm run lint:list
+npm run test:models
+```
+
+**Run Tests (Blog Model):**
+
+```bash
+npm run test:model:blog
+```
+
+**Run Tests (User Model):**
+
+```bash
+npm run test:model:user
+```
+
+**Run Tests (List Helper):**
+
+```bash
+npm run test:list
+```
+
+**Run Linting:**
+
+```bash
+npm run lint
 ```
 
 ---

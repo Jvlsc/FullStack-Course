@@ -19,10 +19,11 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 { 
-    "title": "Code with John",
-    "author": "John Doe",
-    "url": "https://codewithjohn.com",
-    "likes": 100
+    "title": "Nicola Tesla",
+    "author": "Nikola Tesla",
+    "url": "https://en.wikipedia.org/wiki/Nikola_Tesla",
+    "likes": 12,
+    "userId": "5a422a851b54a676234d17f7"
 }
 
 
@@ -33,7 +34,8 @@ Content-Type: application/json
 { 
     "author": "John Doe",
     "url": "https://codewithjohn.com",
-    "likes": 100
+    "likes": 100,
+    "userId": "5a422a851b54a676234d17f8"
 }
 
 
@@ -65,7 +67,7 @@ Content-Type: application/json
 
 
 ### [DELETE] - Delete a Blog:
-DELETE http://localhost:3003/api/blogs/67e840320f2d495800c65e40
+DELETE http://localhost:3003/api/blogs/67e6c772892b9d5da14c9fbf
 
 
 ### [DELETE] - Delete a Blog (Malformatted ID):

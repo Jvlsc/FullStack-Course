@@ -9,7 +9,15 @@ const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
   url: { type: String, required: true },
-  likes: { type: Number, default: 0 }
+  likes: { type: Number, default: 0 },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: config.MONGODB_USERS_MODEL,
+    required: true
+  }
+}, {
+  collection: config.MONGODB_BLOGS_COLLECTION,
+  timestamps: true
 })
 
 // Transform the Blog Schema:
@@ -22,4 +30,4 @@ blogSchema.set('toJSON', {
 })
 
 // Export the Blog Model:
-module.exports = mongoose.model(config.MONGODB_MODEL, blogSchema)
+module.exports = mongoose.model(config.MONGODB_BLOGS_MODEL, blogSchema)

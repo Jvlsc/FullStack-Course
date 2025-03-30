@@ -1,0 +1,45 @@
+### [GET] - Get All Users:
+GET http://localhost:3003/api/users
+
+
+### [GET] - Get a Single User:
+GET http://localhost:3003/api/users/67e98922bb4a7c39f8f18838
+
+
+### [GET] - Get a Single User (Non-Existing ID):
+GET http://localhost:3003/api/users/67e6c744892b9d5da14c9fb1
+
+
+### [GET] - Get a Single User (Malformatted ID):
+GET http://localhost:3003/api/users/1234
+
+
+### [POST] - Create a New User:
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{ 
+    "username": "root",
+    "name": "Root User",
+    "password": "rootpassword"
+}
+
+
+### [POST] - Create a New User (Invalid Data):
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{ 
+    "username": "testuser",
+    "password": "testpassword"
+}
+
+### [POST] - Create a New User (Invalid Data):
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{ 
+    "username": "testuser",
+    "name": "Test User",
+    "password": ""
+}
