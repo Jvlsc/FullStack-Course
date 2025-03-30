@@ -33,7 +33,8 @@ describe('TESTS - Blog Model:', () => {
     const blog = new Blog({
       title: helper.blogs[0].title,
       author: helper.blogs[0].author,
-      url: helper.blogs[0].url
+      url: helper.blogs[0].url,
+      user: helper.blogs[0].user
     })
 
     const savedBlog = await blog.save()

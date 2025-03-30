@@ -34,15 +34,16 @@ blogRouter.get('/:id', async (request, response) => {
 blogRouter.post('/', async (request, response) => {
   const body = request.body
 
-  if (!body.userId) return response.status(400).json({ error: 'userId is required' })
-  const user = await User.findById(body.userId)
+  const usersInDb = await User.find({})
+  const user = usersInDb[0]
+  if (!user) return response.status(400).json({ error: 'user not found' })
 
   const blog = new Blog({
     title: body.title,
     author: body.author,
     url: body.url,
     likes: body.likes,
-    user: user.id
+    user: user._id
   })
 
   const savedBlog = await blog.save()

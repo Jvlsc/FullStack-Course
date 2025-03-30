@@ -3,7 +3,7 @@ GET http://localhost:3003/api/blogs
 
 
 ### [GET] - Get a Single Blog:
-GET http://localhost:3003/api/blogs/67e6c744892b9d5da14c9fbc
+GET http://localhost:3003/api/blogs/67e997520be2a25633a39291
 
 
 ### [GET] - Get a Single Blog (Non-Existing ID):
@@ -19,11 +19,10 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 { 
-    "title": "Nicola Tesla",
-    "author": "Nikola Tesla",
-    "url": "https://en.wikipedia.org/wiki/Nikola_Tesla",
-    "likes": 12,
-    "userId": "5a422a851b54a676234d17f7"
+    "title": "Thomas Edison",
+    "author": "Thomas Edison",
+    "url": "https://en.wikipedia.org/wiki/Thomas_Edison",
+    "likes": 50
 }
 
 
@@ -34,8 +33,7 @@ Content-Type: application/json
 { 
     "author": "John Doe",
     "url": "https://codewithjohn.com",
-    "likes": 100,
-    "userId": "5a422a851b54a676234d17f8"
+    "likes": 100
 }
 
 

@@ -88,9 +88,13 @@ describe('TESTS - Blogs HTTP API:', () => {
   // [POST] Route Tests (Create a new blog):
   describe('[POST /api/blogs] - Create a new blog:', () => {
     test('A new blog can be added and response is correct...', async () => {
-      const newBlog = { ...helper.blogs[0] }
-      delete newBlog._id
-      delete newBlog.__v
+      const newBlog = {
+        title: helper.blogs[0].title,
+        author: helper.blogs[0].author,
+        url: helper.blogs[0].url,
+        likes: helper.blogs[0].likes,
+        user: helper.users[0]._id
+      }
 
       await api.post('/api/blogs')
         .send(newBlog)
@@ -99,9 +103,13 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
 
     test('A new blog can be added correctly...', async () => {
-      const newBlog = { ...helper.blogs[0] }
-      delete newBlog._id
-      delete newBlog.__v
+      const newBlog = {
+        title: helper.blogs[0].title,
+        author: helper.blogs[0].author,
+        url: helper.blogs[0].url,
+        likes: helper.blogs[0].likes,
+        user: helper.users[0]._id
+      }
 
       await api.post('/api/blogs')
         .send(newBlog)
@@ -115,10 +123,12 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
 
     test('Fails with status code 400 if new blog data is invalid...', async () => {
-      const newBlog = { ...helper.blogs[0] }
-      delete newBlog._id
-      delete newBlog.__v
-      delete newBlog.title
+      const newBlog = {
+        author: helper.blogs[0].author,
+        url: helper.blogs[0].url,
+        likes: helper.blogs[0].likes,
+        user: helper.users[0]._id
+      }
 
       await api.post('/api/blogs')
         .send(newBlog)
@@ -165,9 +175,9 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
 
     test('Fails with status code 404 if blog does not exist...', async () => {
-      const validNonexistingId = await helper.nonExistingId()
+      const validNonexistingBlogId = await helper.nonExistingBlogId()
 
-      await api.put(`/api/blogs/${validNonexistingId}`)
+      await api.put(`/api/blogs/${validNonexistingBlogId}`)
         .send({ likes: 101 })
         .expect(404)
     })
@@ -205,9 +215,9 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
 
     test('Fails with status code 404 if blog does not exist...', async () => {
-      const validNonexistingId = await helper.nonExistingId()
+      const validNonexistingBlogId = await helper.nonExistingBlogId()
 
-      await api.delete(`/api/blogs/${validNonexistingId}`)
+      await api.delete(`/api/blogs/${validNonexistingBlogId}`)
         .expect(404)
     })
   })
