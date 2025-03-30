@@ -2,17 +2,14 @@
 const blogRouter = require('express').Router()
 require('express-async-errors')
 
-// Import the JSON Web Token:
-const jwt = require('jsonwebtoken')
-
 // Import the Blog Model:
 const Blog = require('../models/blog')
 
 // Import the User Model:
 const User = require('../models/user')
 
-// Import the Config Module:
-const config = require('../utils/config')
+// Import Middlewares:
+const userExtractor = require('../middlewares/userExtractor')
 
 // [GET] Route - Get All Blogs:
 blogRouter.get('/', async (request, response) => {
@@ -37,13 +34,10 @@ blogRouter.get('/:id', async (request, response) => {
 })
 
 // [POST] Route - Create a New Blog:
-blogRouter.post('/', async (request, response) => {
+blogRouter.post('/', userExtractor, async (request, response) => {
   const body = request.body
 
-  const decodedToken = jwt.verify(request.token, config.SERVER_SECRET)
-  if (!decodedToken.id) return response.status(401).json({ error: 'Invalid Token' })
-
-  const user = await User.findById(decodedToken.id)
+  const user = await User.findById(request.user)
   if (!user) return response.status(401).json({ error: 'Invalid Token' })
 
   const blog = new Blog({
@@ -80,17 +74,14 @@ blogRouter.put('/:id', async (request, response) => {
 })
 
 // [DELETE] Route - Delete a Blog:
-blogRouter.delete('/:id', async (request, response) => {
-  const decodedToken = jwt.verify(request.token, config.SERVER_SECRET)
-  if (!decodedToken.id) return response.status(401).json({ error: 'Invalid Token' })
-
-  const user = await User.findById(decodedToken.id)
+blogRouter.delete('/:id', userExtractor, async (request, response) => {
+  const user = await User.findById(request.user)
   if (!user) return response.status(401).json({ error: 'Invalid Token' })
 
   const blog = await Blog.findById(request.params.id)
   if (!blog) return response.status(404).json({ error: 'Blog Not Found' })
 
-  if (blog.user.toString() !== user.id.toString()) {
+  if (blog.user.toString() !== request.user.toString()) {
     return response.status(401).json({ error: 'Unauthorized' })
   }
 
