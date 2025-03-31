@@ -91,6 +91,30 @@ const App = () => {
     }
   }
 
+  // Update Blog Handler:
+  const handleUpdate = async (blog) => {
+    if (blog.user.username !== user.username) {
+      showNotification('You are not authorized to update this blog!', 'error')
+      return
+    }
+
+    try {
+      console.log('Updating blog...')
+      const updatedBlog = await blogService.update(blog.id, { likes: blog.likes + 1 })
+
+      setBlogs(blogs.map(blog => blog.id === updatedBlog.id 
+        ? { ...blog, likes: updatedBlog.likes } 
+        : blog
+      ))
+
+      showNotification(`Blog '${updatedBlog.title}' updated successfully!`, 'success')
+    } catch (exception) {
+      const errorMessage = exception.response.data.error
+      console.error(errorMessage)
+      showNotification(`Blog '${blog.title}' update failed! ${errorMessage}`, 'error')
+    }
+  }
+
   // Render:
   return (
     <div>
@@ -106,10 +130,10 @@ const App = () => {
             <User user={user.name} handleLogout={handleLogout} />
             <br />
             <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
-              <BlogForm handleCreate={handleCreate}/>
+              <BlogForm handleCreate={handleCreate} />
             </Togglable>
             <br />
-            <Blogs blogs={blogs} />
+            <Blogs blogs={blogs} handleUpdate={handleUpdate} />
           </>)
       }
     </div>

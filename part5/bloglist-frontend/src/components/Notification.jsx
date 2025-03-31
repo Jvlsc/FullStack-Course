@@ -1,5 +1,7 @@
 // Notification Component:
 const Notification = ({ notification }) => {
+
+  
   if (notification === null) {
     return null
   }

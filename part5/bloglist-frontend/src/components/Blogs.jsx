@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 // Blog Component:
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleUpdate }) => {
   // State Variables:
   const [visible, setVisible] = useState(false)
 
@@ -32,7 +32,7 @@ const Blog = ({ blog }) => {
           <li>{blog.url}</li>
           <li>
             {blog.likes} &nbsp;
-            <button>Like</button>
+            <button onClick={() => handleUpdate(blog)}>Like</button>
           </li>
         </ul>
       </li>
@@ -41,11 +41,11 @@ const Blog = ({ blog }) => {
 }
 
 // Blogs Component:
-const Blogs = ({ blogs }) => (
+const Blogs = ({ blogs, handleUpdate }) => (
   <div>
     <h3>List of Blogs:</h3>
     <ul>
-      {blogs.map(blog => <Blog key={blog.id} blog={blog} />)}
+      {blogs.map(blog => <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} />)}
     </ul>
   </div>
 )
