@@ -36,14 +36,15 @@ In [this chapter](https://fullstackopen.com/en/part5/props_children_and_proptype
 
 ### Exercises:
 
-- **[Exercise 5.5]()**: Blog List Frontend (Step 5).
-- **[Exercise 5.6]()**: Blog List Frontend (Step 6).
-- **[Exercise 5.7]()**: Blog List Frontend (Step 7).
-- **[Exercise 5.8]()**: Blog List Frontend (Step 8).
-- **[Exercise 5.9]()**: Blog List Frontend (Step 9).
-- **[Exercise 5.10]()**: Blog List Frontend (Step 10).
-- **[Exercise 5.11]()**: Blog List Frontend (Step 11).
-- **[Exercise 5.12]()**: Blog List Frontend (Step 12).
+- **[Exercise 5.5](https://github.com/Jvlsc/FullStack-Course/blob/ed232338f58afc5884de306ac3d132367e7b03ac/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 5).
+- **[Exercise 5.6](https://github.com/Jvlsc/FullStack-Course/blob/5b428c0a6564f305439fbc571026b2befd4ca15d/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 6).
+- **[Exercise 5.7](https://github.com/Jvlsc/FullStack-Course/blob/0ae28c705b8726ae103143414694400c2896a886/part5/bloglist-frontend/src/components/Blogs.jsx)**: Blog List Frontend (Step 7).
+- **[Exercise 5.8](https://github.com/Jvlsc/FullStack-Course/blob/c1ce87d7ff527d0869b15156268e0f74ec9257df/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 8).
+- **[Exercise 5.9](https://github.com/Jvlsc/FullStack-Course/blob/0ae28c705b8726ae103143414694400c2896a886/part5/bloglist-frontend/src/components/Blogs.jsx)**: Blog List Frontend (Step 9).
+- **[Exercise 5.10](https://github.com/Jvlsc/FullStack-Course/blob/a091bff3cd12af5c4dfd138c241b08fbbc58f720/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 10).
+- **[Exercise 5.11](https://github.com/Jvlsc/FullStack-Course/blob/a091bff3cd12af5c4dfd138c241b08fbbc58f720/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 11).
+- **[Exercise 5.12](https://github.com/Jvlsc/FullStack-Course/blob/73c7539de70c39695c181fef3227e39043bb17ba/part5/bloglist-frontend/.eslintrc.cjs)**: Blog List Frontend (Step 12).
+- **[Final Version](https://github.com/Jvlsc/FullStack-Course/blob/c16efbf82ef238a2aed65b8ea001ed8a777bd0e7/part5/bloglist-frontend/src/App.jsx)**: The user validation in PUT requests are moved to the backend (like POST & DELETE requests).
 
 ---
 ---
