@@ -1,5 +1,5 @@
 // Import Hooks and Services:
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 // Import Components:
 import BlogForm from './components/BlogForm'
@@ -7,6 +7,7 @@ import Blogs from './components/Blogs'
 import Login from './components/Login'
 import User from './components/User'
 import Notification from './components/Notification'
+import Togglable from './components/Togglable'
 
 // Import Services:
 import blogService from './services/blogs'
@@ -26,6 +27,9 @@ const App = () => {
   const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState(null)
+
+  // Refs:
+  const blogFormRef = useRef()
   
   // Helper function for notifications
   const showNotification = (message, type) => {
@@ -94,6 +98,7 @@ const App = () => {
       setNewTitle('')
       setNewAuthor('')
       setNewUrl('')
+      blogFormRef.current.toggleVisibility()
       showNotification(`Blog '${newBlog.title}' created successfully!`, 'success')
     } catch (exception) {
       console.error(exception.response.data.error)
@@ -120,15 +125,18 @@ const App = () => {
             <h2>Blogs:</h2>
             <Notification notification={notification} />
             <User user={user.name} handleLogout={handleLogout} />
-            <BlogForm 
-              newTitle={newTitle} 
-              setNewTitle={setNewTitle} 
-              newAuthor={newAuthor} 
-              setNewAuthor={setNewAuthor} 
-              newUrl={newUrl} 
-              setNewUrl={setNewUrl} 
-              handleCreate={handleCreate}
-            />
+            <br />
+            <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
+              <BlogForm 
+                newTitle={newTitle} 
+                setNewTitle={setNewTitle} 
+                newAuthor={newAuthor} 
+                setNewAuthor={setNewAuthor} 
+                newUrl={newUrl} 
+                setNewUrl={setNewUrl} 
+                handleCreate={handleCreate}
+              />
+            </Togglable>
             <br />
             <Blogs blogs={blogs} />
           </>)
