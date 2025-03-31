@@ -1,14 +1,13 @@
 // Import Modules:
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { vi } from 'vitest'
-import '@testing-library/jest-dom'
 
 // Import Components:
 import Blogs from '../src/components/Blogs'
 
+// Blogs Test:
 describe('<Blogs />', () => {
-  test('renders title and author but not url or likes by default', () => {
+  test('Renders title and author by default but not details (url or likes)...', () => {
     const blogs = [{
       title: 'Test Blog Title',
       author: 'Test Author',
@@ -35,7 +34,7 @@ describe('<Blogs />', () => {
     expect(blogDetails).toHaveStyle({ display: 'none' })
   })
 
-  test('shows blog details when show button is clicked', async () => {
+  test('Shows blog details when "Show" button is clicked...', async () => {
     const blogs = [{
       title: 'Test Blog Title',
       author: 'Test Author',
@@ -65,7 +64,7 @@ describe('<Blogs />', () => {
     expect(blogDetails).toHaveTextContent('5')
   })
 
-  test('clicking like button twice calls event handler twice', async () => {
+  test('Clicking like button twice calls event handler twice...', async () => {
     const blogs = [{
       title: 'Test Blog Title',
       author: 'Test Author',
@@ -87,16 +86,13 @@ describe('<Blogs />', () => {
 
     const user = userEvent.setup()
 
-    // First click show button to reveal the like button
     const showButton = screen.getByText('Show')
     await user.click(showButton)
 
-    // Find and click the like button twice
     const likeButton = screen.getByText('Like')
     await user.click(likeButton)
     await user.click(likeButton)
 
-    // Verify the update handler was called twice
     expect(mockUpdateHandler.mock.calls).toHaveLength(2)
   })
 })
