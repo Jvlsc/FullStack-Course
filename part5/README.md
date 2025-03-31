@@ -22,10 +22,10 @@ In [this chapter](https://fullstackopen.com/en/part5/login_in_frontend), we will
 
 ### Exercises:
 
-- **[Exercise 5.1]()**: Blog List Frontend (Step 1).
-- **[Exercise 5.2]()**: Blog List Frontend (Step 2).
-- **[Exercise 5.3]()**: Blog List Frontend (Step 3).
-- **[Exercise 5.4]()**: Blog List Frontend (Step 4).
+- **[Exercise 5.1](https://github.com/Jvlsc/FullStack-Course/blob/8a5a61a496a4ff771a44a937d12524e0066cb3ee/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 1).
+- **[Exercise 5.2](https://github.com/Jvlsc/FullStack-Course/blob/6acf27518801672a1dd905bd921423e2a3c979ae/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 2).
+- **[Exercise 5.3](https://github.com/Jvlsc/FullStack-Course/blob/992485cf18a4ed1d87fc0ddb15491def2d7997f4/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 3).
+- **[Exercise 5.4](https://github.com/Jvlsc/FullStack-Course/blob/6b3eace83e80f7af0064a83bd0570bb5a07dee59/part5/bloglist-frontend/src/App.jsx)**: Blog List Frontend (Step 4).
 
 ---
 ---
