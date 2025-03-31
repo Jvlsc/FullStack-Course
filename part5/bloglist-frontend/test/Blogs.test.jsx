@@ -18,6 +18,7 @@ describe('<Blogs />', () => {
     }]
 
     const mockHandler = vi.fn()
+
     const { container } = render(
       <Blogs
         blogs={blogs}
@@ -44,7 +45,14 @@ describe('<Blogs />', () => {
     }]
 
     const mockHandler = vi.fn()
-    const { container } = render(<Blogs blogs={blogs} handleUpdate={mockHandler} handleDelete={mockHandler}/>)
+
+    const { container } = render(
+      <Blogs
+        blogs={blogs}
+        handleUpdate={mockHandler}
+        handleDelete={mockHandler}
+      />
+    )
 
     const user = userEvent.setup()
     const showButton = screen.getByText('Show')
@@ -55,5 +63,40 @@ describe('<Blogs />', () => {
     expect(blogDetails).toBeVisible()
     expect(blogDetails).toHaveTextContent('http://testurl.com')
     expect(blogDetails).toHaveTextContent('5')
+  })
+
+  test('clicking like button twice calls event handler twice', async () => {
+    const blogs = [{
+      title: 'Test Blog Title',
+      author: 'Test Author',
+      url: 'http://testurl.com',
+      likes: 5,
+      id: '123'
+    }]
+
+    const mockUpdateHandler = vi.fn()
+    const mockDeleteHandler = vi.fn()
+
+    const { container } = render(
+      <Blogs
+        blogs={blogs}
+        handleUpdate={mockUpdateHandler}
+        handleDelete={mockDeleteHandler}
+      />
+    )
+
+    const user = userEvent.setup()
+
+    // First click show button to reveal the like button
+    const showButton = screen.getByText('Show')
+    await user.click(showButton)
+
+    // Find and click the like button twice
+    const likeButton = screen.getByText('Like')
+    await user.click(likeButton)
+    await user.click(likeButton)
+
+    // Verify the update handler was called twice
+    expect(mockUpdateHandler.mock.calls).toHaveLength(2)
   })
 })
