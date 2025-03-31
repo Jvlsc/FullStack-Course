@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 // Blog Details Body Component:
-const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate }) => {
+const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate, handleDelete }) => {
   return (
     <>
       {blog.title} &nbsp;
@@ -14,6 +14,7 @@ const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate }) => {
           <button onClick={() => handleUpdate(blog)}>Like</button>
         </li>
         <li>{blog.author}</li>
+        <li><button onClick={() => handleDelete(blog.id)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button></li>
       </ul>
     </>
   )
@@ -30,7 +31,7 @@ const BlogDetailsHeader = ({ blog, toggleVisibility }) => {
 }
 
 // Blog Component:
-const Blog = ({ blog, handleUpdate }) => {
+const Blog = ({ blog, handleUpdate, handleDelete }) => {
   // State Variables:
   const [visible, setVisible] = useState(false)
 
@@ -52,18 +53,18 @@ const Blog = ({ blog, handleUpdate }) => {
         <BlogDetailsHeader blog={blog} toggleVisibility={toggleVisibility} />
       </li>
       <li style={showWhenVisible}>
-        <BlogDetailsBody blog={blog} toggleVisibility={toggleVisibility} handleUpdate={handleUpdate} />
+        <BlogDetailsBody blog={blog} toggleVisibility={toggleVisibility} handleUpdate={handleUpdate} handleDelete={handleDelete} />
       </li>
     </>
   )
 }
 
 // Blogs Component:
-const Blogs = ({ blogs, handleUpdate }) => (
+const Blogs = ({ blogs, handleUpdate, handleDelete }) => (
   <div>
     <h3>List of Blogs:</h3>
     <ul>
-      {blogs.map(blog => <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} />)}
+      {blogs.map(blog => <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} handleDelete={handleDelete} />)}
     </ul>
   </div>
 )

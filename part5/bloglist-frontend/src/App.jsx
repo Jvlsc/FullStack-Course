@@ -111,6 +111,23 @@ const App = () => {
     }
   }
 
+  // Delete Blog Handler:
+  const handleDelete = async (id) => {
+    try {
+      console.log('Deleting blog...')
+      const blogToDelete = blogs.find(blog => blog.id === id)
+      await blogService.remove(id)
+
+      setBlogs(blogs.filter(blog => blog.id !== id))
+
+      showNotification(`Blog '${blogToDelete.title}' deleted successfully!`, 'success')
+    } catch (exception) {
+      const errorMessage = exception.response.data.error
+      console.error(errorMessage)
+      showNotification(`Blog '${blogToDelete.title}' deletion failed! ${errorMessage}`, 'error')
+    }
+  }
+
   // Sort Blogs by Likes:
   const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes)
 
@@ -132,7 +149,7 @@ const App = () => {
               <BlogForm handleCreate={handleCreate} />
             </Togglable>
             <br />
-            <Blogs blogs={blogs} handleUpdate={handleUpdate} />
+            <Blogs blogs={sortedBlogs} handleUpdate={handleUpdate} handleDelete={handleDelete} />
           </>)
       }
     </div>
