@@ -14,7 +14,7 @@ const Notification = forwardRef((props, ref) => {
     if (window.notificationTimeout) {
       clearTimeout(window.notificationTimeout)
     }
-    
+
     setNotification({ message, type })
     window.notificationTimeout = setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
   }
@@ -32,12 +32,15 @@ const Notification = forwardRef((props, ref) => {
       {notification === null
         ? null
         : <div className={notification.type === 'error' ? 'msg-error' : 'msg-success'}>
-            {notification.message}
-          </div>
+          {notification.message}
+        </div>
       }
     </>
   )
 })
+
+// Display Name:
+Notification.displayName = 'Notification'
 
 // Export Notification Component:
 export default Notification

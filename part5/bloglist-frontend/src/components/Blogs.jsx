@@ -38,7 +38,7 @@ const Blog = ({ blog, handleUpdate, handleDelete }) => {
 
   // Hide/Show Visibility:
   const hideWhenVisible = { display: visible ? 'none' : '' }
-  const showWhenVisible = { 
+  const showWhenVisible = {
     display: visible ? '' : 'none',
     marginTop: '1rem',
     marginBottom: '1rem'

@@ -22,7 +22,7 @@ const App = () => {
   // Refs:
   const blogFormRef = useRef()
   const notificationRef = useRef()
-  
+
   // Helper function for notifications
   const showNotification = (message, type) => {
     notificationRef.current.showNotification(message, type)
@@ -40,7 +40,7 @@ const App = () => {
 
   // Effect Hook - Get All Blogs:
   useEffect(() => {
-    blogService.getAll().then(blogs => setBlogs( blogs ))  
+    blogService.getAll().then(blogs => setBlogs(blogs))
   }, [])
 
   // Login Handler:
@@ -50,7 +50,7 @@ const App = () => {
       const user = await loginService.login(userObject)
 
       console.log('User logged in:', user)
-      window.localStorage.setItem('login', JSON.stringify(user)) 
+      window.localStorage.setItem('login', JSON.stringify(user))
       blogService.setToken(user.token)
       setUser(user)
 
@@ -74,7 +74,7 @@ const App = () => {
     try {
       console.log('Creating blog...')
       const newBlog = await blogService.create(blogObject)
- 
+
       console.log('Blog created:', newBlog)
       setBlogs(blogs.concat(newBlog))
 
@@ -98,8 +98,8 @@ const App = () => {
       console.log('Updating blog...')
       const updatedBlog = await blogService.update(blog.id, { likes: blog.likes + 1 })
 
-      setBlogs(blogs.map(blog => blog.id === updatedBlog.id 
-        ? { ...blog, likes: updatedBlog.likes } 
+      setBlogs(blogs.map(blog => blog.id === updatedBlog.id
+        ? { ...blog, likes: updatedBlog.likes }
         : blog
       ))
 
@@ -138,13 +138,16 @@ const App = () => {
   // Render:
   return (
     <div>
-      {user === null 
-        ? (<>
+      {user === null
+        ? (
+          <>
             <h2>Login:</h2>
             <Notification ref={notificationRef} />
             <LoginForm handleLogin={handleLogin} />
-          </>)
-        : (<>
+          </>
+        )
+        : (
+          <>
             <h2>Blogs:</h2>
             <Notification ref={notificationRef} />
             <User user={user.name} handleLogout={handleLogout} />
@@ -154,7 +157,8 @@ const App = () => {
             </Togglable>
             <br />
             <Blogs blogs={sortedBlogs} handleUpdate={handleUpdate} handleDelete={handleDelete} />
-          </>)
+          </>
+        )
       }
     </div>
   )
