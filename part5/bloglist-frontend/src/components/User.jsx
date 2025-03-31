@@ -1,3 +1,6 @@
+// Import Modules:
+import PropTypes from 'prop-types'
+
 // User Component:
 const User = ({ user, handleLogout }) => (
   <div>
@@ -7,6 +10,12 @@ const User = ({ user, handleLogout }) => (
     </p>
   </div>
 )
+
+// Prop Types:
+User.propTypes = {
+  user: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired
+}
 
 // Export User Component:
 export default User

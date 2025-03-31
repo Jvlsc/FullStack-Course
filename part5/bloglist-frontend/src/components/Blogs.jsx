@@ -1,5 +1,6 @@
 // Import Modules:
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 // Blog Details Body Component:
 const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate, handleDelete }) => {
@@ -68,6 +69,34 @@ const Blogs = ({ blogs, handleUpdate, handleDelete }) => (
     </ul>
   </div>
 )
+
+// Prop Types - Blogs Component:
+Blogs.propTypes = {
+  blogs: PropTypes.array.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
+}
+
+// Prop Types - Blog Component:
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
+}
+
+// Prop Types - BlogDetailsBody Component:
+BlogDetailsBody.propTypes = {
+  blog: PropTypes.object.isRequired,
+  toggleVisibility: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
+}
+
+// Prop Types - BlogDetailsHeader Component:
+BlogDetailsHeader.propTypes = {
+  blog: PropTypes.object.isRequired,
+  toggleVisibility: PropTypes.func.isRequired
+}
 
 // Export Blogs Component:
 export default Blogs

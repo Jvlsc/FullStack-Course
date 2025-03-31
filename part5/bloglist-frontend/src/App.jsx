@@ -113,9 +113,13 @@ const App = () => {
 
   // Delete Blog Handler:
   const handleDelete = async (id) => {
+    const blogToDelete = blogs.find(blog => blog.id === id)
+    if (!window.confirm(`Are you sure you want to delete "${blogToDelete.title}" blog?`)) {
+      return
+    }
+
     try {
       console.log('Deleting blog...')
-      const blogToDelete = blogs.find(blog => blog.id === id)
       await blogService.remove(id)
 
       setBlogs(blogs.filter(blog => blog.id !== id))

@@ -1,5 +1,6 @@
 // Import Modules:
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 // Blog Form Component:
 const BlogForm = ({ handleCreate }) => {
@@ -51,6 +52,11 @@ const BlogForm = ({ handleCreate }) => {
       </form>
     </div>
   )
+}
+
+// Prop Types:
+BlogForm.propTypes = {
+  handleCreate: PropTypes.func.isRequired
 }
 
 // Export Blog Form Component:
