@@ -1,6 +1,34 @@
 // Import Modules:
 import { useState } from 'react'
 
+// Blog Details Body Component:
+const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate }) => {
+  return (
+    <>
+      {blog.title} &nbsp;
+      <button onClick={toggleVisibility}>Hide</button>
+      <ul>
+        <li>{blog.url}</li>
+        <li>
+          {blog.likes} &nbsp;
+          <button onClick={() => handleUpdate(blog)}>Like</button>
+        </li>
+        <li>{blog.author}</li>
+      </ul>
+    </>
+  )
+}
+
+// Blog Details Header Component:
+const BlogDetailsHeader = ({ blog, toggleVisibility }) => {
+  return (
+    <>
+      {blog.title} - {blog.author} &nbsp;
+      <button onClick={toggleVisibility}>Show</button>
+    </>
+  )
+}
+
 // Blog Component:
 const Blog = ({ blog, handleUpdate }) => {
   // State Variables:
@@ -21,20 +49,10 @@ const Blog = ({ blog, handleUpdate }) => {
   return (
     <>
       <li style={hideWhenVisible}>
-        {blog.title} - {blog.author} &nbsp;
-        <button onClick={toggleVisibility}>Show</button>
+        <BlogDetailsHeader blog={blog} toggleVisibility={toggleVisibility} />
       </li>
       <li style={showWhenVisible}>
-        {blog.title} &nbsp;
-        <button onClick={toggleVisibility}>Hide</button>
-        <ul>
-          <li>{blog.author}</li>
-          <li>{blog.url}</li>
-          <li>
-            {blog.likes} &nbsp;
-            <button onClick={() => handleUpdate(blog)}>Like</button>
-          </li>
-        </ul>
+        <BlogDetailsBody blog={blog} toggleVisibility={toggleVisibility} handleUpdate={handleUpdate} />
       </li>
     </>
   )
