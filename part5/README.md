@@ -7,7 +7,11 @@ In this part we return to the frontend, first looking at different possibilities
 
 ## Table of Contents:
 
-
+- [Login in Frontend](#login-in-frontend)
+- [props.children and Proptypes](#propschildren-and-proptypes)
+- [Testing React Apps](#testing-react-apps)
+- [End-to-End Testing - Playwright](#end-to-end-testing---playwright)
+- [End-to-End Testing - Cypress](#end-to-end-testing---cypress)
 
 ---
 ---
@@ -26,7 +30,7 @@ In [this chapter](https://fullstackopen.com/en/part5/login_in_frontend), we will
 ---
 ---
 
-## props.children and Proptypes
+## props.children and Proptypes:
 
 In [this chapter](https://fullstackopen.com/en/part5/props_children_and_proptypes), we will learn about the `props.children` and `PropTypes` concepts.
 
@@ -44,7 +48,7 @@ In [this chapter](https://fullstackopen.com/en/part5/props_children_and_proptype
 ---
 ---
 
-## Testing React apps
+## Testing React Apps:
 
 In [this chapter](https://fullstackopen.com/en/part5/testing_react_apps), we will learn how to test React apps.
 
@@ -58,7 +62,7 @@ In [this chapter](https://fullstackopen.com/en/part5/testing_react_apps), we wil
 ---
 ---
 
-## End to end testing: Playwright
+## End-to-End Testing - Playwright:
 
 In [this chapter](https://fullstackopen.com/en/part5/end_to_end_testing_playwright), we will learn how to test React apps using Playwright (End-to-End Testing).
 
@@ -75,7 +79,7 @@ In [this chapter](https://fullstackopen.com/en/part5/end_to_end_testing_playwrig
 ---
 ---
 
-## End to end testing: Cypress
+## End-to-End Testing - Cypress:
 
 In [this chapter](https://fullstackopen.com/en/part5/end_to_end_testing_cypress), we will learn how to test React apps using Cypress (End-to-End Testing).
 
