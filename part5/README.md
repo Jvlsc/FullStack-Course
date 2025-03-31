@@ -55,10 +55,10 @@ In [this chapter](https://fullstackopen.com/en/part5/testing_react_apps), we wil
 
 ### Exercises:
 
-- **[Exercise 5.13]()**: Blog List Tests (Step 1).
-- **[Exercise 5.14]()**: Blog List Tests (Step 2).
-- **[Exercise 5.15]()**: Blog List Tests (Step 3).
-- **[Exercise 5.16]()**: Blog List Tests (Step 4).
+- **[Exercise 5.13](https://github.com/Jvlsc/FullStack-Course/blob/e11b985387c34aeba1be40f630bed6f77848919b/part5/bloglist-frontend/test/Blog.test.jsx)**: Blog List Tests (Step 1).
+- **[Exercise 5.14](https://github.com/Jvlsc/FullStack-Course/blob/e6cbaa673582a0da03af6b8009afe6d8cdd5471b/part5/bloglist-frontend/test/Blog.test.jsx)**: Blog List Tests (Step 2).
+- **[Exercise 5.15](https://github.com/Jvlsc/FullStack-Course/blob/442c11044d21ac97b30501bc60934a37ff06ba26/part5/bloglist-frontend/test/Blogs.test.jsx)**: Blog List Tests (Step 3).
+- **[Exercise 5.16](https://github.com/Jvlsc/FullStack-Course/blob/ea7e30cbe7f349a740d8d7f5fc46c3f5fe6989e1/part5/bloglist-frontend/test/BlogForm.test.jsx)**: Blog List Tests (Step 4).
 
 ---
 ---
