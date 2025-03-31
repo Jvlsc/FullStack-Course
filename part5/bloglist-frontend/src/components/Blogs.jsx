@@ -50,10 +50,12 @@ const Blog = ({ blog, handleUpdate, handleDelete }) => {
   // Render:
   return (
     <>
-      <li style={hideWhenVisible}>
-        <BlogDetailsHeader blog={blog} toggleVisibility={toggleVisibility} />
+      <li style={hideWhenVisible} className="blog">
+        <div className="blog-header">
+          <BlogDetailsHeader blog={blog} toggleVisibility={toggleVisibility} />
+        </div>
       </li>
-      <li style={showWhenVisible}>
+      <li style={showWhenVisible} className="blog-details">
         <BlogDetailsBody blog={blog} toggleVisibility={toggleVisibility} handleUpdate={handleUpdate} handleDelete={handleDelete} />
       </li>
     </>
