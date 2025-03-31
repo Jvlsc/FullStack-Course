@@ -185,16 +185,20 @@ describe('TESTS - Blogs HTTP API:', () => {
   // [PUT] Route Tests (Update a blog):
   describe('[PUT /api/blogs/:id] - Update a blog:', () => {
     test('A blog can be updated and response is correct...', async () => {
+      const token = await helper.getToken()
       const blogsInDb = await helper.blogsInDb()
       const blogToUpdate = blogsInDb[0]
 
       await api.put(`/api/blogs/${blogToUpdate.id}`)
         .send({ likes: 101 })
+        .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/)
     })
 
     test('A blog can be updated correctly...', async () => {
+      const token = await helper.getToken()
+
       const blogsInDb = await helper.blogsInDb()
       const blogToUpdate = blogsInDb[0]
 
@@ -202,6 +206,7 @@ describe('TESTS - Blogs HTTP API:', () => {
 
       const response = await api.put(`/api/blogs/${blogToUpdate.id}`)
         .send({ likes: originalLikes + 1 })
+        .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/)
 
@@ -209,18 +214,24 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
 
     test('Fails with status code 400 if blog ID is malformed...', async () => {
+      const token = await helper.getToken()
+
       const invalidId = '1234'
 
       await api.put(`/api/blogs/${invalidId}`)
         .send({ likes: 101 })
+        .set('Authorization', `Bearer ${token}`)
         .expect(400)
     })
 
     test('Fails with status code 404 if blog does not exist...', async () => {
+      const token = await helper.getToken()
+
       const validNonexistingBlogId = await helper.nonExistingBlogId()
 
       await api.put(`/api/blogs/${validNonexistingBlogId}`)
         .send({ likes: 101 })
+        .set('Authorization', `Bearer ${token}`)
         .expect(404)
     })
   })
