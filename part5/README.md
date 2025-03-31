@@ -18,7 +18,7 @@ In this part we return to the frontend, first looking at different possibilities
 
 ## Login in Frontend:
 
-In [this chapter](https://fullstackopen.com/en/part5/login_in_frontend), we will implement a login form in the frontend.
+In [this chapter](https://fullstackopen.com/en/part5/login_in_frontend), we will implement a login service in the frontend.
 
 ### Exercises:
 
