@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 
 // Import Components:
+import BlogForm from './components/BlogForm'
 import Blogs from './components/Blogs'
 import Login from './components/Login'
 import User from './components/User'
@@ -14,6 +15,9 @@ import loginService from './services/login'
 const App = () => {
   // State Variables:
   const [blogs, setBlogs] = useState([])
+  const [newTitle, setNewTitle] = useState('')
+  const [newAuthor, setNewAuthor] = useState('')
+  const [newUrl, setNewUrl] = useState('')
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
@@ -23,6 +27,7 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('login')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
+      blogService.setToken(user.token)
       setUser(user)
     }
   }, [])
@@ -41,11 +46,12 @@ const App = () => {
 
       console.log('User logged in:', user)
       window.localStorage.setItem('login', JSON.stringify(user)) 
+      blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
     } catch (exception) {
-      console.log('Login failed: Wrong Credentials')
+      console.error(exception.response.data.error)
     }
   }
 
@@ -53,6 +59,30 @@ const App = () => {
   const handleLogout = () => {
     window.localStorage.removeItem('login')
     setUser(null)
+  }
+
+  // Create Blog Handler:
+  const handleCreate = async (event) => {
+    event.preventDefault()
+
+    try {
+      console.log('Creating blog...')
+      const blogObject = {
+        title: newTitle,
+        author: newAuthor,
+        url: newUrl,
+      }
+
+      const newBlog = await blogService.create(blogObject)
+ 
+      console.log('Blog created:', newBlog)
+      setBlogs(blogs.concat(newBlog))
+      setNewTitle('')
+      setNewAuthor('')
+      setNewUrl('')
+    } catch (exception) {
+      console.error(exception.response.data.error)
+    }
   }
 
   // Render:
@@ -72,6 +102,16 @@ const App = () => {
         : (<>
             <h2>Blogs:</h2>
             <User user={user.name} handleLogout={handleLogout} />
+            <BlogForm 
+              newTitle={newTitle} 
+              setNewTitle={setNewTitle} 
+              newAuthor={newAuthor} 
+              setNewAuthor={setNewAuthor} 
+              newUrl={newUrl} 
+              setNewUrl={setNewUrl} 
+              handleCreate={handleCreate}
+            />
+            <br />
             <Blogs blogs={blogs} />
           </>)
       }
