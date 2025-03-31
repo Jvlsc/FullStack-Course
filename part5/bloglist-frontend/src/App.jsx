@@ -13,23 +13,19 @@ import Togglable from './components/Togglable'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
-// Constants:
-const NOTIFICATION_TIMEOUT = 5000
-
 // App Component:
 const App = () => {
   // State Variables:
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [notification, setNotification] = useState(null)
 
   // Refs:
   const blogFormRef = useRef()
+  const notificationRef = useRef()
   
   // Helper function for notifications
   const showNotification = (message, type) => {
-    setNotification({ message, type })
-    setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
+    notificationRef.current.showNotification(message, type)
   }
 
   // Effect Hook - Check User Session:
@@ -121,12 +117,12 @@ const App = () => {
       {user === null 
         ? (<>
             <h2>Login:</h2>
-            <Notification notification={notification} />
+            <Notification ref={notificationRef} />
             <LoginForm handleLogin={handleLogin} />
           </>)
         : (<>
             <h2>Blogs:</h2>
-            <Notification notification={notification} />
+            <Notification ref={notificationRef} />
             <User user={user.name} handleLogout={handleLogout} />
             <br />
             <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
