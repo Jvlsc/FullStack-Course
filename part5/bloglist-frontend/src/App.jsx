@@ -111,6 +111,9 @@ const App = () => {
     }
   }
 
+  // Sort Blogs by Likes:
+  const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes)
+
   // Render:
   return (
     <div>
