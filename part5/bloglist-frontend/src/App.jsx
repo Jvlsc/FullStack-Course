@@ -20,9 +20,6 @@ const NOTIFICATION_TIMEOUT = 5000
 const App = () => {
   // State Variables:
   const [blogs, setBlogs] = useState([])
-  const [newTitle, setNewTitle] = useState('')
-  const [newAuthor, setNewAuthor] = useState('')
-  const [newUrl, setNewUrl] = useState('')
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
@@ -67,8 +64,9 @@ const App = () => {
       setPassword('')
       showNotification(`User '${username}' logged in successfully!`, 'success')
     } catch (exception) {
-      console.error(exception.response.data.error)
-      showNotification(`User '${username}' login failed!`, 'error')
+      const errorMessage = exception.response.data.error
+      console.error(errorMessage)
+      showNotification(`User '${username}' login failed! ${errorMessage}`, 'error')
     }
   }
 
@@ -80,29 +78,20 @@ const App = () => {
   }
 
   // Create Blog Handler:
-  const handleCreate = async (event) => {
-    event.preventDefault()
-
+  const handleCreate = async (blogObject) => {
     try {
       console.log('Creating blog...')
-      const blogObject = {
-        title: newTitle,
-        author: newAuthor,
-        url: newUrl,
-      }
-
       const newBlog = await blogService.create(blogObject)
  
       console.log('Blog created:', newBlog)
       setBlogs(blogs.concat(newBlog))
-      setNewTitle('')
-      setNewAuthor('')
-      setNewUrl('')
+
       blogFormRef.current.toggleVisibility()
       showNotification(`Blog '${newBlog.title}' created successfully!`, 'success')
     } catch (exception) {
-      console.error(exception.response.data.error)
-      showNotification('Blog creation failed!', 'error')
+      const errorMessage = exception.response.data.error
+      console.error(errorMessage)
+      showNotification(`Blog '${blogObject.title}' creation failed! ${errorMessage}`, 'error')
     }
   }
 
@@ -127,15 +116,7 @@ const App = () => {
             <User user={user.name} handleLogout={handleLogout} />
             <br />
             <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
-              <BlogForm 
-                newTitle={newTitle} 
-                setNewTitle={setNewTitle} 
-                newAuthor={newAuthor} 
-                setNewAuthor={setNewAuthor} 
-                newUrl={newUrl} 
-                setNewUrl={setNewUrl} 
-                handleCreate={handleCreate}
-              />
+              <BlogForm handleCreate={handleCreate}/>
             </Togglable>
             <br />
             <Blogs blogs={blogs} />
