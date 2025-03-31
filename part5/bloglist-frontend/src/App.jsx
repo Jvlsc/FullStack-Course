@@ -17,7 +17,16 @@ const App = () => {
   const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
   
-  // Effect Hook:
+  // Effect Hook - Check User Session:
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('login')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
+  }, [])
+
+  // Effect Hook - Get All Blogs:
   useEffect(() => {
     blogService.getAll().then(blogs => setBlogs( blogs ))  
   }, [])
@@ -28,13 +37,21 @@ const App = () => {
     try {
       console.log('Logging in...')
       const user = await loginService.login({ username, password })
+
       console.log('User logged in:', user)
+      window.localStorage.setItem('login', JSON.stringify(user)) 
       setUser(user)
       setUsername('')
       setPassword('')
     } catch (exception) {
       console.log('Login failed: Wrong Credentials')
     }
+  }
+
+  // Logout Handler:
+  const handleLogout = () => {
+    window.localStorage.removeItem('login')
+    setUser(null)
   }
 
   // Render:
@@ -48,7 +65,10 @@ const App = () => {
             setPassword={setPassword} 
             handleLogin={handleLogin} 
           />)
-        : (<Blogs blogs={blogs} user={user.name} />)
+        : (<Blogs 
+            blogs={blogs} 
+            user={user.name} 
+            handleLogout={handleLogout} />)
       }
     </div>
   )
