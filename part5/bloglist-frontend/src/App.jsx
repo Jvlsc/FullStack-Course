@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef } from 'react'
 
 // Import Components:
+import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
 import Blogs from './components/Blogs'
-import Login from './components/Login'
 import User from './components/User'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
@@ -20,8 +20,6 @@ const NOTIFICATION_TIMEOUT = 5000
 const App = () => {
   // State Variables:
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState(null)
 
@@ -50,23 +48,21 @@ const App = () => {
   }, [])
 
   // Login Handler:
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  const handleLogin = async (userObject) => {
     try {
       console.log('Logging in...')
-      const user = await loginService.login({ username, password })
+      const user = await loginService.login(userObject)
 
       console.log('User logged in:', user)
       window.localStorage.setItem('login', JSON.stringify(user)) 
       blogService.setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
-      showNotification(`User '${username}' logged in successfully!`, 'success')
+
+      showNotification(`User '${userObject.username}' logged in successfully!`, 'success')
     } catch (exception) {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      showNotification(`User '${username}' login failed! ${errorMessage}`, 'error')
+      showNotification(`User '${userObject.username}' login failed! ${errorMessage}`, 'error')
     }
   }
 
@@ -102,13 +98,7 @@ const App = () => {
         ? (<>
             <h2>Login:</h2>
             <Notification notification={notification} />
-            <Login 
-              username={username} 
-              password={password} 
-              setUsername={setUsername} 
-              setPassword={setPassword} 
-              handleLogin={handleLogin} 
-            />
+            <LoginForm handleLogin={handleLogin} />
           </>)
         : (<>
             <h2>Blogs:</h2>

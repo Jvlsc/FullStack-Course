@@ -1,8 +1,24 @@
+// Import Modules:
+import { useState } from 'react'
+
 // Login Component:
-const Login = ({ username, password, setUsername, setPassword, handleLogin }) => {
+const Login = ({ handleLogin }) => {
+  // State Variables:
+  const [username, setUsername] = useState('') 
+  const [password, setPassword] = useState('') 
+
+  // Summit Login:
+  const submitLogin = (event) => {
+    event.preventDefault()
+    handleLogin({ username, password })
+    setUsername('')
+    setPassword('')
+  }
+
+  // Render:
   return (
     <div>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={submitLogin}>
       <div>
         Username &nbsp;
         <input
