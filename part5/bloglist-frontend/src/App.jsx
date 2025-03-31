@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 // Import Components:
 import Blogs from './components/Blogs'
 import Login from './components/Login'
+import User from './components/User'
 
 // Import Services:
 import blogService from './services/blogs'
@@ -58,17 +59,21 @@ const App = () => {
   return (
     <div>
       {user === null 
-        ? (<Login 
-            username={username} 
-            password={password} 
-            setUsername={setUsername} 
-            setPassword={setPassword} 
-            handleLogin={handleLogin} 
-          />)
-        : (<Blogs 
-            blogs={blogs} 
-            user={user.name} 
-            handleLogout={handleLogout} />)
+        ? (<>
+            <h2>Login:</h2>
+            <Login 
+              username={username} 
+              password={password} 
+              setUsername={setUsername} 
+              setPassword={setPassword} 
+              handleLogin={handleLogin} 
+            />
+          </>)
+        : (<>
+            <h2>Blogs:</h2>
+            <User user={user.name} handleLogout={handleLogout} />
+            <Blogs blogs={blogs} />
+          </>)
       }
     </div>
   )
