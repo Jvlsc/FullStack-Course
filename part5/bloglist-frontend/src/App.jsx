@@ -89,11 +89,6 @@ const App = () => {
 
   // Update Blog Handler:
   const handleUpdate = async (blog) => {
-    if (blog.user.username !== user.username) {
-      showNotification('You are not authorized to update this blog!', 'error')
-      return
-    }
-
     try {
       console.log('Updating blog...')
       const updatedBlog = await blogService.update(blog.id, { likes: blog.likes + 1 })
@@ -134,6 +129,7 @@ const App = () => {
 
   // Sort Blogs by Likes:
   const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes)
+  console.log('Sorted blogs:', sortedBlogs)
 
   // Render:
   return (
