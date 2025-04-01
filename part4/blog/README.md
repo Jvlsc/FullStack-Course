@@ -31,25 +31,31 @@ The exercises corresponding to this project are:
 
 ## Quick Start:
 
-**Install dependencies:**
+**Install Dependencies:**
 
 ```bash
 npm install
 ```
 
-**Run the project (production mode):**
+**Run the Project (Production Mode):**
 
 ```bash
 npm run start
 ```
 
-**Run the project (development mode):**
+**Run the Project (Testing Mode):**
+
+```bash
+npm run start:test
+```
+
+**Run the Project (Development Mode):**
 
 ```bash
 npm run dev
 ```
 
-**Run tests (All):**
+**Run Tests (All):**
 
 ```bash
 npm run test:all
