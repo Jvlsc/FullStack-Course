@@ -52,15 +52,14 @@ describe('Blog App', async () => {
 
     test('Fails to create a blog with invalid data', async ({ page }) => {
       await helpers.createBlog(page, 'Fake Title', "", "")
-      await page.pause()
       await expect(page.getByText(`Blog 'Fake Title' creation failed!`)).toBeVisible()
     })
 
     test(`Like functionality works...`, async ({ page }) => {
       await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
-
+      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
       await page.getByTestId('blog-show-button').last().click()
-      
       const likesBeforeClick = await page.getByTestId('blog-likes-text').last().textContent();
       await page.getByTestId('blog-like-button').last().click();
       
@@ -77,6 +76,8 @@ describe('Blog App', async () => {
 
     test('A blog can be deleted...', async ({ page }) => {
       await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
+      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
       await page.getByTestId('blog-show-button').last().click()
       
       // Set up dialog handler before triggering the delete action
@@ -87,6 +88,26 @@ describe('Blog App', async () => {
       
       await page.getByTestId('blog-delete-button').last().click()
       await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' deleted successfully!`)).toBeVisible()
+    })
+
+    test('Logout functionality works...', async ({ page }) => {
+      await helpers.logout(page)
+      await expect(page.getByTestId('blog-delete-button')).not.toBeVisible()
+      await expect(page.getByText('Login:')).toBeVisible()
+    })
+
+    test('Delete button is not visible when not logged in...', async ({ page }) => {
+      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
+      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
+      await helpers.logout(page)
+      await expect(page.getByTestId('blog-delete-button')).not.toBeVisible()
+      await expect(page.getByText('Login:')).toBeVisible()
+      await helpers.loginWith(page, helpers.testUser.username, helpers.testUser.password)
+      await expect(page.getByText('Test User logged in')).toBeVisible()
+      await page.getByTestId('blog-show-button').last().click()
+      await expect(page.getByTestId('blog-delete-button')).not.toBeVisible()
+      await expect(page.getByText('Delete')).not.toBeVisible()
     })
   })
 })

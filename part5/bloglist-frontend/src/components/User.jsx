@@ -6,7 +6,7 @@ const User = ({ user, handleLogout }) => (
   <div>
     <p>
       {user} logged in &nbsp;
-      <button onClick={handleLogout}>Logout</button>
+      <button data-testid="logout-button" onClick={handleLogout}>Logout</button>
     </p>
   </div>
 )

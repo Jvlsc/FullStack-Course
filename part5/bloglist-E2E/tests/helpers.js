@@ -5,6 +5,13 @@ const defaultUser = {
   password: 'rootpassword'
 }
 
+// Alternative User:
+const testUser = {
+  name: 'Test User',
+  username: 'testuser',
+  password: 'testpassword'
+}
+
 // Default Blog:
 const defaultBlog = {
   title: 'Test Blog',
@@ -16,6 +23,7 @@ const defaultBlog = {
 const cleanUp = async (page, request) => {
   await request.post('/api/testing/reset')
   await request.post('/api/users', { data: defaultUser })
+  await request.post('/api/users', { data: testUser })
   await page.goto('/')
 }
 
@@ -24,6 +32,11 @@ const loginWith = async (page, username, password) => {
   await page.getByTestId('username-input').fill(username)
   await page.getByTestId('password-input').fill(password)
   await page.getByTestId('login-button').click()
+}
+
+// Logout Helper:
+const logout = async (page) => {
+  await page.getByTestId('logout-button').click()
 }
 
 // Create Blog Helper:
@@ -36,4 +49,4 @@ const createBlog = async (page, title, author, url) => {
 }
 
 // Export Helpers:
-export { defaultUser, defaultBlog, cleanUp, loginWith, createBlog }
+export { defaultUser, testUser, defaultBlog, cleanUp, loginWith, logout, createBlog }
