@@ -13,11 +13,23 @@ const testUser = {
 }
 
 // Default Blog:
-const defaultBlog = {
-  title: 'Test Blog',
-  author: 'Test Author',
-  url: 'https://test.com'
-}
+const blogs = [
+  {
+    title: 'Hardcore Dev',
+    author: 'Random Dev',
+    url: 'https://hardcoredev.com',
+  },
+  {
+    title: 'Random TI',
+    author: 'Nameless',
+    url: 'https://randomti.com',
+  },
+  {
+    title: 'Crazy Engineering',
+    author: 'Jon Doe',
+    url: 'https://crazyengineering.com',
+  }
+]
 
 // Clean Up Helper:
 const cleanUp = async (page, request) => {
@@ -49,4 +61,4 @@ const createBlog = async (page, title, author, url) => {
 }
 
 // Export Helpers:
-export { defaultUser, testUser, defaultBlog, cleanUp, loginWith, logout, createBlog }
+export { defaultUser, testUser, blogs, cleanUp, loginWith, logout, createBlog }

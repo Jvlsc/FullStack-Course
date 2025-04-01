@@ -45,9 +45,9 @@ describe('Blog App', async () => {
     })
   
     test('A new blog can be created', async ({ page }) => {
-      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
-      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
-      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
+      await helpers.createBlog(page, helpers.blogs[0].title, helpers.blogs[0].author, helpers.blogs[0].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[0].title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.blogs[0].title} - ${helpers.blogs[0].author}`)).toBeVisible()
     })
 
     test('Fails to create a blog with invalid data', async ({ page }) => {
@@ -56,38 +56,31 @@ describe('Blog App', async () => {
     })
 
     test(`Like functionality works...`, async ({ page }) => {
-      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
-      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
-      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
+      await helpers.createBlog(page, helpers.blogs[0].title, helpers.blogs[0].author, helpers.blogs[0].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[0].title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.blogs[0].title} - ${helpers.blogs[0].author}`)).toBeVisible()
       await page.getByTestId('blog-show-button').last().click()
-      const likesBeforeClick = await page.getByTestId('blog-likes-text').last().textContent();
+
       await page.getByTestId('blog-like-button').last().click();
-      
-      // Wait for the specific blog's likes to update
-      await page.waitForFunction((expectedLikes) => {
-        const likesElements = document.querySelectorAll('[data-testid="blog-likes-text"]');
-        const lastLikesElement = likesElements[likesElements.length - 1];
-        return lastLikesElement && Number(lastLikesElement.textContent) === expectedLikes;
-      }, Number(likesBeforeClick) + 1);
-      
-      const likesAfterClick = await page.getByTestId('blog-likes-text').last().textContent();
-      expect(Number(likesAfterClick)).toBe(Number(likesBeforeClick) + 1);
+      await expect(page.getByTestId('blog-likes-text').last()).toHaveText('1')
+
+      await page.getByTestId('blog-like-button').last().click();
+      await expect(page.getByTestId('blog-likes-text').last()).toHaveText('2')
     })
 
     test('A blog can be deleted...', async ({ page }) => {
-      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
-      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
-      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
+      await helpers.createBlog(page, helpers.blogs[0].title, helpers.blogs[0].author, helpers.blogs[0].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[0].title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.blogs[0].title} - ${helpers.blogs[0].author}`)).toBeVisible()
       await page.getByTestId('blog-show-button').last().click()
       
-      // Set up dialog handler before triggering the delete action
       page.on('dialog', async dialog => {
         expect(dialog.type()).toBe('confirm')
         await dialog.accept()
       })
       
       await page.getByTestId('blog-delete-button').last().click()
-      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' deleted successfully!`)).toBeVisible()
+      await expect(page.getByText(`Blog '${helpers.blogs[0].title}' deleted successfully!`)).toBeVisible()
     })
 
     test('Logout functionality works...', async ({ page }) => {
@@ -97,17 +90,70 @@ describe('Blog App', async () => {
     })
 
     test('Delete button is not visible when not logged in...', async ({ page }) => {
-      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
-      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' created successfully!`)).toBeVisible()
-      await expect(page.getByText(`${helpers.defaultBlog.title} - ${helpers.defaultBlog.author}`)).toBeVisible()
+      await helpers.createBlog(page, helpers.blogs[0].title, helpers.blogs[0].author, helpers.blogs[0].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[0].title}' created successfully!`)).toBeVisible()
+      await expect(page.getByText(`${helpers.blogs[0].title} - ${helpers.blogs[0].author}`)).toBeVisible()
+      
       await helpers.logout(page)
       await expect(page.getByTestId('blog-delete-button')).not.toBeVisible()
       await expect(page.getByText('Login:')).toBeVisible()
+
       await helpers.loginWith(page, helpers.testUser.username, helpers.testUser.password)
       await expect(page.getByText('Test User logged in')).toBeVisible()
+
       await page.getByTestId('blog-show-button').last().click()
       await expect(page.getByTestId('blog-delete-button')).not.toBeVisible()
       await expect(page.getByText('Delete')).not.toBeVisible()
+    })
+
+    test('Blog list is sorted by likes...', async ({ page }) => {
+      await helpers.createBlog(page, helpers.blogs[0].title, helpers.blogs[0].author, helpers.blogs[0].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[0].title}' created successfully!`)).toBeVisible()
+      await page.getByTestId('blog-show-button').last().click()
+
+      await helpers.createBlog(page, helpers.blogs[1].title, helpers.blogs[1].author, helpers.blogs[1].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[1].title}' created successfully!`)).toBeVisible()
+      await page.getByTestId('blog-show-button').last().click()
+
+      await helpers.createBlog(page, helpers.blogs[2].title, helpers.blogs[2].author, helpers.blogs[2].url)
+      await expect(page.getByText(`Blog '${helpers.blogs[2].title}' created successfully!`)).toBeVisible()
+      await page.getByTestId('blog-show-button').last().click()
+
+      const blog1 = page.getByText(helpers.blogs[0].title)
+      const blog1Likes = blog1.getByTestId('blog-likes-text').filter({ near: helpers.blogs[0].title })
+      const blog1LikesButton = blog1.getByTestId('blog-like-button').filter({ hasText: 'Like', near: helpers.blogs[0].title })
+
+      const blog2 = page.getByText(helpers.blogs[1].title)
+      const blog2Likes = blog2.getByTestId('blog-likes-text').filter({ near: helpers.blogs[1].title })
+      const blog2LikesButton = blog2.getByTestId('blog-like-button').filter({ hasText: 'Like', near: helpers.blogs[1].title })
+
+      const blog3 = page.getByText(helpers.blogs[2].title)
+      const blog3Likes = blog3.getByTestId('blog-likes-text').filter({ near: helpers.blogs[2].title })
+      const blog3LikesButton = blog3.getByTestId('blog-like-button').filter({ hasText: 'Like', near: helpers.blogs[2].title })
+      
+      await blog1LikesButton.click()
+      await expect(blog1Likes).toHaveText('1')
+
+      await blog1LikesButton.click()
+      await expect(blog1Likes).toHaveText('2')
+
+      await blog2LikesButton.click()
+      await expect(blog2Likes).toHaveText('1')
+
+      await blog3LikesButton.click()
+      await expect(blog3Likes).toHaveText('1')
+
+      await blog3LikesButton.click()
+      await expect(blog3Likes).toHaveText('2')
+
+      await blog3LikesButton.click()
+      await expect(blog3Likes).toHaveText('3')
+
+      const blogsLikesTexts = await page.getByTestId('blog-likes-text').all()
+      const likes = await Promise.all(blogsLikesTexts.map(el => el.textContent()))
+
+      expect(Number(likes[0])).toBeGreaterThan(Number(likes[1]))
+      expect(Number(likes[1])).toBeGreaterThan(Number(likes[2]))
     })
   })
 })
