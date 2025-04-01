@@ -15,7 +15,7 @@ const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate, handleDelete })
           <button data-testid="blog-like-button" onClick={() => handleUpdate(blog)}>Like</button>
         </li>
         <li>{blog.author}</li>
-        <li><button onClick={() => handleDelete(blog.id)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button></li>
+        <li><button data-testid="blog-delete-button" onClick={() => handleDelete(blog.id)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button></li>
       </ul>
     </>
   )

@@ -74,5 +74,19 @@ describe('Blog App', async () => {
       const likesAfterClick = await page.getByTestId('blog-likes-text').last().textContent();
       expect(Number(likesAfterClick)).toBe(Number(likesBeforeClick) + 1);
     })
+
+    test('A blog can be deleted...', async ({ page }) => {
+      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
+      await page.getByTestId('blog-show-button').last().click()
+      
+      // Set up dialog handler before triggering the delete action
+      page.on('dialog', async dialog => {
+        expect(dialog.type()).toBe('confirm')
+        await dialog.accept()
+      })
+      
+      await page.getByTestId('blog-delete-button').last().click()
+      await expect(page.getByText(`Blog '${helpers.defaultBlog.title}' deleted successfully!`)).toBeVisible()
+    })
   })
 })
