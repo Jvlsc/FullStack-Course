@@ -5,49 +5,45 @@ import userEvent from '@testing-library/user-event'
 // Import Components:
 import Blogs from '../src/components/Blogs'
 
+// Import Helpers:
+import helpers from './helpers'
+
+
 // Blogs Test:
 describe('<Blogs />', () => {
-  test('Renders title and author by default but not details (url or likes)...', () => {
-    const blogs = [{
-      title: 'Test Blog Title',
-      author: 'Test Author',
-      url: 'http://testurl.com',
-      likes: 5,
-      id: '123'
-    }]
+  beforeEach(() => {
+    window.localStorage.setItem('login', JSON.stringify({
+      token: 'test-token',
+      username: helpers.blogs[0].user.username,
+      name: helpers.blogs[0].user.name
+    }))
+  })
 
+  test('Renders title and author by default but not details (url or likes)...', () => {
     const mockHandler = vi.fn()
 
     const { container } = render(
       <Blogs
-        blogs={blogs}
+        blogs={helpers.blogs}
         handleUpdate={mockHandler}
         handleDelete={mockHandler}
       />
     )
 
     const blogHeader = container.querySelector('.blog-header')
-    expect(blogHeader).toHaveTextContent('Test Blog Title')
-    expect(blogHeader).toHaveTextContent('Test Author')
+    expect(blogHeader).toHaveTextContent(helpers.blogs[0].title)
+    expect(blogHeader).toHaveTextContent(helpers.blogs[0].author)
 
     const blogDetails = container.querySelector('.blog-details')
     expect(blogDetails).toHaveStyle({ display: 'none' })
   })
 
   test('Shows blog details when "Show" button is clicked...', async () => {
-    const blogs = [{
-      title: 'Test Blog Title',
-      author: 'Test Author',
-      url: 'http://testurl.com',
-      likes: 5,
-      id: '123'
-    }]
-
     const mockHandler = vi.fn()
 
     const { container } = render(
       <Blogs
-        blogs={blogs}
+        blogs={helpers.blogs}
         handleUpdate={mockHandler}
         handleDelete={mockHandler}
       />
@@ -60,25 +56,17 @@ describe('<Blogs />', () => {
 
     const blogDetails = container.querySelector('.blog-details')
     expect(blogDetails).toBeVisible()
-    expect(blogDetails).toHaveTextContent('http://testurl.com')
-    expect(blogDetails).toHaveTextContent('5')
+    expect(blogDetails).toHaveTextContent(helpers.blogs[0].url)
+    expect(blogDetails).toHaveTextContent(helpers.blogs[0].likes)
   })
 
   test('Clicking like button twice calls event handler twice...', async () => {
-    const blogs = [{
-      title: 'Test Blog Title',
-      author: 'Test Author',
-      url: 'http://testurl.com',
-      likes: 5,
-      id: '123'
-    }]
-
     const mockUpdateHandler = vi.fn()
     const mockDeleteHandler = vi.fn()
 
     const { container } = render(
       <Blogs
-        blogs={blogs}
+        blogs={helpers.blogs}
         handleUpdate={mockUpdateHandler}
         handleDelete={mockDeleteHandler}
       />
