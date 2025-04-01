@@ -7,9 +7,9 @@ const defaultUser = {
 
 // Clean Up Helper:
 const cleanUp = async (page, request) => {
-  await request.post('http://localhost:3003/api/testing/reset')
-  await request.post('http://localhost:3003/api/users', { data: defaultUser })
-  await page.goto('http://localhost:5173')
+  await request.post('/api/testing/reset')
+  await request.post('/api/users', { data: defaultUser })
+  await page.goto('/')
 }
 
 // Login Helper:
