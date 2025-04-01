@@ -57,7 +57,7 @@ blogRouter.post('/', userExtractor, async (request, response) => {
 })
 
 // [PUT] Route - Update a Blog:
-blogRouter.put('/:id', userExtractor, async (request, response) => {
+blogRouter.put('/:id', async (request, response) => {
   const updatedBlog = await Blog
     .findByIdAndUpdate(request.params.id,
       { $set: { likes: request.body.likes } },
