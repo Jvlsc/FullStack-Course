@@ -8,6 +8,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js",
+    "start:test": "cross-env NODE_ENV=test node src/index.js",
     "dev": "cross-env NODE_ENV=development node --watch src/index.js",
     "debug": "cross-env NODE_ENV=development node --inspect src/index.js",
     "test:all": "cross-env  NODE_ENV=test node --test --test-concurrency=1",
