@@ -11,8 +11,8 @@ const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate, handleDelete })
       <ul>
         <li>{blog.url}</li>
         <li>
-          {blog.likes} &nbsp;
-          <button onClick={() => handleUpdate(blog)}>Like</button>
+          <span data-testid="blog-likes-text">{blog.likes}</span> &nbsp;
+          <button data-testid="blog-like-button" onClick={() => handleUpdate(blog)}>Like</button>
         </li>
         <li>{blog.author}</li>
         <li><button onClick={() => handleDelete(blog.id)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button></li>
@@ -26,7 +26,7 @@ const BlogDetailsHeader = ({ blog, toggleVisibility }) => {
   return (
     <>
       {blog.title} - {blog.author} &nbsp;
-      <button onClick={toggleVisibility}>Show</button>
+      <button data-testid="blog-show-button" onClick={toggleVisibility}>Show</button>
     </>
   )
 }

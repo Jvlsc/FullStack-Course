@@ -55,5 +55,24 @@ describe('Blog App', async () => {
       await page.pause()
       await expect(page.getByText(`Blog 'Fake Title' creation failed!`)).toBeVisible()
     })
+
+    test(`Like functionality works...`, async ({ page }) => {
+      await helpers.createBlog(page, helpers.defaultBlog.title, helpers.defaultBlog.author, helpers.defaultBlog.url)
+
+      await page.getByTestId('blog-show-button').last().click()
+      
+      const likesBeforeClick = await page.getByTestId('blog-likes-text').last().textContent();
+      await page.getByTestId('blog-like-button').last().click();
+      
+      // Wait for the specific blog's likes to update
+      await page.waitForFunction((expectedLikes) => {
+        const likesElements = document.querySelectorAll('[data-testid="blog-likes-text"]');
+        const lastLikesElement = likesElements[likesElements.length - 1];
+        return lastLikesElement && Number(lastLikesElement.textContent) === expectedLikes;
+      }, Number(likesBeforeClick) + 1);
+      
+      const likesAfterClick = await page.getByTestId('blog-likes-text').last().textContent();
+      expect(Number(likesAfterClick)).toBe(Number(likesBeforeClick) + 1);
+    })
   })
 })
