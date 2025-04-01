@@ -76,6 +76,14 @@ const App = () => {
       const newBlog = await blogService.create(blogObject)
 
       console.log('Blog created:', newBlog)
+
+      // Fix populate mismatch:
+      const user = JSON.parse(window.localStorage.getItem('login'))
+      newBlog.user = {
+        id: newBlog.user,
+        name: user.name,
+        username: user.username
+      }
       setBlogs(blogs.concat(newBlog))
 
       blogFormRef.current.toggleVisibility()

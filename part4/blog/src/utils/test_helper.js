@@ -27,7 +27,7 @@ const blogs = [
     author: 'Edsger W. Dijkstra',
     url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
     likes: 5,
-    user: '5a422a851b54a676234d17f8',
+    user: '5a422a851b54a676234d17f7',
     __v: 0,
   },
   {
@@ -45,7 +45,7 @@ const blogs = [
     author: 'Robert C. Martin',
     url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
     likes: 10,
-    user: '5a422a851b54a676234d17f8',
+    user: '5a422a851b54a676234d17f7',
     __v: 0,
   },
   {

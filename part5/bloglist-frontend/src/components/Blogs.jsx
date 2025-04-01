@@ -15,7 +15,21 @@ const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate, handleDelete })
           <button data-testid="blog-like-button" onClick={() => handleUpdate(blog)}>Like</button>
         </li>
         <li>{blog.author}</li>
-        <li><button data-testid="blog-delete-button" onClick={() => handleDelete(blog.id)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button></li>
+        {blog.user.username === JSON.parse(window.localStorage.getItem('login')).username
+          ? (
+            <>
+              <li>
+                <button
+                  data-testid="blog-delete-button"
+                  onClick={() => handleDelete(blog.id)}
+                  style={{ backgroundColor: 'red', color: 'white' }}>
+                  Delete
+                </button>
+              </li>
+            </>)
+          : null
+        }
+        <br />
       </ul>
     </>
   )
