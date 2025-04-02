@@ -7,7 +7,9 @@ import { voteAnecdote, createAnecdote } from './reducers/anecdoteReducer'
 // App Component:
 const App = () => {
   // React Redux Hooks:
-  const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => {
+    return [...state].sort((a, b) => b.votes - a.votes)
+  })
   const dispatch = useDispatch()
 
   // Vote:
