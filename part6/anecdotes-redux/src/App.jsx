@@ -1,13 +1,19 @@
+// Imports Redux Tools:
 import { useSelector, useDispatch } from 'react-redux'
 
+// App Component:
 const App = () => {
+  // React Redux Hooks:
   const anecdotes = useSelector(state => state)
   const dispatch = useDispatch()
 
+  // Vote:
   const vote = (id) => {
     console.log('vote', id)
+    dispatch({ type: 'VOTE', payload: id })
   }
 
+  // Render:
   return (
     <div>
       <h2>Anecdotes</h2>
@@ -31,4 +37,5 @@ const App = () => {
   )
 }
 
+// Export App Component:
 export default App
