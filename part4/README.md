@@ -7,10 +7,10 @@ In this part, we will continue our work on the backend. Our first major theme wi
 
 ## Table of Contents:
 
-- [Structure of Backend Application](#structure-of-backend-application)
-- [Testing the Backend](#testing-the-backend)
-- [User Administration](#user-administration)
-- [Token Authentication](#token-authentication)
+- **[Structure of Backend Application](#structure-of-backend-application)**
+- **[Testing the Backend](#testing-the-backend)**
+- **[User Administration](#user-administration)**
+- **[Token Authentication](#token-authentication)**
 
 ---
 ---

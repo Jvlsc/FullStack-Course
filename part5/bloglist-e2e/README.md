@@ -39,7 +39,7 @@ npm run test:ui
 npm run test:report
 ```
 
-***Note:** To run the tests, you need the blog backend and frontend projects running.*
+***Note:** To run the tests, you need the blog backend and frontend projects already running.*
 
 ---
 ---
