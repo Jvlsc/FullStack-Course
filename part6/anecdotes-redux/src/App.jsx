@@ -21,6 +21,7 @@ const App = () => {
   const create = (event) => {
     event.preventDefault()
     dispatch(createAnecdote(event.target.anecdote.value))
+    event.target.anecdote.value = ''
   }
 
   // Render:
