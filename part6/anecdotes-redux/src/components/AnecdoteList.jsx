@@ -1,7 +1,5 @@
 // Imports Redux Tools:
 import { useSelector, useDispatch } from 'react-redux'
-
-// Imports Reducer Functions:
 import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
