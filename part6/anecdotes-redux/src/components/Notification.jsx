@@ -1,9 +1,27 @@
+// Imports React:
+import { useEffect } from 'react'
+
 // Imports Redux Tools:
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+// Imports Reducer Functions:
+import { clearNotification } from '../reducers/notificationReducer'
 
 // Notification Component:
 const Notification = () => {
   const notification = useSelector(state => state.notification)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => {
+        dispatch(clearNotification())
+      }, 5000)
+
+      // Cleanup Function:
+      return () => clearTimeout(timer)
+    }
+  }, [notification, dispatch])
 
   const style = {
     border: 'solid',
