@@ -9,13 +9,11 @@ const Filter = () => {
   const dispatch = useDispatch()
   const filter = useSelector(state => state.filter)
 
-  const handleChange = (event) => {
-    dispatch(setFilter(event.target.value))
-  }
+  const handleFilter = (event) => dispatch(setFilter(event.target.value))
 
   return (
     <div>
-      filter <input value={filter} onChange={handleChange} />
+      filter <input value={filter} onChange={handleFilter} />
     </div>
   )
 }
