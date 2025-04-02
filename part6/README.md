@@ -61,12 +61,12 @@ In [this chapter](https://fullstackopen.com/en/part6/communicating_with_server_i
 
 ### Exercises:
 
-- **[Exercise 6.14]()**: Anecdotes and the Backend (Step 1).
-- **[Exercise 6.15]()**: Anecdotes and the Backend (Step 2).
-- **[Exercise 6.16]()**: Anecdotes and the Backend (Step 3).
-- **[Exercise 6.17]()**: Anecdotes and the Backend (Step 4).
-- **[Exercise 6.18]()**: Anecdotes and the Backend (Step 5).
-- **[Exercise 6.19]()**: Anecdotes and the Backend (Step 6).
+- **[Exercise 6.14](https://github.com/Jvlsc/FullStack-Course/blob/c31c8af1e6ccc3660865c750f7198b7ad4a30321/part6/anecdotes-redux/src/App.jsx)**: Anecdotes and the Backend (Step 1).
+- **[Exercise 6.15](https://github.com/Jvlsc/FullStack-Course/blob/0f9d452c09f420dcd51b08dce1903dcd62a98443/part6/anecdotes-redux/src/components/AnecdoteForm.jsx)**: Anecdotes and the Backend (Step 2).
+- **[Exercise 6.16](https://github.com/Jvlsc/FullStack-Course/blob/942da9ecae9380c9455219dc230bbcdc8e64f8cc/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Anecdotes and the Backend (Step 3).
+- **[Exercise 6.17](https://github.com/Jvlsc/FullStack-Course/blob/31a6238aed69cff764630a5540317d42a5c1561f/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Anecdotes and the Backend (Step 4).
+- **[Exercise 6.18](https://github.com/Jvlsc/FullStack-Course/blob/1114418580d1f69c0527685b7ee6971a90277b3d/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Anecdotes and the Backend (Step 5).
+- **[Exercise 6.19](https://github.com/Jvlsc/FullStack-Course/blob/793ad18e77d95ff0164bfa75d26b978cd89a4c12/part6/anecdotes-redux/src/components/Notification.jsx)**: Anecdotes and the Backend (Step 6).
 
 ---
 ---
