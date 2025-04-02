@@ -21,10 +21,15 @@ We'll learn about the lightweight version of Redux directly supported by React, 
 
 In [this chapter](https://fullstackopen.com/en/part6/flux_architecture_and_redux), we will learn about the Flux-Architecture and Redux.
 
-### Exercises:
+### Exercises (Unicafe Revisated):
 
 - **[Exercise 6.1](https://github.com/Jvlsc/FullStack-Course/blob/7696f8a7e9c9c152e857fef1f0222386543d836e/part6/unicafe-redux/src/reducer.js)**: Unicafe Revisated (Step 1).
 - **[Exercise 6.2](https://github.com/Jvlsc/FullStack-Course/blob/b6bad432bec841a43cdb6cda9b1cf6d0a890db40/part6/unicafe-redux/src/main.jsx)**: Unicafe Revisated (Step 2).
+
+---
+
+### Exercises (Better Anecdotes):
+
 - **[Exercise 6.3](https://github.com/Jvlsc/FullStack-Course/blob/da1673966e5183d71b5abac367a4a20859b4240d/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Better Anecdotes (Step 1).
 - **[Exercise 6.4](https://github.com/Jvlsc/FullStack-Course/blob/a6783260176451011301c8fc50af96be0f058a8f/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Better Anecdotes (Step 2).
 - **[Exercise 6.5](https://github.com/Jvlsc/FullStack-Course/blob/bced8b1bfcf70bb9963e81b7ea288609ee67a354/part6/anecdotes-redux/src/App.jsx)**: Better Anecdotes (Step 3).
