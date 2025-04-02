@@ -42,15 +42,15 @@ In [this chapter](https://fullstackopen.com/en/part6/flux_architecture_and_redux
 
 ## Many Reducers:
 
-In [this chapter](https://fullstackopen.com/en/part6/many_reducers), we will learn about the many reducers.
+In [this chapter](https://fullstackopen.com/en/part6/many_reducers), we will learn to create and manage multiple reducers using the Redux Toolkit.
 
 ### Exercises:
 
-- **[Exercise 6.9]()**: Better Anecdotes (Step 7).
-- **[Exercise 6.10]()**: Better Anecdotes (Step 8).
-- **[Exercise 6.11]()**: Better Anecdotes (Step 9).
-- **[Exercise 6.12]()**: Better Anecdotes (Step 10).
-- **[Exercise 6.13]()**: Better Anecdotes (Step 11).
+- **[Exercise 6.9](https://github.com/Jvlsc/FullStack-Course/blob/d05d3a8fcd5564689ff094e657c82d080c7af31d/part6/anecdotes-redux/src/reducers/filterReducer.js)**: Better Anecdotes (Step 7).
+- **[Exercise 6.10](https://github.com/Jvlsc/FullStack-Course/blob/c64c130c788c305d8c9b0890db1559bd7146f80c/part6/anecdotes-redux/src/reducers/filterReducer.js)**: Better Anecdotes (Step 8).
+- **[Exercise 6.11](https://github.com/Jvlsc/FullStack-Course/blob/14caabef8984be18a8da868f2df02e9d20e68b09/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Better Anecdotes (Step 9).
+- **[Exercise 6.12](https://github.com/Jvlsc/FullStack-Course/blob/f4ac3ab8ef2a511ec1320e4f5ea6aaabdd3c5eac/part6/anecdotes-redux/src/reducers/notificationReducer.js)**: Better Anecdotes (Step 10).
+- **[Exercise 6.13](https://github.com/Jvlsc/FullStack-Course/blob/2335e598816bc280f26ea5e74b6d30c2ff5cc65d/part6/anecdotes-redux/src/components/Notification.jsx)**: Better Anecdotes (Step 11).
 
 ---
 ---
