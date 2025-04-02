@@ -12,6 +12,9 @@ const Notification = () => {
   const notification = useSelector(state => state.notification)
   const dispatch = useDispatch()
 
+  // Effect to clear notification after 5 seconds:
+  // This effect is triggered when the notification state changes.
+  // Allow to clear the old notifications when a new one is set.
   useEffect(() => {
     if (notification) {
       const timer = setTimeout(() => {
