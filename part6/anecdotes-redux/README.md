@@ -37,6 +37,12 @@ npm install
 npm run dev
 ```
 
+**Run the Backend:**
+
+```bash
+npm run server
+```
+
 **Build the Project:**
 
 ```bash
