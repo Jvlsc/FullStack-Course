@@ -23,14 +23,14 @@ In [this chapter](https://fullstackopen.com/en/part6/flux_architecture_and_redux
 
 ### Exercises:
 
-- **[Exercise 6.1]()**: Unicafe Revisated (Step 1).
-- **[Exercise 6.2]()**: Unicafe Revisated (Step 2).
-- **[Exercise 6.3]()**: Better Anecdotes (Step 1).
-- **[Exercise 6.4]()**: Better Anecdotes (Step 2).
-- **[Exercise 6.5]()**: Better Anecdotes (Step 3).
-- **[Exercise 6.6]()**: Better Anecdotes (Step 4).
-- **[Exercise 6.7]()**: Better Anecdotes (Step 5).
-- **[Exercise 6.8]()**: Better Anecdotes (Step 6).
+- **[Exercise 6.1](https://github.com/Jvlsc/FullStack-Course/blob/7696f8a7e9c9c152e857fef1f0222386543d836e/part6/unicafe-redux/src/reducer.js)**: Unicafe Revisated (Step 1).
+- **[Exercise 6.2](https://github.com/Jvlsc/FullStack-Course/blob/b6bad432bec841a43cdb6cda9b1cf6d0a890db40/part6/unicafe-redux/src/main.jsx)**: Unicafe Revisated (Step 2).
+- **[Exercise 6.3](https://github.com/Jvlsc/FullStack-Course/blob/da1673966e5183d71b5abac367a4a20859b4240d/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Better Anecdotes (Step 1).
+- **[Exercise 6.4](https://github.com/Jvlsc/FullStack-Course/blob/a6783260176451011301c8fc50af96be0f058a8f/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Better Anecdotes (Step 2).
+- **[Exercise 6.5](https://github.com/Jvlsc/FullStack-Course/blob/bced8b1bfcf70bb9963e81b7ea288609ee67a354/part6/anecdotes-redux/src/App.jsx)**: Better Anecdotes (Step 3).
+- **[Exercise 6.6](https://github.com/Jvlsc/FullStack-Course/blob/a6783260176451011301c8fc50af96be0f058a8f/part6/anecdotes-redux/src/reducers/anecdoteReducer.js)**: Better Anecdotes (Step 4).
+- **[Exercise 6.7](https://github.com/Jvlsc/FullStack-Course/blob/00add1fe79a5901ce807943167f0d13ae1b998f1/part6/anecdotes-redux/src/components/AnecdoteForm.jsx)**: Better Anecdotes (Step 5).
+- **[Exercise 6.8](https://github.com/Jvlsc/FullStack-Course/blob/00add1fe79a5901ce807943167f0d13ae1b998f1/part6/anecdotes-redux/src/components/AnecdoteList.jsx)**: Better Anecdotes (Step 6).
 
 ---
 ---
