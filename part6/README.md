@@ -77,9 +77,9 @@ In [this chapter](https://fullstackopen.com/en/part6/react_query_use_reducer_and
 
 ### Exercises:
 
-- **[Exercise 6.20]()**: New Anecdotes (Step 1).
-- **[Exercise 6.21]()**: New Anecdotes (Step 2).
-- **[Exercise 6.22]()**: New Anecdotes (Step 3).
+- **[Exercise 6.20](https://github.com/Jvlsc/FullStack-Course/blob/a40fd3c8af91b6af524ee9d9df101fb6113d9014/part6/anecdotes-query/src/App.jsx)**: New Anecdotes (Step 1).
+- **[Exercise 6.21](https://github.com/Jvlsc/FullStack-Course/blob/4f8b62e0ae2d7589ad14a5e8b4605cef603bee6a/part6/anecdotes-query/src/components/AnecdoteForm.jsx)**: New Anecdotes (Step 2).
+- **[Exercise 6.22](https://github.com/Jvlsc/FullStack-Course/blob/4f8b62e0ae2d7589ad14a5e8b4605cef603bee6a/part6/anecdotes-query/src/App.jsx)**: New Anecdotes (Step 3).
 - **[Exercise 6.23]()**: New Anecdotes (Step 4).
 - **[Exercise 6.24]()**: New Anecdotes (Step 5).
 
