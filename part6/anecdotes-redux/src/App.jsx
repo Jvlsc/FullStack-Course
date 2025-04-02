@@ -1,6 +1,9 @@
 // Imports Redux Tools:
 import { useSelector, useDispatch } from 'react-redux'
 
+// Imports Reducer Functions:
+import { voteAnecdote, createAnecdote } from './reducers/anecdoteReducer'
+
 // App Component:
 const App = () => {
   // React Redux Hooks:
@@ -9,8 +12,13 @@ const App = () => {
 
   // Vote:
   const vote = (id) => {
-    console.log('vote', id)
-    dispatch({ type: 'VOTE', payload: id })
+    dispatch(voteAnecdote(id))
+  }
+
+  // Create:
+  const create = (event) => {
+    event.preventDefault()
+    dispatch(createAnecdote(event.target.anecdote.value))
   }
 
   // Render:
@@ -29,9 +37,9 @@ const App = () => {
         </div>
       )}
       <h2>create new</h2>
-      <form>
-        <div><input /></div>
-        <button>create</button>
+      <form onSubmit={create}>
+        <div><input name="anecdote" /></div>
+        <button type="submit">create</button>
       </form>
     </div>
   )
