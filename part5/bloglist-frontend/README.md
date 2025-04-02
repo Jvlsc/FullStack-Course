@@ -30,7 +30,7 @@ The exercises corresponding to this project are:
 npm install
 ```
 
-**Run the Project (Development Mode):**
+**Run the Project:**
 
 ```bash
 npm run dev
@@ -40,6 +40,18 @@ npm run dev
 
 ```bash
 npm run build
+```
+
+**Run Tests:**
+
+```bash
+npm run test
+```
+
+**Run Linting:**
+
+```bash
+npm run lint
 ```
 
 ---
