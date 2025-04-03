@@ -1,23 +1,22 @@
 // Import React Tools:
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // Import Components:
 import PropTypes from 'prop-types'
 
 // CreateNew Component:
-const CreateNew = (props) => {
+const CreateNew = ({ addNewAnecdote }) => {
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
 
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.addNew({
-      content,
-      author,
-      info,
-      votes: 0
-    })
+    addNewAnecdote({ content, author, info, votes: 0 })
+    navigate('/')
   }
 
   return (
@@ -44,7 +43,7 @@ const CreateNew = (props) => {
 
 // Prop Types - CreateNew Component:
 CreateNew.propTypes = {
-  addNew: PropTypes.func.isRequired
+  addNewAnecdote: PropTypes.func.isRequired
 }
 
 // Export CreateNew Component:
