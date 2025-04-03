@@ -1,19 +1,19 @@
+// Import Link Component:
+import { Link } from 'react-router-dom'
+
 // Import React Tools:
 import PropTypes from 'prop-types'
-
-// Anecdote Component:
-const Anecdote = ({ anecdote }) => (
-  <li>
-    {anecdote.content}
-  </li>
-)
 
 // AnecdoteList Component:
 const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
     <ul>
-      {anecdotes.map(anecdote => <Anecdote key={anecdote.id} anecdote={anecdote} />)}
+      {anecdotes.map(anecdote => (
+        <li key={anecdote.id}>
+          <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
+        </li>
+      ))}
     </ul>
   </div>
 )
@@ -21,11 +21,6 @@ const AnecdoteList = ({ anecdotes }) => (
 // Prop Types - AnecdoteList Component:
 AnecdoteList.propTypes = {
   anecdotes: PropTypes.array.isRequired
-}
-
-// Prop Types - Anecdote Component:
-Anecdote.propTypes = {
-  anecdote: PropTypes.object.isRequired
 }
 
 // Export AnecdoteList Component:
