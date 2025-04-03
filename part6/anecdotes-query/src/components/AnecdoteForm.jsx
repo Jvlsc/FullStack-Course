@@ -19,6 +19,9 @@ const AnecdoteForm = () => {
       queryClient.invalidateQueries({ queryKey: ['anecdotes'] })
       queryClient.setQueryData(['anecdotes'], (anecdotes) => [...anecdotes, newAnecdote])
       dispatch(`Anecdote "${newAnecdote.content}" was created`)
+    },
+    onError: (error) => {
+      dispatch(`Too short anecdote. Content must be at least 5 characters long.`)
     }
   })
 
