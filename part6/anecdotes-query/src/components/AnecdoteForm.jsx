@@ -4,15 +4,21 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 // Import Services:
 import anecdotesService from '../services/anecdotes'
 
-const AnecdoteForm = () => {
+// Import Notification Context:
+import { useNotificationDispatch } from './NotificationContext'
 
+const AnecdoteForm = () => {
+  const dispatch = useNotificationDispatch()
+  
   const queryClient = useQueryClient()
+
 
   const newAnecdoteMutation = useMutation({
     mutationFn: anecdotesService.create,
     onSuccess: (newAnecdote) => {
       queryClient.invalidateQueries({ queryKey: ['anecdotes'] })
       queryClient.setQueryData(['anecdotes'], (anecdotes) => [...anecdotes, newAnecdote])
+      dispatch(`Anecdote "${newAnecdote.content}" was created`)
     }
   })
 
@@ -22,7 +28,7 @@ const AnecdoteForm = () => {
     event.target.anecdote.value = ''
     console.log('new anecdote')
     newAnecdoteMutation.mutate(content)
-}
+  }
 
   return (
     <div>

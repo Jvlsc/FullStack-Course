@@ -8,8 +8,12 @@ import Notification from './components/Notification'
 // Import Services:
 import anecdotesService from './services/anecdotes'
 
+// Import Notification Context:
+import { useNotificationDispatch } from './components/NotificationContext'
+
 const App = () => {
-  
+  const dispatch = useNotificationDispatch()
+
   const queryClient = useQueryClient()
   
   const updateAnecdoteMutation = useMutation({
@@ -19,6 +23,7 @@ const App = () => {
       queryClient.setQueryData(['anecdotes'], (anecdotes) =>  {
         return anecdotes.map(anecdote => anecdote.id === newAnecdote.id ? newAnecdote : anecdote)
       })
+      dispatch(`Anecdote "${newAnecdote.content}" was voted`)
     }
   })
 
@@ -42,6 +47,7 @@ const App = () => {
   const handleVote = (anecdote) => {
     console.log('vote')
     updateAnecdoteMutation.mutate({...anecdote, votes: anecdote.votes + 1})
+    dispatch(`Anecdote "${anecdote.content}" was voted`)
   }
 
   return (
