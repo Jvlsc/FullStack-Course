@@ -26,23 +26,30 @@ const CreateNew = ({ addNewAnecdote }) => {
     navigate('/')
   }
 
+  const handleReset = () => {
+    content.onReset()
+    author.onReset()
+    info.onReset()
+  }
+
   return (
     <div>
       <h2>create a new anecdote</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          content
+          content &nbsp;
           <input name='content' {...content} />
         </div>
         <div>
-          author
+          author &nbsp;
           <input name='author' {...author} />
         </div>
         <div>
-          url for more info
+          info url &nbsp;
           <input name='info' {...info} />
         </div>
-        <button>create</button>
+        <button type='submit'>create</button>
+        <button type='button' onClick={handleReset}>reset</button>
       </form>
     </div>
   )
