@@ -39,8 +39,8 @@ In [this chapter](https://fullstackopen.com/en/part7/custom_hooks), we'll learn 
 - **[Exercise 7.4](https://github.com/Jvlsc/FullStack-Course/blob/18ff569674867b70dc0ab63dd1d82dbb04d38cb2/part7/anecdotes-routed/src/components/CreateNew.jsx)**: Anecdotes and Hooks (Step 1).
 - **[Exercise 7.5](https://github.com/Jvlsc/FullStack-Course/blob/eb0c6a8f4e4630c5834b8f416a5be98d420dc554/part7/anecdotes-routed/src/components/CreateNew.jsx)**: Anecdotes and Hooks (Step 2).
 - **[Exercise 7.6](https://github.com/Jvlsc/FullStack-Course/blob/eb0c6a8f4e4630c5834b8f416a5be98d420dc554/part7/anecdotes-routed/src/components/CreateNew.jsx)**: Anecdotes and Hooks (Step 3).
-- **[Exercise 7.7]()**: Country Hook.
-- **[Exercise 7.8]()**: Ultimate Hooks
+- **[Exercise 7.7](https://github.com/Jvlsc/FullStack-Course/blob/8545f0bf13cf027dd125e81d063c89f4f6109b67/part7/country-hook/src/App.jsx)**: Country Hook.
+- **[Exercise 7.8](https://github.com/Jvlsc/FullStack-Course/blob/d1c7c084a6c319583c45b2b31debf8229b5d9680/part7/ultimate-hooks/src/App.jsx)**: Ultimate Hooks
 
 ---
 ---
