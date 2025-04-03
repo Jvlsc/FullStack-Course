@@ -23,9 +23,9 @@ In [this chapter](https://fullstackopen.com/en/part7/react_router), we'll learn 
 
 ### Exercises:
 
-- **[Exercise 7.1]()**: Routed Anecdotes (Step 1).
-- **[Exercise 7.2]()**: Routed Anecdotes (Step 2).
-- **[Exercise 7.3]()**: Routed Anecdotes (Step 3).
+- **[Exercise 7.1](https://github.com/Jvlsc/FullStack-Course/blob/32cf0779592dca3ea1924442b011407ba2f61081/part7/anecdotes-routed/src/App.jsx)**: Routed Anecdotes (Step 1).
+- **[Exercise 7.2](https://github.com/Jvlsc/FullStack-Course/blob/cb4d516f9f332ed344be4b55113ba3d3b7acc4e1/part7/anecdotes-routed/src/App.jsx)**: Routed Anecdotes (Step 2).
+- **[Exercise 7.3](https://github.com/Jvlsc/FullStack-Course/blob/5c55f97aeb09e5f12b472a53c96caf73d5c355c0/part7/anecdotes-routed/src/App.jsx)**: Routed Anecdotes (Step 3).
 
 ---
 ---
