@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // Anecdote Component:
 const Anecdote = ({ anecdote }) => {
   if (!anecdote) {
-    return <div>No anecdote available</div>
+    return <div>Anecdote not found</div>
   }
 
   return (
