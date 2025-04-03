@@ -80,8 +80,8 @@ In [this chapter](https://fullstackopen.com/en/part6/react_query_use_reducer_and
 - **[Exercise 6.20](https://github.com/Jvlsc/FullStack-Course/blob/a40fd3c8af91b6af524ee9d9df101fb6113d9014/part6/anecdotes-query/src/App.jsx)**: New Anecdotes (Step 1).
 - **[Exercise 6.21](https://github.com/Jvlsc/FullStack-Course/blob/4f8b62e0ae2d7589ad14a5e8b4605cef603bee6a/part6/anecdotes-query/src/components/AnecdoteForm.jsx)**: New Anecdotes (Step 2).
 - **[Exercise 6.22](https://github.com/Jvlsc/FullStack-Course/blob/4f8b62e0ae2d7589ad14a5e8b4605cef603bee6a/part6/anecdotes-query/src/App.jsx)**: New Anecdotes (Step 3).
-- **[Exercise 6.23]()**: New Anecdotes (Step 4).
-- **[Exercise 6.24]()**: New Anecdotes (Step 5).
+- **[Exercise 6.23](https://github.com/Jvlsc/FullStack-Course/blob/a2838c82cf2e60700cd5eec8c81f23d8663eb6ea/part6/anecdotes-query/src/components/NotificationContext.jsx)**: New Anecdotes (Step 4).
+- **[Exercise 6.24](https://github.com/Jvlsc/FullStack-Course/blob/8e6f7adda51bcf2a656438ef69c764e1604a8b7d/part6/anecdotes-query/src/components/AnecdoteForm.jsx)**: New Anecdotes (Step 5).
 
 ---
 ---
