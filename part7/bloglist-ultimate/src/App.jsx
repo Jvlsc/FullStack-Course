@@ -41,7 +41,6 @@ const App = () => {
     }
   }, [user, dispatch])
 
-
   if (user === null || user === undefined) {
     return (
       <div>
