@@ -14,16 +14,15 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
-  const submitLogin = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault()
     dispatch(login(username.value, password.value))
-    username.onReset()
     password.onReset()
   }
 
   return (
     <div>
-      <form onSubmit={submitLogin}>
+      <form onSubmit={handleLogin}>
         <div>
           Username &nbsp;
           <input name="Username" data-testid="username-input" {...username} />

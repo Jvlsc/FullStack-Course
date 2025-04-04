@@ -7,6 +7,9 @@ import { useDispatch } from 'react-redux'
 // Import Reducer Functions:
 import { createBlog } from '../reducers/blogsReducer'
 
+// Import PropTypes:
+import PropTypes from 'prop-types'
+
 // Blog Form Component:
 const BlogForm = ({ blogFormRef }) => {
   const title = useField('text')
@@ -15,19 +18,15 @@ const BlogForm = ({ blogFormRef }) => {
 
   const dispatch = useDispatch()
 
-  const addBlog = (event) => {
+  const handleCreateBlog = (event) => {
     event.preventDefault()
-    dispatch(createBlog({ title: title.value, author: author.value, url: url.value }))
-    blogFormRef.current.toggleVisibility()
-    title.onReset()
-    author.onReset()
-    url.onReset()
+    dispatch(createBlog({ title: title.value, author: author.value, url: url.value }, blogFormRef))
   }
 
   return (
     <div>
       <h3>Create New:</h3>
-      <form onSubmit={addBlog}>
+      <form onSubmit={handleCreateBlog}>
         <div>
           Title: &nbsp;
           <input id="title" data-testid="title-input" {...title} />
@@ -46,6 +45,11 @@ const BlogForm = ({ blogFormRef }) => {
       </form>
     </div>
   )
+}
+
+// Prop Types - Blog Form Component:
+BlogForm.propTypes = {
+  blogFormRef: PropTypes.object.isRequired,
 }
 
 // Export Blog Form Component:

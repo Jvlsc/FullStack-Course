@@ -43,10 +43,10 @@ const fixPopulateMismatch = (blog) => {
 export const getAllBlogs = () => {
   return async (dispatch) => {
     try {
-      console.log('Fetching all blogs...')
+      console.log('[Blogs Reducer] Fetching all blogs...')
       const blogs = await blogService.getAll()
 
-      console.log('Blogs fetched:', blogs)
+      console.log('[Blogs Reducer] Blogs fetched:', blogs)
       dispatch(setBlogs(blogs))
     } catch (exception) {
       const errorMessage = exception.response.data.error
@@ -57,15 +57,16 @@ export const getAllBlogs = () => {
 }
 
 // Export Async Action Creator - Create Blog:
-export const createBlog = (blogObject) => {
+export const createBlog = (blogObject, blogFormRef) => {
   return async (dispatch) => {
     try {
-      console.log('Creating blog...')
+      console.log('[Blogs Reducer] Creating blog...')
       const newBlog = await blogService.create(blogObject)
 
-      console.log('Blog created:', newBlog)
+      console.log('[Blogs Reducer] Blog created:', newBlog)
       const fixedBlog = fixPopulateMismatch(newBlog)
 
+      blogFormRef.current.toggleVisibility()
       dispatch(appendBlog(fixedBlog))
       dispatch(showNotification(`Blog '${fixedBlog.title}' created successfully!`, 'success'))
     } catch (exception) {
@@ -80,10 +81,10 @@ export const createBlog = (blogObject) => {
 export const voteBlog = (blogObject) => {
   return async (dispatch) => {
     try {
-      console.log('Updating blog...')
+      console.log('[Blogs Reducer] Updating blog...')
       const updatedBlog = await blogService.update(blogObject.id, { likes: blogObject.likes + 1 })
 
-      console.log('Updated blog:', updatedBlog)
+      console.log('[Blogs Reducer] Updated blog:', updatedBlog)
       const fixedBlog = fixPopulateMismatch(updatedBlog)
 
       dispatch(updateBlog(fixedBlog))
@@ -102,9 +103,10 @@ export const deleteBlog = (blogObject) => {
     try {
       if (!window.confirm(`Are you sure you want to delete "${blogObject.title}" blog?`)) return
 
-      console.log('Deleting blog...')
+      console.log('[Blogs Reducer] Deleting blog...')
       await blogService.remove(blogObject.id)
 
+      console.log('[Blogs Reducer] Blog deleted:', blogObject)
       dispatch(removeBlog(blogObject))
       dispatch(showNotification(`Blog '${blogObject.title}' deleted successfully!`, 'success'))
     } catch (exception) {

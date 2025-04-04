@@ -7,9 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write --ignore-unknown .",
     "preview": "vite preview",
-    "test": "vitest run",
-    "format": "prettier --write --ignore-unknown ."
+    "test": "vitest run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",

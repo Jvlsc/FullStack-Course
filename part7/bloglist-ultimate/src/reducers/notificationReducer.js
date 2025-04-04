@@ -17,7 +17,7 @@ const notificationSlice = createSlice({
 
 // Export Async Action Creator - Show Notification:
 export const showNotification = (message, type) => {
-  console.log('Showing notification')
+  console.log('[Notification Reducer] Showing notification...')
   return async (dispatch) => {
     dispatch(setNotification({ message, type }))
   }
@@ -25,7 +25,7 @@ export const showNotification = (message, type) => {
 
 // Export Async Action Creator - Hide Notification:
 export const hideNotification = () => {
-  console.log('Hiding notification')
+  console.log('[Notification Reducer] Hiding notification...')
   return async (dispatch) => {
     dispatch(clearNotification())
   }

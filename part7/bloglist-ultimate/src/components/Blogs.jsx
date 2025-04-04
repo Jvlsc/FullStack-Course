@@ -64,10 +64,10 @@ const BlogDetailsHeader = ({ blog, toggleVisibility }) => {
 
 // Blog Component:
 const Blog = ({ blog }) => {
-  // State Variables:
   const [visible, setVisible] = useState(false)
 
-  // Hide/Show Visibility:
+  const toggleVisibility = () => setVisible(!visible)
+
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = {
     display: visible ? '' : 'none',
@@ -75,10 +75,6 @@ const Blog = ({ blog }) => {
     marginBottom: '1rem',
   }
 
-  // Toggle Visibility:
-  const toggleVisibility = () => setVisible(!visible)
-
-  // Render:
   return (
     <>
       <li style={hideWhenVisible} className="blog-header">
@@ -96,7 +92,7 @@ const Blogs = () => {
   const blogs = useSelector((state) => state.blogs)
 
   const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
-  console.log('Sorted blogs:', sortedBlogs)
+  console.log('[Blogs Component] Sorted blogs:', sortedBlogs)
 
   return (
     <div>
@@ -115,13 +111,13 @@ Blog.propTypes = {
   blog: PropTypes.object.isRequired,
 }
 
-// Prop Types - BlogDetailsHeader Component:
+// Prop Types - Blog Details Header Component:
 BlogDetailsHeader.propTypes = {
   blog: PropTypes.object.isRequired,
   toggleVisibility: PropTypes.func.isRequired,
 }
 
-// Prop Types - BlogDetailsBody Component:
+// Prop Types - Blog Details Body Component:
 BlogDetailsBody.propTypes = {
   blog: PropTypes.object.isRequired,
   toggleVisibility: PropTypes.func.isRequired,

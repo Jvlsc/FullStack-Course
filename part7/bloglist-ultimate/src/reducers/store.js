@@ -16,7 +16,7 @@ const store = configureStore({
 })
 
 // Subscribe to Store:
-store.subscribe(() => console.log('Store - State now: ', store.getState()))
+store.subscribe(() => console.log('[Store] State now: ', store.getState()))
 
 // Export Store:
 export default store

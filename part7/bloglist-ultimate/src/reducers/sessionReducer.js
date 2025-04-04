@@ -26,10 +26,10 @@ const sessionSlice = createSlice({
 export const login = (username, password) => {
   return async (dispatch) => {
     try {
-      console.log('Logging in...')
+      console.log('[Session Reducer] Logging in...')
       const user = await loginService.login({ username, password })
 
-      console.log('User logged in:', user)
+      console.log('[Session Reducer] User logged in:', user.username)
       window.localStorage.setItem('login', JSON.stringify(user))
       blogService.setToken(user.token)
 
@@ -46,7 +46,7 @@ export const login = (username, password) => {
 // Export Async Action Creator - Logout:
 export const logout = () => {
   return async (dispatch) => {
-    console.log('Logging out...')
+    console.log('[Session Reducer] Logging out...')
     window.localStorage.removeItem('login')
     dispatch(clearSession())
     dispatch(showNotification('User logged out successfully!', 'success'))
