@@ -26,19 +26,11 @@ const Login = () => {
       <form onSubmit={submitLogin}>
         <div>
           Username &nbsp;
-          <input
-            name="Username"
-            data-testid="username-input"
-            {...username}
-          />
+          <input name="Username" data-testid="username-input" {...username} />
         </div>
         <div>
           Password &nbsp;&nbsp;
-          <input
-            name="Password"
-            data-testid="password-input"
-            {...password}
-          />
+          <input name="Password" data-testid="password-input" {...password} />
         </div>
         <button type="submit" data-testid="login-button">
           Login

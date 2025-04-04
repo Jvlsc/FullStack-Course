@@ -1,57 +1,44 @@
-// Import Modules:
-import { useState } from 'react'
-import PropTypes from 'prop-types'
+// Import Custom Hooks:
+import useField from '../hooks/useField'
+
+// Import Redux Hooks:
+import { useDispatch } from 'react-redux'
+
+// Import Reducer Functions:
+import { createBlog } from '../reducers/blogsReducer'
 
 // Blog Form Component:
-const BlogForm = ({ handleCreate }) => {
-  // State Variables:
-  const [newTitle, setNewTitle] = useState('')
-  const [newAuthor, setNewAuthor] = useState('')
-  const [newUrl, setNewUrl] = useState('')
+const BlogForm = ({ blogFormRef }) => {
+  const title = useField('text')
+  const author = useField('text')
+  const url = useField('text')
 
-  // Create New Blog:
+  const dispatch = useDispatch()
+
   const addBlog = (event) => {
     event.preventDefault()
-    handleCreate({ title: newTitle, author: newAuthor, url: newUrl })
-    setNewTitle('')
-    setNewAuthor('')
-    setNewUrl('')
+    dispatch(createBlog({ title: title.value, author: author.value, url: url.value }))
+    blogFormRef.current.toggleVisibility()
+    title.onReset()
+    author.onReset()
+    url.onReset()
   }
 
-  // Render:
   return (
     <div>
       <h3>Create New:</h3>
       <form onSubmit={addBlog}>
         <div>
           Title: &nbsp;
-          <input
-            id="title"
-            data-testid="title-input"
-            type="text"
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-          />
+          <input id="title" data-testid="title-input" {...title} />
         </div>
         <div>
           Author: &nbsp;
-          <input
-            id="author"
-            data-testid="author-input"
-            type="text"
-            value={newAuthor}
-            onChange={(e) => setNewAuthor(e.target.value)}
-          />
+          <input id="author" data-testid="author-input" {...author} />
         </div>
         <div>
           URL: &nbsp;
-          <input
-            id="url"
-            data-testid="url-input"
-            type="text"
-            value={newUrl}
-            onChange={(e) => setNewUrl(e.target.value)}
-          />
+          <input id="url" data-testid="url-input" {...url} />
         </div>
         <button type="submit" data-testid="create-blog-button">
           Create
@@ -59,11 +46,6 @@ const BlogForm = ({ handleCreate }) => {
       </form>
     </div>
   )
-}
-
-// Prop Types:
-BlogForm.propTypes = {
-  handleCreate: PropTypes.func.isRequired,
 }
 
 // Export Blog Form Component:

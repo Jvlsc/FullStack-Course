@@ -1,5 +1,10 @@
-// Import Modules:
+// Import React Hooks:
 import { useState } from 'react'
+
+// Import Redux Hooks:
+import { useSelector } from 'react-redux'
+
+// Import PropTypes:
 import PropTypes from 'prop-types'
 
 // Blog Details Body Component:
@@ -83,16 +88,19 @@ const Blog = ({ blog, handleUpdate, handleDelete }) => {
 }
 
 // Blogs Component:
-const Blogs = ({ blogs, handleUpdate, handleDelete }) => (
-  <div>
-    <h3>List of Blogs:</h3>
-    <ul>
-      {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} handleDelete={handleDelete} />
-      ))}
-    </ul>
-  </div>
-)
+const Blogs = ({ handleUpdate, handleDelete }) => {
+  const blogs = useSelector((state) => state.blogs)
+  return (
+    <div>
+      <h3>List of Blogs:</h3>
+      <ul>
+        {blogs.map((blog) => (
+          <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} handleDelete={handleDelete} />
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 // Prop Types - Blogs Component:
 Blogs.propTypes = {

@@ -31,8 +31,8 @@ export const hideNotification = () => {
   }
 }
 
-// Export Actions:
+// Export Notification Actions:
 export const { setNotification, clearNotification } = notificationSlice.actions
 
-// Export Reducer:
+// Export Notification Reducer:
 export default notificationSlice.reducer

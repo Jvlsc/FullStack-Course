@@ -51,8 +51,8 @@ export const logout = () => {
   }
 }
 
-// Export Actions:
+// Export Session Actions:
 export const { setSession, clearSession } = sessionSlice.actions
 
-// Export Reducer:
+// Export Session Reducer:
 export default sessionSlice.reducer

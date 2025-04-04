@@ -1,10 +1,11 @@
 // Import React Hooks:
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 // Import Redux Hooks:
 import { useSelector, useDispatch } from 'react-redux'
 
 // Import Reducer Functions:
+import { getAllBlogs } from './reducers/blogsReducer'
 import { showNotification } from './reducers/notificationReducer'
 import { setSession } from './reducers/sessionReducer'
 
@@ -21,14 +22,9 @@ import blogService from './services/blogs'
 
 // App Component:
 const App = () => {
-  // State Variables:
-  const [blogs, setBlogs] = useState([])
-
-  // Redux Hooks:
   const user = useSelector((state) => state.session.username)
+  const blogs = useSelector((state) => state.blogs)
   const dispatch = useDispatch()
-
-  console.log('User:', user)
 
   // Refs:
   const blogFormRef = useRef()
@@ -40,38 +36,9 @@ const App = () => {
       const user = JSON.parse(userJSON)
       blogService.setToken(user.token)
       dispatch(setSession(user))
+      dispatch(getAllBlogs())
     }
   }, [])
-
-  // Effect Hook - Get All Blogs:
-  useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs))
-  }, [])
-
-  // Create Blog Handler:
-  const handleCreate = async (blogObject) => {
-    try {
-      console.log('Creating blog...')
-      const newBlog = await blogService.create(blogObject)
-
-      console.log('Blog created:', newBlog)
-
-      // Fix populate mismatch:
-      const user = JSON.parse(window.localStorage.getItem('login'))
-      newBlog.user = {
-        id: newBlog.user,
-        name: user.name,
-        username: user.username,
-      }
-      setBlogs(blogs.concat(newBlog))
-      blogFormRef.current.toggleVisibility()
-      dispatch(showNotification(`Blog '${newBlog.title}' created successfully!`, 'success'))
-    } catch (exception) {
-      const errorMessage = exception.response.data.error
-      console.error(errorMessage)
-      dispatch(showNotification(`Blog '${blogObject.title}' creation failed! ${errorMessage}`, 'error'))
-    }
-  }
 
   // Update Blog Handler:
   const handleUpdate = async (blog) => {
@@ -107,7 +74,7 @@ const App = () => {
   }
 
   // Sort Blogs by Likes:
-  const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes)
+  const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
   console.log('Sorted blogs:', sortedBlogs)
 
   // Render:
@@ -126,7 +93,7 @@ const App = () => {
           <User />
           <br />
           <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
-            <BlogForm handleCreate={handleCreate} />
+            <BlogForm blogFormRef={blogFormRef} />
           </Togglable>
           <br />
           <Blogs blogs={sortedBlogs} handleUpdate={handleUpdate} handleDelete={handleDelete} />
