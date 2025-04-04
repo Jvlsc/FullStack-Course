@@ -13,12 +13,7 @@ const useField = (type) => {
     setValue('')
   }
 
-  return {
-    type,
-    value,
-    onChange,
-    onReset,
-  }
+  return { type, value, onChange, onReset }
 }
 
 // Export the useField Custom Hook:

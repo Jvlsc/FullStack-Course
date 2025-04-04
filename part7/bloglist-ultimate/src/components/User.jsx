@@ -9,9 +9,7 @@ const User = () => {
   const user = useSelector((state) => state.session.username)
   const dispatch = useDispatch()
 
-  const handleLogout = () => {
-    dispatch(logout())
-  }
+  const handleLogout = () => dispatch(logout())
 
   return (
     <div>

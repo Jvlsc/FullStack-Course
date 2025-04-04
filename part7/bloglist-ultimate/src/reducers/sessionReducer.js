@@ -28,10 +28,11 @@ export const login = (username, password) => {
     try {
       console.log('Logging in...')
       const user = await loginService.login({ username, password })
-      console.log('User logged in:', user)
 
+      console.log('User logged in:', user)
       window.localStorage.setItem('login', JSON.stringify(user))
       blogService.setToken(user.token)
+
       dispatch(setSession(user))
       dispatch(showNotification(`User '${username}' logged in successfully!`, 'success'))
     } catch (exception) {
@@ -45,6 +46,7 @@ export const login = (username, password) => {
 // Export Async Action Creator - Logout:
 export const logout = () => {
   return async (dispatch) => {
+    console.log('Logging out...')
     window.localStorage.removeItem('login')
     dispatch(clearSession())
     dispatch(showNotification('User logged out successfully!', 'success'))
