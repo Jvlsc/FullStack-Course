@@ -12,23 +12,24 @@ const BlogDetailsBody = ({ blog, toggleVisibility, handleUpdate, handleDelete })
         <li>{blog.url}</li>
         <li>
           <span data-testid="blog-likes-text">{blog.likes}</span> &nbsp;
-          <button data-testid="blog-like-button" onClick={() => handleUpdate(blog)}>Like</button>
+          <button data-testid="blog-like-button" onClick={() => handleUpdate(blog)}>
+            Like
+          </button>
         </li>
         <li>{blog.author}</li>
-        {blog.user.username === JSON.parse(window.localStorage.getItem('login')).username
-          ? (
-            <>
-              <li>
-                <button
-                  data-testid="blog-delete-button"
-                  onClick={() => handleDelete(blog.id)}
-                  style={{ backgroundColor: 'red', color: 'white' }}>
-                  Delete
-                </button>
-              </li>
-            </>)
-          : null
-        }
+        {blog.user.username === JSON.parse(window.localStorage.getItem('login')).username ? (
+          <>
+            <li>
+              <button
+                data-testid="blog-delete-button"
+                onClick={() => handleDelete(blog.id)}
+                style={{ backgroundColor: 'red', color: 'white' }}
+              >
+                Delete
+              </button>
+            </li>
+          </>
+        ) : null}
         <br />
       </ul>
     </>
@@ -40,7 +41,9 @@ const BlogDetailsHeader = ({ blog, toggleVisibility }) => {
   return (
     <>
       {blog.title} - {blog.author} &nbsp;
-      <button data-testid="blog-show-button" onClick={toggleVisibility}>Show</button>
+      <button data-testid="blog-show-button" onClick={toggleVisibility}>
+        Show
+      </button>
     </>
   )
 }
@@ -55,7 +58,7 @@ const Blog = ({ blog, handleUpdate, handleDelete }) => {
   const showWhenVisible = {
     display: visible ? '' : 'none',
     marginTop: '1rem',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
   }
 
   // Toggle Visibility:
@@ -68,7 +71,12 @@ const Blog = ({ blog, handleUpdate, handleDelete }) => {
         <BlogDetailsHeader blog={blog} toggleVisibility={toggleVisibility} />
       </li>
       <li style={showWhenVisible} className="blog-details">
-        <BlogDetailsBody blog={blog} toggleVisibility={toggleVisibility} handleUpdate={handleUpdate} handleDelete={handleDelete} />
+        <BlogDetailsBody
+          blog={blog}
+          toggleVisibility={toggleVisibility}
+          handleUpdate={handleUpdate}
+          handleDelete={handleDelete}
+        />
       </li>
     </>
   )
@@ -79,7 +87,9 @@ const Blogs = ({ blogs, handleUpdate, handleDelete }) => (
   <div>
     <h3>List of Blogs:</h3>
     <ul>
-      {blogs.map(blog => <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} handleDelete={handleDelete} />)}
+      {blogs.map((blog) => (
+        <Blog key={blog.id} blog={blog} handleUpdate={handleUpdate} handleDelete={handleDelete} />
+      ))}
     </ul>
   </div>
 )
@@ -88,14 +98,14 @@ const Blogs = ({ blogs, handleUpdate, handleDelete }) => (
 Blogs.propTypes = {
   blogs: PropTypes.array.isRequired,
   handleUpdate: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
 }
 
 // Prop Types - Blog Component:
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
   handleUpdate: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
 }
 
 // Prop Types - BlogDetailsBody Component:
@@ -103,13 +113,13 @@ BlogDetailsBody.propTypes = {
   blog: PropTypes.object.isRequired,
   toggleVisibility: PropTypes.func.isRequired,
   handleUpdate: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
 }
 
 // Prop Types - BlogDetailsHeader Component:
 BlogDetailsHeader.propTypes = {
   blog: PropTypes.object.isRequired,
-  toggleVisibility: PropTypes.func.isRequired
+  toggleVisibility: PropTypes.func.isRequired,
 }
 
 // Export Blogs Component:

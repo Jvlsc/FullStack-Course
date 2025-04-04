@@ -28,7 +28,7 @@ describe('<BlogForm />', () => {
     expect(handleCreate.mock.calls[0][0]).toEqual({
       title: helpers.blogs[0].title,
       author: helpers.blogs[0].author,
-      url: helpers.blogs[0].url
+      url: helpers.blogs[0].url,
     })
   })
 })

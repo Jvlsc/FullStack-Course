@@ -22,19 +22,16 @@ const Notification = forwardRef((props, ref) => {
   // Use Imperative Handle:
   useImperativeHandle(ref, () => {
     return {
-      showNotification
+      showNotification,
     }
   })
 
   // Render:
   return (
     <>
-      {notification === null
-        ? null
-        : <div className={notification.type === 'error' ? 'msg-error' : 'msg-success'}>
-          {notification.message}
-        </div>
-      }
+      {notification === null ? null : (
+        <div className={notification.type === 'error' ? 'msg-error' : 'msg-success'}>{notification.message}</div>
+      )}
     </>
   )
 })

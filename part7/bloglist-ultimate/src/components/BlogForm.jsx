@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 // Blog Form Component:
 const BlogForm = ({ handleCreate }) => {
-
   // State Variables:
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
@@ -54,7 +53,9 @@ const BlogForm = ({ handleCreate }) => {
             onChange={(e) => setNewUrl(e.target.value)}
           />
         </div>
-        <button type="submit" data-testid="create-blog-button">Create</button>
+        <button type="submit" data-testid="create-blog-button">
+          Create
+        </button>
       </form>
     </div>
   )
@@ -62,7 +63,7 @@ const BlogForm = ({ handleCreate }) => {
 
 // Prop Types:
 BlogForm.propTypes = {
-  handleCreate: PropTypes.func.isRequired
+  handleCreate: PropTypes.func.isRequired,
 }
 
 // Export Blog Form Component:

@@ -40,7 +40,7 @@ const App = () => {
 
   // Effect Hook - Get All Blogs:
   useEffect(() => {
-    blogService.getAll().then(blogs => setBlogs(blogs))
+    blogService.getAll().then((blogs) => setBlogs(blogs))
   }, [])
 
   // Login Handler:
@@ -82,7 +82,7 @@ const App = () => {
       newBlog.user = {
         id: newBlog.user,
         name: user.name,
-        username: user.username
+        username: user.username,
       }
       setBlogs(blogs.concat(newBlog))
 
@@ -101,10 +101,7 @@ const App = () => {
       console.log('Updating blog...')
       const updatedBlog = await blogService.update(blog.id, { likes: blog.likes + 1 })
 
-      setBlogs(blogs.map(blog => blog.id === updatedBlog.id
-        ? { ...blog, likes: updatedBlog.likes }
-        : blog
-      ))
+      setBlogs(blogs.map((blog) => (blog.id === updatedBlog.id ? { ...blog, likes: updatedBlog.likes } : blog)))
 
       showNotification(`Blog '${updatedBlog.title}' updated successfully!`, 'success')
     } catch (exception) {
@@ -116,7 +113,7 @@ const App = () => {
 
   // Delete Blog Handler:
   const handleDelete = async (id) => {
-    const blogToDelete = blogs.find(blog => blog.id === id)
+    const blogToDelete = blogs.find((blog) => blog.id === id)
     if (!window.confirm(`Are you sure you want to delete "${blogToDelete.title}" blog?`)) {
       return
     }
@@ -125,7 +122,7 @@ const App = () => {
       console.log('Deleting blog...')
       await blogService.remove(id)
 
-      setBlogs(blogs.filter(blog => blog.id !== id))
+      setBlogs(blogs.filter((blog) => blog.id !== id))
 
       showNotification(`Blog '${blogToDelete.title}' deleted successfully!`, 'success')
     } catch (exception) {
@@ -142,28 +139,25 @@ const App = () => {
   // Render:
   return (
     <div>
-      {user === null
-        ? (
-          <>
-            <h2>Login:</h2>
-            <Notification ref={notificationRef} />
-            <LoginForm handleLogin={handleLogin} />
-          </>
-        )
-        : (
-          <>
-            <h2>Blogs:</h2>
-            <Notification ref={notificationRef} />
-            <User user={user.name} handleLogout={handleLogout} />
-            <br />
-            <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
-              <BlogForm handleCreate={handleCreate} />
-            </Togglable>
-            <br />
-            <Blogs blogs={sortedBlogs} handleUpdate={handleUpdate} handleDelete={handleDelete} />
-          </>
-        )
-      }
+      {user === null ? (
+        <>
+          <h2>Login:</h2>
+          <Notification ref={notificationRef} />
+          <LoginForm handleLogin={handleLogin} />
+        </>
+      ) : (
+        <>
+          <h2>Blogs:</h2>
+          <Notification ref={notificationRef} />
+          <User user={user.name} handleLogout={handleLogout} />
+          <br />
+          <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
+            <BlogForm handleCreate={handleCreate} />
+          </Togglable>
+          <br />
+          <Blogs blogs={sortedBlogs} handleUpdate={handleUpdate} handleDelete={handleDelete} />
+        </>
+      )}
     </div>
   )
 }

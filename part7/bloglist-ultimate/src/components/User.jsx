@@ -6,7 +6,9 @@ const User = ({ user, handleLogout }) => (
   <div>
     <p>
       {user} logged in &nbsp;
-      <button data-testid="logout-button" onClick={handleLogout}>Logout</button>
+      <button data-testid="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
     </p>
   </div>
 )
@@ -14,7 +16,7 @@ const User = ({ user, handleLogout }) => (
 // Prop Types:
 User.propTypes = {
   user: PropTypes.string.isRequired,
-  handleLogout: PropTypes.func.isRequired
+  handleLogout: PropTypes.func.isRequired,
 }
 
 // Export User Component:

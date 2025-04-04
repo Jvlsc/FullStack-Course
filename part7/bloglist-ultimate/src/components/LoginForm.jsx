@@ -40,7 +40,9 @@ const Login = ({ handleLogin }) => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type="submit" data-testid="login-button">Login</button>
+        <button type="submit" data-testid="login-button">
+          Login
+        </button>
       </form>
     </div>
   )
@@ -48,7 +50,7 @@ const Login = ({ handleLogin }) => {
 
 // Prop Types:
 Login.propTypes = {
-  handleLogin: PropTypes.func.isRequired
+  handleLogin: PropTypes.func.isRequired,
 }
 
 // Export Login Component:

@@ -17,6 +17,7 @@ The exercises corresponding to this project are:
 - **Exercise 7.21**: Styles (Step 2).
 
 ---
+
 ---
 
 ## Quick Start:
@@ -52,4 +53,5 @@ npm run lint
 ```
 
 ---
+
 ---

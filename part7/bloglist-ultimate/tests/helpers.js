@@ -9,9 +9,9 @@ const blogs = [
     user: {
       id: '123',
       name: 'Test User',
-      username: 'testuser'
-    }
-  }
+      username: 'testuser',
+    },
+  },
 ]
 
 // Export the Blogs:

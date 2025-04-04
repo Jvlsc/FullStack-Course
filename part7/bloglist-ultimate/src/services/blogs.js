@@ -8,7 +8,7 @@ const baseUrl = '/api/blogs'
 let token = null
 
 // Set Token Function:
-const setToken = newToken => {
+const setToken = (newToken) => {
   token = `Bearer ${newToken}`
 }
 
