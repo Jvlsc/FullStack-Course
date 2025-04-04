@@ -28,6 +28,8 @@ const App = () => {
   const user = useSelector((state) => state.session.username)
   const dispatch = useDispatch()
 
+  console.log('User:', user)
+
   // Refs:
   const blogFormRef = useRef()
 
@@ -111,7 +113,7 @@ const App = () => {
   // Render:
   return (
     <div>
-      {user === null ? (
+      {user === null || user === undefined ? (
         <>
           <h2>Login:</h2>
           <Notification />
