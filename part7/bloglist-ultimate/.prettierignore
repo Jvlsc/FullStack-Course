@@ -4,6 +4,8 @@ node_modules
 # Ignore artifacts:
 build
 coverage
+dist
+public
 
 # Ignore files:
 .env
