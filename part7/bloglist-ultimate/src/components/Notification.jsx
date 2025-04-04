@@ -1,43 +1,42 @@
-// Import Hooks:
-import { useState, forwardRef, useImperativeHandle } from 'react'
+// Imports React:
+import { useEffect } from 'react'
 
-// Constants:
-const NOTIFICATION_TIMEOUT = 5000
+// Imports Redux Hooks:
+import { useSelector, useDispatch } from 'react-redux'
+
+// Imports Reducer Functions:
+import { clearNotification } from '../reducers/notificationReducer'
 
 // Notification Component:
-const Notification = forwardRef((props, ref) => {
-  // State Variables:
-  const [notification, setNotification] = useState(null)
+const Notification = () => {
+  const notification = useSelector((state) => state.notification)
+  const dispatch = useDispatch()
 
-  // Show Notification:
-  const showNotification = (message, type) => {
-    if (window.notificationTimeout) {
-      clearTimeout(window.notificationTimeout)
+  // Effect to clear notification after 5 seconds:
+  // This effect is triggered when the notification state changes.
+  // Allow to clear the old notifications when a new one is set.
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => {
+        dispatch(clearNotification())
+      }, 5000)
+
+      // Cleanup Function:
+      return () => clearTimeout(timer)
     }
+  }, [notification, dispatch])
 
-    setNotification({ message, type })
-    window.notificationTimeout = setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
-  }
-
-  // Use Imperative Handle:
-  useImperativeHandle(ref, () => {
-    return {
-      showNotification,
-    }
-  })
-
-  // Render:
   return (
     <>
-      {notification === null ? null : (
-        <div className={notification.type === 'error' ? 'msg-error' : 'msg-success'}>{notification.message}</div>
-      )}
+      {notification !== null && notification !== '' ? (
+        <>
+          <div className={`msg-${notification.type}`}>{notification.message}</div>
+          <br />
+        </>
+      ) : null}
     </>
   )
-})
-
-// Display Name:
-Notification.displayName = 'Notification'
+}
 
 // Export Notification Component:
 export default Notification

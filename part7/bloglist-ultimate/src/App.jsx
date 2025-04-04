@@ -1,5 +1,11 @@
-// Import Hooks and Services:
+// Import React Hooks:
 import { useState, useEffect, useRef } from 'react'
+
+// Import Redux Hooks:
+import { useDispatch } from 'react-redux'
+
+// Import Reducer Functions:
+import { setNotification } from './reducers/notificationReducer'
 
 // Import Components:
 import LoginForm from './components/LoginForm'
@@ -19,14 +25,11 @@ const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
 
+  // Dispatch:
+  const dispatch = useDispatch()
+
   // Refs:
   const blogFormRef = useRef()
-  const notificationRef = useRef()
-
-  // Helper function for notifications
-  const showNotification = (message, type) => {
-    notificationRef.current.showNotification(message, type)
-  }
 
   // Effect Hook - Check User Session:
   useEffect(() => {
@@ -54,11 +57,22 @@ const App = () => {
       blogService.setToken(user.token)
       setUser(user)
 
-      showNotification(`User '${userObject.username}' logged in successfully!`, 'success')
+      dispatch(
+        setNotification({
+          message: `User '${userObject.username}' logged in successfully!`,
+          type: 'success',
+        })
+      )
     } catch (exception) {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      showNotification(`User '${userObject.username}' login failed! ${errorMessage}`, 'error')
+
+      dispatch(
+        setNotification({
+          message: `User '${userObject.username}' login failed! ${errorMessage}`,
+          type: 'error',
+        })
+      )
     }
   }
 
@@ -66,7 +80,13 @@ const App = () => {
   const handleLogout = () => {
     window.localStorage.removeItem('login')
     setUser(null)
-    showNotification('User logged out successfully!', 'success')
+
+    dispatch(
+      setNotification({
+        message: 'User logged out successfully!',
+        type: 'success',
+      })
+    )
   }
 
   // Create Blog Handler:
@@ -85,13 +105,24 @@ const App = () => {
         username: user.username,
       }
       setBlogs(blogs.concat(newBlog))
-
       blogFormRef.current.toggleVisibility()
-      showNotification(`Blog '${newBlog.title}' created successfully!`, 'success')
+
+      dispatch(
+        setNotification({
+          message: `Blog '${newBlog.title}' created successfully!`,
+          type: 'success',
+        })
+      )
     } catch (exception) {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      showNotification(`Blog '${blogObject.title}' creation failed! ${errorMessage}`, 'error')
+
+      dispatch(
+        setNotification({
+          message: `Blog '${blogObject.title}' creation failed! ${errorMessage}`,
+          type: 'error',
+        })
+      )
     }
   }
 
@@ -100,14 +131,24 @@ const App = () => {
     try {
       console.log('Updating blog...')
       const updatedBlog = await blogService.update(blog.id, { likes: blog.likes + 1 })
-
       setBlogs(blogs.map((blog) => (blog.id === updatedBlog.id ? { ...blog, likes: updatedBlog.likes } : blog)))
 
-      showNotification(`Blog '${updatedBlog.title}' updated successfully!`, 'success')
+      dispatch(
+        setNotification({
+          message: `Blog '${updatedBlog.title}' updated successfully!`,
+          type: 'success',
+        })
+      )
     } catch (exception) {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      showNotification(`Blog '${blog.title}' update failed! ${errorMessage}`, 'error')
+
+      dispatch(
+        setNotification({
+          message: `Blog '${blog.title}' update failed! ${errorMessage}`,
+          type: 'error',
+        })
+      )
     }
   }
 
@@ -121,14 +162,22 @@ const App = () => {
     try {
       console.log('Deleting blog...')
       await blogService.remove(id)
-
       setBlogs(blogs.filter((blog) => blog.id !== id))
-
-      showNotification(`Blog '${blogToDelete.title}' deleted successfully!`, 'success')
+      dispatch(
+        setNotification({
+          message: `Blog '${blogToDelete.title}' deleted successfully!`,
+          type: 'success',
+        })
+      )
     } catch (exception) {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      showNotification(`Blog '${blogToDelete.title}' deletion failed! ${errorMessage}`, 'error')
+      dispatch(
+        setNotification({
+          message: `Blog '${blogToDelete.title}' deletion failed! ${errorMessage}`,
+          type: 'error',
+        })
+      )
     }
   }
 
@@ -142,13 +191,13 @@ const App = () => {
       {user === null ? (
         <>
           <h2>Login:</h2>
-          <Notification ref={notificationRef} />
+          <Notification />
           <LoginForm handleLogin={handleLogin} />
         </>
       ) : (
         <>
           <h2>Blogs:</h2>
-          <Notification ref={notificationRef} />
+          <Notification />
           <User user={user.name} handleLogout={handleLogout} />
           <br />
           <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
