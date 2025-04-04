@@ -3,11 +3,13 @@ import { configureStore } from '@reduxjs/toolkit'
 
 // Import Reducers:
 import notificationReducer from './notificationReducer'
+import sessionReducer from './sessionReducer'
 
 // Configure Store:
 const store = configureStore({
   reducer: {
     notification: notificationReducer,
+    session: sessionReducer,
   },
 })
 

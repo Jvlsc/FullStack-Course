@@ -1,22 +1,28 @@
-// Import Modules:
-import PropTypes from 'prop-types'
+// Import Redux Hooks:
+import { useSelector, useDispatch } from 'react-redux'
+
+// Import Reducer Functions:
+import { logout } from '../reducers/sessionReducer'
 
 // User Component:
-const User = ({ user, handleLogout }) => (
-  <div>
-    <p>
-      {user} logged in &nbsp;
-      <button data-testid="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
-    </p>
-  </div>
-)
+const User = () => {
+  const user = useSelector((state) => state.session.username)
+  const dispatch = useDispatch()
 
-// Prop Types:
-User.propTypes = {
-  user: PropTypes.string.isRequired,
-  handleLogout: PropTypes.func.isRequired,
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
+  return (
+    <div>
+      <p>
+        {user} logged in &nbsp;
+        <button data-testid="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      </p>
+    </div>
+  )
 }
 
 // Export User Component:

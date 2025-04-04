@@ -1,43 +1,43 @@
-// Import Modules:
-import { useState } from 'react'
-import PropTypes from 'prop-types'
+// Import Custom Hooks:
+import useField from '../hooks/useField'
+
+// Imports Redux Hooks:
+import { useDispatch } from 'react-redux'
+
+// Imports Reducer Functions:
+import { login } from '../reducers/sessionReducer'
 
 // Login Component:
-const Login = ({ handleLogin }) => {
-  // State Variables:
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+const Login = () => {
+  const username = useField('text')
+  const password = useField('password')
 
-  // Summit Login:
+  const dispatch = useDispatch()
+
   const submitLogin = (event) => {
     event.preventDefault()
-    handleLogin({ username, password })
-    setUsername('')
-    setPassword('')
+    dispatch(login(username.value, password.value))
+    username.onReset()
+    password.onReset()
   }
 
-  // Render:
   return (
     <div>
       <form onSubmit={submitLogin}>
         <div>
           Username &nbsp;
           <input
-            type="text"
-            value={username}
             name="Username"
             data-testid="username-input"
-            onChange={({ target }) => setUsername(target.value)}
+            {...username}
           />
         </div>
         <div>
           Password &nbsp;&nbsp;
           <input
-            type="password"
-            value={password}
             name="Password"
             data-testid="password-input"
-            onChange={({ target }) => setPassword(target.value)}
+            {...password}
           />
         </div>
         <button type="submit" data-testid="login-button">
@@ -46,11 +46,6 @@ const Login = ({ handleLogin }) => {
       </form>
     </div>
   )
-}
-
-// Prop Types:
-Login.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
 }
 
 // Export Login Component:

@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // Imports Reducer Functions:
-import { clearNotification } from '../reducers/notificationReducer'
+import { hideNotification } from '../reducers/notificationReducer'
 
 // Notification Component:
 const Notification = () => {
@@ -16,9 +16,9 @@ const Notification = () => {
   // This effect is triggered when the notification state changes.
   // Allow to clear the old notifications when a new one is set.
   useEffect(() => {
-    if (notification) {
+    if (notification && Object.keys(notification).length !== 0) {
       const timer = setTimeout(() => {
-        dispatch(clearNotification())
+        dispatch(hideNotification())
       }, 5000)
 
       // Cleanup Function:
