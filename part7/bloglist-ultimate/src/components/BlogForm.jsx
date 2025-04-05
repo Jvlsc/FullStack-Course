@@ -1,14 +1,14 @@
-// Import Custom Hooks:
-import useField from '../hooks/useField'
-
 // Import Tanstack Hooks:
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-// Import Notification Context:
+// Import Context Hooks:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // Import Services:
 import blogService from '../services/blogsService'
+
+// Import Custom Hooks:
+import useField from '../hooks/useField'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
@@ -19,8 +19,9 @@ const BlogForm = ({ blogFormRef }) => {
   const author = useField('text')
   const url = useField('text')
 
+  const notificationDispatch = useNotificationDispatch()
+
   const queryClient = useQueryClient()
-  const dispatch = useNotificationDispatch()
 
   const createBlogMutation = useMutation({
     mutationFn: (newBlog) => blogService.create(newBlog),
@@ -29,16 +30,14 @@ const BlogForm = ({ blogFormRef }) => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
       const fixedBlog = blogService.fixPopulateMismatch(createdBlog)
       queryClient.setQueryData(['blogs'], (blogs) => [...blogs, fixedBlog])
-
-      //blogFormRef.current.toggleVisibility()
-      //dispatch(appendBlog(fixedBlog))
-      dispatch(`Blog '${fixedBlog.title}' created successfully!`, 'success')
+      blogFormRef.current.toggleVisibility()
+      notificationDispatch(`Blog '${fixedBlog.title}' created successfully!`, 'success')
     },
     onError: (exception) => {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      dispatch(`Blog '${title.value}' creation failed! ${errorMessage}`, 'error')
-    }
+      notificationDispatch(`Blog '${title.value}' creation failed! ${errorMessage}`, 'error')
+    },
   })
 
   const handleCreateBlog = (event) => {

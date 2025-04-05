@@ -4,7 +4,7 @@ import { useState } from 'react'
 // Import Tanstack Hooks:
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
-// Import Notification Context:
+// Import Context Hooks:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // Import Services:
@@ -33,7 +33,7 @@ const BlogDetailsBody = ({ blog, toggleVisibility }) => {
     onError: (error) => {
       console.error('[BlogDetailsBody] Error updating blog:', error)
       dispatch(`Error updating blog: ${error.message}`, 'error')
-    }
+    },
   })
 
   const deleteBlogMutation = useMutation({
@@ -41,15 +41,13 @@ const BlogDetailsBody = ({ blog, toggleVisibility }) => {
     onSuccess: (_, deletedBlog) => {
       console.log('[BlogDetailsBody] Blog deleted:', deletedBlog)
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
-      queryClient.setQueryData(['blogs'], (blogs) =>
-        blogs.filter((blog) => blog.id !== deletedBlog.id)
-      )
+      queryClient.setQueryData(['blogs'], (blogs) => blogs.filter((blog) => blog.id !== deletedBlog.id))
       dispatch(`Blog '${deletedBlog.title}' deleted successfully!`, 'success')
     },
     onError: (error) => {
       console.error('[BlogDetailsBody] Error deleting blog:', error)
       dispatch(`Error deleting blog: ${error.message}`, 'error')
-    }
+    },
   })
 
   const handleVote = (blog) => updateBlogMutation.mutate(blog)
@@ -130,6 +128,7 @@ const Blog = ({ blog }) => {
 
 // Blogs Component:
 const Blogs = () => {
+  // prettier-ignore
   const { data: blogs, isLoading, error } = useQuery({
     queryKey: ['blogs'],
     queryFn: () => blogService.getAll(),
@@ -138,7 +137,7 @@ const Blogs = () => {
     },
     onError: (error) => {
       console.error('[Blogs Component] Error fetching blogs:', error)
-    }
+    },
   })
 
   if (isLoading) {
@@ -152,7 +151,6 @@ const Blogs = () => {
   // Solo ordenamos los blogs si tenemos datos
   const sortedBlogs = blogs ? [...blogs].sort((a, b) => b.likes - a.likes) : []
   console.log('[Blogs Component] Sorted blogs:', sortedBlogs)
-
 
   return (
     <div>

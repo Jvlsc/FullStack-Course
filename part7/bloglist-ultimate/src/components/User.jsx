@@ -1,15 +1,15 @@
-// Import Contexts:
-import { useSessionUser, useSessionClear } from '../contexts/SessionContext'
+// Import Contexts Hooks:
+import { useSessionUser, useSessionClearDispatch } from '../contexts/SessionContext'
 import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // User Component:
 const User = () => {
   const user = useSessionUser()
-  const clearSessionDispatch = useSessionClear()
+  const clearSessionDispatch = useSessionClearDispatch()
   const notificationDispatch = useNotificationDispatch()
 
   const handleLogout = () => {
-    console.log('[User Component] Logging out...')
+    console.log('[UserComponent] Logging out...')
     clearSessionDispatch()
     notificationDispatch('User logged out successfully!', 'success')
   }

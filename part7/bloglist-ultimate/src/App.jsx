@@ -9,22 +9,33 @@ import User from './components/User'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 
-// Import Contexts:
-import { useSessionUser, useSessionSet, useSessionGet, useSessionClear } from './contexts/SessionContext'
+// Import Contexts Hooks:
+import {
+  useSessionUser,
+  useSessionSetDispatch,
+  useSessionGetDispatch,
+  useSessionClearDispatch,
+} from './contexts/SessionContext'
 
 // App Component:
 const App = () => {
   const user = useSessionUser()
-  const setSession = useSessionSet()
-  const getSession = useSessionGet()
-  const clearSession = useSessionClear()
+  const setSessionDispatch = useSessionSetDispatch()
+  const getSessionDispatch = useSessionGetDispatch()
+  const clearSessionDispatch = useSessionClearDispatch()
 
   const blogFormRef = useRef()
 
   useEffect(() => {
-    const session = getSession()
-    if (session) setSession(session)
-    else clearSession()
+    console.log('[AppComponent] Checking Session Status...')
+    const session = getSessionDispatch()
+    if (session) {
+      console.log('[AppComponent] Session Active')
+      setSessionDispatch(session)
+    } else {
+      console.log('[AppComponent] Session Inactive')
+      clearSessionDispatch()
+    }
   }, [])
 
   if (user === null || user === undefined) {

@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
 // Session Reducer:
 const sessionReducer = (state, action) => {
   switch (action.type) {
-  case 'SET_SESSION':
-    return action.payload
-  case 'CLEAR_SESSION':
-    return null
+    case 'SET_SESSION':
+      return action.payload
+    case 'CLEAR_SESSION':
+      return null
   }
 }
 // Create a Session Context:
@@ -24,12 +24,18 @@ export const SessionContextProvider = (props) => {
     console.log('[SessionContext] Setting session...')
     window.localStorage.setItem('login', JSON.stringify(user))
     userDispatch({ type: 'SET_SESSION', payload: user })
+    console.log('[SessionContext] Session set:', user.username)
   }
 
   const getSession = () => {
     console.log('[SessionContext] Getting session...')
     const userJSON = window.localStorage.getItem('login')
-    if (userJSON) return JSON.parse(userJSON)
+    if (userJSON) {
+      const parsedUser = JSON.parse(userJSON)
+      console.log('[SessionContext] Session found:', parsedUser.username)
+      return parsedUser
+    }
+    console.log('[SessionContext] No session found')
     return null
   }
 
@@ -37,6 +43,7 @@ export const SessionContextProvider = (props) => {
     console.log('[SessionContext] Clearing session...')
     window.localStorage.removeItem('login')
     userDispatch({ type: 'CLEAR_SESSION', payload: null })
+    console.log('[SessionContext] Session cleared')
   }
 
   return (
@@ -46,7 +53,21 @@ export const SessionContextProvider = (props) => {
   )
 }
 
-// Session Context Hook:
+// Session Context Provider Prop Types:
+SessionContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+// Export Session Context:
+export const useSessionContext = () => {
+  const context = useContext(SessionContext)
+  if (!context) {
+    throw new Error('useSessionContext must be used within a SessionContextProvider')
+  }
+  return context
+}
+
+// Export Session User Hook:
 export const useSessionUser = () => {
   const context = useContext(SessionContext)
   if (!context) {
@@ -55,36 +76,31 @@ export const useSessionUser = () => {
   return context[0]
 }
 
-// Session Context Set Session Hook:
-export const useSessionSet = () => {
+// Export Set Session Hook:
+export const useSessionSetDispatch = () => {
   const context = useContext(SessionContext)
   if (!context) {
-    throw new Error('useSessionSet must be used within a SessionContextProvider')
+    throw new Error('useSessionSetDispatch must be used within a SessionContextProvider')
   }
   return context[1]
 }
 
-// Session Context Get Session Hook:
-export const useSessionGet = () => {
+// Export Get Session Hook:
+export const useSessionGetDispatch = () => {
   const context = useContext(SessionContext)
   if (!context) {
-    throw new Error('useSessionGet must be used within a SessionContextProvider')
+    throw new Error('useSessionGetDispatch must be used within a SessionContextProvider')
   }
   return context[2]
 }
 
-// Session Context Clear Session Hook:
-export const useSessionClear = () => {
+// Export Clear Session Hook:
+export const useSessionClearDispatch = () => {
   const context = useContext(SessionContext)
   if (!context) {
-    throw new Error('useSessionClear must be used within a SessionContextProvider')
+    throw new Error('useSessionClearDispatch must be used within a SessionContextProvider')
   }
   return context[3]
-}
-
-// Session Context Provider Prop Types:
-SessionContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 // Export Session Context:

@@ -7,12 +7,12 @@ import PropTypes from 'prop-types'
 // Create a Notification Reducer:
 const notificationReducer = (state, action) => {
   switch (action.type) {
-  case 'SET_NOTIFICATION':
-    return action.payload
-  case 'CLEAR_NOTIFICATION':
-    return null
-  default:
-    return state
+    case 'SET_NOTIFICATION':
+      return action.payload
+    case 'CLEAR_NOTIFICATION':
+      return null
+    default:
+      return state
   }
 }
 
@@ -25,9 +25,12 @@ export const NotificationContextProvider = (props) => {
   const timeoutRef = useRef(null)
 
   const setNotification = (message, type) => {
+    console.log(`[NotificationContext] Setting notification: ${message} (${type})`)
     if (notification) clearTimeout(timeoutRef.current)
     notificationDispatch({ type: 'SET_NOTIFICATION', payload: { message, type } })
+
     timeoutRef.current = setTimeout(() => {
+      console.log('[NotificationContext] Clearing notification')
       notificationDispatch({ type: 'CLEAR_NOTIFICATION' })
     }, 5000)
   }
@@ -43,7 +46,16 @@ NotificationContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-// Export Notification Value:
+// Export Notification Context:
+export const useNotificationContext = () => {
+  const context = useContext(NotificationContext)
+  if (!context) {
+    throw new Error('useNotificationContext must be used within a NotificationContextProvider')
+  }
+  return context
+}
+
+// Export Notification Value Hook:
 export const useNotificationValue = () => {
   const context = useContext(NotificationContext)
   if (!context) {
@@ -52,7 +64,7 @@ export const useNotificationValue = () => {
   return context[0]
 }
 
-// Export Notification Dispatch:
+// Export Notification Dispatch Hook:
 export const useNotificationDispatch = () => {
   const context = useContext(NotificationContext)
   if (!context) {
@@ -61,4 +73,5 @@ export const useNotificationDispatch = () => {
   return context[1]
 }
 
+// Export Notification Context:
 export default NotificationContext

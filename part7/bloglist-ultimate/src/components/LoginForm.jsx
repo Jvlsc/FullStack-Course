@@ -1,15 +1,15 @@
-// Import Custom Hooks:
-import useField from '../hooks/useField'
-
 // Imports React Query Hooks:
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+// Import Contexts:
+import { useNotificationDispatch } from '../contexts/NotificationContext'
+import { useSessionSetDispatch, useSessionClearDispatch } from '../contexts/SessionContext'
 
 // Imports Services:
 import loginService from '../services/loginService'
 
-// Import Contexts:
-import { useNotificationDispatch } from '../contexts/NotificationContext'
-import { useSessionSet } from '../contexts/SessionContext'
+// Import Custom Hooks:
+import useField from '../hooks/useField'
 
 // Login Component:
 const Login = () => {
@@ -17,7 +17,8 @@ const Login = () => {
   const password = useField('password')
 
   const notificationDispatch = useNotificationDispatch()
-  const setSessionDispatch = useSessionSet()
+  const setSessionDispatch = useSessionSetDispatch()
+  const clearSessionDispatch = useSessionClearDispatch()
 
   const queryClient = useQueryClient()
 
@@ -26,19 +27,20 @@ const Login = () => {
     onSuccess: (newUser) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
       queryClient.setQueryData(['user'], newUser)
-      console.log('[Login] User logged in:', newUser.username)
+      console.log('[LoginFormComponent] User logged in:', newUser.username)
       setSessionDispatch(newUser)
       notificationDispatch(`User "${newUser.username}" logged in`, 'success')
     },
     onError: (error) => {
-      console.error('[Login] Invalid username or password')
+      console.error('[LoginFormComponent] Invalid username or password')
+      clearSessionDispatch()
       notificationDispatch('Invalid username or password', 'error')
     },
   })
 
   const handleLogin = (event) => {
     event.preventDefault()
-    console.log('[Login] Logging in...')
+    console.log('[LoginFormComponent] Logging in...')
     newAnecdoteMutation.mutate({ username: username.value, password: password.value })
     password.onReset()
   }
