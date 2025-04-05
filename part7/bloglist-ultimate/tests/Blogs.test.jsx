@@ -1,12 +1,18 @@
-// Import Modules:
+// Import React Testing Library:
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-// Import Components:
+// Import Redux:
+import { Provider } from 'react-redux'
+
+// Import Component to Test:
 import Blogs from '../src/components/Blogs'
 
-// Import Helpers:
-import helpers from './helpers'
+// Import Test Data and Utils:
+import { renderWithProviders, blogs as testBlogs } from './testUtils'
+
+// Mock console.log
+console.log = () => {}
 
 // Blogs Test:
 describe('<Blogs />', () => {
@@ -15,29 +21,33 @@ describe('<Blogs />', () => {
       'login',
       JSON.stringify({
         token: 'test-token',
-        username: helpers.blogs[0].user.username,
-        name: helpers.blogs[0].user.name,
+        username: testBlogs[0].user.username,
+        name: testBlogs[0].user.name,
       })
     )
   })
 
   test('Renders title and author by default but not details (url or likes)...', () => {
-    const mockHandler = vi.fn()
-
-    const { container } = render(<Blogs blogs={helpers.blogs} handleUpdate={mockHandler} handleDelete={mockHandler} />)
+    const { container } = renderWithProviders(<Blogs />, {
+      preloadedState: {
+        blogs: testBlogs,
+      },
+    })
 
     const blogHeader = container.querySelector('.blog-header')
-    expect(blogHeader).toHaveTextContent(helpers.blogs[0].title)
-    expect(blogHeader).toHaveTextContent(helpers.blogs[0].author)
+    expect(blogHeader).toHaveTextContent(testBlogs[0].title)
+    expect(blogHeader).toHaveTextContent(testBlogs[0].author)
 
     const blogDetails = container.querySelector('.blog-details')
     expect(blogDetails).toHaveStyle({ display: 'none' })
   })
 
   test('Shows blog details when "Show" button is clicked...', async () => {
-    const mockHandler = vi.fn()
-
-    const { container } = render(<Blogs blogs={helpers.blogs} handleUpdate={mockHandler} handleDelete={mockHandler} />)
+    const { container } = renderWithProviders(<Blogs />, {
+      preloadedState: {
+        blogs: testBlogs,
+      },
+    })
 
     const user = userEvent.setup()
     const showButton = screen.getByText('Show')
@@ -46,17 +56,25 @@ describe('<Blogs />', () => {
 
     const blogDetails = container.querySelector('.blog-details')
     expect(blogDetails).toBeVisible()
-    expect(blogDetails).toHaveTextContent(helpers.blogs[0].url)
-    expect(blogDetails).toHaveTextContent(helpers.blogs[0].likes)
+    expect(blogDetails).toHaveTextContent(testBlogs[0].url)
+    expect(blogDetails).toHaveTextContent(testBlogs[0].likes)
   })
 
   test('Clicking like button twice calls event handler twice...', async () => {
-    const mockUpdateHandler = vi.fn()
-    const mockDeleteHandler = vi.fn()
+    // Create a mock store with a spy on dispatch
+    const mockDispatch = vi.fn()
+    const mockStore = {
+      getState: () => ({ blogs: testBlogs }),
+      dispatch: mockDispatch,
+      subscribe: vi.fn(),
+    }
 
-    const { container } = render(
-      <Blogs blogs={helpers.blogs} handleUpdate={mockUpdateHandler} handleDelete={mockDeleteHandler} />
-    )
+    const { container } = renderWithProviders(<Blogs />, {
+      preloadedState: {
+        blogs: testBlogs,
+      },
+      store: mockStore,
+    })
 
     const user = userEvent.setup()
 
@@ -67,6 +85,7 @@ describe('<Blogs />', () => {
     await user.click(likeButton)
     await user.click(likeButton)
 
-    expect(mockUpdateHandler.mock.calls).toHaveLength(2)
+    // Check if dispatch was called twice
+    expect(mockDispatch.mock.calls).toHaveLength(2)
   })
 })
