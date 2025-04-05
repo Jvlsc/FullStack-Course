@@ -84,7 +84,7 @@ In [this chapter](https://fullstackopen.com/en/part7/exercises_extending_the_blo
 
 ### Exercises (Code Formatting):
 
-- **[Exercise 7.9]()**: Automatic Code Formatting.
+- **[Exercise 7.9](https://github.com/Jvlsc/FullStack-Course/blob/2fc00a40fcebce5d7ba7ecfc5fe7471b2f651f9d/part7/bloglist-ultimate/.prettierrc)**: Automatic Code Formatting.
 
 
 ### Exercises (State Management - Redux):
