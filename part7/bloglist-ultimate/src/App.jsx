@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 // Import Components:
+import BlogView from './components/BlogView'
 import HomeView from './components/HomeView'
 import LoginForm from './components/LoginForm'
 import User from './components/User'
@@ -59,6 +60,7 @@ const App = () => {
         <Route path="/" element={<HomeView />} />
         <Route path="/users" element={<UsersView />} />
         <Route path="/users/:id" element={<UserView />} />
+        <Route path="/blogs/:id" element={<BlogView />} />
       </Routes>
     </div>
   )

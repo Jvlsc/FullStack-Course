@@ -26,7 +26,7 @@ const BlogForm = ({ blogFormRef }) => {
   const createBlogMutation = useMutation({
     mutationFn: (newBlog) => blogService.create(newBlog),
     onSuccess: (createdBlog) => {
-      console.log('[BlogForm] Blog created:', createdBlog)
+      console.log('[BlogFormComponent] Blog created:', createdBlog)
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
       const fixedBlog = blogService.fixPopulateMismatch(createdBlog)
       queryClient.setQueryData(['blogs'], (blogs) => [...blogs, fixedBlog])
@@ -42,7 +42,7 @@ const BlogForm = ({ blogFormRef }) => {
 
   const handleCreateBlog = (event) => {
     event.preventDefault()
-    console.log('[BlogForm] Creating blog...')
+    console.log('[BlogFormComponent] Creating blog...')
     createBlogMutation.mutate({ title: title.value, author: author.value, url: url.value })
   }
 

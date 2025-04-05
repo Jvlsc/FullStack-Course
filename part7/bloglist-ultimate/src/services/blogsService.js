@@ -20,6 +20,12 @@ const getAll = async () => {
   return response.data
 }
 
+// [GET] Get Blog by ID:
+const getById = async (id) => {
+  const response = await axios.get(`${baseUrl}/${id}`)
+  return response.data
+}
+
 // [POST] Create Blog:
 const create = async (newObject) => {
   const config = {
@@ -57,4 +63,4 @@ const fixPopulateMismatch = (blog) => {
 }
 
 // Export Blogs Service:
-export default { getAll, create, update, remove, fixPopulateMismatch }
+export default { getAll, getById, create, update, remove, fixPopulateMismatch }
