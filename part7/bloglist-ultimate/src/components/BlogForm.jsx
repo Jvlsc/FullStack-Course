@@ -42,6 +42,7 @@ const BlogForm = ({ blogFormRef }) => {
 
   const handleCreateBlog = (event) => {
     event.preventDefault()
+    console.log('[BlogForm] Creating blog...')
     createBlogMutation.mutate({ title: title.value, author: author.value, url: url.value })
   }
 
