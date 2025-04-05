@@ -1,13 +1,15 @@
 // Import React Hooks:
-import { useRef, useEffect } from 'react'
+import { useEffect } from 'react'
+
+// Import React Router:
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 // Import Components:
+import Home from './components/Home'
 import LoginForm from './components/LoginForm'
-import BlogForm from './components/BlogForm'
-import Blogs from './components/Blogs'
 import User from './components/User'
+import Users from './components/Users'
 import Notification from './components/Notification'
-import Togglable from './components/Togglable'
 
 // Import Contexts Hooks:
 import {
@@ -23,8 +25,6 @@ const App = () => {
   const setSessionDispatch = useSessionSetDispatch()
   const getSessionDispatch = useSessionGetDispatch()
   const clearSessionDispatch = useSessionClearDispatch()
-
-  const blogFormRef = useRef()
 
   useEffect(() => {
     console.log('[AppComponent] Checking Session Status...')
@@ -54,11 +54,10 @@ const App = () => {
       <Notification />
       <User />
       <br />
-      <Togglable buttonLabel="Create New Blog" ref={blogFormRef}>
-        <BlogForm blogFormRef={blogFormRef} />
-      </Togglable>
-      <br />
-      <Blogs />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+      </Routes>
     </div>
   )
 }

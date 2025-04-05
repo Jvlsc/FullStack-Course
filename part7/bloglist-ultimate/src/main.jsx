@@ -1,6 +1,9 @@
 // Imports Modules:
 import ReactDOM from 'react-dom/client'
 
+// Import React Router:
+import { BrowserRouter as Router } from 'react-router-dom'
+
 // Import React Query Tools:
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
@@ -20,7 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
     <SessionContextProvider>
       <NotificationContextProvider>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </NotificationContextProvider>
     </SessionContextProvider>
   </QueryClientProvider>
