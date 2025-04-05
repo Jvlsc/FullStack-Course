@@ -1,11 +1,18 @@
 // Import Custom Hooks:
 import useField from '../hooks/useField'
 
+// Imports React Query Hooks:
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
 // Imports Redux Hooks:
 import { useDispatch } from 'react-redux'
 
-// Imports Reducer Functions:
-import { login } from '../reducers/sessionReducer'
+// Imports Notification Reducer:
+import { showNotification } from '../reducers/notificationReducer'
+
+// Imports Services:
+import loginService from '../services/loginService'
+import userService from '../services/userService'
 
 // Login Component:
 const Login = () => {
@@ -14,9 +21,26 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
+  const queryClient = useQueryClient()
+
+  const newAnecdoteMutation = useMutation({
+    mutationFn: loginService.login,
+    onSuccess: (newUser) => {
+      console.log('[Login] User logged in:', newUser.username)
+      userService.setUser(newUser)
+      queryClient.setQueryData(['user'], newUser)
+      dispatch(showNotification(`User "${newUser.username}" logged in`, 'success'))
+    },
+    onError: (error) => {
+      console.error('[Login] Invalid username or password')
+      dispatch(showNotification('Invalid username or password', 'error'))
+    },
+  })
+
   const handleLogin = (event) => {
     event.preventDefault()
-    dispatch(login(username.value, password.value))
+    console.log('[Login] Logging in...')
+    newAnecdoteMutation.mutate({ username: username.value, password: password.value })
     password.onReset()
   }
 

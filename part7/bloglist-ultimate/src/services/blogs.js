@@ -4,12 +4,14 @@ import axios from 'axios'
 // Service Base URL:
 const baseUrl = '/api/blogs'
 
-// Token Variable:
-let token = null
-
 // Set Token Function:
-const setToken = (newToken) => {
-  token = `Bearer ${newToken}`
+const getToken = () => {
+  const userJSON = window.localStorage.getItem('login')
+  if (userJSON) {
+    const user = JSON.parse(userJSON)
+    return user.token
+  }
+  return null
 }
 
 // [GET] Get All Blogs:
@@ -21,7 +23,7 @@ const getAll = async () => {
 // [POST] Create Blog:
 const create = async (newObject) => {
   const config = {
-    headers: { Authorization: token },
+    headers: { Authorization: getToken() },
   }
 
   const response = await axios.post(baseUrl, newObject, config)
@@ -37,7 +39,7 @@ const update = async (id, newObject) => {
 // [DELETE] Delete Blog:
 const remove = async (id) => {
   const config = {
-    headers: { Authorization: token },
+    headers: { Authorization: getToken() },
   }
 
   const response = await axios.delete(`${baseUrl}/${id}`, config)
@@ -45,4 +47,4 @@ const remove = async (id) => {
 }
 
 // Export Blogs Service:
-export default { getAll, create, update, remove, setToken }
+export default { getAll, create, update, remove }

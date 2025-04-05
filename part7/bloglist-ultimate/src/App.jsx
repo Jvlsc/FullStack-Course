@@ -1,8 +1,9 @@
 // Import React Hooks:
 import { useEffect, useRef } from 'react'
 
-// Import Redux Hooks:
-import { useSelector, useDispatch } from 'react-redux'
+// Import Redux and Tanstack Hooks:
+import { useDispatch } from 'react-redux'
+import { useQueryClient, useQuery } from '@tanstack/react-query'
 
 // Import Reducer Functions:
 import { getAllBlogs } from './reducers/blogsReducer'
@@ -17,22 +18,22 @@ import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 
 // Import Services:
-import blogService from './services/blogs'
+import userService from './services/userService'
 
 // App Component:
 const App = () => {
-  const user = useSelector((state) => state.session.username)
-  const dispatch = useDispatch()
+  const { data: user } = useQuery({
+    queryKey: ['user'],
+    queryFn: userService.getUser
+  })
 
+  const dispatch = useDispatch()
   const blogFormRef = useRef()
 
   useEffect(() => {
     console.log('[App Component] Checking user session...')
-    const userJSON = window.localStorage.getItem('login')
-    if (userJSON) {
-      const user = JSON.parse(userJSON)
+    if (user) {
       console.log('[App Component] User session found:', user.username)
-      blogService.setToken(user.token)
       dispatch(setSession(user))
       dispatch(getAllBlogs())
     } else {
