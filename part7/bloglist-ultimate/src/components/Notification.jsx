@@ -1,43 +1,33 @@
-// Import Hooks:
-import { useState, forwardRef, useImperativeHandle } from 'react'
+// Imports React:
+import { useEffect } from 'react'
 
-// Constants:
-const NOTIFICATION_TIMEOUT = 5000
+// Imports Redux Hooks:
+import { useSelector, useDispatch } from 'react-redux'
+
+// Imports Reducer Functions:
+import { hideNotification } from '../reducers/notificationReducer'
 
 // Notification Component:
-const Notification = forwardRef((props, ref) => {
-  // State Variables:
-  const [notification, setNotification] = useState(null)
+const Notification = () => {
+  const notification = useSelector((state) => state.notification)
+  const dispatch = useDispatch()
 
-  // Show Notification:
-  const showNotification = (message, type) => {
-    if (window.notificationTimeout) {
-      clearTimeout(window.notificationTimeout)
+  useEffect(() => {
+    if (notification && Object.keys(notification).length !== 0) {
+      const timer = setTimeout(() => dispatch(hideNotification()), 5000)
+      return () => clearTimeout(timer)
     }
+  }, [notification, dispatch])
 
-    setNotification({ message, type })
-    window.notificationTimeout = setTimeout(() => setNotification(null), NOTIFICATION_TIMEOUT)
-  }
+  if (notification === null || notification === '') return null
 
-  // Use Imperative Handle:
-  useImperativeHandle(ref, () => {
-    return {
-      showNotification,
-    }
-  })
-
-  // Render:
   return (
     <>
-      {notification === null ? null : (
-        <div className={notification.type === 'error' ? 'msg-error' : 'msg-success'}>{notification.message}</div>
-      )}
+      <div className={`msg-${notification.type}`}>{notification.message}</div>
+      <br />
     </>
   )
-})
-
-// Display Name:
-Notification.displayName = 'Notification'
+}
 
 // Export Notification Component:
 export default Notification
