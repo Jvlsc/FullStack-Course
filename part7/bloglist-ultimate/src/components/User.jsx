@@ -10,16 +10,24 @@ import userService from '../services/userService'
 
 // User Component:
 const User = () => {
-  const queryClient = useQueryClient()
-  const { data: user } = useQuery({
+  const { data: user, isLoading, error } = useQuery({
     queryKey: ['user'],
     queryFn: userService.getUser
   })
 
+  if (isLoading) {
+    console.log('[User Component] Loading user...')
+  }
+
+  if (error) {
+    console.error('[User Component] Error loading user:', error)
+  }
+
+  const queryClient = useQueryClient()
   const dispatch = useDispatch()
 
   const handleLogout = () => {
-    console.log('[Session Reducer] Logging out...')
+    console.log('[User Component] Logging out...')
     userService.setUser(null)
     queryClient.setQueryData(['user'], null)
     dispatch(showNotification('User logged out successfully!', 'success'))

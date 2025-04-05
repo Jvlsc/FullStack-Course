@@ -22,25 +22,20 @@ import userService from './services/userService'
 
 // App Component:
 const App = () => {
-  const { data: user } = useQuery({
+  const { data: user, isLoading, error } = useQuery({
     queryKey: ['user'],
     queryFn: userService.getUser
   })
 
-  const dispatch = useDispatch()
-  const blogFormRef = useRef()
+  if (isLoading) {
+    console.log('[App Component] Loading user...')
+  }
 
-  useEffect(() => {
-    console.log('[App Component] Checking user session...')
-    if (user) {
-      console.log('[App Component] User session found:', user.username)
-      dispatch(setSession(user))
-      dispatch(getAllBlogs())
-    } else {
-      console.log('[App Component] No user session found.')
-      dispatch(clearSession())
-    }
-  }, [user, dispatch])
+  if (error) {
+    console.error('[App Component] Error loading user:', error)
+  }
+
+  const blogFormRef = useRef()
 
   if (user === null || user === undefined) {
     return (

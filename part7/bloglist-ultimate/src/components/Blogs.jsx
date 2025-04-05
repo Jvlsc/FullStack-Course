@@ -1,11 +1,15 @@
 // Import React Hooks:
 import { useState } from 'react'
 
-// Import Redux Hooks:
-import { useSelector, useDispatch } from 'react-redux'
+// Import Redux and Tanstack Hooks:
+import { useDispatch } from 'react-redux'
+import { useQuery } from '@tanstack/react-query'
 
 // Import Reducer Functions:
 import { voteBlog, deleteBlog } from '../reducers/blogsReducer'
+
+// Import Services:
+import blogService from '../services/blogs'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
@@ -89,10 +93,29 @@ const Blog = ({ blog }) => {
 
 // Blogs Component:
 const Blogs = () => {
-  const blogs = useSelector((state) => state.blogs)
+  const { data: blogs, isLoading, error } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => blogService.getAll(),
+    onSuccess: (blogs) => {
+      console.log('[Blogs Component] Blogs fetched:', blogs)
+    },
+    onError: (error) => {
+      console.error('[Blogs Component] Error fetching blogs:', error)
+    }
+  })
 
-  const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
+  if (isLoading) {
+    return <div>Loading blogs...</div>
+  }
+
+  if (error) {
+    return <div>Error loading blogs: {error.message}</div>
+  }
+
+  // Solo ordenamos los blogs si tenemos datos
+  const sortedBlogs = blogs ? [...blogs].sort((a, b) => b.likes - a.likes) : []
   console.log('[Blogs Component] Sorted blogs:', sortedBlogs)
+
 
   return (
     <div>

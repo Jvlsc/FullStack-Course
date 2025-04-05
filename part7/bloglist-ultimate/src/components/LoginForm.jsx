@@ -26,9 +26,10 @@ const Login = () => {
   const newAnecdoteMutation = useMutation({
     mutationFn: loginService.login,
     onSuccess: (newUser) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] })
+      queryClient.setQueryData(['user'], newUser)
       console.log('[Login] User logged in:', newUser.username)
       userService.setUser(newUser)
-      queryClient.setQueryData(['user'], newUser)
       dispatch(showNotification(`User "${newUser.username}" logged in`, 'success'))
     },
     onError: (error) => {

@@ -9,7 +9,7 @@ const getToken = () => {
   const userJSON = window.localStorage.getItem('login')
   if (userJSON) {
     const user = JSON.parse(userJSON)
-    return user.token
+    return `Bearer ${user.token}`
   }
   return null
 }
@@ -46,5 +46,15 @@ const remove = async (id) => {
   return response.data
 }
 
+// Fix Populate Mismatch:
+const fixPopulateMismatch = (blog) => {
+  const user = JSON.parse(window.localStorage.getItem('login'))
+  if (!user) return blog
+  return {
+    ...blog,
+    user: { id: blog.user, name: user.name, username: user.username },
+  }
+}
+
 // Export Blogs Service:
-export default { getAll, create, update, remove }
+export default { getAll, create, update, remove, fixPopulateMismatch }
