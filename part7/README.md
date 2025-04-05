@@ -89,10 +89,21 @@ In [this chapter](https://fullstackopen.com/en/part7/exercises_extending_the_blo
 
 ### Exercises (State Management - Redux):
 
-- **[Exercise 7.10]()**: Redux (Step 1).
-- **[Exercise 7.11]()**: Redux (Step 2).
-- **[Exercise 7.12]()**: Redux (Step 3).
-- **[Exercise 7.13]()**: Redux (Step 4).
+- **[Exercise 7.10](https://github.com/Jvlsc/FullStack-Course/blob/c8541026e420e9f582a57ac0dad9fdd74bb08c51/part7/bloglist-ultimate/src/reducers/notificationReducer.js)**: Redux (Step 1).
+- **[Exercise 7.11](https://github.com/Jvlsc/FullStack-Course/blob/c8541026e420e9f582a57ac0dad9fdd74bb08c51/part7/bloglist-ultimate/src/reducers/blogsReducer.js)**: Redux (Step 2).
+- **[Exercise 7.12](https://github.com/Jvlsc/FullStack-Course/blob/c8541026e420e9f582a57ac0dad9fdd74bb08c51/part7/bloglist-ultimate/src/reducers/blogsReducer.js)**: Redux (Step 3).
+- **[Exercise 7.13](https://github.com/Jvlsc/FullStack-Course/blob/c8541026e420e9f582a57ac0dad9fdd74bb08c51/part7/bloglist-ultimate/src/reducers/sessionReducer.js)**: Redux (Step 4).
+
+***Note: Check branch `part7-redux` for the solution of the exercises.***
+
+### Exercises (State Management - React Query):
+
+- **[Exercise 7.10](https://github.com/Jvlsc/FullStack-Course/blob/20c00ea818ef4e4cb7bcfbadda7fdff9127b5d74/part7/bloglist-ultimate/src/contexts/NotificationContext.jsx)**: React Query (Step 1).
+- **[Exercise 7.11](https://github.com/Jvlsc/FullStack-Course/blob/20c00ea818ef4e4cb7bcfbadda7fdff9127b5d74/part7/bloglist-ultimate/src/components/BlogForm.jsx)**: React Query (Step 2).
+- **[Exercise 7.12](https://github.com/Jvlsc/FullStack-Course/blob/20c00ea818ef4e4cb7bcfbadda7fdff9127b5d74/part7/bloglist-ultimate/src/components/Blogs.jsx)**: React Query (Step 3).
+- **[Exercise 7.13](https://github.com/Jvlsc/FullStack-Course/blob/20c00ea818ef4e4cb7bcfbadda7fdff9127b5d74/part7/bloglist-ultimate/src/contexts/SessionContext.jsx)**: React Query (Step 4).
+
+***Note: Check branch `part7-query` for the solution of the exercises.***
 
 ### Exercises (Views):
 
