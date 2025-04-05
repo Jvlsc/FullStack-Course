@@ -1,55 +1,30 @@
-import React from 'react'
-import { render } from '@testing-library/react'
-import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { NotificationContextProvider } from '../src/contexts/NotificationContext'
 import PropTypes from 'prop-types'
 
-// Test Data:
-export const blogs = [
-  {
-    title: 'Test Blog Title',
-    author: 'Test Author',
-    url: 'http://testurl.com',
-    likes: 5,
-    id: '123',
-    user: {
-      id: '123',
-      name: 'Test User',
-      username: 'testuser',
+// Create a new QueryClient instance for testing
+const createTestQueryClient = () => new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
     },
   },
-]
+})
 
-// Create a mock store that will be used in tests
-export function renderWithProviders(
-  ui,
-  {
-    preloadedState = {},
-    // Create a mock store with any reducers needed
-    store = configureStore({
-      reducer: {
-        blogs: (state = preloadedState.blogs || [], action) => state,
-        notification: (state = preloadedState.notification || {}, action) => state,
-        session: (state = preloadedState.session || {}, action) => state,
-      },
-      preloadedState,
-    }),
-    ...renderOptions
-  } = {}
-) {
-  // Create wrapper with mock store
-  function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>
-  }
+// Wrapper component that provides all necessary context providers
+export const TestWrapper = ({ children }) => {
+  const testQueryClient = createTestQueryClient()
 
-  // Add PropTypes to fix linter error
-  Wrapper.propTypes = {
-    children: PropTypes.node.isRequired,
-  }
-
-  // Return render result plus the store for assertions/updates
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+  return (
+    <QueryClientProvider client={testQueryClient}>
+      <NotificationContextProvider>
+        {children}
+      </NotificationContextProvider>
+    </QueryClientProvider>
+  )
 }
 
-// Export test data
-export default { blogs }
+TestWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
