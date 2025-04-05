@@ -1,23 +1,21 @@
 // Import React Hooks:
 import { useState } from 'react'
 
-// Import Redux and Tanstack Hooks:
-import { useDispatch } from 'react-redux'
+// Import Tanstack Hooks:
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
-// Import Reducer Functions:
-import { voteBlog, deleteBlog } from '../reducers/blogsReducer'
-import { showNotification } from '../reducers/notificationReducer'
+// Import Notification Context:
+import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // Import Services:
-import blogService from '../services/blogs'
+import blogService from '../services/blogsService'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
 // Blog Details Body Component:
 const BlogDetailsBody = ({ blog, toggleVisibility }) => {
-  const dispatch = useDispatch()
+  const dispatch = useNotificationDispatch()
 
   const queryClient = useQueryClient()
 
@@ -30,11 +28,11 @@ const BlogDetailsBody = ({ blog, toggleVisibility }) => {
       queryClient.setQueryData(['blogs'], (blogs) =>
         blogs.map((blog) => (blog.id === updatedBlog.id ? fixedBlog : blog))
       )
-      dispatch(showNotification(`Blog '${fixedBlog.title}' updated successfully!`, 'success'))
+      dispatch(`Blog '${fixedBlog.title}' updated successfully!`, 'success')
     },
     onError: (error) => {
       console.error('[BlogDetailsBody] Error updating blog:', error)
-      dispatch(showNotification(`Error updating blog: ${error.message}`, 'error'))
+      dispatch(`Error updating blog: ${error.message}`, 'error')
     }
   })
 
@@ -46,11 +44,11 @@ const BlogDetailsBody = ({ blog, toggleVisibility }) => {
       queryClient.setQueryData(['blogs'], (blogs) =>
         blogs.filter((blog) => blog.id !== deletedBlog.id)
       )
-      dispatch(showNotification(`Blog '${deletedBlog.title}' deleted successfully!`, 'success'))
+      dispatch(`Blog '${deletedBlog.title}' deleted successfully!`, 'success')
     },
     onError: (error) => {
       console.error('[BlogDetailsBody] Error deleting blog:', error)
-      dispatch(showNotification(`Error deleting blog: ${error.message}`, 'error'))
+      dispatch(`Error deleting blog: ${error.message}`, 'error')
     }
   })
 

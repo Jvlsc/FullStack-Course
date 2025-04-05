@@ -1,13 +1,5 @@
 // Import React Hooks:
-import { useEffect, useRef } from 'react'
-
-// Import Redux and Tanstack Hooks:
-import { useDispatch } from 'react-redux'
-import { useQueryClient, useQuery } from '@tanstack/react-query'
-
-// Import Reducer Functions:
-import { getAllBlogs } from './reducers/blogsReducer'
-import { setSession, clearSession } from './reducers/sessionReducer'
+import { useRef, useEffect } from 'react'
 
 // Import Components:
 import LoginForm from './components/LoginForm'
@@ -17,25 +9,23 @@ import User from './components/User'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 
-// Import Services:
-import userService from './services/userService'
+// Import Contexts:
+import { useSessionUser, useSessionSet, useSessionGet, useSessionClear } from './contexts/SessionContext'
 
 // App Component:
 const App = () => {
-  const { data: user, isLoading, error } = useQuery({
-    queryKey: ['user'],
-    queryFn: userService.getUser
-  })
-
-  if (isLoading) {
-    console.log('[App Component] Loading user...')
-  }
-
-  if (error) {
-    console.error('[App Component] Error loading user:', error)
-  }
+  const user = useSessionUser()
+  const setSession = useSessionSet()
+  const getSession = useSessionGet()
+  const clearSession = useSessionClear()
 
   const blogFormRef = useRef()
+
+  useEffect(() => {
+    const session = getSession()
+    if (session) setSession(session)
+    else clearSession()
+  }, [])
 
   if (user === null || user === undefined) {
     return (

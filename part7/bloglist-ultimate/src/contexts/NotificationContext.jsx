@@ -7,12 +7,12 @@ import PropTypes from 'prop-types'
 // Create a Notification Reducer:
 const notificationReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_NOTIFICATION':
-      return action.payload
-    case 'CLEAR_NOTIFICATION':
-      return null
-    default:
-      return state
+  case 'SET_NOTIFICATION':
+    return action.payload
+  case 'CLEAR_NOTIFICATION':
+    return null
+  default:
+    return state
   }
 }
 
@@ -41,15 +41,6 @@ export const NotificationContextProvider = (props) => {
 
 NotificationContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
-}
-
-// Export Notification Context:
-export const useNotification = () => {
-  const context = useContext(NotificationContext)
-  if (!context) {
-    throw new Error('useNotification must be used within a NotificationProvider')
-  }
-  return context
 }
 
 // Export Notification Value:

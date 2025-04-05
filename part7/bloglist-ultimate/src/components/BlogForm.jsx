@@ -4,15 +4,11 @@ import useField from '../hooks/useField'
 // Import Tanstack Hooks:
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-// Import Redux Hooks:
-import { useDispatch } from 'react-redux'
-
-// Import Reducer Functions:
-import { appendBlog } from '../reducers/blogsReducer'
-import { showNotification } from '../reducers/notificationReducer'
+// Import Notification Context:
+import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // Import Services:
-import blogService from '../services/blogs'
+import blogService from '../services/blogsService'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
@@ -24,7 +20,7 @@ const BlogForm = ({ blogFormRef }) => {
   const url = useField('text')
 
   const queryClient = useQueryClient()
-  const dispatch = useDispatch()
+  const dispatch = useNotificationDispatch()
 
   const createBlogMutation = useMutation({
     mutationFn: (newBlog) => blogService.create(newBlog),
@@ -36,12 +32,12 @@ const BlogForm = ({ blogFormRef }) => {
 
       //blogFormRef.current.toggleVisibility()
       //dispatch(appendBlog(fixedBlog))
-      dispatch(showNotification(`Blog '${fixedBlog.title}' created successfully!`, 'success'))
+      dispatch(`Blog '${fixedBlog.title}' created successfully!`, 'success')
     },
     onError: (exception) => {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
-      dispatch(showNotification(`Blog '${title.value}' creation failed! ${errorMessage}`, 'error'))
+      dispatch(`Blog '${title.value}' creation failed! ${errorMessage}`, 'error')
     }
   })
 

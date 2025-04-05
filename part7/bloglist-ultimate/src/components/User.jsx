@@ -1,36 +1,17 @@
-// Import Redux and Tanstack Hooks:
-import { useDispatch } from 'react-redux'
-import { useQueryClient, useQuery } from '@tanstack/react-query'
-
-// Import Reducer Functions:
-import { showNotification } from '../reducers/notificationReducer'
-
-// Import Services:
-import userService from '../services/userService'
+// Import Contexts:
+import { useSessionUser, useSessionClear } from '../contexts/SessionContext'
+import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // User Component:
 const User = () => {
-  const { data: user, isLoading, error } = useQuery({
-    queryKey: ['user'],
-    queryFn: userService.getUser
-  })
-
-  if (isLoading) {
-    console.log('[User Component] Loading user...')
-  }
-
-  if (error) {
-    console.error('[User Component] Error loading user:', error)
-  }
-
-  const queryClient = useQueryClient()
-  const dispatch = useDispatch()
+  const user = useSessionUser()
+  const clearSessionDispatch = useSessionClear()
+  const notificationDispatch = useNotificationDispatch()
 
   const handleLogout = () => {
     console.log('[User Component] Logging out...')
-    userService.setUser(null)
-    queryClient.setQueryData(['user'], null)
-    dispatch(showNotification('User logged out successfully!', 'success'))
+    clearSessionDispatch()
+    notificationDispatch('User logged out successfully!', 'success')
   }
 
   return (
