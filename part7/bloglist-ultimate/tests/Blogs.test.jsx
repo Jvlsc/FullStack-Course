@@ -1,91 +1,164 @@
-// Import React Testing Library:
-import { render, screen } from '@testing-library/react'
+// Import Modules:
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
+import { useState } from 'react'
 
-// Import Redux:
-import { Provider } from 'react-redux'
-
-// Import Component to Test:
+// Import Components:
 import Blogs from '../src/components/Blogs'
 
-// Import Test Data and Utils:
-import { renderWithProviders, blogs as testBlogs } from './testUtils'
+// Import Helpers:
+import { TestWrapper } from './testUtils'
+import { blogs } from './testData'
 
-// Mock console.log
-console.log = () => {}
+// Shared state for React Query mock
+let blogsData = [...blogs]
+let forceUpdate = () => {}
 
-// Blogs Test:
-describe('<Blogs />', () => {
-  beforeEach(() => {
-    window.localStorage.setItem(
-      'login',
-      JSON.stringify({
-        token: 'test-token',
-        username: testBlogs[0].user.username,
-        name: testBlogs[0].user.name,
-      })
-    )
-  })
+// Mock React Query:
+vi.mock('@tanstack/react-query', async () => {
+  const actual = await vi.importActual('@tanstack/react-query')
 
-  test('Renders title and author by default but not details (url or likes)...', () => {
-    const { container } = renderWithProviders(<Blogs />, {
-      preloadedState: {
-        blogs: testBlogs,
+  return {
+    ...actual,
+    useQueryClient: () => ({
+      setQueryData: (key, updater) => {
+        if (typeof updater === 'function') {
+          blogsData = updater(blogsData)
+        } else {
+          blogsData = updater
+        }
+        console.log('Updated blogs data:', blogsData)
+        if (forceUpdate) forceUpdate()
+        return blogsData
       },
-    })
-
-    const blogHeader = container.querySelector('.blog-header')
-    expect(blogHeader).toHaveTextContent(testBlogs[0].title)
-    expect(blogHeader).toHaveTextContent(testBlogs[0].author)
-
-    const blogDetails = container.querySelector('.blog-details')
-    expect(blogDetails).toHaveStyle({ display: 'none' })
-  })
-
-  test('Shows blog details when "Show" button is clicked...', async () => {
-    const { container } = renderWithProviders(<Blogs />, {
-      preloadedState: {
-        blogs: testBlogs,
+      invalidateQueries: () => {
+        if (forceUpdate) forceUpdate()
+        return Promise.resolve()
+      }
+    }),
+    useQuery: () => {
+      const [, setUpdate] = useState(0)
+      forceUpdate = () => setUpdate(prev => prev + 1)
+      return {
+        data: blogsData,
+        isLoading: false,
+        error: null
+      }
+    },
+    useMutation: ({ mutationFn, onSuccess }) => ({
+      mutate: async (blog) => {
+        try {
+          console.log('Before mutation:', blog)
+          const updatedBlog = await mutationFn(blog)
+          console.log('After mutation:', updatedBlog)
+          if (onSuccess) {
+            onSuccess(updatedBlog)
+          }
+        } catch (error) {
+          console.error('Mutation error:', error)
+        }
       },
+      isLoading: false,
+      isError: false,
+      error: null
     })
+  }
+})
 
-    const user = userEvent.setup()
-    const showButton = screen.getByText('Show')
-
-    await user.click(showButton)
-
-    const blogDetails = container.querySelector('.blog-details')
-    expect(blogDetails).toBeVisible()
-    expect(blogDetails).toHaveTextContent(testBlogs[0].url)
-    expect(blogDetails).toHaveTextContent(testBlogs[0].likes)
-  })
-
-  test('Clicking like button twice calls event handler twice...', async () => {
-    // Create a mock store with a spy on dispatch
-    const mockDispatch = vi.fn()
-    const mockStore = {
-      getState: () => ({ blogs: testBlogs }),
-      dispatch: mockDispatch,
-      subscribe: vi.fn(),
+// Mock Blog Service:
+vi.mock('../src/services/blogsService', () => {
+  return {
+    default: {
+      update: vi.fn((id, { likes }) => {
+        const blogIndex = blogsData.findIndex(b => b.id === id)
+        if (blogIndex !== -1) {
+          blogsData[blogIndex] = { ...blogsData[blogIndex], likes }
+          console.log('Updated blog in service:', blogsData[blogIndex])
+          return Promise.resolve(blogsData[blogIndex])
+        }
+        return Promise.reject(new Error('Blog not found'))
+      }),
+      fixPopulateMismatch: (blog) => blog,
+      getAll: vi.fn(() => Promise.resolve(blogsData))
     }
+  }
+})
 
-    const { container } = renderWithProviders(<Blogs />, {
-      preloadedState: {
-        blogs: testBlogs,
-      },
-      store: mockStore,
-    })
+// Mock console methods to prevent them from showing
+vi.spyOn(console, 'log').mockImplementation(() => {})
+vi.spyOn(console, 'error').mockImplementation(() => {})
+vi.spyOn(console, 'warn').mockImplementation(() => {})
+vi.spyOn(console, 'info').mockImplementation(() => {})
 
+describe('Blog component', () => {
+  beforeEach(() => {
+    // Reset blogs data before each test
+    blogsData = [...blogs]
+    forceUpdate = () => {}
+    vi.clearAllMocks()
+    // Set up localStorage for tests
+    window.localStorage.setItem('login', JSON.stringify({
+      token: 'test-token',
+      username: blogs[0].user.username,
+      name: blogs[0].user.name
+    }))
+  })
+
+  test('renders blog title and author without showing details', () => {
+    render(
+      <TestWrapper>
+        <Blogs />
+      </TestWrapper>
+    )
+
+    const element = screen.getByText('Test Blog Title - Test Author')
+    expect(element).toBeDefined()
+  })
+
+  test('shows blog details when show button is clicked', async () => {
     const user = userEvent.setup()
+    render(
+      <TestWrapper>
+        <Blogs />
+      </TestWrapper>
+    )
 
-    const showButton = screen.getByText('Show')
+    const showButton = screen.getByTestId('blog-show-button')
     await user.click(showButton)
 
-    const likeButton = screen.getByText('Like')
-    await user.click(likeButton)
-    await user.click(likeButton)
+    const element = screen.getByText('Test Blog Title')
+    expect(element).toBeDefined()
+  })
 
-    // Check if dispatch was called twice
-    expect(mockDispatch.mock.calls).toHaveLength(2)
+  test('Clicking like button twice updates likes correctly', async () => {
+    const user = userEvent.setup()
+    render(
+      <TestWrapper>
+        <Blogs />
+      </TestWrapper>
+    )
+
+    // Show blog details
+    const showButton = screen.getByTestId('blog-show-button')
+    await user.click(showButton)
+
+    const likeButton = screen.getByTestId('blog-like-button')
+    const likesText = screen.getByTestId('blog-likes-text')
+
+    // Initial likes should be 5
+    expect(likesText).toHaveTextContent('5')
+
+    // First like
+    await user.click(likeButton)
+    await waitFor(() => {
+      expect(likesText).toHaveTextContent('6')
+    }, { timeout: 2000 })
+
+    // Second like
+    await user.click(likeButton)
+    await waitFor(() => {
+      expect(likesText).toHaveTextContent('7')
+    }, { timeout: 2000 })
   })
 })

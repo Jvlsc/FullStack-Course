@@ -1,25 +1,13 @@
-// Imports React:
-import { useEffect } from 'react'
-
-// Imports Redux Hooks:
-import { useSelector, useDispatch } from 'react-redux'
-
-// Imports Reducer Functions:
-import { hideNotification } from '../reducers/notificationReducer'
+// Import Context Hooks:
+import { useNotificationValue } from '../contexts/NotificationContext'
 
 // Notification Component:
 const Notification = () => {
-  const notification = useSelector((state) => state.notification)
-  const dispatch = useDispatch()
+  const notification = useNotificationValue()
 
-  useEffect(() => {
-    if (notification && Object.keys(notification).length !== 0) {
-      const timer = setTimeout(() => dispatch(hideNotification()), 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [notification, dispatch])
-
-  if (notification === null || notification === '') return null
+  if (notification === null || notification === '') {
+    return null
+  }
 
   return (
     <>

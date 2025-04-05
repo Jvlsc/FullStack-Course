@@ -1,21 +1,65 @@
 // Import React Hooks:
 import { useState } from 'react'
 
-// Import Redux Hooks:
-import { useSelector, useDispatch } from 'react-redux'
+// Import Tanstack Hooks:
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
-// Import Reducer Functions:
-import { voteBlog, deleteBlog } from '../reducers/blogsReducer'
+// Import Context Hooks:
+import { useNotificationDispatch } from '../contexts/NotificationContext'
+
+// Import Services:
+import blogService from '../services/blogsService'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
 // Blog Details Body Component:
 const BlogDetailsBody = ({ blog, toggleVisibility }) => {
-  const dispatch = useDispatch()
+  const notificationDispatch = useNotificationDispatch()
 
-  const handleVote = (blog) => dispatch(voteBlog(blog))
-  const handleDelete = (blog) => dispatch(deleteBlog(blog))
+  const queryClient = useQueryClient()
+
+  const updateBlogMutation = useMutation({
+    mutationFn: (updatedBlog) => blogService.update(updatedBlog.id, { likes: updatedBlog.likes + 1 }),
+    onSuccess: (updatedBlog) => {
+      console.log('[BlogDetailsBody] Blog updated:', updatedBlog)
+      queryClient.invalidateQueries({ queryKey: ['blogs'] })
+      const fixedBlog = blogService.fixPopulateMismatch(updatedBlog)
+      queryClient.setQueryData(['blogs'], (blogs) =>
+        blogs.map((blog) => (blog.id === updatedBlog.id ? fixedBlog : blog))
+      )
+      notificationDispatch(`Blog '${fixedBlog.title}' updated successfully!`, 'success')
+    },
+    onError: (error) => {
+      console.error(`[BlogDetailsBody] Error updating blog: ${error}`)
+      notificationDispatch(`Error updating blog: ${error.message}`, 'error')
+    },
+  })
+
+  const deleteBlogMutation = useMutation({
+    mutationFn: (blog) => blogService.remove(blog.id),
+    onSuccess: (_, deletedBlog) => {
+      console.log('[BlogDetailsBody] Blog deleted:', deletedBlog)
+      queryClient.invalidateQueries({ queryKey: ['blogs'] })
+      queryClient.setQueryData(['blogs'], (blogs) => blogs.filter((blog) => blog.id !== deletedBlog.id))
+      notificationDispatch(`Blog '${deletedBlog.title}' deleted successfully!`, 'success')
+    },
+    onError: (error) => {
+      console.error(`[BlogDetailsBody] Error deleting blog: ${error}`)
+      notificationDispatch(`Error deleting blog: ${error.message}`, 'error')
+    },
+  })
+
+  const handleVote = (blog) => {
+    console.log(`[BlogDetailsBody] Voting for blog: ${blog.title}...`)
+    updateBlogMutation.mutate(blog)
+  }
+
+  const handleDelete = (blog) => {
+    console.log(`[BlogDetailsBody] Deleting blog: ${blog.title}...`)
+    if (!window.confirm(`Are you sure you want to delete "${blog.title}" blog?`)) return
+    deleteBlogMutation.mutate(blog)
+  }
 
   const deleteButtonStyle = {
     backgroundColor: 'red',
@@ -89,10 +133,28 @@ const Blog = ({ blog }) => {
 
 // Blogs Component:
 const Blogs = () => {
-  const blogs = useSelector((state) => state.blogs)
+  // prettier-ignore
+  const { data: blogs, isLoading, error } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => blogService.getAll(),
+    onSuccess: (blogs) => {
+      console.log('[BlogsComponent] Blogs fetched:', blogs)
+    },
+    onError: (error) => {
+      console.error('[BlogsComponent] Error fetching blogs:', error)
+    },
+  })
 
-  const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
-  console.log('[Blogs Component] Sorted blogs:', sortedBlogs)
+  if (isLoading) {
+    return <div>Loading blogs...</div>
+  }
+
+  if (error) {
+    return <div>Error loading blogs: {error.message}</div>
+  }
+
+  const sortedBlogs = blogs ? [...blogs].sort((a, b) => b.likes - a.likes) : []
+  console.log('[BlogsComponent] Sorted blogs:', sortedBlogs)
 
   return (
     <div>

@@ -1,12 +1,5 @@
 // Import React Hooks:
-import { useEffect, useRef } from 'react'
-
-// Import Redux Hooks:
-import { useSelector, useDispatch } from 'react-redux'
-
-// Import Reducer Functions:
-import { getAllBlogs } from './reducers/blogsReducer'
-import { setSession, clearSession } from './reducers/sessionReducer'
+import { useRef, useEffect } from 'react'
 
 // Import Components:
 import LoginForm from './components/LoginForm'
@@ -16,30 +9,34 @@ import User from './components/User'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 
-// Import Services:
-import blogService from './services/blogs'
+// Import Contexts Hooks:
+import {
+  useSessionUser,
+  useSessionSetDispatch,
+  useSessionGetDispatch,
+  useSessionClearDispatch,
+} from './contexts/SessionContext'
 
 // App Component:
 const App = () => {
-  const user = useSelector((state) => state.session.username)
-  const dispatch = useDispatch()
+  const user = useSessionUser()
+  const setSessionDispatch = useSessionSetDispatch()
+  const getSessionDispatch = useSessionGetDispatch()
+  const clearSessionDispatch = useSessionClearDispatch()
 
   const blogFormRef = useRef()
 
   useEffect(() => {
-    console.log('[App Component] Checking user session...')
-    const userJSON = window.localStorage.getItem('login')
-    if (userJSON) {
-      const user = JSON.parse(userJSON)
-      console.log('[App Component] User session found:', user.username)
-      blogService.setToken(user.token)
-      dispatch(setSession(user))
-      dispatch(getAllBlogs())
+    console.log('[AppComponent] Checking Session Status...')
+    const session = getSessionDispatch()
+    if (session) {
+      console.log('[AppComponent] Session Active')
+      setSessionDispatch(session)
     } else {
-      console.log('[App Component] No user session found.')
-      dispatch(clearSession())
+      console.log('[AppComponent] Session Inactive')
+      clearSessionDispatch()
     }
-  }, [user, dispatch])
+  }, [])
 
   if (user === null || user === undefined) {
     return (

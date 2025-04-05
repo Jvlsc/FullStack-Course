@@ -1,20 +1,23 @@
-// Import Redux Hooks:
-import { useSelector, useDispatch } from 'react-redux'
-
-// Import Reducer Functions:
-import { logout } from '../reducers/sessionReducer'
+// Import Contexts Hooks:
+import { useSessionUser, useSessionClearDispatch } from '../contexts/SessionContext'
+import { useNotificationDispatch } from '../contexts/NotificationContext'
 
 // User Component:
 const User = () => {
-  const user = useSelector((state) => state.session.username)
-  const dispatch = useDispatch()
+  const user = useSessionUser()
+  const clearSessionDispatch = useSessionClearDispatch()
+  const notificationDispatch = useNotificationDispatch()
 
-  const handleLogout = () => dispatch(logout())
+  const handleLogout = () => {
+    console.log('[UserComponent] Logging out...')
+    clearSessionDispatch()
+    notificationDispatch('User logged out successfully!', 'success')
+  }
 
   return (
     <div>
       <p>
-        {user} logged in &nbsp;
+        {user?.username} logged in &nbsp;
         <button data-testid="logout-button" onClick={handleLogout}>
           Logout
         </button>
