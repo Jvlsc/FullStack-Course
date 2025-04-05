@@ -1,6 +1,9 @@
 // Import React Query:
 import { useQuery } from '@tanstack/react-query'
 
+// Import React Router:
+import { Link } from 'react-router-dom'
+
 // Import Users Service:
 import usersService from '../services/usersService'
 
@@ -20,7 +23,7 @@ const Users = () => {
   }
 
   return (
-    <div>
+    <>
       <h3>Users</h3>
       <table>
         <thead>
@@ -33,14 +36,14 @@ const Users = () => {
         <tbody>
           {users.map(user => (
             <tr key={user.id}>
-              <td>{user.name}</td>
+              <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
               <td>{user.username}</td>
               <td>{user.blogs ? user.blogs.length : 0}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </>
   )
 }
 

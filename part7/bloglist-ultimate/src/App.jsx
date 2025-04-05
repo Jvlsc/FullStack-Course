@@ -5,10 +5,11 @@ import { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 // Import Components:
-import Home from './components/Home'
+import HomeView from './components/HomeView'
 import LoginForm from './components/LoginForm'
 import User from './components/User'
-import Users from './components/Users'
+import UsersView from './components/UsersView'
+import UserView from './components/UserView'
 import Notification from './components/Notification'
 
 // Import Contexts Hooks:
@@ -55,8 +56,9 @@ const App = () => {
       <User />
       <br />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<HomeView />} />
+        <Route path="/users" element={<UsersView />} />
+        <Route path="/users/:id" element={<UserView />} />
       </Routes>
     </div>
   )
