@@ -15,7 +15,7 @@ import PropTypes from 'prop-types'
 
 // Blog Details Body Component:
 const BlogDetailsBody = ({ blog, toggleVisibility }) => {
-  const dispatch = useNotificationDispatch()
+  const notificationDispatch = useNotificationDispatch()
 
   const queryClient = useQueryClient()
 
@@ -28,11 +28,11 @@ const BlogDetailsBody = ({ blog, toggleVisibility }) => {
       queryClient.setQueryData(['blogs'], (blogs) =>
         blogs.map((blog) => (blog.id === updatedBlog.id ? fixedBlog : blog))
       )
-      dispatch(`Blog '${fixedBlog.title}' updated successfully!`, 'success')
+      notificationDispatch(`Blog '${fixedBlog.title}' updated successfully!`, 'success')
     },
     onError: (error) => {
-      console.error('[BlogDetailsBody] Error updating blog:', error)
-      dispatch(`Error updating blog: ${error.message}`, 'error')
+      console.error(`[BlogDetailsBody] Error updating blog: ${error}`)
+      notificationDispatch(`Error updating blog: ${error.message}`, 'error')
     },
   })
 
@@ -42,16 +42,21 @@ const BlogDetailsBody = ({ blog, toggleVisibility }) => {
       console.log('[BlogDetailsBody] Blog deleted:', deletedBlog)
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
       queryClient.setQueryData(['blogs'], (blogs) => blogs.filter((blog) => blog.id !== deletedBlog.id))
-      dispatch(`Blog '${deletedBlog.title}' deleted successfully!`, 'success')
+      notificationDispatch(`Blog '${deletedBlog.title}' deleted successfully!`, 'success')
     },
     onError: (error) => {
-      console.error('[BlogDetailsBody] Error deleting blog:', error)
-      dispatch(`Error deleting blog: ${error.message}`, 'error')
+      console.error(`[BlogDetailsBody] Error deleting blog: ${error}`)
+      notificationDispatch(`Error deleting blog: ${error.message}`, 'error')
     },
   })
 
-  const handleVote = (blog) => updateBlogMutation.mutate(blog)
+  const handleVote = (blog) => {
+    console.log(`[BlogDetailsBody] Voting for blog: ${blog.title}...`)
+    updateBlogMutation.mutate(blog)
+  }
+
   const handleDelete = (blog) => {
+    console.log(`[BlogDetailsBody] Deleting blog: ${blog.title}...`)
     if (!window.confirm(`Are you sure you want to delete "${blog.title}" blog?`)) return
     deleteBlogMutation.mutate(blog)
   }
@@ -133,10 +138,10 @@ const Blogs = () => {
     queryKey: ['blogs'],
     queryFn: () => blogService.getAll(),
     onSuccess: (blogs) => {
-      console.log('[Blogs Component] Blogs fetched:', blogs)
+      console.log('[BlogsComponent] Blogs fetched:', blogs)
     },
     onError: (error) => {
-      console.error('[Blogs Component] Error fetching blogs:', error)
+      console.error('[BlogsComponent] Error fetching blogs:', error)
     },
   })
 
@@ -148,9 +153,8 @@ const Blogs = () => {
     return <div>Error loading blogs: {error.message}</div>
   }
 
-  // Solo ordenamos los blogs si tenemos datos
   const sortedBlogs = blogs ? [...blogs].sort((a, b) => b.likes - a.likes) : []
-  console.log('[Blogs Component] Sorted blogs:', sortedBlogs)
+  console.log('[BlogsComponent] Sorted blogs:', sortedBlogs)
 
   return (
     <div>
