@@ -3,10 +3,11 @@ import { useState } from 'react'
 
 // Import Redux and Tanstack Hooks:
 import { useDispatch } from 'react-redux'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
 // Import Reducer Functions:
 import { voteBlog, deleteBlog } from '../reducers/blogsReducer'
+import { showNotification } from '../reducers/notificationReducer'
 
 // Import Services:
 import blogService from '../services/blogs'
@@ -18,8 +19,46 @@ import PropTypes from 'prop-types'
 const BlogDetailsBody = ({ blog, toggleVisibility }) => {
   const dispatch = useDispatch()
 
-  const handleVote = (blog) => dispatch(voteBlog(blog))
-  const handleDelete = (blog) => dispatch(deleteBlog(blog))
+  const queryClient = useQueryClient()
+
+  const updateBlogMutation = useMutation({
+    mutationFn: (updatedBlog) => blogService.update(updatedBlog.id, { likes: updatedBlog.likes + 1 }),
+    onSuccess: (updatedBlog) => {
+      console.log('[BlogDetailsBody] Blog updated:', updatedBlog)
+      queryClient.invalidateQueries({ queryKey: ['blogs'] })
+      const fixedBlog = blogService.fixPopulateMismatch(updatedBlog)
+      queryClient.setQueryData(['blogs'], (blogs) =>
+        blogs.map((blog) => (blog.id === updatedBlog.id ? fixedBlog : blog))
+      )
+      dispatch(showNotification(`Blog '${fixedBlog.title}' updated successfully!`, 'success'))
+    },
+    onError: (error) => {
+      console.error('[BlogDetailsBody] Error updating blog:', error)
+      dispatch(showNotification(`Error updating blog: ${error.message}`, 'error'))
+    }
+  })
+
+  const deleteBlogMutation = useMutation({
+    mutationFn: (blog) => blogService.remove(blog.id),
+    onSuccess: (_, deletedBlog) => {
+      console.log('[BlogDetailsBody] Blog deleted:', deletedBlog)
+      queryClient.invalidateQueries({ queryKey: ['blogs'] })
+      queryClient.setQueryData(['blogs'], (blogs) =>
+        blogs.filter((blog) => blog.id !== deletedBlog.id)
+      )
+      dispatch(showNotification(`Blog '${deletedBlog.title}' deleted successfully!`, 'success'))
+    },
+    onError: (error) => {
+      console.error('[BlogDetailsBody] Error deleting blog:', error)
+      dispatch(showNotification(`Error deleting blog: ${error.message}`, 'error'))
+    }
+  })
+
+  const handleVote = (blog) => updateBlogMutation.mutate(blog)
+  const handleDelete = (blog) => {
+    if (!window.confirm(`Are you sure you want to delete "${blog.title}" blog?`)) return
+    deleteBlogMutation.mutate(blog)
+  }
 
   const deleteButtonStyle = {
     backgroundColor: 'red',
