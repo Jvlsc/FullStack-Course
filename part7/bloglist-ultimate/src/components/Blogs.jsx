@@ -50,7 +50,6 @@ const Blogs = () => {
 
   return (
     <div>
-      <h3>List of Blogs:</h3>
       <ul>
         {sortedBlogs.map((blog) => (
           <Blog key={blog.id} blog={blog} />

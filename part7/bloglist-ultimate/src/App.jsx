@@ -15,6 +15,7 @@ import Navigation from './components/Navigation'
 import UserView from './components/UserView'
 import UsersView from './components/UsersView'
 import Notification from './components/Notification'
+import Footer from './components/Footer'
 
 // Import Contexts Hooks:
 import {
@@ -48,20 +49,20 @@ const App = () => {
   }
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Navigation />
-      <Container>
-        <h2>Blogs:</h2>
+      <Container className="main-content">
         <Notification />
-        <br />
         <Routes>
           <Route path="/" element={<HomeView />} />
-          <Route path="/users" element={<UsersView />} />
+          <Route path="/login" element={<LoginView />} />
           <Route path="/users/:id" element={<UserView />} />
+          <Route path="/users" element={<UsersView />} />
           <Route path="/blogs/:id" element={<BlogView />} />
         </Routes>
       </Container>
-    </>
+      <Footer />
+    </div>
   )
 }
 

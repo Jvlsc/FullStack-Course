@@ -83,3 +83,17 @@
   margin-top: 1.5rem;
   border-radius: 8px;
 }
+
+/* Footer Styles */
+.footer {
+  border-top: 1px solid #dee2e6;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+
+/* Main Content Styles */
+.main-content {
+  min-height: calc(100vh - 160px);
+  padding-bottom: 30px;
+}
