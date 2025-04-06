@@ -52,8 +52,8 @@ const User = () => {
       <Row>
         <Col md={6} className="mb-3">
           <Card className="shadow-sm h-100">
-            <Card.Header as="h4" className="bg-light">User Information:</Card.Header>
             <Card.Body>
+              <h4 className="blog-form-title">User Information:</h4>
               <ListGroup variant="flush">
                 <ListGroup.Item className="d-flex justify-content-between align-items-center">
                   <strong>Name:</strong>
@@ -69,8 +69,8 @@ const User = () => {
         </Col>
         <Col md={6} className="mb-3">
           <Card className="shadow-sm h-100">
-            <Card.Header as="h4" className="bg-light">Added Blogs:</Card.Header>
             <Card.Body>
+              <h4 className="blog-form-title">Added Blogs:</h4>
               {user.blogs.length > 0 ? (
                 <ListGroup variant="flush">
                   {user.blogs.map(blog => (

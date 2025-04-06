@@ -44,29 +44,32 @@ const Users = () => {
   }
 
   return (
-    <Card className="shadow-sm">
-      <Card.Header as="h2" className="bg-light">Users:</Card.Header>
-      <Card.Body>
-        <Table striped hover responsive>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Blogs Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(user => (
-              <tr key={user.id}>
-                <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
-                <td>{user.username}</td>
-                <td>{user.blogs ? user.blogs.length : 0}</td>
+    <>
+      <h2>Users List:</h2>
+      <br />
+      <Card className="shadow-sm">
+        <Card.Body>
+          <Table striped hover responsive>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Blogs Created</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Card.Body>
-    </Card>
+            </thead>
+            <tbody>
+              {users.map(user => (
+                <tr key={user.id}>
+                  <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
+                  <td>{user.username}</td>
+                  <td>{user.blogs ? user.blogs.length : 0}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Card.Body>
+      </Card>
+    </>
   )
 }
 
