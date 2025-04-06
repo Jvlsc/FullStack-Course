@@ -52,9 +52,23 @@ const App = () => {
 
   return (
     <div>
+      <nav className='nav-bar'>
+        <div className='nav-block-left'>
+          <div className='nav-item'>
+            <Link to="/">Home</Link>
+          </div>
+          <div className='nav-item'>
+            <Link to="/users">Users</Link>
+          </div>
+        </div>
+        <div className='nav-block-right'>
+          <div className='nav-item'>
+            <User />
+          </div>
+        </div>
+      </nav>
       <h2>Blogs:</h2>
       <Notification />
-      <User />
       <br />
       <Routes>
         <Route path="/" element={<HomeView />} />

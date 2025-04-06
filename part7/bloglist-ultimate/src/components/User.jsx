@@ -15,14 +15,12 @@ const User = () => {
   }
 
   return (
-    <div>
-      <p>
-        {user?.username} logged in &nbsp;
-        <button data-testid="logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-      </p>
-    </div>
+    <>
+      {user?.username} logged in &nbsp;
+      <button data-testid="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
+    </>
   )
 }
 
