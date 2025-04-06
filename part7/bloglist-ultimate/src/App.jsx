@@ -10,7 +10,7 @@ import { Container } from 'react-bootstrap'
 // Import Components:
 import BlogView from './components/BlogView'
 import HomeView from './components/HomeView'
-import LoginForm from './components/LoginForm'
+import LoginView from './components/LoginView'
 import Navigation from './components/Navigation'
 import UserView from './components/UserView'
 import UsersView from './components/UsersView'
@@ -44,13 +44,7 @@ const App = () => {
   }, [])
 
   if (user === null || user === undefined) {
-    return (
-      <Container fluid>
-        <h2>Login:</h2>
-        <Notification />
-        <LoginForm />
-      </Container>
-    )
+    return <LoginView />
   }
 
   return (
