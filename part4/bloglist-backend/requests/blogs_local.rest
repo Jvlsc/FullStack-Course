@@ -50,12 +50,21 @@ Content-Type: application/json
 }
 
 
-### [PUT] - Update a Blog:
-PUT http://localhost:3003/api/blogs/67e6c772892b9d5da14c9fbf
+### [POST] - Create a New Comment:
+POST http://localhost:3003/api/blogs/67ebfed30456bd2d06a3f358/comments
 Content-Type: application/json
 
 {
-    "likes": 102
+    "content": "This is a new comment"
+}
+
+
+### [PUT] - Update a Blog:
+PUT http://localhost:3003/api/blogs/67ebfed30456bd2d06a3f354
+Content-Type: application/json
+
+{
+    "likes": 15
 }
 
 

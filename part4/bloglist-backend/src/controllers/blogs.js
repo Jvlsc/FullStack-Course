@@ -79,11 +79,10 @@ blogRouter.put('/:id', async (request, response) => {
       { $set: { likes: request.body.likes } },
       { new: true, runValidators: true, context: 'query' })
 
-  await updatedBlog.populate('user', { username: 1, name: 1 })
-
   if (!updatedBlog) {
     response.status(404).json({ error: 'Blog Not Found' })
   } else {
+    await updatedBlog.populate('user', { username: 1, name: 1 })
     response.json(updatedBlog)
   }
 })
@@ -101,6 +100,9 @@ blogRouter.delete('/:id', userExtractor, async (request, response) => {
   }
 
   const deletedBlog = await Blog.findByIdAndDelete(request.params.id)
+
+  user.blogs = user.blogs.filter(blog => blog.toString() !== request.params.id)
+  await user.save()
 
   if (!deletedBlog) {
     response.status(404).json({ error: 'Blog Not Found' })

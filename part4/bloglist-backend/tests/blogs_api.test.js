@@ -18,6 +18,7 @@ describe('TESTS - Blogs HTTP API:', () => {
   // Before Each Test:
   beforeEach(async () => {
     await helper.cleanAndPopulateBlogsDB()
+    await helper.cleanAndPopulateUsersDB()
   })
 
   // [GET] Route Tests (All Blogs):
@@ -182,6 +183,58 @@ describe('TESTS - Blogs HTTP API:', () => {
     })
   })
 
+  // [POST] Route Tests (Create a new Comment):
+  describe('[POST /api/blogs/:id/comments] - Create a new Comment:', () => {
+    test('A new comment can be added and response is correct...', async () => {
+      const newComment = {
+        content: 'This is a new comment'
+      }
+
+      await api.post(`/api/blogs/${helper.blogs[0]._id}/comments`)
+        .send(newComment)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+    })
+
+    test('A new comment can be added correctly...', async () => {
+      const newComment = {
+        content: 'This is a new comment'
+      }
+
+      await api.post(`/api/blogs/${helper.blogs[helper.blogs.length - 1]._id}/comments`)
+        .send(newComment)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+      const blogsInDb = await helper.blogsInDb()
+
+      assert.strictEqual(blogsInDb[blogsInDb.length - 1].comments.length, 1)
+      assert.strictEqual(blogsInDb[blogsInDb.length - 1].comments[0].content, newComment.content)
+    })
+
+    test('Fails with status code 400 if comment content is missing...', async () => {
+      const newComment = {
+        content: ''
+      }
+
+      await api.post(`/api/blogs/${helper.blogs[0]._id}/comments`)
+        .send(newComment)
+        .expect(400)
+    })
+
+    test('Fails with status code 404 if blog does not exist...', async () => {
+      const newComment = {
+        content: 'This is a new comment'
+      }
+
+      const nonExistingBlogId = await helper.nonExistingBlogId()
+
+      await api.post(`/api/blogs/${nonExistingBlogId}/comments`)
+        .send(newComment)
+        .expect(404)
+    })
+  })
+
   // [PUT] Route Tests (Update a blog):
   describe('[PUT /api/blogs/:id] - Update a blog:', () => {
     test('A blog can be updated and response is correct...', async () => {
@@ -291,6 +344,22 @@ describe('TESTS - Blogs HTTP API:', () => {
         .set('Authorization', `Bearer ${token}`)
         .expect(404)
         .expect('Content-Type', /application\/json/)
+    })
+
+    test('Check if blog is deleted from user blogs array...', async () => {
+      const token = await helper.getToken()
+      const blogsInDb = await helper.blogsInDb()
+      const blogToDelete = blogsInDb[0]
+
+      await api
+        .delete(`/api/blogs/${blogToDelete.id}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(204)
+
+      const usersInDb = await helper.usersInDb()
+      const user = usersInDb.find(user => user.id === blogToDelete.user.toString())
+
+      assert.ok(!user.blogs.includes(blogToDelete.id.toString()))
     })
   })
 

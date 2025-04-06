@@ -125,17 +125,7 @@ const blogs = [
     url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html',
     likes: 12,
     user: '5a422a851b54a676234d17f8',
-    comments: [
-      {
-        content: 'The comparison between static and dynamic typing is spot on.',
-      },
-      {
-        content: 'I wish there were more real-world examples.',
-      },
-      {
-        content: 'This helped me understand the trade-offs better.',
-      },
-    ],
+    comments: [],
     __v: 0,
   },
 ]
@@ -147,7 +137,13 @@ const users = [
     username: 'root',
     name: 'Root User',
     passwordHash: '$2b$10$hEgfAhfxxcblC0WpShYUBupgppJH2y5yCzv.NDhtt9cytUVuiqTCa',
-    blogs: [],
+    blogs: [
+      '5a422a851b54a676234d17f7',
+      '5a422b3a1b54a676234d17f9',
+      '5a422b891b54a676234d17fa',
+      '5a422ba71b54a676234d17fb',
+      '5a422bc61b54a676234d17fc',
+    ],
     __v: 0,
   },
   {
@@ -155,7 +151,9 @@ const users = [
     username: 'testuser',
     name: 'Test User',
     passwordHash: '$2b$10$hEgfAhfxxcblC0WpShYUBupgppJH2y5yCzv.NDhtt9cytUVuiqTCa',
-    blogs: [],
+    blogs: [
+      '5a422aa71b54a676234d17f8',
+    ],
     __v: 0,
   },
 ]
