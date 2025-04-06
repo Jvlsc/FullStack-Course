@@ -19,6 +19,20 @@ const blogs = [
     url: 'https://reactpatterns.com/',
     likes: 7,
     user: '5a422a851b54a676234d17f8',
+    comments: [
+      {
+        content: 'This is a great blog post!',
+      },
+      {
+        content: 'I learned a lot from this post.',
+      },
+      {
+        content: 'Super interesting!',
+      },
+      {
+        content: 'Could use more examples, but overall very informative.',
+      },
+    ],
     __v: 0,
   },
   {
@@ -28,6 +42,20 @@ const blogs = [
     url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
     likes: 5,
     user: '5a422a851b54a676234d17f7',
+    comments: [
+      {
+        content: 'I don\'t like this post.',
+      },
+      {
+        content: 'This is a classic paper that changed programming forever.',
+      },
+      {
+        content: 'A bit hard to understand for beginners, but worth the effort.',
+      },
+      {
+        content: 'The arguments presented here are still relevant today.',
+      },
+    ],
     __v: 0,
   },
   {
@@ -37,6 +65,17 @@ const blogs = [
     url: 'http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html',
     likes: 12,
     user: '5a422a851b54a676234d17f8',
+    comments: [
+      {
+        content: 'The mathematical approach is fascinating.',
+      },
+      {
+        content: 'I would love to see more practical applications.',
+      },
+      {
+        content: 'A bit too theoretical for my taste.',
+      },
+    ],
     __v: 0,
   },
   {
@@ -46,6 +85,17 @@ const blogs = [
     url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
     likes: 10,
     user: '5a422a851b54a676234d17f7',
+    comments: [
+      {
+        content: 'Uncle Bob always delivers great insights about testing.',
+      },
+      {
+        content: 'I disagree with some points, but it\'s thought-provoking.',
+      },
+      {
+        content: 'The examples really helped me understand the concept.',
+      },
+    ],
     __v: 0,
   },
   {
@@ -55,6 +105,17 @@ const blogs = [
     url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
     likes: 0,
     user: '5a422a851b54a676234d17f8',
+    comments: [
+      {
+        content: 'I strongly disagree with the main argument.',
+      },
+      {
+        content: 'Interesting perspective, but I think TDD is still valuable.',
+      },
+      {
+        content: 'The examples don\'t really support the conclusion.',
+      },
+    ],
     __v: 0,
   },
   {
@@ -64,6 +125,17 @@ const blogs = [
     url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html',
     likes: 12,
     user: '5a422a851b54a676234d17f8',
+    comments: [
+      {
+        content: 'The comparison between static and dynamic typing is spot on.',
+      },
+      {
+        content: 'I wish there were more real-world examples.',
+      },
+      {
+        content: 'This helped me understand the trade-offs better.',
+      },
+    ],
     __v: 0,
   },
 ]

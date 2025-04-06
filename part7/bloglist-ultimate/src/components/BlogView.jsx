@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Import React Router:
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // Import Blog Service:
 import blogService from '../services/blogsService'
@@ -10,17 +10,19 @@ import blogService from '../services/blogsService'
 // Import Components:
 import LikeBlog from './LikeBlog'
 import DeleteBlog from './DeleteBlog'
-
+import Comments from './Comments'
 // Blog View Component:
 const BlogView = () => {
   const { id } = useParams()
-
-  const navigate = useNavigate()
 
   const { data: blog, isLoading, isError, error } = useQuery({
     queryKey: ['blogs', id],
     queryFn: () => blogService.getById(id),
   })
+
+  const commentStyle = {
+    marginBottom: '0.5rem',
+  }
 
   if (isLoading) {
     return <div>Loading blog...</div>
@@ -39,6 +41,8 @@ const BlogView = () => {
       {blog.user.username === JSON.parse(window.localStorage.getItem('login')).username ? (
         <DeleteBlog blog={blog} />
       ) : null}
+      <br />
+      <Comments blog={blog} />
     </div>
   )
 }

@@ -14,6 +14,10 @@ const blogSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: config.MONGODB_USERS_MODEL,
     required: true
+  },
+  comments: {
+    type: [mongoose.Schema.Types.Mixed],
+    default: []
   }
 }, {
   collection: config.MONGODB_BLOGS_COLLECTION,
