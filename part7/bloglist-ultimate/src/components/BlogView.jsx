@@ -20,10 +20,6 @@ const BlogView = () => {
   const { data: blog, isLoading, isError, error } = useQuery({
     queryKey: ['blogs', id],
     queryFn: () => blogService.getById(id),
-    onError: (error) => {
-      console.error(`[BlogViewComponent] Error loading blog: ${error}`)
-      navigate('/')
-    },
   })
 
   if (isLoading) {
