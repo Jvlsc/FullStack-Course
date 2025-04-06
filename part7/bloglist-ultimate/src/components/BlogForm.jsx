@@ -29,11 +29,9 @@ const BlogForm = ({ blogFormRef }) => {
     mutationFn: (newBlog) => blogService.create(newBlog),
     onSuccess: (createdBlog) => {
       console.log('[BlogFormComponent] Blog created:', createdBlog)
-      queryClient.invalidateQueries({ queryKey: ['blogs'] })
-      const fixedBlog = blogService.fixPopulateMismatch(createdBlog)
-      queryClient.setQueryData(['blogs'], (blogs) => [...blogs, fixedBlog])
+      queryClient.setQueryData(['blogs'], (blogs) => [...blogs, createdBlog])
+      notificationDispatch(`Blog '${createdBlog.title}' created successfully!`, 'success')
       blogFormRef.current.toggleVisibility()
-      notificationDispatch(`Blog '${fixedBlog.title}' created successfully!`, 'success')
     },
     onError: (exception) => {
       const errorMessage = exception.response.data.error

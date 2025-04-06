@@ -4,7 +4,23 @@ const mongoose = require('mongoose')
 // Import the Config Module:
 const config = require('../utils/config')
 
-// MongoDB Schema:
+// MongoDB Comment Schema:
+const commentSchema = new mongoose.Schema({
+  content: { type: String, required: true }
+}, {
+  timestamps: true
+})
+
+// Transform the Comment Schema:
+commentSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
+// MongoDB Blog Schema:
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
@@ -16,7 +32,7 @@ const blogSchema = new mongoose.Schema({
     required: true
   },
   comments: {
-    type: [mongoose.Schema.Types.Mixed],
+    type: [commentSchema],
     default: []
   }
 }, {

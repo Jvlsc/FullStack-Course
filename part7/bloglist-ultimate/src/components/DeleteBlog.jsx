@@ -26,7 +26,7 @@ const DeleteBlog = ({ blog }) => {
     mutationFn: (blog) => blogService.remove(blog.id),
     onSuccess: (_, deletedBlog) => {
       console.log('[DeleteBlogComponent] Blog deleted:', deletedBlog)
-      queryClient.setQueryData(['blogs'], (blogs) => blogs?.filter((blog) => blog.id !== deletedBlog.id) || [])
+      queryClient.invalidateQueries({ queryKey: ['blogs', deletedBlog.id] })
       notificationDispatch(`Blog '${deletedBlog.title}' deleted successfully!`, 'success')
       navigate('/')
     },

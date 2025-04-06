@@ -16,7 +16,16 @@ const Users = () => {
 
   const { data: users, isLoading, isError, error } = useQuery({
     queryKey: ['users'],
-    queryFn: usersService.getAll
+    queryFn: usersService.getAll,
+    onSuccess: (users) => {
+      console.log('[UsersViewComponent] Users fetched:', users)
+    },
+    onError: (error) => {
+      console.error('[UsersViewComponent] Error fetching users:', error)
+      if (error.response.status === 401 && error.message === 'Token Expired') {
+        clearSessionDispatch()
+      }
+    },
   })
 
   if (isLoading) {
@@ -24,10 +33,6 @@ const Users = () => {
   }
 
   if (isError) {
-    console.error(`[UsersViewComponent] Error fetching users: ${error}`)
-    if (error.response.status === 401 && error.message === 'Token Expired') {
-      clearSessionDispatch()
-    }
     return <div className="error">Failed to load users: {error.message}</div>
   }
 

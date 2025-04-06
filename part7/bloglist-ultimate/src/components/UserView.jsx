@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Import React Router:
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 // Import Context Hooks:
 import { useSessionClearDispatch } from '../contexts/SessionContext'
@@ -19,6 +19,15 @@ const User = () => {
   const { data: user, isLoading, isError, error } = useQuery({
     queryKey: ['users', id],
     queryFn: () => usersService.getById(id),
+    onSuccess: (user) => {
+      console.log('[UserViewComponent] User fetched:', user)
+    },
+    onError: (error) => {
+      console.error('[UserViewComponent] Error fetching user:', error)
+      if (error.response.status === 401 && error.message === 'Token Expired') {
+        clearSessionDispatch()
+      }
+    },
   })
 
   if (isLoading) {
@@ -26,11 +35,11 @@ const User = () => {
   }
 
   if (isError) {
-    console.error(`[UserViewComponent] Error fetching user: ${error}`)
-    if (error.response.status === 401 && error.message === 'Token Expired') {
-      clearSessionDispatch()
-    }
     return <div className="error">Failed to load user: {error.message}</div>
+  }
+
+  const blogStyle = {
+    marginBottom: '0.5rem',
   }
 
   return (
@@ -39,7 +48,9 @@ const User = () => {
       <h4>Added Blogs</h4>
       <ul>
         {user.blogs.map(blog => (
-          <li key={blog.id}>{blog.title}</li>
+          <li style={blogStyle} key={blog.id}>
+            <Link to={`/blogs/${blog.id}`}>{blog.title} by {blog.author}</Link>
+          </li>
         ))}
       </ul>
     </div>

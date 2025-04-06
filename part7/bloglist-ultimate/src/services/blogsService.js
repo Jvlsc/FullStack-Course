@@ -36,6 +36,12 @@ const create = async (newObject) => {
   return response.data
 }
 
+// [POST] Create Comment:
+const createComment = async (id, comment) => {
+  const response = await axios.post(`${baseUrl}/${id}/comments`, comment)
+  return response.data
+}
+
 // [PUT] Update Blog:
 const update = async (id, newObject) => {
   const response = await axios.put(`${baseUrl}/${id}`, newObject)
@@ -52,15 +58,5 @@ const remove = async (id) => {
   return response.data
 }
 
-// Fix Populate Mismatch:
-const fixPopulateMismatch = (blog) => {
-  const user = JSON.parse(window.localStorage.getItem('login'))
-  if (!user) return blog
-  return {
-    ...blog,
-    user: { id: blog.user, name: user.name, username: user.username },
-  }
-}
-
 // Export Blogs Service:
-export default { getAll, getById, create, update, remove, fixPopulateMismatch }
+export default { getAll, getById, create, createComment, update, remove }

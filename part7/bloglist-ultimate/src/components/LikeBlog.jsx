@@ -21,14 +21,8 @@ const LikeBlog = ({ blog }) => {
     mutationFn: (updatedBlog) => blogService.update(updatedBlog.id, { likes: updatedBlog.likes + 1 }),
     onSuccess: (updatedBlog) => {
       console.log('[LikeComponent] Blog updated:', updatedBlog)
-      queryClient.invalidateQueries({ queryKey: ['blogs'] })
-
-      const fixedBlog = blogService.fixPopulateMismatch(updatedBlog)
-      queryClient.setQueryData(['blogs'], (blogs) =>
-        blogs?.map((blog) => (blog.id === fixedBlog.id ? fixedBlog : blog)) || [fixedBlog]
-      )
-
-      notificationDispatch(`Blog '${fixedBlog.title}' liked successfully!`, 'success')
+      queryClient.setQueryData(['blogs', updatedBlog.id], (blog) => updatedBlog)
+      notificationDispatch(`Blog '${updatedBlog.title}' liked successfully!`, 'success')
     },
     onError: (error) => {
       console.error(`[LikeComponent] Error updating blog: ${error}`)

@@ -1,5 +1,5 @@
 // Imports React Query Hooks:
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
 // Import Contexts:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
@@ -20,13 +20,9 @@ const Login = () => {
   const setSessionDispatch = useSessionSetDispatch()
   const clearSessionDispatch = useSessionClearDispatch()
 
-  const queryClient = useQueryClient()
-
   const newAnecdoteMutation = useMutation({
     mutationFn: loginService.login,
     onSuccess: (newUser) => {
-      queryClient.invalidateQueries({ queryKey: ['user'] })
-      queryClient.setQueryData(['user'], newUser)
       console.log('[LoginFormComponent] User logged in:', newUser.username)
       setSessionDispatch(newUser)
       notificationDispatch(`User "${newUser.username}" logged in`, 'success')

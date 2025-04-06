@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Import React Router:
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 // Import Blog Service:
 import blogService from '../services/blogsService'
@@ -11,6 +11,7 @@ import blogService from '../services/blogsService'
 import LikeBlog from './LikeBlog'
 import DeleteBlog from './DeleteBlog'
 import Comments from './Comments'
+
 // Blog View Component:
 const BlogView = () => {
   const { id } = useParams()
@@ -37,7 +38,7 @@ const BlogView = () => {
       <h2>{blog.title} by {blog.author}</h2>
       <p>URL: <a href={blog.url}>{blog.url}</a></p>
       <LikeBlog blog={blog} />
-      <p>Added by {blog.user.name}</p>
+      <p>Added by <Link to={`/users/${blog.user.id}`}>{blog.user.name}</Link></p>
       {blog.user.username === JSON.parse(window.localStorage.getItem('login')).username ? (
         <DeleteBlog blog={blog} />
       ) : null}

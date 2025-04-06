@@ -49,11 +49,27 @@ blogRouter.post('/', userExtractor, async (request, response) => {
   })
 
   const savedBlog = await blog.save()
+  await savedBlog.populate('user', { username: 1, name: 1 })
 
   user.blogs = user.blogs.concat(savedBlog._id)
   await user.save()
 
   response.status(201).json(savedBlog)
+})
+
+// [POST] Route - Create a New Comment:
+blogRouter.post('/:id/comments', async (request, response) => {
+  const blog = await Blog.findById(request.params.id)
+  if (!blog) return response.status(404).json({ error: 'Blog Not Found' })
+
+  const comment = { content: request.body.content }
+  blog.comments = blog.comments.concat(comment)
+
+  const savedBlog = await blog.save()
+  await savedBlog.populate('user', { username: 1, name: 1 })
+
+  const newComment = savedBlog.comments[savedBlog.comments.length - 1]
+  response.status(201).json(newComment)
 })
 
 // [PUT] Route - Update a Blog:
@@ -62,6 +78,8 @@ blogRouter.put('/:id', async (request, response) => {
     .findByIdAndUpdate(request.params.id,
       { $set: { likes: request.body.likes } },
       { new: true, runValidators: true, context: 'query' })
+
+  await updatedBlog.populate('user', { username: 1, name: 1 })
 
   if (!updatedBlog) {
     response.status(404).json({ error: 'Blog Not Found' })
