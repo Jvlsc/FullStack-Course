@@ -18,6 +18,16 @@
   margin-bottom: 10px;
 }
 
+/* Notification Styles */
+.notification-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Login View Styles */
 .login-container {
   min-height: 100vh;
