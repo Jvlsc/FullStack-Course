@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 // Import Context Hooks:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
+import { useSessionClearDispatch } from '../contexts/SessionContext'
 
 // Import Services:
 import blogService from '../services/blogsService'
@@ -20,6 +21,7 @@ const BlogForm = ({ blogFormRef }) => {
   const url = useField('text')
 
   const notificationDispatch = useNotificationDispatch()
+  const clearSessionDispatch = useSessionClearDispatch()
 
   const queryClient = useQueryClient()
 
@@ -37,6 +39,9 @@ const BlogForm = ({ blogFormRef }) => {
       const errorMessage = exception.response.data.error
       console.error(errorMessage)
       notificationDispatch(`Blog '${title.value}' creation failed! ${errorMessage}`, 'error')
+      if(exception.response.status === 401 && errorMessage === 'Token Expired') {
+        clearSessionDispatch()
+      }
     },
   })
 

@@ -21,12 +21,12 @@ const queryClient = new QueryClient()
 // Render App Component:
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <SessionContextProvider>
-      <NotificationContextProvider>
-        <Router>
+    <Router>
+      <SessionContextProvider>
+        <NotificationContextProvider>
           <App />
-        </Router>
-      </NotificationContextProvider>
-    </SessionContextProvider>
+        </NotificationContextProvider>
+      </SessionContextProvider>
+    </Router>
   </QueryClientProvider>
 )

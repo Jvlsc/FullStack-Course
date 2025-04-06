@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 // Import Context Hooks:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
+import { useSessionClearDispatch } from '../contexts/SessionContext'
 
 // Import Blog Service:
 import blogService from '../services/blogsService'
@@ -13,7 +14,7 @@ import PropTypes from 'prop-types'
 // Like Component:
 const LikeBlog = ({ blog }) => {
   const notificationDispatch = useNotificationDispatch()
-
+  const clearSessionDispatch = useSessionClearDispatch()
   const queryClient = useQueryClient()
 
   const updateBlogMutation = useMutation({
@@ -32,6 +33,9 @@ const LikeBlog = ({ blog }) => {
     onError: (error) => {
       console.error(`[LikeComponent] Error updating blog: ${error}`)
       notificationDispatch(`Error liking blog: ${error.message}`, 'error')
+      if (error.response.status === 401 && error.message === 'Token Expired') {
+        clearSessionDispatch()
+      }
     },
   })
 

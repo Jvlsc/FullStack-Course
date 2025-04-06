@@ -4,11 +4,16 @@ import { useQuery } from '@tanstack/react-query'
 // Import React Router:
 import { Link } from 'react-router-dom'
 
+// Import Context Hooks:
+import { useSessionClearDispatch } from '../contexts/SessionContext'
+
 // Import Users Service:
 import usersService from '../services/usersService'
 
 // Users Component:
 const Users = () => {
+  const clearSessionDispatch = useSessionClearDispatch()
+
   const { data: users, isLoading, isError, error } = useQuery({
     queryKey: ['users'],
     queryFn: usersService.getAll
@@ -19,6 +24,10 @@ const Users = () => {
   }
 
   if (isError) {
+    console.error(`[UsersViewComponent] Error fetching users: ${error}`)
+    if (error.response.status === 401 && error.message === 'Token Expired') {
+      clearSessionDispatch()
+    }
     return <div className="error">Failed to load users: {error.message}</div>
   }
 

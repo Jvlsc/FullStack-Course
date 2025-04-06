@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 // Import Context Hooks:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
-
+import { useSessionClearDispatch } from '../contexts/SessionContext'
 // Import Blog Service:
 import blogService from '../services/blogsService'
 
@@ -16,6 +16,7 @@ import PropTypes from 'prop-types'
 // Like Component:
 const DeleteBlog = ({ blog }) => {
   const notificationDispatch = useNotificationDispatch()
+  const clearSessionDispatch = useSessionClearDispatch()
 
   const queryClient = useQueryClient()
 
@@ -32,6 +33,9 @@ const DeleteBlog = ({ blog }) => {
     onError: (error) => {
       console.error(`[DeleteBlogComponent] Error deleting blog: ${error}`)
       notificationDispatch(`Error deleting blog: ${error.message}`, 'error')
+      if (error.response.status === 401 && error.message === 'Token Expired') {
+        clearSessionDispatch()
+      }
     },
   })
 

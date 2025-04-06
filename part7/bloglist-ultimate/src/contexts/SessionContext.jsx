@@ -1,6 +1,9 @@
 // Import React:
 import { createContext, useContext, useReducer } from 'react'
 
+// Import React Router:
+import { useNavigate } from 'react-router-dom'
+
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
@@ -19,6 +22,7 @@ const SessionContext = createContext()
 // Create a Session Context Provider:
 export const SessionContextProvider = (props) => {
   const [user, userDispatch] = useReducer(sessionReducer, null)
+  const navigate = useNavigate()
 
   const setSession = (user) => {
     console.log('[SessionContext] Setting session...')
@@ -44,6 +48,7 @@ export const SessionContextProvider = (props) => {
     window.localStorage.removeItem('login')
     userDispatch({ type: 'CLEAR_SESSION', payload: null })
     console.log('[SessionContext] Session cleared')
+    navigate('/')
   }
 
   return (
