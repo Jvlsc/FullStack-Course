@@ -2,15 +2,18 @@
 import { useEffect } from 'react'
 
 // Import React Router:
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+
+// Import Bootstrap Components:
+import { Container } from 'react-bootstrap'
 
 // Import Components:
 import BlogView from './components/BlogView'
 import HomeView from './components/HomeView'
 import LoginForm from './components/LoginForm'
-import User from './components/User'
-import UsersView from './components/UsersView'
+import Navigation from './components/Navigation'
 import UserView from './components/UserView'
+import UsersView from './components/UsersView'
 import Notification from './components/Notification'
 
 // Import Contexts Hooks:
@@ -42,41 +45,29 @@ const App = () => {
 
   if (user === null || user === undefined) {
     return (
-      <div>
+      <Container fluid>
         <h2>Login:</h2>
         <Notification />
         <LoginForm />
-      </div>
+      </Container>
     )
   }
 
   return (
-    <div>
-      <nav className='nav-bar'>
-        <div className='nav-block-left'>
-          <div className='nav-item'>
-            <Link to="/">Home</Link>
-          </div>
-          <div className='nav-item'>
-            <Link to="/users">Users</Link>
-          </div>
-        </div>
-        <div className='nav-block-right'>
-          <div className='nav-item'>
-            <User />
-          </div>
-        </div>
-      </nav>
-      <h2>Blogs:</h2>
-      <Notification />
-      <br />
-      <Routes>
-        <Route path="/" element={<HomeView />} />
-        <Route path="/users" element={<UsersView />} />
-        <Route path="/users/:id" element={<UserView />} />
-        <Route path="/blogs/:id" element={<BlogView />} />
-      </Routes>
-    </div>
+    <>
+      <Navigation />
+      <Container>
+        <h2>Blogs:</h2>
+        <Notification />
+        <br />
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="/users" element={<UsersView />} />
+          <Route path="/users/:id" element={<UserView />} />
+          <Route path="/blogs/:id" element={<BlogView />} />
+        </Routes>
+      </Container>
+    </>
   )
 }
 
