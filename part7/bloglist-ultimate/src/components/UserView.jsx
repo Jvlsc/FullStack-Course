@@ -102,11 +102,13 @@ const User = () => {
               {user.blogs.length > 0 ? (
                 <ListGroup variant="flush">
                   {user.blogs.map(blog => (
-                    <ListGroup.Item key={blog.id} className="d-flex justify-content-between align-items-center">
+                    <ListGroup.Item key={blog.id} className="blog-header d-flex justify-content-between align-items-center">
                       <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
                         {blog.title}
                       </Link>
-                      <small className="text-muted">Author: {blog.author}</small>
+                      <div className="d-flex align-items-center gap-2">
+                        <small className="text-muted">Author: {blog.author}</small>
+                      </div>
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
