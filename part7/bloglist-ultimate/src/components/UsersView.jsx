@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Import React Router:
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Import Context Hooks:
 import { useSessionClearDispatch } from '../contexts/SessionContext'
@@ -20,6 +20,8 @@ import { Table, Card } from 'react-bootstrap'
 // Users Component:
 const Users = () => {
   const clearSessionDispatch = useSessionClearDispatch()
+
+  const navigate = useNavigate()
 
   const { data: users, isLoading, isError, error } = useQuery({
     queryKey: ['users'],
@@ -43,13 +45,17 @@ const Users = () => {
     return <ErrorMessage message={`Failed to load users: ${error.message}`} />
   }
 
+  const handleUserClick = (userId) => {
+    navigate(`/users/${userId}`)
+  }
+
   return (
     <>
       <h2>Users List:</h2>
       <br />
       <Card className="users-card shadow-sm">
         <Card.Body>
-          <Table striped hover responsive>
+          <Table hover responsive>
             <thead>
               <tr>
                 <th>Name</th>
@@ -60,7 +66,7 @@ const Users = () => {
             </thead>
             <tbody>
               {users.map(user => (
-                <tr key={user.id}>
+                <tr key={user.id} onClick={() => handleUserClick(user.id)} className="clickable-row">
                   <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
                   <td>{user.username}</td>
                   <td>{user.blogs ? user.blogs.length : 0}</td>

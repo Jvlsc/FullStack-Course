@@ -25,3 +25,16 @@
 .users-card .list-group-item.blog-header a:hover {
   color: #0d6efd;
 }
+
+.clickable-row {
+  cursor: pointer !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.clickable-row:hover {
+  background-color: #f8f9fa;
+}
+
+.clickable-row a:hover {
+  color: #0d6efd;
+}
