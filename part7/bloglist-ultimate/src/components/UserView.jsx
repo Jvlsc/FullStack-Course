@@ -14,8 +14,10 @@ import usersService from '../services/usersService'
 import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
 
-// Import Bootstrap components:
+// Import Bootstrap and FontAwesome components:
 import { ListGroup, Card, Row, Col, Alert } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 // User Component:
 const User = () => {
@@ -45,6 +47,7 @@ const User = () => {
     return <ErrorMessage message={`Failed to load user: ${error.message}`} />
   }
 
+  console.log(user)
   return (
     <>
       <h2>User Profile:</h2>
@@ -52,18 +55,43 @@ const User = () => {
       <Row>
         <Col md={6} className="mb-3">
           <Card className="user-card shadow-sm h-100">
-            <Card.Body>
+            <Card.Body className="d-flex flex-column">
               <h4 className="blog-form-title">User Information:</h4>
-              <ListGroup variant="flush">
-                <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                  <strong>Name:</strong>
-                  <span>{user.name}</span>
-                </ListGroup.Item>
-                <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                  <strong>Username:</strong>
-                  <span>{user.username}</span>
-                </ListGroup.Item>
-              </ListGroup>
+              <div className="text-center my-2">
+                <FontAwesomeIcon icon={faUser} size="10x" />
+              </div>
+              <div className="mt-auto">
+                <ListGroup variant="flush">
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                    <strong>Name:</strong>
+                    <span>{user.name}</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                    <strong>Username:</strong>
+                    <span>{user.username}</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                    <strong>User ID:</strong>
+                    <span>{user.id}</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                    <strong>Created at:</strong>
+                    <span>
+                      {new Intl.DateTimeFormat('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      }).format(new Date(user.createdAt))}
+                    </span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                    <strong>Blogs created:</strong>
+                    <span>{user.blogs.length}</span>
+                  </ListGroup.Item>
+                </ListGroup>
+              </div>
             </Card.Body>
           </Card>
         </Col>
@@ -78,7 +106,7 @@ const User = () => {
                       <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
                         {blog.title}
                       </Link>
-                      <small className="text-muted">Autor: {blog.author}</small>
+                      <small className="text-muted">Author: {blog.author}</small>
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
