@@ -26,7 +26,7 @@ const App = () => {
       <br />
       <Notification notification={notification} />
       <Routes>
-        <Route path="/authors" element={<Authors />} />
+        <Route path="/authors" element={<Authors notification={notify} />} />
         <Route path="/books" element={<Books />} />
         <Route path="/add" element={<NewBook notification={notify} />} />
       </Routes>

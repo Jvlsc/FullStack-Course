@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { ALL_AUTHORS } from '../services/queries'
+import Birthyear from './Birthyear'
+import PropTypes from 'prop-types'
 
-const Authors = () => {
+const Authors = ({ notification }) => {
   const result = useQuery(ALL_AUTHORS)
 
   if (result.loading) {
@@ -33,8 +35,14 @@ const Authors = () => {
           ))}
         </tbody>
       </table>
+      <br />
+      <Birthyear notification={notification} />
     </div>
   )
+}
+
+Authors.propTypes = {
+  notification: PropTypes.func.isRequired
 }
 
 export default Authors

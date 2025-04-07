@@ -10,7 +10,7 @@ const NewBook = ({ notification }) => {
   const [genre, setGenre] = useState('')
   const [genres, setGenres] = useState([])
 
-  const [ createBook ] = useMutation(ADD_BOOK, {
+  const [ createBook, result ] = useMutation(ADD_BOOK, {
     refetchQueries: [  {query: ALL_AUTHORS }, {query: ALL_BOOKS} ],
     onCompleted: () => {
       console.log('Book Added Successfully')
@@ -80,6 +80,8 @@ const NewBook = ({ notification }) => {
         <div>genres: {genres.join(' ')}</div>
         <button type="submit">create book</button>
       </form>
+      <br />
+      {result.loading && <div>Creating book...</div>}
     </div>
   )
 }
