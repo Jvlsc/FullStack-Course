@@ -1,5 +1,5 @@
 // Import React Router:
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // Import Tanstack Hooks:
 import { useQuery } from '@tanstack/react-query'
@@ -20,6 +20,8 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 // BlogsList Component:
 const BlogsList = () => {
+  const navigate = useNavigate()
+
   // prettier-ignore
   const { data: blogs, isLoading, isError, error } = useQuery({
     queryKey: ['blogs'],
@@ -43,15 +45,23 @@ const BlogsList = () => {
   const sortedBlogs = blogs ? [...blogs].sort((a, b) => b.likes - a.likes) : []
   console.log('[BlogsComponent] Sorted blogs:', sortedBlogs)
 
+  const handleBlogClick = (blogId) => {
+    navigate(`/blogs/${blogId}`)
+  }
+
   return (
     <Card className="blogs-list-card">
       <Card.Body className="blogs-list-body">
         <ul className="blogs-list">
           {sortedBlogs.map((blog) => (
-            <li key={blog.id} className="blog-header d-flex justify-content-between align-items-center">
-              <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
+            <li
+              key={blog.id}
+              className="blog-list-header d-flex justify-content-between align-items-center"
+              onClick={() => handleBlogClick(blog.id)}
+            >
+              <div className="blog-title">
                 {blog.title} by {blog.author}
-              </Link>
+              </div>
               <span className="text-danger">
                 <FontAwesomeIcon icon={faHeart} /> {blog.likes || 0}
               </span>
