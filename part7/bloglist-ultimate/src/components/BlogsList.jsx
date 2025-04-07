@@ -44,8 +44,8 @@ const BlogsList = () => {
   console.log('[BlogsComponent] Sorted blogs:', sortedBlogs)
 
   return (
-    <Card className="blogs-card">
-      <Card.Body className="blogs-body">
+    <Card className="blogs-list-card">
+      <Card.Body className="blogs-list-body">
         <ul className="blogs-list">
           {sortedBlogs.map((blog) => (
             <li key={blog.id} className="blog-header d-flex justify-content-between align-items-center">

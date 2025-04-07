@@ -1,0 +1,26 @@
+.blog-details-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+}
+
+.blog-comments-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.blog-comments-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+
+.blog-comments-list {
+  max-height: 435px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+  padding-right: 5px;
+} 

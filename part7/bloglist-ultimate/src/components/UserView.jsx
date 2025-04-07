@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Import React Router:
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // Import Context Hooks:
 import { useSessionClearDispatch } from '../contexts/SessionContext'
@@ -13,11 +13,11 @@ import usersService from '../services/usersService'
 // Import Components:
 import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
+import UserDetails from './UserDetails'
+import UserBlogs from './UserBlogs'
 
 // Import Bootstrap and FontAwesome components:
-import { ListGroup, Card, Row, Col, Alert } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faBlog } from '@fortawesome/free-solid-svg-icons'
+import { Row, Col } from 'react-bootstrap'
 
 // User Component:
 const User = () => {
@@ -54,69 +54,10 @@ const User = () => {
       <br />
       <Row>
         <Col md={6} className="mb-3">
-          <Card className="user-card shadow-sm h-100">
-            <Card.Body className="d-flex flex-column">
-              <h4 className="blog-form-title">User Information:</h4>
-              <div className="text-center my-2">
-                <FontAwesomeIcon icon={faUser} size="10x" />
-              </div>
-              <div className="mt-auto">
-                <ListGroup variant="flush">
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <strong>Name:</strong>
-                    <span>{user.name}</span>
-                  </ListGroup.Item>
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <strong>Username:</strong>
-                    <span>{user.username}</span>
-                  </ListGroup.Item>
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <strong>User ID:</strong>
-                    <span>{user.id}</span>
-                  </ListGroup.Item>
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <strong>Created at:</strong>
-                    <span>
-                      {new Intl.DateTimeFormat('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      }).format(new Date(user.createdAt))}
-                    </span>
-                  </ListGroup.Item>
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <strong>Blogs created:</strong>
-                    <span>{user.blogs.length} Blogs &nbsp; <FontAwesomeIcon icon={faBlog} /></span>
-                  </ListGroup.Item>
-                </ListGroup>
-              </div>
-            </Card.Body>
-          </Card>
+          <UserDetails user={user} />
         </Col>
         <Col md={6} className="mb-3">
-          <Card className="users-card shadow-sm h-100">
-            <Card.Body>
-              <h4 className="blog-form-title">Added Blogs:</h4>
-              {user.blogs.length > 0 ? (
-                <ListGroup variant="flush">
-                  {user.blogs.map(blog => (
-                    <ListGroup.Item key={blog.id} className="blog-header d-flex justify-content-between align-items-center">
-                      <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
-                        {blog.title}
-                      </Link>
-                      <div className="d-flex align-items-center gap-2">
-                        <small className="text-muted">Author: {blog.author}</small>
-                      </div>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              ) : (
-                <Alert variant="info">No blogs added yet.</Alert>
-              )}
-            </Card.Body>
-          </Card>
+          <UserBlogs user={user} />
         </Col>
       </Row>
     </>

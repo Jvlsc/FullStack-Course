@@ -1,0 +1,27 @@
+.user-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.users-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.user-blogs-list-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+
+.user-blogs-list {
+  max-height: 500px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+  padding-right: 5px;
+} 
