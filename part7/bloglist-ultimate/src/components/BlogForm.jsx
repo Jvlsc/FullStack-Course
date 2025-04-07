@@ -28,12 +28,19 @@ const BlogForm = () => {
 
   const queryClient = useQueryClient()
 
+  const resetForm = () => {
+    title.onReset()
+    author.onReset()
+    url.onReset()
+  }
+
   const createBlogMutation = useMutation({
     mutationFn: (newBlog) => blogService.create(newBlog),
     onSuccess: (createdBlog) => {
       console.log('[BlogFormComponent] Blog created:', createdBlog)
       queryClient.setQueryData(['blogs'], (blogs) => [...blogs, createdBlog])
       notificationDispatch(`Blog '${createdBlog.title}' created successfully!`, 'success')
+      resetForm()
     },
     onError: (exception) => {
       const errorMessage = exception.response.data.error
