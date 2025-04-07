@@ -17,7 +17,7 @@ import ErrorMessage from './ErrorMessage'
 // Import Bootstrap and FontAwesome components:
 import { ListGroup, Card, Row, Col, Alert } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faBlog } from '@fortawesome/free-solid-svg-icons'
 
 // User Component:
 const User = () => {
@@ -88,7 +88,7 @@ const User = () => {
                   </ListGroup.Item>
                   <ListGroup.Item className="d-flex justify-content-between align-items-center">
                     <strong>Blogs created:</strong>
-                    <span>{user.blogs.length}</span>
+                    <span>{user.blogs.length} Blogs &nbsp; <FontAwesomeIcon icon={faBlog} /></span>
                   </ListGroup.Item>
                 </ListGroup>
               </div>
