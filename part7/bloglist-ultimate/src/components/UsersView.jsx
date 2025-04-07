@@ -55,6 +55,7 @@ const Users = () => {
                 <th>Name</th>
                 <th>Username</th>
                 <th>Blogs Created</th>
+                <th>Online Since</th>
               </tr>
             </thead>
             <tbody>
@@ -63,6 +64,15 @@ const Users = () => {
                   <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
                   <td>{user.username}</td>
                   <td>{user.blogs ? user.blogs.length : 0}</td>
+                  <td>
+                    {new Intl.DateTimeFormat('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    }).format(new Date(user.createdAt))}
+                  </td>
                 </tr>
               ))}
             </tbody>
