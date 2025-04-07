@@ -10,7 +10,7 @@ import { Card, ListGroup, Row, Col } from 'react-bootstrap'
 
 // Import FontAwesome:
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBlog, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faBlog, faHeart, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
@@ -28,7 +28,7 @@ const BlogDetails = ({ blog }) => {
         </div>
         <ListGroup variant="flush" className="mt-auto">
           <ListGroup.Item className="d-flex justify-content-between align-items-center">
-            <strong>URL:</strong> <a href={blog.url}>{blog.url}</a>
+            <strong>URL:</strong> <a href={blog.url}>External Link <FontAwesomeIcon icon={faExternalLinkAlt} size="2xs" /></a>
           </ListGroup.Item>
           <ListGroup.Item className="d-flex justify-content-between align-items-center">
             <strong>Author:</strong> {blog.author}

@@ -2,6 +2,7 @@
   min-height: 625px;
   max-height: 625px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .blog-details-title {
