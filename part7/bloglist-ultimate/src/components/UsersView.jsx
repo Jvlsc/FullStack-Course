@@ -47,7 +47,7 @@ const Users = () => {
     <>
       <h2>Users List:</h2>
       <br />
-      <Card className="shadow-sm">
+      <Card className="users-card shadow-sm">
         <Card.Body>
           <Table striped hover responsive>
             <thead>

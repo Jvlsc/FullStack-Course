@@ -51,7 +51,7 @@ const User = () => {
       <br />
       <Row>
         <Col md={6} className="mb-3">
-          <Card className="shadow-sm h-100">
+          <Card className="user-card shadow-sm h-100">
             <Card.Body>
               <h4 className="blog-form-title">User Information:</h4>
               <ListGroup variant="flush">
@@ -68,7 +68,7 @@ const User = () => {
           </Card>
         </Col>
         <Col md={6} className="mb-3">
-          <Card className="shadow-sm h-100">
+          <Card className="users-card shadow-sm h-100">
             <Card.Body>
               <h4 className="blog-form-title">Added Blogs:</h4>
               {user.blogs.length > 0 ? (

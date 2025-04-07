@@ -17,19 +17,6 @@ import { Card } from 'react-bootstrap'
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
-// Blog Component:
-const Blog = ({ blog }) => {
-  const blogStyle = {
-    marginBottom: '0.5rem',
-  }
-
-  return (
-    <li style={blogStyle} className="blog-header">
-      <Link to={`/blogs/${blog.id}`}>{blog.title} by {blog.author}</Link>
-    </li>
-  )
-}
-
 // Blogs Component:
 const Blogs = () => {
   // prettier-ignore
@@ -60,7 +47,7 @@ const Blogs = () => {
       <Card.Body className="blogs-body">
         <ul className="blogs-list">
           {sortedBlogs.map((blog) => (
-            <li key={blog.id} className="blog-header" style={{ marginBottom: '0.5rem' }}>
+            <li key={blog.id} className="blog-header">
               <Link to={`/blogs/${blog.id}`}>{blog.title} by {blog.author}</Link>
             </li>
           ))}
@@ -68,11 +55,6 @@ const Blogs = () => {
       </Card.Body>
     </Card>
   )
-}
-
-// Prop Types - Blog Component:
-Blog.propTypes = {
-  blog: PropTypes.object.isRequired,
 }
 
 // Export Blogs Component:

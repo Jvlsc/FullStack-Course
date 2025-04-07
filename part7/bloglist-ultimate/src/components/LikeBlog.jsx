@@ -8,6 +8,13 @@ import { useSessionClearDispatch } from '../contexts/SessionContext'
 // Import Blog Service:
 import blogService from '../services/blogsService'
 
+// Import Bootstrap Components:
+import { Button } from 'react-bootstrap'
+
+// Import Font Awesome:
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
@@ -39,10 +46,10 @@ const LikeBlog = ({ blog }) => {
   }
 
   return (
-    <p>
-      Likes: {blog.likes} &nbsp;
-      <button onClick={() => handleLike(blog)}>Like</button>
-    </p>
+    <Button variant="success" className="w-100" onClick={() => handleLike(blog)}>
+      <FontAwesomeIcon icon={faHeart} className="me-2" />
+      Like
+    </Button>
   )
 }
 

@@ -10,6 +10,9 @@ import useField from '../hooks/useField'
 // Import Blog Service:
 import blogService from '../services/blogsService'
 
+// Import Bootstrap Components:
+import { Card, ListGroup, Form, Button, InputGroup } from 'react-bootstrap'
+
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
@@ -45,38 +48,51 @@ const CommentsForm = ({ blogId }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input id="comment" data-testid="comment-input" placeholder="Add a comment" {...comment} />
-      <button type="submit" data-testid="comment-button">
-        Add Comment
-      </button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <InputGroup>
+        <Form.Control
+          id="comment"
+          data-testid="comment-input"
+          placeholder="Add a comment"
+          {...comment}
+        />
+        <Button type="submit" data-testid="comment-button" variant="primary">
+          Add Comment
+        </Button>
+      </InputGroup>
+    </Form>
   )
 }
 
-// Comments Component:
-const Comments = ({ blog }) => {
-  const commentStyle = {
-    marginBottom: '0.5rem',
-  }
-
+// Blog Comments Component:
+const BlogComments = ({ blog }) => {
   return (
-    <>
-      <h3>Comments:</h3>
-      <CommentsForm blogId={blog.id} />
-      <br />
-      {blog.comments.length > 0
-        ? (
-          <ul>
-            {blog.comments.map((comment) => (
-              <li style={commentStyle} key={comment.id}>{comment.content}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No comments yet. Be the first to comment!</p>
-        )
-      }
-    </>
+    <Card className="mb-4 blog-comments-card">
+      <Card.Body className="d-flex flex-column">
+        <h4 className="blog-comments-title">Comments:</h4>
+        <div className="mb-3">
+          <CommentsForm blogId={blog.id} />
+        </div>
+        <br />
+        {blog.comments.length > 0
+          ? (
+            <ListGroup variant='flush'>
+              {blog.comments.map((comment) => (
+                <ListGroup.Item key={comment.id}>
+                  <strong>Anonymous:</strong> {comment.content}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          ) : (
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                No comments yet. Be the first to comment!
+              </ListGroup.Item>
+            </ListGroup>
+          )
+        }
+      </Card.Body>
+    </Card>
   )
 }
 
@@ -85,10 +101,10 @@ CommentsForm.propTypes = {
   blogId: PropTypes.string.isRequired,
 }
 
-// Comments Component Props:
-Comments.propTypes = {
+// Blog Comments Component Props:
+BlogComments.propTypes = {
   blog: PropTypes.object.isRequired,
 }
 
-// Export Comments Component:
-export default Comments
+// Export Blog Comments Component:
+export default BlogComments

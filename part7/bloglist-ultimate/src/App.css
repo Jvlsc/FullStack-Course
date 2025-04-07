@@ -102,6 +102,7 @@
 /* Blogs List Styles */
 .blogs-card {
   min-height: 625px;
+  max-height: 625px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow-x: hidden;
@@ -173,3 +174,37 @@
   width: 100%;
   max-width: 800px;
 }
+
+.blog-details-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+}
+
+.blog-comments-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.blog-comments-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+
+.user-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.users-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+

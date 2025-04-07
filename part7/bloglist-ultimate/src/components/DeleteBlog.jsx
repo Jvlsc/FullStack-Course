@@ -7,13 +7,21 @@ import { useNavigate } from 'react-router-dom'
 // Import Context Hooks:
 import { useNotificationDispatch } from '../contexts/NotificationContext'
 import { useSessionClearDispatch } from '../contexts/SessionContext'
+
 // Import Blog Service:
 import blogService from '../services/blogsService'
+
+// Import Bootstrap Components:
+import { Button } from 'react-bootstrap'
+
+// Import Font Awesome:
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
-// Like Component:
+// Delete Component:
 const DeleteBlog = ({ blog }) => {
   const notificationDispatch = useNotificationDispatch()
   const clearSessionDispatch = useSessionClearDispatch()
@@ -45,22 +53,18 @@ const DeleteBlog = ({ blog }) => {
     deleteBlogMutation.mutate(blog)
   }
 
-  const deleteButtonStyle = {
-    backgroundColor: 'red',
-    color: 'white',
-  }
-
   return (
-    <p>
-      <button style={deleteButtonStyle} onClick={() => handleDelete(blog)}>Delete</button>
-    </p>
+    <Button variant="danger" className="w-100" onClick={() => handleDelete(blog)}>
+      <FontAwesomeIcon icon={faTrash} className="me-2" />
+      Delete
+    </Button>
   )
 }
 
-// Prop Types - Like Component:
+// Prop Types - Delete Component:
 DeleteBlog.propTypes = {
   blog: PropTypes.object.isRequired,
 }
 
-// Export Like Component:
+// Export Delete Component:
 export default DeleteBlog

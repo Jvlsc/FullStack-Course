@@ -2,15 +2,19 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Import React Router:
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // Import Blog Service:
 import blogService from '../services/blogsService'
 
 // Import Components:
-import LikeBlog from './LikeBlog'
-import DeleteBlog from './DeleteBlog'
-import Comments from './Comments'
+import BlogDetails from './BlogDetails'
+import BlogComments from './BlogComments'
+import LoadingSpinner from './LoadingSpinner'
+import ErrorMessage from './ErrorMessage'
+
+// Import Bootstrap Components:
+import { Row, Col } from 'react-bootstrap'
 
 // Blog View Component:
 const BlogView = () => {
@@ -21,29 +25,26 @@ const BlogView = () => {
     queryFn: () => blogService.getById(id),
   })
 
-  const commentStyle = {
-    marginBottom: '0.5rem',
-  }
-
   if (isLoading) {
-    return <div>Loading blog...</div>
+    return <LoadingSpinner />
   }
 
   if (isError) {
-    return <div>Error loading blog: {error.message}</div>
+    return <ErrorMessage message={`Failed to load blog: ${error.message}`} />
   }
 
   return (
     <div>
-      <h2>{blog.title} by {blog.author}</h2>
-      <p>URL: <a href={blog.url}>{blog.url}</a></p>
-      <LikeBlog blog={blog} />
-      <p>Added by <Link to={`/users/${blog.user.id}`}>{blog.user.name}</Link></p>
-      {blog.user.username === JSON.parse(window.localStorage.getItem('login')).username ? (
-        <DeleteBlog blog={blog} />
-      ) : null}
+      <h2>Blog Details:</h2>
       <br />
-      <Comments blog={blog} />
+      <Row>
+        <Col md={5}>
+          <BlogDetails blog={blog} />
+        </Col>
+        <Col md={7}>
+          <BlogComments blog={blog} />
+        </Col>
+      </Row>
     </div>
   )
 }
