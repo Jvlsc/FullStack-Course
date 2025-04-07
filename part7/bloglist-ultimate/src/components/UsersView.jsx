@@ -66,7 +66,7 @@ const Users = () => {
             </thead>
             <tbody>
               {users.map(user => (
-                <tr key={user.id} onClick={() => handleUserClick(user.id)} className="clickable-row">
+                <tr key={user.id} onClick={() => handleUserClick(user.id)} className="user-row">
                   <td><Link to={`/users/${user.id}`}>{user.name}</Link></td>
                   <td>{user.username}</td>
                   <td>{user.blogs ? user.blogs.length : 0}</td>

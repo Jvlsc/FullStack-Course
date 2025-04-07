@@ -1,3 +1,10 @@
+.users-card {
+  min-height: 625px;
+  max-height: 625px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .users-card .list-group-item.blog-header {
   padding: 0.5rem 1rem;
   margin-bottom: 0.5rem;
@@ -26,15 +33,15 @@
   color: #0d6efd;
 }
 
-.clickable-row {
+.user-row {
   cursor: pointer !important;
   transition: background-color 0.2s ease-in-out;
 }
 
-.clickable-row:hover {
+.user-row:hover {
   background-color: #f8f9fa;
 }
 
-.clickable-row a:hover {
+.user-row a:hover {
   color: #0d6efd;
 }

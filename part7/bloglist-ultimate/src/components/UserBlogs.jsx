@@ -1,32 +1,37 @@
 // Import React Router:
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Import Bootstrap and FontAwesome components:
 import { Card, ListGroup, Alert } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 // Import PropTypes:
 import PropTypes from 'prop-types'
 
 // User Blogs Component:
 const UserBlogs = ({ user }) => {
+  const navigate = useNavigate()
+
+  const handleBlogClick = (blogId) => {
+    navigate(`/blogs/${blogId}`)
+  }
+
   return (
-    <Card className="users-card shadow-sm h-100">
+    <Card className="user-blogs-list-card shadow-sm h-100">
       <Card.Body>
         <h4 className="user-blogs-list-title">Added Blogs:</h4>
         {user.blogs.length > 0 ? (
-          <ListGroup variant="flush" className="user-blogs-list">
+          <ListGroup variant="flush" className="user-blogs-list-group">
             {user.blogs.map(blog => (
-              <ListGroup.Item key={blog.id} className="blog-header d-flex justify-content-between align-items-center">
+              <ListGroup.Item
+                key={blog.id}
+                className="user-blogs-list-item d-flex justify-content-between align-items-center"
+                onClick={() => handleBlogClick(blog.id)}
+              >
                 <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
                   {blog.title}
                 </Link>
                 <div className="d-flex align-items-center gap-2">
                   <small className="text-muted">Author: {blog.author}</small>
-                  <span className="text-danger">
-                    <FontAwesomeIcon icon={faHeart} /> {blog.likes || 0}
-                  </span>
                 </div>
               </ListGroup.Item>
             ))}

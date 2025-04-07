@@ -4,6 +4,12 @@
   overflow-y: auto;
 }
 
+.blog-details-title {
+  text-align: center;
+  margin-bottom: 4rem;
+  margin-top: 1.5rem;
+}
+
 .blog-comments-card {
   min-height: 625px;
   max-height: 625px;

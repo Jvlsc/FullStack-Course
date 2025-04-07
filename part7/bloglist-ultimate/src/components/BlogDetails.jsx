@@ -22,7 +22,7 @@ const BlogDetails = ({ blog }) => {
   return (
     <Card className="mb-4 blog-details-card">
       <Card.Body className="d-flex flex-column">
-        <h4 className="blog-form-title">{blog.title} by {blog.author}</h4>
+        <h4 className="blog-details-title">{blog.title} by {blog.author}</h4>
         <div className="text-center my-2">
           <FontAwesomeIcon icon={faBlog} size="10x" />
         </div>
