@@ -8,4 +8,13 @@ export const ALL_AUTHORS = gql`
       bookCount
     }
   }
+  `
+export const ALL_BOOKS = gql`
+  query fetchAllBooks {
+    allBooks {
+      title
+      author
+      published
+    }
+  }
 `

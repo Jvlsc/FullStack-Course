@@ -12,6 +12,8 @@ const Authors = () => {
     return <div>Error - {result.error.message}</div>
   }
 
+  console.log('Authors: ', result.data.allAuthors)
+
   return (
     <div>
       <h2>Authors:</h2>
