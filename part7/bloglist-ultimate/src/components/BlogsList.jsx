@@ -56,10 +56,10 @@ const BlogsList = () => {
           {sortedBlogs.map((blog) => (
             <li
               key={blog.id}
-              className="blog-list-header d-flex justify-content-between align-items-center"
+              className="blog-list-item d-flex justify-content-between align-items-center"
               onClick={() => handleBlogClick(blog.id)}
             >
-              <div className="blog-title">
+              <div className="blog-list-item-title">
                 {blog.title} by {blog.author}
               </div>
               <span className="text-danger">

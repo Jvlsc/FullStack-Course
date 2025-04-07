@@ -40,6 +40,13 @@
   overflow-x: hidden;
 }
 
+.user-blogs-list-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-x: hidden;
+}
+
 .user-blogs-list-title {
   text-align: center;
   margin-bottom: 2rem;

@@ -17,7 +17,7 @@ const UserBlogs = ({ user }) => {
 
   return (
     <Card className="user-blogs-list-card shadow-sm h-100">
-      <Card.Body>
+      <Card.Body className="user-blogs-list-body">
         <h4 className="user-blogs-list-title">Added Blogs:</h4>
         {user.blogs.length > 0 ? (
           <ListGroup variant="flush" className="user-blogs-list-group">

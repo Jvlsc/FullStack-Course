@@ -41,7 +41,7 @@ const DeleteBlog = ({ blog }) => {
     onError: (error) => {
       console.error(`[DeleteBlogComponent] Error deleting blog: ${error}`)
       notificationDispatch(`Error deleting blog: ${error.message}`, 'error')
-      if (error.response.status === 401 && error.message === 'Token Expired') {
+      if (error.response.status === 401) {
         clearSessionDispatch()
       }
     },
