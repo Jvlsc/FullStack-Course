@@ -12,7 +12,7 @@ import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
 
 // Import Bootstrap Components:
-import { Card } from 'react-bootstrap'
+import { Card, ListGroup } from 'react-bootstrap'
 
 // Import FontAwesome:
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,9 +52,9 @@ const BlogsList = () => {
   return (
     <Card className="blogs-list-card">
       <Card.Body className="blogs-list-body">
-        <ul className="blogs-list">
+        <ListGroup className="blogs-list">
           {sortedBlogs.map((blog) => (
-            <li
+            <ListGroup.Item
               key={blog.id}
               className="blog-list-item d-flex justify-content-between align-items-center"
               onClick={() => handleBlogClick(blog.id)}
@@ -65,9 +65,9 @@ const BlogsList = () => {
               <span className="text-danger">
                 <FontAwesomeIcon icon={faHeart} /> {blog.likes || 0}
               </span>
-            </li>
+            </ListGroup.Item>
           ))}
-        </ul>
+        </ListGroup>
       </Card.Body>
     </Card>
   )
