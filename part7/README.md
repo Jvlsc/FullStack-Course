@@ -94,7 +94,7 @@ In [this chapter](https://fullstackopen.com/en/part7/exercises_extending_the_blo
 - **[Exercise 7.12](https://github.com/Jvlsc/FullStack-Course/blob/c8541026e420e9f582a57ac0dad9fdd74bb08c51/part7/bloglist-ultimate/src/reducers/blogsReducer.js)**: Redux (Step 3).
 - **[Exercise 7.13](https://github.com/Jvlsc/FullStack-Course/blob/c8541026e420e9f582a57ac0dad9fdd74bb08c51/part7/bloglist-ultimate/src/reducers/sessionReducer.js)**: Redux (Step 4).
 
-***Note: Check branch `part7-redux` for the solution of the exercises.***
+*Note: Check branch `part7-redux` for the solution of the exercises.*
 
 ### Exercises (State Management - React Query):
 
@@ -103,7 +103,7 @@ In [this chapter](https://fullstackopen.com/en/part7/exercises_extending_the_blo
 - **[Exercise 7.12](https://github.com/Jvlsc/FullStack-Course/blob/20c00ea818ef4e4cb7bcfbadda7fdff9127b5d74/part7/bloglist-ultimate/src/components/Blogs.jsx)**: React Query (Step 3).
 - **[Exercise 7.13](https://github.com/Jvlsc/FullStack-Course/blob/20c00ea818ef4e4cb7bcfbadda7fdff9127b5d74/part7/bloglist-ultimate/src/contexts/SessionContext.jsx)**: React Query (Step 4).
 
-***Note: Check branch `part7-query` for the solution of the exercises.***
+*Note: Check branch `part7-query` for the solution of the exercises.*
 
 ### Exercises (Views):
 
@@ -116,7 +116,7 @@ In [this chapter](https://fullstackopen.com/en/part7/exercises_extending_the_blo
 - **[Exercise 7.20](https://github.com/Jvlsc/FullStack-Course/blob/bdbcddce61f3b626cf0873d1353c77b1f3d5ca6f/part7/bloglist-ultimate/src/App.jsx)**: Styles (Step 1).
 - **[Exercise 7.21](https://github.com/Jvlsc/FullStack-Course/blob/bb9680bfab3eb0abdb82c23f178ea03fae948e91/part7/bloglist-ultimate/src/App.jsx)**: Styles (Step 2).
 
-***Note: This exercises are continued from the `part7-query` branch in the `master` branch.***
+*Note: This exercises are continued from the `part7-query` branch in the `master` branch.*
 
 ---
 ---
