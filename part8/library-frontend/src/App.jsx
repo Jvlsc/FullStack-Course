@@ -1,9 +1,21 @@
+import { useState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import Authors from "./components/Authors";
 import Books from "./components/Books";
 import NewBook from "./components/NewBook";
+import Notification from "./components/Notification";
+
 
 const App = () => {
+  const [notification, setNotification] = useState({})
+
+  const notify = (message, type) => {
+    setNotification({ message, type })
+    setTimeout(() => {
+      setNotification(null)
+    }, 10000)
+  }
+
   return (
     <div>
       <nav>
@@ -12,10 +24,11 @@ const App = () => {
         <Link to="/add">Add Book</Link>
       </nav>
       <br />
+      <Notification notification={notification} />
       <Routes>
         <Route path="/authors" element={<Authors />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/add" element={<NewBook />} />
+        <Route path="/add" element={<NewBook notification={notify} />} />
       </Routes>
     </div>
   );

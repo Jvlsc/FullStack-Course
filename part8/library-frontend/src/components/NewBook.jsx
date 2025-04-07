@@ -1,24 +1,42 @@
 import { useState } from 'react'
+import { useMutation } from '@apollo/client'
+import { ADD_BOOK, ALL_AUTHORS, ALL_BOOKS } from '../services/queries'
+import PropTypes from 'prop-types'
 
-const NewBook = () => {
+const NewBook = ({ notification }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [published, setPublished] = useState('')
   const [genre, setGenre] = useState('')
   const [genres, setGenres] = useState([])
 
+  const [ createBook ] = useMutation(ADD_BOOK, {
+    refetchQueries: [  {query: ALL_AUTHORS }, {query: ALL_BOOKS} ],
+    onCompleted: () => {
+      console.log('Book Added Successfully')
+      notification('Book Added Successfully!', 'success')
+      clearFields()
+    },
+    onError: (error) => {
+      console.log('Error Adding Book: ', error.message)
+      notification(`Error Adding Book: ${error.message}`, 'error')
+    },
+  })
+
   const submit = async (event) => {
     event.preventDefault()
+    console.log('Adding Book...')
+    createBook({ variables: { title, author, published: parseInt(published), genres } })
+  }
 
-    console.log('add book...')
-
+  const clearFields = () => {
     setTitle('')
     setPublished('')
     setAuthor('')
     setGenres([])
     setGenre('')
   }
-
+  
   const addGenre = () => {
     setGenres(genres.concat(genre))
     setGenre('')
@@ -64,6 +82,10 @@ const NewBook = () => {
       </form>
     </div>
   )
+}
+
+NewBook.propTypes = {
+  notification: PropTypes.func.isRequired
 }
 
 export default NewBook
