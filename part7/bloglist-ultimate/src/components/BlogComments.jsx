@@ -76,7 +76,7 @@ const BlogComments = ({ blog }) => {
         <br />
         {blog.comments.length > 0
           ? (
-            <ListGroup variant='flush'>
+            <ListGroup variant='flush' className="blog-comments-list">
               {blog.comments.map((comment) => (
                 <ListGroup.Item key={comment.id}>
                   <strong>Anonymous:</strong> {comment.content}
@@ -84,7 +84,7 @@ const BlogComments = ({ blog }) => {
               ))}
             </ListGroup>
           ) : (
-            <ListGroup variant='flush'>
+            <ListGroup variant='flush' className="blog-comments-list">
               <ListGroup.Item>
                 No comments yet. Be the first to comment!
               </ListGroup.Item>

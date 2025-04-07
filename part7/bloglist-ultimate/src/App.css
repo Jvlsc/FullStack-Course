@@ -189,7 +189,7 @@
 .blog-comments-card {
   min-height: 625px;
   max-height: 625px;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -197,6 +197,32 @@
   text-align: center;
   margin-bottom: 2rem;
   margin-top: 1.5rem;
+}
+
+.blog-comments-list {
+  max-height: 435px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+  padding-right: 5px;
+}
+
+.blog-comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.blog-comments-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.blog-comments-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.blog-comments-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .user-card {
