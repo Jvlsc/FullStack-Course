@@ -107,14 +107,16 @@ In [this chapter](https://fullstackopen.com/en/part7/exercises_extending_the_blo
 
 ### Exercises (Views):
 
-- **[Exercise 7.14]()**: Users view.
-- **[Exercise 7.15]()**: Individual user view.
-- **[Exercise 7.16]()**: Blog view.
-- **[Exercise 7.17]()**: Navigation.
-- **[Exercise 7.18]()**: Comments (Step 1).
-- **[Exercise 7.19]()**: Comments (Step 2).
-- **[Exercise 7.20]()**: Styles (Step 1).
-- **[Exercise 7.21]()**: Styles (Step 2).
+- **[Exercise 7.14](https://github.com/Jvlsc/FullStack-Course/blob/a1df07571369b60eb61f1afa826430fe5554bac7/part7/bloglist-ultimate/src/components/Users.jsx)**: Users view.
+- **[Exercise 7.15](https://github.com/Jvlsc/FullStack-Course/blob/de40b74714b663034ed758925060a2fab60ae5eb/part7/bloglist-ultimate/src/components/UserView.jsx)**: Individual user view.
+- **[Exercise 7.16](https://github.com/Jvlsc/FullStack-Course/blob/e75fa9bb90829c7341eee118fb59022aee2b9996/part7/bloglist-ultimate/src/components/BlogView.jsx)**: Blog view.
+- **[Exercise 7.17](https://github.com/Jvlsc/FullStack-Course/blob/94604212e3a83cae6fa9712fa36ccd2f46963df7/part7/bloglist-ultimate/src/App.jsx)**: Navigation.
+- **[Exercise 7.18](https://github.com/Jvlsc/FullStack-Course/blob/94604212e3a83cae6fa9712fa36ccd2f46963df7/part7/bloglist-ultimate/src/App.jsx)**: Comments (Step 1).
+- **[Exercise 7.19](https://github.com/Jvlsc/FullStack-Course/blob/dc36810f14968c44083b8d9a019fe444241bcc43/part7/bloglist-ultimate/src/components/Comments.jsx)**: Comments (Step 2).
+- **[Exercise 7.20](https://github.com/Jvlsc/FullStack-Course/blob/bdbcddce61f3b626cf0873d1353c77b1f3d5ca6f/part7/bloglist-ultimate/src/App.jsx)**: Styles (Step 1).
+- **[Exercise 7.21](https://github.com/Jvlsc/FullStack-Course/blob/bb9680bfab3eb0abdb82c23f178ea03fae948e91/part7/bloglist-ultimate/src/App.jsx)**: Styles (Step 2).
+
+***Note: This exercises are continued from the `part7-query` branch in the `master` branch.***
 
 ---
 ---
