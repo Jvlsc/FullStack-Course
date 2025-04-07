@@ -36,7 +36,7 @@ const Authors = ({ notification }) => {
         </tbody>
       </table>
       <br />
-      <Birthyear notification={notification} />
+      <Birthyear notification={notification} authors={result.data.allAuthors} />
     </div>
   )
 }

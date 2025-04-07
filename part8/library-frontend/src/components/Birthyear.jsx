@@ -5,7 +5,7 @@ import { UPDATE_AUTHOR, ALL_AUTHORS } from '../services/queries'
 import PropTypes from 'prop-types'
 
 // Birthyear Component
-const Birthyear = ({ notification }) => {
+const Birthyear = ({ notification, authors }) => {
   const [name, setName] = useState('')
   const [birthyear, setBirthyear] = useState('')
 
@@ -38,8 +38,11 @@ const Birthyear = ({ notification }) => {
       <h2>Set Birthyear:</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name </label>
-          <input type="text" value={name} onChange={({ target }) => setName(target.value)} />
+          <select value={name} onChange={({ target }) => setName(target.value)}>
+            {authors.map(author => (
+              <option key={author.name} value={author.name}>{author.name}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label>Born </label>
@@ -55,7 +58,8 @@ const Birthyear = ({ notification }) => {
 }
 
 Birthyear.propTypes = {
-  notification: PropTypes.func.isRequired
+  notification: PropTypes.func.isRequired,
+  authors: PropTypes.array.isRequired
 }
 
 // Export the Birthyear component:
