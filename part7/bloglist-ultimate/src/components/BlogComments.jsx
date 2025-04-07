@@ -66,6 +66,9 @@ const CommentsForm = ({ blogId }) => {
 
 // Blog Comments Component:
 const BlogComments = ({ blog }) => {
+  const sortedComments = blog.comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  console.log('[BlogCommentsComponent] Sorted comments:', sortedComments)
+
   return (
     <Card className="mb-4 blog-comments-card">
       <Card.Body className="d-flex flex-column">
@@ -77,7 +80,7 @@ const BlogComments = ({ blog }) => {
         {blog.comments.length > 0
           ? (
             <ListGroup variant='flush' className="blog-comments-list">
-              {blog.comments.map((comment) => (
+              {sortedComments.map((comment) => (
                 <ListGroup.Item key={comment.id}>
                   <strong>Anonymous:</strong> {comment.content}
                 </ListGroup.Item>
