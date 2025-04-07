@@ -1,9 +1,6 @@
 /* Import Common Styles */
 @import './styles/Common.css';
 
-/* Import Scrollbar Styles */
-@import './styles/Scrollbar.css';
-
 /* Import Views Styles */
 @import './styles/LoginView.css';
 @import './styles/HomeView.css';
