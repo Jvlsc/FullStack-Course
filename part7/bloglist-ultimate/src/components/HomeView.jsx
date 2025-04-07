@@ -1,5 +1,5 @@
 // Import Components:
-import Blogs from './Blogs'
+import BlogsList from './BlogsList'
 import BlogForm from './BlogForm'
 
 // Import Bootstrap components:
@@ -13,7 +13,7 @@ const Home = () => {
       <br />
       <Row>
         <Col md={7}>
-          <Blogs />
+          <BlogsList />
         </Col>
         <Col md={5}>
           <BlogForm />

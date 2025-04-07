@@ -14,11 +14,12 @@ import ErrorMessage from './ErrorMessage'
 // Import Bootstrap Components:
 import { Card } from 'react-bootstrap'
 
-// Import PropTypes:
-import PropTypes from 'prop-types'
+// Import FontAwesome:
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-// Blogs Component:
-const Blogs = () => {
+// BlogsList Component:
+const BlogsList = () => {
   // prettier-ignore
   const { data: blogs, isLoading, isError, error } = useQuery({
     queryKey: ['blogs'],
@@ -47,8 +48,13 @@ const Blogs = () => {
       <Card.Body className="blogs-body">
         <ul className="blogs-list">
           {sortedBlogs.map((blog) => (
-            <li key={blog.id} className="blog-header">
-              <Link to={`/blogs/${blog.id}`}>{blog.title} by {blog.author}</Link>
+            <li key={blog.id} className="blog-header d-flex justify-content-between align-items-center">
+              <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
+                {blog.title} by {blog.author}
+              </Link>
+              <span className="text-danger">
+                <FontAwesomeIcon icon={faHeart} /> {blog.likes || 0}
+              </span>
             </li>
           ))}
         </ul>
@@ -57,5 +63,5 @@ const Blogs = () => {
   )
 }
 
-// Export Blogs Component:
-export default Blogs
+// Export BlogsList Component:
+export default BlogsList
