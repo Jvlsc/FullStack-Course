@@ -5,6 +5,9 @@ const { GraphQLError } = require('graphql')
 const Author = require('../../../models/author')
 const Book = require('../../../models/book')
 
+// Import Utils - Error Handler:
+const { handleValidationError } = require('../utils/errorHandler')
+
 // Add Book Mutation Resolver:
 const addBook = async (root, args) => {
   try {
@@ -30,12 +33,19 @@ const addBook = async (root, args) => {
     return savedBook
 
   } catch (error) {
-    console.error(`[GraphQL] Error Adding '${args.title}' -> ${error.message}`)
-    throw new GraphQLError(error.message, { 
-      extensions: {
+    console.error(`[GraphQL] Error Adding '${args.title}'`, error.message)
+
+    // Handle Validation Errors:
+    const errorMessage = error.name === 'ValidationError' 
+      ? handleValidationError(error)
+      : error.message
+
+    // Throw Error:
+    throw new GraphQLError(errorMessage, {
+      extensions: { 
         code: 'BAD_USER_INPUT',
         invalidArgs: args 
-      } 
+      }
     })
   }
 };
