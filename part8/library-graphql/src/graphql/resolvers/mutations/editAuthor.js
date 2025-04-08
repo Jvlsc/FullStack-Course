@@ -1,16 +1,36 @@
-// Import Data:
-const { authorsTest } = require('../../../utils/data');
+// Import GraphQL Error:
+const { GraphQLError } = require('graphql')
 
-// Resolver:
-const editAuthor = (root, args) => {
-  const author = authorsTest.find(author => author.name === args.name)
-  if (!author) {
-    return null
+// Import Mongoose Models:
+const Author = require('../../../models/author')
+
+// Edit Author Mutation Resolver:
+const editAuthor = async (root, args) => {
+  try {
+    console.log(`[GraphQL] Editing Author '${args.name}'...`)
+
+    // Find Author:
+    const author = await Author.findOne({ name: args.name })
+    if (!author) {
+      console.log(`[GraphQL] Author '${args.name}' Not Found!`)
+      return null
+    }
+
+    // Update & Save Author:
+    author.born = args.setBornTo
+    const updatedAuthor = await author.save()
+
+    // Return Updated Author:
+    console.log(`[GraphQL] Author '${args.name}' Updated Successfully!`)
+    return updatedAuthor
+
+  } catch (error) {
+    console.error(`[GraphQL] Error Editing '${args.name}' Author -> ${error.message}`)
+    throw new GraphQLError(error.message, { 
+      extensions: { code: 'BAD_USER_INPUT', invalidArgs: args } 
+    })
   }
-  const updatedAuthor = { ...author, born: args.setBornTo }
-  authorsTest = authorsTest.map(a => a.name === args.name ? updatedAuthor : a)
-  return updatedAuthor
 };
 
-// Export the Resolver:
+// Export Edit Author Mutation Resolver:
 module.exports = editAuthor; 

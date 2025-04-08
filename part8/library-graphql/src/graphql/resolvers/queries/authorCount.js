@@ -1,8 +1,23 @@
-// Import Data:
-const { authorsTest } = require('../../../utils/data');
+// Import GraphQL Error:
+const { GraphQLError } = require('graphql')
 
-// Resolver:
-const authorCount = () => authorsTest.length;
+// Import Mongoose Models:
+const Author = require('../../../models/author')
 
-// Export the Resolver:
+// Author Count Query Resolver:
+const authorCount = async () => {
+  try {
+    console.log('[GraphQL] Fetching Author Count...')
+    const authors = await Author.find({})
+    console.log('[GraphQL] Author Count Fetched Successfully!')
+    return authors.length
+  } catch (error) { 
+    console.error(`[GraphQL] Error Fetching Author Count -> ${error.message}`)
+    throw new GraphQLError(error.message, { 
+      extensions: { code: 'INTERNAL_SERVER_ERROR' } 
+    })
+  }
+}
+
+// Export Author Count Query Resolver:
 module.exports = authorCount; 

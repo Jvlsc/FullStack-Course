@@ -5,7 +5,7 @@ const { GraphQLError } = require('graphql')
 const Author = require('../../../models/author')
 const Book = require('../../../models/book')
 
-// Add Book Resolver:
+// Add Book Mutation Resolver:
 const addBook = async (root, args) => {
   try {
     console.log('[GraphQL] Adding Book...')
@@ -23,12 +23,10 @@ const addBook = async (root, args) => {
     console.log(`[GraphQL] Creating '${args.title}' Book...`)
     const newBook = new Book({ ...args, author: author._id })
     const savedBook = await newBook.save()
-    console.log(`[GraphQL] '${args.title}' Book Created Successfully!`)
-
-    // Populate Saved Book:
+    
+    // Populate Saved Book & return:
     await savedBook.populate('author')
-
-    // Return Saved Book:
+    console.log(`[GraphQL] '${args.title}' Book Created Successfully!`)
     return savedBook
 
   } catch (error) {
@@ -42,5 +40,5 @@ const addBook = async (root, args) => {
   }
 };
 
-// Export Add Book Resolver:
+// Export Add Book Mutation Resolver:
 module.exports = addBook; 

@@ -30,5 +30,14 @@ const schema = new mongoose.Schema({
 // Apply Unique Validator:
 schema.plugin(uniqueValidator)
 
+// Transform the Book Schema:
+schema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
 // Export the Book Model:
 module.exports = mongoose.model(config.MONGODB_BOOKS_MODEL, schema)
