@@ -12,20 +12,23 @@ const NewBook = ({ notification }) => {
 
   const [ createBook, result ] = useMutation(ADD_BOOK, {
     refetchQueries: [  {query: ALL_AUTHORS }, {query: ALL_BOOKS} ],
-    onCompleted: () => {
-      console.log('Book Added Successfully')
-      notification('Book Added Successfully!', 'success')
-      clearFields()
+    onCompleted: (data) => {
+      if (data) {
+        console.log('[GraphQL] Book Added Successfully', data)
+        notification(`Book '${data.title}' Added Successfully!`, 'success')
+        clearFields()
+      }
     },
     onError: (error) => {
-      console.log('Error Adding Book: ', error.message)
-      notification(`Error Adding Book: ${error.message}`, 'error')
+      const messages = error.graphQLErrors.map(e => e.message).join('\n')
+      console.log(`[GraphQL] Error Adding '${title}' Book -> ${messages}`)
+      notification(`Error Adding '${title}' Book -- ${messages}`, 'error')
     },
   })
 
   const submit = async (event) => {
     event.preventDefault()
-    console.log('Adding Book...')
+    console.log('[GraphQL] Adding Book...')
     createBook({ variables: { title, author, published: parseInt(published), genres } })
   }
 
