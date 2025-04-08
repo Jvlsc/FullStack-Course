@@ -1,8 +1,7 @@
 // Import Types:
-const authorType = require('./types/author');
-const bookType = require('./types/book');
-const mutationType = require('./types/mutation');
-const queryType = require('./types/query');
+const basicTypes = require('./types/basic');
+const mutationTypes = require('./types/mutation');
+const queryTypes = require('./types/query');
 
 // Import Query Resolvers:
 const bookCount = require('./resolvers/queries/bookCount');
@@ -16,10 +15,9 @@ const editAuthor = require('./resolvers/mutations/editAuthor');
 
 // Combine Types:
 const typeDefs = `
-  ${authorType}
-  ${bookType}
-  ${queryType}
-  ${mutationType}
+  ${basicTypes}
+  ${queryTypes}
+  ${mutationTypes}
 `;
 
 // Combine Query Resolvers:
