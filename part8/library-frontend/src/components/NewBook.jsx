@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import { ADD_BOOK, ALL_AUTHORS, ALL_BOOKS } from '../services/queries'
+import { ADD_BOOK, ALL_AUTHORS, ALL_BOOKS, ALL_BOOKS_BY_GENRE } from '../services/queries'
 import PropTypes from 'prop-types'
 
 const NewBook = ({ notification }) => {
@@ -11,11 +11,11 @@ const NewBook = ({ notification }) => {
   const [genres, setGenres] = useState([])
 
   const [ createBook, result ] = useMutation(ADD_BOOK, {
-    refetchQueries: [  {query: ALL_AUTHORS }, {query: ALL_BOOKS} ],
+    refetchQueries: [{query: ALL_AUTHORS }, {query: ALL_BOOKS}],
     onCompleted: (data) => {
       if (data) {
         console.log('[GraphQL] Book Added Successfully', data)
-        notification(`Book '${data.title}' Added Successfully!`, 'success')
+        notification(`Book '${data.addBook.title}' Added Successfully!`, 'success')
         clearFields()
       }
     },
@@ -24,6 +24,18 @@ const NewBook = ({ notification }) => {
       console.log(`[GraphQL] Error Adding '${title}' Book -> ${messages}`)
       notification(`Error Adding '${title}' Book -- ${messages}`, 'error')
     },
+    update: (cache, response) => {
+      response.data.addBook.genres.forEach(genre => {
+        cache.updateQuery({ 
+          query: ALL_BOOKS_BY_GENRE,
+          variables: { genre }
+        }, ({ allBooks }) => {
+          return {
+            allBooks: allBooks.concat(response.data.addBook)
+          }
+        })
+      })
+    }
   })
 
   const submit = async (event) => {

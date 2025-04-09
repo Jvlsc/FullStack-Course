@@ -9,23 +9,25 @@ import { ALL_BOOKS, ALL_BOOKS_BY_GENRE } from '../services/queries'
 const Books = () => {
   const [genre, setGenre] = useState(null)
 
-  const genreResult = useQuery(ALL_BOOKS)
-  const booksResult = useQuery(
+  const allBooksResult = useQuery(ALL_BOOKS)
+  const filteredBooksResult = useQuery(
     genre ? ALL_BOOKS_BY_GENRE : ALL_BOOKS,
     genre ? { variables: { genre: genre } } : {}
   )
 
-  if (genreResult.loading || booksResult.loading) {
-    return <div>loading...</div>
+  if (allBooksResult.loading || filteredBooksResult.loading) {
+    return <div>Loading books...</div>
   }
 
-  if (genreResult.error || booksResult.error) {
-    return <div>Error - {genreResult.error.message || booksResult.error.message}</div>
+  if (allBooksResult.error || filteredBooksResult.error) {
+    return <div>Error loading books</div>
   }
 
   // Get all unique genres from all books
-  const allGenres = [...new Set(genreResult.data.allBooks.flatMap(book => book.genres))]
+  const allGenres = [...new Set(allBooksResult.data.allBooks.flatMap(book => book.genres))]
   console.log('All Genres: ', allGenres)
+  console.log('Genre Filter: ', genre)
+  console.log('Genre Result: ', filteredBooksResult.data.allBooks)
 
   return (
     <div>
@@ -38,7 +40,7 @@ const Books = () => {
             <th>author</th>
             <th>published</th>
           </tr>
-          {booksResult.data.allBooks.map((a) => (
+          {filteredBooksResult.data.allBooks.map((a) => (
             <tr key={a.title}>
               <td>{a.title}</td>
               <td>{a.author.name}</td>
@@ -48,7 +50,7 @@ const Books = () => {
         </tbody>
       </table>
       <div>
-        <button onClick={() => setGenre(null)}>all genres</button>
+        <button onClick={() => setGenre('')}>all genres</button>
         {allGenres.map(genre => (
           <button key={genre} onClick={() => setGenre(genre)} style={{ marginLeft: '5px' }}>
             {genre}
