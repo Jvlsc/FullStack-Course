@@ -10,6 +10,7 @@ import Books from "./components/Books";
 import NewBook from "./components/NewBook";
 import Notification from "./components/Notification";
 import LoginForm from "./components/LoginForm";
+import Recommendations from "./components/Recommendations";
 
 // App Component:
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
         <Link to="/authors">Authors</Link> &nbsp;
         <Link to="/books">Books</Link> &nbsp;
         <Link to="/add">Add Book</Link> &nbsp;
+        <Link to="/recommendations">Recommendations</Link> &nbsp;
         <button onClick={logout}>Logout</button>
       </nav>
       <br />
@@ -61,6 +63,7 @@ const App = () => {
         <Route path="/authors" element={<Authors notification={notify} />} />
         <Route path="/books" element={<Books />} />
         <Route path="/add" element={<NewBook notification={notify} />} />
+        <Route path="/recommendations" element={<Recommendations />} />
       </Routes>
     </div>
   );
