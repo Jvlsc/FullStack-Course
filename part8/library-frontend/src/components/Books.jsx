@@ -1,7 +1,14 @@
+// Import React:
+import { useState } from 'react'
+
+// Import Apollo Hooks & Queries:
 import { useQuery } from '@apollo/client'
 import { ALL_BOOKS } from '../services/queries'
 
+// Books Component:
 const Books = () => {
+  const [selectedGenre, setSelectedGenre] = useState(null)
+
   const result = useQuery(ALL_BOOKS)
 
   if (result.loading) {
@@ -12,7 +19,15 @@ const Books = () => {
     return <div>Error - {result.error.message}</div>
   }
 
-  console.log('Books: ', result.data.allBooks)
+  // Get all unique genres from all books
+  const allGenres = [...new Set(result.data.allBooks.flatMap(book => book.genres))]
+  console.log('All Genres: ', allGenres)
+
+  // Filter books by selected genre
+  console.log('Selected Genre: ', selectedGenre)
+  const filteredBooks = selectedGenre
+    ? result.data.allBooks.filter(book => book.genres.includes(selectedGenre))
+    : result.data.allBooks
 
   return (
     <div>
@@ -24,7 +39,7 @@ const Books = () => {
             <th>author</th>
             <th>published</th>
           </tr>
-          {result.data.allBooks.map((a) => (
+          {filteredBooks.map((a) => (
             <tr key={a.title}>
               <td>{a.title}</td>
               <td>{a.author.name}</td>
@@ -33,8 +48,17 @@ const Books = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <button onClick={() => setSelectedGenre(null)}>all genres</button>
+        {allGenres.map(genre => (
+          <button key={genre} onClick={() => setSelectedGenre(genre)} style={{ marginLeft: '5px' }}>
+            {genre}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
 
+// Export Books Component:
 export default Books
