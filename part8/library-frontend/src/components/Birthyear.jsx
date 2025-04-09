@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 // Birthyear Component
 const Birthyear = ({ notification, authors }) => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState(authors.length > 0 ? authors[0].name : '')
   const [birthyear, setBirthyear] = useState('')
 
   const [updateAuthor, result] = useMutation(UPDATE_AUTHOR, {

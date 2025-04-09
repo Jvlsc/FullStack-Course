@@ -1,13 +1,27 @@
-import { useState } from "react";
+// Import React:
+import { useState, useEffect } from "react";
+
+// Import React Router:
 import { Link, Routes, Route } from "react-router-dom";
+
+// Import Components:
 import Authors from "./components/Authors";
 import Books from "./components/Books";
 import NewBook from "./components/NewBook";
 import Notification from "./components/Notification";
+import LoginForm from "./components/LoginForm";
 
-
+// App Component:
 const App = () => {
   const [notification, setNotification] = useState({})
+  const [token, setToken] = useState(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem('library-user-token')
+    if (token) {
+      setToken(token)
+    }
+  }, [])
 
   const notify = (message, type) => {
     setNotification({ message, type })
@@ -16,16 +30,34 @@ const App = () => {
     }, 10000)
   }
 
+  const logout = () => {
+    setToken(null)
+    localStorage.removeItem('library-user-token')
+    notify('Logged Out Successfully!', 'success')
+  }
+
+  if (!token) {
+    return (
+      <div>
+        <h2>Login:</h2>
+        <Notification notification={notification} />
+        <LoginForm notification={notify} setToken={setToken} />
+      </div>
+    )
+  }
+
   return (
     <div>
       <nav>
         <Link to="/authors">Authors</Link> &nbsp;
         <Link to="/books">Books</Link> &nbsp;
-        <Link to="/add">Add Book</Link>
+        <Link to="/add">Add Book</Link> &nbsp;
+        <button onClick={logout}>Logout</button>
       </nav>
       <br />
       <Notification notification={notification} />
       <Routes>
+        <Route path="/" element={<Authors notification={notify} />} />
         <Route path="/authors" element={<Authors notification={notify} />} />
         <Route path="/books" element={<Books />} />
         <Route path="/add" element={<NewBook notification={notify} />} />
@@ -34,4 +66,5 @@ const App = () => {
   );
 };
 
+// Export App Component:
 export default App;

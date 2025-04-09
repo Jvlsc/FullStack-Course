@@ -8,7 +8,8 @@ export const ALL_AUTHORS = gql`
       bookCount
     }
   }
-  `
+`
+
 export const ALL_BOOKS = gql`
   query fetchAllBooks {
     allBooks {
@@ -35,6 +36,14 @@ export const UPDATE_AUTHOR = gql`
     editAuthor(name: $name, setBornTo: $setBornTo) {
       name
       born
+    }
+  }
+`
+
+export const LOGIN = gql`
+  mutation login($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
+      value
     }
   }
 `

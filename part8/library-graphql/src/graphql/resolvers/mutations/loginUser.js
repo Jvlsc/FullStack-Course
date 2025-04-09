@@ -38,7 +38,7 @@ const loginUser = async (root, args) => {
 
     // Generate & Return Token:
     const tokenData = { username: user.username, id: user._id }
-    const token = jwt.sign(tokenData, config.SERVER_SECRET, { expiresIn: 60 })
+    const token = jwt.sign(tokenData, config.SERVER_SECRET, { expiresIn: 60 * 60 })
     console.log(`[GraphQL] Login Successful for '${user.username}'`)
     return { value: token }
 
