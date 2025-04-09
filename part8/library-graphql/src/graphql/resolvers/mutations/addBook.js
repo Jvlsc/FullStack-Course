@@ -9,9 +9,13 @@ const Book = require('../../../models/book')
 const { handleValidationError } = require('../utils/errorHandler')
 
 // Add Book Mutation Resolver:
-const addBook = async (root, args) => {
+const addBook = async (root, args, context) => {
   try {
     console.log('[GraphQL] Adding Book...')
+
+    if (!context.currentUser) {
+      throw new GraphQLError('Not authenticated', { extensions: { code: 'UNAUTHENTICATED' } })
+    }
 
     // Check if Author Exists:
     const authors = await Author.find({})

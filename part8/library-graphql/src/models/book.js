@@ -25,6 +25,9 @@ const schema = new mongoose.Schema({
   genres: [
     { type: String}
   ]
+}, {
+  collection: config.MONGODB_BOOKS_COLLECTION,
+  timestamps: true
 })
 
 // Apply Unique Validator:

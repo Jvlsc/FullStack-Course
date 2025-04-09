@@ -14,11 +14,13 @@ const mutationType = `
     ): Author
 
     createUser(
+      name: String!
       username: String!
+      password: String!
       favoriteGenre: String!
     ): User
 
-    login(
+    loginUser(
       username: String!
       password: String!
     ): Token

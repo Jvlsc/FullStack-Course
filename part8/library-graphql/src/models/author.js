@@ -18,6 +18,9 @@ const schema = new mongoose.Schema({
   born: {
     type: Number,
   },
+}, {
+  collection: config.MONGODB_AUTHORS_COLLECTION,
+  timestamps: true
 })
 
 // Apply Unique Validator:

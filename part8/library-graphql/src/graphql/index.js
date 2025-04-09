@@ -8,10 +8,13 @@ const bookCount = require('./resolvers/queries/bookCount');
 const authorCount = require('./resolvers/queries/authorCount');
 const allBooks = require('./resolvers/queries/allBooks');
 const allAuthors = require('./resolvers/queries/allAuthors');
+const me = require('./resolvers/queries/me');
 
 // Import Mutation Resolvers:
 const addBook = require('./resolvers/mutations/addBook');
 const editAuthor = require('./resolvers/mutations/editAuthor');
+const createUser = require('./resolvers/mutations/createUser');
+const loginUser = require('./resolvers/mutations/loginUser');
 
 // Combine Types:
 const typeDefs = `
@@ -25,13 +28,16 @@ const queryResolvers = {
   bookCount,
   authorCount,
   allBooks,
-  allAuthors
+  allAuthors,
+  me
 };
 
 // Combine Mutation Resolvers:
 const mutationResolvers = {
   addBook,
-  editAuthor
+  editAuthor,
+  createUser,
+  loginUser
 };
 
 // Combine Resolvers:

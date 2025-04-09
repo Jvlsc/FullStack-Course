@@ -5,9 +5,13 @@ const { GraphQLError } = require('graphql')
 const Author = require('../../../models/author')
 
 // Edit Author Mutation Resolver:
-const editAuthor = async (root, args) => {
+const editAuthor = async (root, args, context) => {
   try {
     console.log(`[GraphQL] Editing Author '${args.name}'...`)
+
+    if (!context.currentUser) {
+      throw new GraphQLError('Not authenticated', { extensions: { code: 'UNAUTHENTICATED' } })
+    }
 
     // Find Author:
     const author = await Author.findOne({ name: args.name })
