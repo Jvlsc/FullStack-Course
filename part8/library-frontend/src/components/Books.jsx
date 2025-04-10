@@ -25,9 +25,6 @@ const Books = () => {
 
   // Get all unique genres from all books
   const allGenres = [...new Set(allBooksResult.data.allBooks.flatMap(book => book.genres))]
-  console.log('All Genres: ', allGenres)
-  console.log('Genre Filter: ', genre)
-  console.log('Genre Result: ', filteredBooksResult.data.allBooks)
 
   return (
     <div>

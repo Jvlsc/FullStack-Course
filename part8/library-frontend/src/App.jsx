@@ -4,6 +4,12 @@ import { useState, useEffect } from "react";
 // Import React Router:
 import { Link, Routes, Route } from "react-router-dom";
 
+// Import Apollo Client:
+import { useSubscription } from '@apollo/client'
+
+// Import Queries:
+import { ALL_BOOKS, BOOK_ADDED } from './services/queries'
+
 // Import Components:
 import Authors from "./components/Authors";
 import Books from "./components/Books";
@@ -23,6 +29,17 @@ const App = () => {
       setToken(token)
     }
   }, [])
+  
+  useSubscription(BOOK_ADDED, {
+    onData: ({ data, client }) => {
+      console.log('[GraphQL-WS] Book Added Event Received', data)
+      notify(`Book '${data.data.bookAdded.title}' was Added!`, 'success')
+      window.alert('Book Added Event Received')
+      client.cache.updateQuery({query: ALL_BOOKS}, (data) => {
+        return { allBooks: data.allBooks.concat(data.data.bookAdded) }
+      })
+    }
+  })
 
   const notify = (message, type) => {
     setNotification({ message, type })

@@ -10,7 +10,7 @@ const editAuthor = async (root, args, context) => {
     console.log(`[GraphQL] Editing Author '${args.name}'...`)
 
     if (!context.currentUser) {
-      throw new GraphQLError('Not authenticated', { extensions: { code: 'UNAUTHENTICATED' } })
+      throw new GraphQLError('Not authenticated or Token Expired. Try logging in again.', { extensions: { code: 'UNAUTHENTICATED' } })
     }
 
     // Find Author:

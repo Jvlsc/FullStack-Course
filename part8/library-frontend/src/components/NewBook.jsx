@@ -20,20 +20,27 @@ const NewBook = ({ notification }) => {
       }
     },
     onError: (error) => {
+      console.log('[GraphQL] Error Adding Book', error)
       const messages = error.graphQLErrors.map(e => e.message).join('\n')
       console.log(`[GraphQL] Error Adding '${title}' Book -> ${messages}`)
       notification(`Error Adding '${title}' Book -- ${messages}`, 'error')
     },
     update: (cache, response) => {
       response.data.addBook.genres.forEach(genre => {
-        cache.updateQuery({ 
-          query: ALL_BOOKS_BY_GENRE,
-          variables: { genre }
-        }, ({ allBooks }) => {
-          return {
-            allBooks: allBooks.concat(response.data.addBook)
+        cache.updateQuery({query: ALL_BOOKS}, (data) => {
+          if (!data) {
+            return { allBooks: [response.data.addBook] }
           }
+          return { allBooks: data.allBooks.concat(response.data.addBook) }
         })
+        cache.updateQuery({query: ALL_BOOKS_BY_GENRE, variables: { genre }}, 
+          (data) => {
+            if (!data) {
+              return { allBooks: [response.data.addBook] }
+            }
+            return { allBooks: data.allBooks.concat(response.data.addBook) }
+          }
+        )
       })
     }
   })

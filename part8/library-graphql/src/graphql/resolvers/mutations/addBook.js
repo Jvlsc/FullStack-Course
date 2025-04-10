@@ -1,6 +1,5 @@
 // Import PubSub:
-const { PubSub } = require('graphql-subscriptions')
-const pubsub = new PubSub()
+const pubsub = require('../utils/pubsub')
 
 // Import GraphQL Error:
 const { GraphQLError } = require('graphql')
@@ -18,7 +17,7 @@ const addBook = async (root, args, context) => {
     console.log('[GraphQL] Adding Book...')
 
     if (!context.currentUser) {
-      throw new GraphQLError('Not authenticated', { extensions: { code: 'UNAUTHENTICATED' } })
+      throw new GraphQLError('Not authenticated or Token Expired. Try logging in again.', { extensions: { code: 'UNAUTHENTICATED' } })
     }
 
     // Check if Author Exists:

@@ -76,14 +76,6 @@ const startApolloServer = async () => {
             return { currentUser }
           } catch (error) {
             console.error('[GraphQL] Error Verifying Token -> ', error.message)
-
-            if (error.name === 'JsonWebTokenError') {
-              throw new GraphQLError('Invalid Token.', { extensions: { code: 'UNAUTHENTICATED' } })
-            }
-
-            if (error.name === 'TokenExpiredError') {
-              throw new GraphQLError('Expired Token. Try logging in again.', { extensions: { code: 'UNAUTHENTICATED' } })
-            }
           }
         }
       }

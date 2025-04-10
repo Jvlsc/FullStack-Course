@@ -1,10 +1,11 @@
+// Import PubSub:
+const pubsub = require('../utils/pubsub')
+
 // Book Added Subscription Resolver:
 const bookAdded = {
-  bookAdded: {
-    subscribe: () => {
-      console.log('[GraphQL] Subscribing to Book Added Event...')
-      return pubsub.asyncIteratorIterable(['BOOK_ADDED'])
-    },
+  subscribe: () => {
+    console.log('[GraphQL] Subscribing to "BOOK_ADDED" Event...')
+    return pubsub.asyncIterableIterator(['BOOK_ADDED'])
   },
 }
 
