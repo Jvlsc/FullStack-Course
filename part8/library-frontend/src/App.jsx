@@ -7,8 +7,9 @@ import { Link, Routes, Route } from "react-router-dom";
 // Import Apollo Client:
 import { useSubscription } from '@apollo/client'
 
-// Import Queries:
+// Import Queries & Services Utilities:
 import { ALL_BOOKS, BOOK_ADDED } from './services/queries'
+import { updateBooksCache } from './services/updateBooksCache'
 
 // Import Components:
 import Authors from "./components/Authors";
@@ -34,10 +35,8 @@ const App = () => {
     onData: ({ data, client }) => {
       console.log('[GraphQL-WS] Book Added Event Received', data)
       notify(`Book '${data.data.bookAdded.title}' was Added!`, 'success')
-      window.alert('Book Added Event Received')
-      client.cache.updateQuery({query: ALL_BOOKS}, (data) => {
-        return { allBooks: data.allBooks.concat(data.data.bookAdded) }
-      })
+      //window.alert('Book Added Event Received')
+      updateBooksCache(client.cache, {query: ALL_BOOKS}, data.data.bookAdded)
     }
   })
 
@@ -69,7 +68,7 @@ const App = () => {
       <nav>
         <Link to="/authors">Authors</Link> &nbsp;
         <Link to="/books">Books</Link> &nbsp;
-        <Link to="/add">Add Book</Link> &nbsp;
+        <Link to="/add-book">Add Book</Link> &nbsp;
         <Link to="/recommendations">Recommendations</Link> &nbsp;
         <button onClick={logout}>Logout</button>
       </nav>
@@ -79,7 +78,7 @@ const App = () => {
         <Route path="/" element={<Authors notification={notify} />} />
         <Route path="/authors" element={<Authors notification={notify} />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/add" element={<NewBook notification={notify} />} />
+        <Route path="/add-book" element={<NewBook notification={notify} />} />
         <Route path="/recommendations" element={<Recommendations />} />
       </Routes>
     </div>
