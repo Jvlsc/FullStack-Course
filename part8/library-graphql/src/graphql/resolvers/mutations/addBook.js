@@ -1,3 +1,7 @@
+// Import PubSub:
+const { PubSub } = require('graphql-subscriptions')
+const pubsub = new PubSub()
+
 // Import GraphQL Error:
 const { GraphQLError } = require('graphql')
 
@@ -31,9 +35,15 @@ const addBook = async (root, args, context) => {
     const newBook = new Book({ ...args, author: author._id })
     const savedBook = await newBook.save()
     
-    // Populate Saved Book & return:
+    // Populate Saved Book:
     await savedBook.populate('author')
     console.log(`[GraphQL] '${args.title}' Book Created Successfully!`)
+
+    // Publish Book Added Event:
+    console.log('[GraphQL] Publishing Book Added Event...')
+    pubsub.publish('BOOK_ADDED', { bookAdded: savedBook })
+
+    // Return Saved Book:
     return savedBook
 
   } catch (error) {

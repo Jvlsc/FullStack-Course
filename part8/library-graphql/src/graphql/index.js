@@ -2,6 +2,7 @@
 const basicTypes = require('./types/basic');
 const mutationTypes = require('./types/mutation');
 const queryTypes = require('./types/query');
+const subscriptionTypes = require('./types/subscription');
 
 // Import Query Resolvers:
 const bookCount = require('./resolvers/queries/bookCount');
@@ -16,11 +17,15 @@ const editAuthor = require('./resolvers/mutations/editAuthor');
 const createUser = require('./resolvers/mutations/createUser');
 const loginUser = require('./resolvers/mutations/loginUser');
 
+// Import Subscription Resolvers:
+const bookAdded = require('./resolvers/subscriptions/bookAdded');
+
 // Combine Types:
 const typeDefs = `
   ${basicTypes}
   ${queryTypes}
   ${mutationTypes}
+  ${subscriptionTypes}
 `;
 
 // Combine Query Resolvers:
@@ -40,10 +45,16 @@ const mutationResolvers = {
   loginUser
 };
 
+// Combine Subscription Resolvers:
+const subscriptionResolvers = {
+  bookAdded
+};
+
 // Combine Resolvers:
 const resolvers = {
   Query: queryResolvers,
-  Mutation: mutationResolvers
+  Mutation: mutationResolvers,
+  Subscription: subscriptionResolvers
 };
 
 // Export the GraphQL Schema and Resolvers
