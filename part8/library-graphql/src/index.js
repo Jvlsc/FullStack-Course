@@ -10,6 +10,7 @@ const config = require('./utils/config')
 // Connect to MongoDB:
 console.log('[MongoDB] Connecting to MongoDB')
 mongoose.set('strictQuery', false)
+mongoose.set('debug', true)
 mongoose.connect(config.MONGODB_URI)
   .then(() => {
     console.log('[MongoDB] Connected to MongoDB')
