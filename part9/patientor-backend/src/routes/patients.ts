@@ -1,9 +1,13 @@
 // Importing express:
 import express from 'express';
+import { Request, Response } from 'express';
 
 // Import Services & Utils:
 import patientService from '../services/patientService';
-import toNewPatientEntry from '../utils/validationRequest';
+
+// Import Middleware:
+import newPatientParser from '../middlewares/newPatientParser';
+import { NewPatient, Patient } from '../types/patient';
 
 // Creating a router:
 const router = express.Router();
@@ -26,21 +30,11 @@ router.get('/', (_req, res) => {
 });
 
 // POST Route (Saving a patient):
-router.post('/', (_req, res) => {
-  try {
-    console.log('[Express] Saving a patient...');
-    const newPatient = toNewPatientEntry(_req.body);
-    const addedPatient = patientService.addPatient(newPatient);
-    console.log('[Express] Patient saved successfully!');
-    res.json(addedPatient);
-  } catch (error: unknown) {
-    let errorMessage = '[Express] Something went wrong.';
-    if (error instanceof Error) {
-      errorMessage += ' Error: ' + error.message;
-    }
-    console.error(errorMessage);
-    res.status(400).send(errorMessage);
-  }
+router.post('/', newPatientParser, (req: Request<unknown, unknown, NewPatient>, res: Response<Patient>) => {
+  console.log('[Express] Saving a patient...');
+  const addedPatient = patientService.addPatient(req.body);
+  console.log('[Express] Patient saved successfully!');
+  res.json(addedPatient);
 });
 
 // Exporting the router:

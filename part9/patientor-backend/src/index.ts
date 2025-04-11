@@ -6,6 +6,9 @@ import cors from 'cors';
 import diagnosesRouter from './routes/diagnoses';
 import patientsRouter from './routes/patients';
 
+// Importing Middlewares:
+import zodErrorParser from './middlewares/zodErrorParser';
+
 // Constants:
 const PORT = 3001;
 
@@ -27,6 +30,9 @@ app.use('/api/diagnoses', diagnosesRouter);
 
 // Route - Patients:
 app.use('/api/patients', patientsRouter);
+
+// Middleware - Zod Error Parser:
+app.use(zodErrorParser);
 
 // Start Server:
 app.listen(PORT, () => {

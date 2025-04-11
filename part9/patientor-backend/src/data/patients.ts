@@ -2,7 +2,7 @@
 import { Patient } from '../types/patient';
 
 // Import functions:
-import toNewPatientEntry from '../utils/validationRequest';
+import toNewPatientEntry from '../utils/newPatientValidation';
 
 // Creating a patients array:
 const data = [
