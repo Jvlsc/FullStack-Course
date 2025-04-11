@@ -28,12 +28,18 @@ const calculateBmi = (height: number, weight: number): string => {
   return "Obese Range";
 };
 
-// Run the BMI Calculator:
-try {
-  const { height, weight } = parseBMIArguments(process.argv);
-  console.log(calculateBmi(height, weight));
-} catch (error) {
-  let errorMessage = "Error: ";
-  if (error instanceof Error) errorMessage += error.message;
-  console.log(errorMessage);
+// Export Functions:
+export { calculateBmi };
+
+
+// Run as a Script:
+if (require.main === module) {
+  try {
+    const { height, weight } = parseBMIArguments(process.argv);
+    console.log(calculateBmi(height, weight));
+  } catch (error) {
+    let errorMessage = "Error: ";
+    if (error instanceof Error) errorMessage += error.message;
+    console.log(errorMessage);
+  }
 }
