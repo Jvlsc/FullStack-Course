@@ -20,6 +20,7 @@ router.get('/', (_req, res) => {
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
     }
+    console.error(errorMessage);
     res.status(400).send(errorMessage);
   }
 });
@@ -37,6 +38,7 @@ router.post('/', (_req, res) => {
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
     }
+    console.error(errorMessage);
     res.status(400).send(errorMessage);
   }
 });
