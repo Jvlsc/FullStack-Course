@@ -1,5 +1,6 @@
 // Import Types:
 import { DiaryEntry, NewDiaryEntry } from '../types/diary'
+import { NotificationType } from '../types/notification';
 
 // Import Custom Hooks:
 import useField from '../hooks/useField'
@@ -7,9 +8,14 @@ import useField from '../hooks/useField'
 // Import Services:
 import { createEntry } from '../services/diaryService'
 
+// Prop Types:
+type DiaryFormProps = {
+  addEntry: (entry: DiaryEntry) => void;
+  notify: (notification: NotificationType) => void;
+}
 
 // DiaryForm Component:
-const DiaryForm = ({ addEntry }: { addEntry: (entry: DiaryEntry) => void }) => {
+const DiaryForm = ({ addEntry, notify }: DiaryFormProps) => {
   const date = useField('text');
   const weather = useField('text');
   const visibility= useField('text');
@@ -26,6 +32,7 @@ const DiaryForm = ({ addEntry }: { addEntry: (entry: DiaryEntry) => void }) => {
     createEntry(newEntry)
       .then((data) => {
         addEntry(data);
+        notify({ message: 'Entry created successfully', type: 'success' });
         date.onReset();
         weather.onReset();
         visibility.onReset();
@@ -33,6 +40,7 @@ const DiaryForm = ({ addEntry }: { addEntry: (entry: DiaryEntry) => void }) => {
       })
       .catch((error) => {
         console.error(error);
+        notify({ message: error, type: 'error' });
       });
   };
 

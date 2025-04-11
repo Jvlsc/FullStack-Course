@@ -3,14 +3,26 @@ import { DiaryEntry, NewDiaryEntry } from "../types/diary";
 
 const baseUrl = '/api/diaries'
 
-export const getAllEntries = () => {
-  return axios
-    .get<DiaryEntry[]>(baseUrl)
-    .then(response => response.data)
+interface ValidationError {
+  message: string;
+  errors: Record<string, string[]>
 }
 
-export const createEntry = (object: NewDiaryEntry) => {
-  return axios
-    .post<DiaryEntry>(baseUrl, object)
-    .then(response => response.data)
+export const getAllEntries = async (): Promise<DiaryEntry[]> => {
+  const response = await axios.get<DiaryEntry[]>(baseUrl)
+  return response.data
+}
+
+export const createEntry = async (object: NewDiaryEntry): Promise<DiaryEntry> => {
+  try {
+    const response = await axios.post<DiaryEntry>(baseUrl, object)
+    return response.data
+  } catch (error) {
+    if (axios.isAxiosError<ValidationError, Record<string, unknown>>(error)) {
+      throw error.response?.data
+    } else {
+      console.error(error);
+      throw error
+    }
+  }
 }

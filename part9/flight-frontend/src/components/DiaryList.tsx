@@ -1,8 +1,13 @@
 // Import DiaryEntry type:
 import { DiaryEntry } from "../types/diary";
 
-// Diary Component:
-const DiaryList = ({ entries }: { entries: DiaryEntry[] }) => {
+// Prop Types:
+type DiaryListProps = {
+  entries: DiaryEntry[];
+}
+
+// DiaryList Component:
+const DiaryList = ({ entries }: DiaryListProps) => {
   if (entries.length === 0) {
     return <div>No entries yet</div>;
   }
