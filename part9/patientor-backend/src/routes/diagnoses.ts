@@ -9,9 +9,17 @@ const router = express.Router();
 
 // GET Route (Fetching all diagnoses):
 router.get('/', (_req, res) => {
-  console.log('[Express] Fetching all diagnoses!');
-  const diagnoses = diagnoseService.getDiagnoses();
-  res.json(diagnoses);
+  try {
+    console.log('[Express] Fetching all diagnoses!');
+    const diagnoses = diagnoseService.getDiagnoses();
+    res.json(diagnoses);
+  } catch (error: unknown) {
+    let errorMessage = '[Express] Something went wrong.';
+    if (error instanceof Error) {
+      errorMessage += ' Error: ' + error.message;
+    }
+    res.status(400).send(errorMessage);
+  }
 });
 
 // POST Route (Saving a diagnosis):
