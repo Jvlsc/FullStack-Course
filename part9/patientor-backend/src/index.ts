@@ -2,6 +2,9 @@
 import express from 'express';
 import cors from 'cors';
 
+// Importing Routes:
+import diagnosesRouter from './routes/diagnoses';
+
 // Constants:
 const PORT = 3001;
 
@@ -18,7 +21,9 @@ app.get('/api/ping', (_req, res) => {
   res.send('pong');
 });
 
+app.use('/api/diagnoses', diagnosesRouter);
+
 // Start Server:
 app.listen(PORT, () => {
-  console.log(`Server Running: http://localhost:${PORT}`);
+  console.log(`[Express] Server Running: http://localhost:${PORT}`);
 });

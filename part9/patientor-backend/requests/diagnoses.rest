@@ -1,0 +1,6 @@
+## GET all diagnoses
+GET http://localhost:3001/api/diagnoses
+
+
+## POST a diagnose
+POST http://localhost:3001/api/diagnoses
