@@ -26,7 +26,7 @@ const parseExerciseArguments = (args: string[]): ExerciseValues => {
   } else {
     throw new Error('Provided values were not numbers!');
   }
-}
+};
 
 // Exercise Calculator:
 const calculateExercises = (target: number, data: Array<number>): ExerciseResult => {

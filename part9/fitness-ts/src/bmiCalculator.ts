@@ -17,7 +17,7 @@ const parseBMIArguments = (args: string[]): BmiValues => {
   } else {
     throw new Error('Provided values were not numbers!');
   }
-}
+};
 
 // BMI Calculator:
 const calculateBmi = (height: number, weight: number): string => {
