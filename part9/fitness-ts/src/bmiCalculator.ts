@@ -1,3 +1,24 @@
+// BMI Values Interface:
+interface BmiValues {
+  height: number;
+  weight: number;
+}
+
+// Parse Arguments:
+const parseBMIArguments = (args: string[]): BmiValues => {
+  if (args.length < 4) throw new Error('Not enough arguments');
+  if (args.length > 4) throw new Error('Too many arguments');
+
+  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
+    return {
+      height: Number(args[2]),
+      weight: Number(args[3])
+    } as BmiValues;
+  } else {
+    throw new Error('Provided values were not numbers!');
+  }
+}
+
 // BMI Calculator:
 const calculateBmi = (height: number, weight: number): string => {
   const bmi = weight / (height / 100) ** 2;
@@ -8,9 +29,9 @@ const calculateBmi = (height: number, weight: number): string => {
 };
 
 // Run the BMI Calculator:
-// (Hardcoded Values)
 try {
-  console.log(calculateBmi(180, 74));
+  const { height, weight } = parseBMIArguments(process.argv);
+  console.log(calculateBmi(height, weight));
 } catch (error) {
   let errorMessage = "Error: ";
   if (error instanceof Error) errorMessage += error.message;

@@ -1,3 +1,9 @@
+// Exercise Values Interface:
+interface ExerciseValues {
+  target: number;
+  data: Array<number>;
+}
+
 // Exercise Result Interface:
 interface ExerciseResult {
   periodLength: number,
@@ -9,8 +15,21 @@ interface ExerciseResult {
   average: number
 }
 
+// Parse Arguments:
+const parseExerciseArguments = (args: string[]): ExerciseValues => {
+  if (args.length < 4) throw new Error('Not enough arguments');
+  const target = Number(args[2]);
+  const data = args.slice(3).map(Number);
+
+  if (!isNaN(target) && !data.every(isNaN)) {
+    return { target, data } as ExerciseValues;
+  } else {
+    throw new Error('Provided values were not numbers!');
+  }
+}
+
 // Exercise Calculator:
-const calculateExercises = (data: Array<number>, target: number): ExerciseResult => {
+const calculateExercises = (target: number, data: Array<number>): ExerciseResult => {
   const periodLength = data.length;
   const trainingDays = data.filter(day => day !== 0).length;
   const average = data.reduce((acc, curr) => acc + curr, 0) / data.length;
@@ -36,7 +55,8 @@ const calculateExercises = (data: Array<number>, target: number): ExerciseResult
 // Run the Exercise Calculator:
 // (Hardcoded Values)
 try {
-  console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+  const { target, data } = parseExerciseArguments(process.argv);
+  console.log(calculateExercises(target, data));
 } catch (error) {
   let errorMessage = "Error: ";
   if (error instanceof Error) errorMessage += error.message;
