@@ -1,9 +1,10 @@
-# Course Information TypeScript Project:
+# Flight Information Frontend Project:
 
 The exercises corresponding to this project are:
 
-- **Exercise 9.15**: Course Information TypeScript (Step 1).
-- **Exercise 9.16**: Course Information TypeScript (Step 2).
+- **Exercise 9.17**: Flight Information (Step 1).
+- **Exercise 9.18**: Flight Information (Step 2).
+- **Exercise 9.19**: Flight Information (Step 3).
 
 ---
 ---
