@@ -45,6 +45,16 @@ const Part = ({ part }: { part: CoursePart }) => {
           </ul>
         </>
       );
+    case "special":
+      return (
+        <>
+          {baseInfo}
+          <ul>
+            <li><em>Description: {part.description}</em></li>
+            <li>Requirements: {part.requirements.join(', ')}</li>
+          </ul>
+        </>
+      );
     default:
       return assertNever(part);
   }
