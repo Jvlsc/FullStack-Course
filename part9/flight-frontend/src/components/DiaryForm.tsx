@@ -1,5 +1,5 @@
 // Import Types:
-import { DiaryEntry, NewDiaryEntry } from '../types/diary'
+import { DiaryEntry, NewDiaryEntry, Weather, Visibility } from '../types/diary'
 import { NotificationType } from '../types/notification';
 
 // Import Custom Hooks:
@@ -16,10 +16,10 @@ type DiaryFormProps = {
 
 // DiaryForm Component:
 const DiaryForm = ({ addEntry, notify }: DiaryFormProps) => {
-  const date = useField('text');
-  const weather = useField('text');
-  const visibility= useField('text');
-  const comment = useField('text');
+  const date = useField<string>('date');
+  const weather = useField<Weather>('radio');
+  const visibility= useField<Visibility>('radio');
+  const comment = useField<string>('text');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,11 +52,31 @@ const DiaryForm = ({ addEntry, notify }: DiaryFormProps) => {
       </div>
       <div>
         <label htmlFor="weather">Weather </label>
-        <input {...weather} />
+        {Object.values(Weather).map((item) => (
+          <span key={item}>
+            <input 
+              {...weather}
+              name="weather" 
+              checked={weather.value === item}
+              value={item} 
+            /> 
+            <label htmlFor={item}>{item}</label>
+          </span>
+        ))}
       </div>
       <div>
         <label htmlFor="visibility">Visibility </label>
-        <input {...visibility} />
+        {Object.values(Visibility).map((item) => (
+          <span key={item}>
+            <input 
+              {...visibility}
+              name="visibility" 
+              value={item} 
+              checked={visibility.value === item}
+            />
+            <label htmlFor={item}>{item}</label>
+          </span>
+        ))}
       </div>
       <div>
         <label htmlFor="comment">Comment </label>

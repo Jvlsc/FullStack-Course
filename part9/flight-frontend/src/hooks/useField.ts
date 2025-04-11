@@ -2,15 +2,15 @@
 import { useState } from 'react'
 
 // Custom Hook - useField:
-const useField = (type: string) => {
-  const [value, setValue] = useState('')
+const useField = <T>(type: string) => {
+  const [value, setValue] = useState<T>('' as T)
 
   const onChange = (event: React.SyntheticEvent) => {
     const target = event.target as typeof event.target & { value: string };
-    setValue(target.value);
+    setValue(target.value as T);
   }
   
-  const onReset = () => setValue('')
+  const onReset = () => setValue('' as T)
 
   return { type, value, onChange, onReset }
 }
