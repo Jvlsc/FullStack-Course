@@ -1,8 +1,11 @@
 // Importing the Patient type:
 import { Patient } from '../types/patient';
 
+// Import functions:
+import toNewPatientEntry from '../utils/validationRequest';
+
 // Creating a patients array:
-const data: Patient[] = [
+const data = [
   {
       "id": "d2773336-f723-11e9-8f0b-362b9e155667",
       "name": "John McClane",
@@ -45,5 +48,12 @@ const data: Patient[] = [
   }
 ];
 
+// Mapping the data to the Patient type:
+const patients: Patient[] = data.map(obj => {
+  const object = toNewPatientEntry(obj) as Patient;
+  object.id = obj.id;
+  return object;
+});
+
 // Exporting the patients array:
-export default data;
+export default patients;
