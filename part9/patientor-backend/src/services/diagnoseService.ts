@@ -5,7 +5,7 @@ import { Diagnosis } from '../types/diagnosis';
 import diagnoses from '../data/diagnoses';
 
 // Function to get all diagnoses:
-const getEntries = (): Diagnosis[] => {
+const getDiagnoses = (): Diagnosis[] => {
   return diagnoses;
 };
 
@@ -16,6 +16,6 @@ const addDiagnose = () => {
 
 // Exporting the functions:
 export default {
-  getEntries,
+  getDiagnoses,
   addDiagnose
 };

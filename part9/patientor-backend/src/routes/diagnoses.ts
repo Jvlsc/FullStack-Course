@@ -10,7 +10,7 @@ const router = express.Router();
 // GET Route (Fetching all diagnoses):
 router.get('/', (_req, res) => {
   console.log('[Express] Fetching all diagnoses!');
-  const diagnoses = diagnoseService.getEntries();
+  const diagnoses = diagnoseService.getDiagnoses();
   res.json(diagnoses);
 });
 

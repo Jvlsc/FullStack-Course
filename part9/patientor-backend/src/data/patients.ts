@@ -1,4 +1,8 @@
-const data = [
+// Importing the Patient type:
+import { Patient } from '../types/patient';
+
+// Creating a patients array:
+const data: Patient[] = [
   {
       "id": "d2773336-f723-11e9-8f0b-362b9e155667",
       "name": "John McClane",
@@ -41,4 +45,5 @@ const data = [
   }
 ];
 
+// Exporting the patients array:
 export default data;
