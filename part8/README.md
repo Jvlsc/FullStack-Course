@@ -7,11 +7,11 @@ This part of the course is about GraphQL, Facebook's alternative to REST for com
 
 ## Table of Contents:
 
-- [GraphQL-server](#graphql-server)
-- [React and GraphQL](#react-and-graphql)
-- [Database and user administration](#database-and-user-administration)
-- [Login and updating the cache](#login-and-updating-the-cache)
-- [Fragments and subscriptions](#fragments-and-subscriptions)
+- **[GraphQL-server](#graphql-server)**
+- **[React and GraphQL](#react-and-graphql)**
+- **[Database and user administration](#database-and-user-administration)**
+- **[Login and updating the cache](#login-and-updating-the-cache)**
+- **[Fragments and subscriptions](#fragments-and-subscriptions)**
 
 ---
 ---

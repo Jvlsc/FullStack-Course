@@ -1,8 +1,49 @@
-# React + Vite
+# Library Frontend Project:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The exercises corresponding to this project are:
 
-Currently, two official plugins are available:
+- **Exercise 8.8**: Authors View.
+- **Exercise 8.9**: Books View.
+- **Exercise 8.10**: Adding a Book.
+- **Exercise 8.11**: Authors Birth Year.
+- **Exercise 8.12**: Authors Birth Year (Advanced).
+- **Exercise 8.17**: Listing Books.
+- **Exercise 8.18**: Login.
+- **Exercise 8.19**: Books by Genre (Step 1).
+- **Exercise 8.20**: Books by Genre (Step 2).
+- **Exercise 8.21**: Books by Genre with GraphQL.
+- **Exercise 8.22**: Up-to-date Cache and Book Recommendations.
+- **Exercise 8.24**: Subscriptions - Client (Step 1).
+- **Exercise 8.25**: Subscriptions - Client (Step 2).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+---
+
+## Quick Start:
+
+**Install Dependencies:**
+
+```bash
+npm install
+```
+
+**Run the Project:**
+
+```bash
+npm run dev
+```
+
+**Build the Project:**
+
+```bash
+npm run build
+```
+
+**Run Linting:**
+
+```bash
+npm run lint
+```
+
+---
+---
