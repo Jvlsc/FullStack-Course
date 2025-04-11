@@ -1,22 +1,8 @@
-// Import React Hooks:
-import { useState, useEffect } from "react";
-
 // Import DiaryEntry type:
 import { DiaryEntry } from "../types/diary";
 
-// Import Services:
-import { getAllEntries } from "../services/DiaryService";
-
 // Diary Component:
-const Diary = () => {
-  const [entries, setEntries] = useState<DiaryEntry[]>([]);
-
-  useEffect(() => {
-    getAllEntries().then(data => {
-      setEntries(data);
-    });
-  }, []);
-
+const DiaryList = ({ entries }: { entries: DiaryEntry[] }) => {
   if (entries.length === 0) {
     return <div>No entries yet</div>;
   }
@@ -38,5 +24,5 @@ const Diary = () => {
   )
 }
 
-// Export the Diary Component
-export default Diary;
+// Export the DiaryList Component
+export default DiaryList;
