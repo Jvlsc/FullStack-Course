@@ -1,5 +1,5 @@
 // Importing the Diagnosis type:
-import { Diagnosis } from '../types/diagnosis';
+import { Diagnosis } from '../types';
 
 // Creating a diagnoses array:
 const diagnoses: Diagnosis[] = [

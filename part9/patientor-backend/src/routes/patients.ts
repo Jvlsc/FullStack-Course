@@ -7,7 +7,7 @@ import patientService from '../services/patientService';
 
 // Import Middleware:
 import newPatientParser from '../middlewares/newPatientParser';
-import { NewPatient, Patient } from '../types/patient';
+import { NewPatient, Patient } from '../types';
 
 // Creating a router:
 const router = express.Router();

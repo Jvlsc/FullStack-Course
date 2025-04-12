@@ -2,7 +2,7 @@
 import { z } from 'zod';
 
 // Importing the Gender type:
-import { Gender } from '../types/patient';
+import { Gender } from '../types';
 
 // Creating the NewPatientSchema:
 const NewPatientSchema = z.object({

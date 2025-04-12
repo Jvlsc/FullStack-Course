@@ -1,5 +1,5 @@
 // Importing the NewPatient type:
-import { Gender, NewPatient } from '../types/patient';
+import { Gender, NewPatient, Entry, EntryType } from '../types';
 
 // Function to check if the text is a valid string:
 const isString = (text: unknown): text is string => {
@@ -40,20 +40,50 @@ const parseGender = (gender: unknown): Gender => {
   return gender;
 };
 
+// Function to check if the entry type is valid:
+const isEntryType = (type: unknown): type is EntryType => {
+  return isString(type) && Object.values(EntryType).includes(type as EntryType);
+};
+
+// Function to check if the entries are valid:
+const isValidEntry = (entries: unknown): entries is Entry[] => {
+  return Array.isArray(entries) && entries.every(entry => {
+    if (!entry || typeof entry !== 'object') {
+      throw new Error('Incorrect or missing entry');
+    }
+    if ('type' in entry) {
+      const type = (entry as { type: unknown }).type;
+      if (!type || !isString(type) || !isEntryType(type)) {
+        throw new Error('Incorrect or missing entry type');
+      }
+      return true;
+    }
+    throw new Error('Incorrect or missing entry type');
+  });
+};
+
+// Function to parse the entries:
+const parseEntries = (entries: unknown): Entry[] => {
+  if (!isValidEntry(entries)) {
+    throw new Error('Incorrect or missing entries');
+  }
+  return entries;
+};
+
 // Function to parse the patient entry:
 const toNewPatientEntry = (object: unknown): NewPatient => {
   if (!object || typeof object !== 'object') {
     throw new Error('Incorrect or missing data');
   }
 
-  if ('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object) {
+  if ('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object && 'entries' in object) {
     const newPatient: NewPatient = {
       name: parseString(object.name, 'name'),
       dateOfBirth: parseDate(object.dateOfBirth),
       ssn: parseString(object.ssn, 'ssn'),
       gender: parseGender(object.gender),
       occupation: parseString(object.occupation, 'occupation'),
-      entries: []
+      entries: parseEntries(object.entries)
     };
 
     return newPatient;

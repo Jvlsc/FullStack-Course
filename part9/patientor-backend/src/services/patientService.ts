@@ -1,7 +1,7 @@
 import { v1 as uuid } from 'uuid';
 
 // Importing the Patient type:
-import { NewPatient, NonSensitivePatient, Patient } from '../types/patient';
+import { NewPatient, NonSensitivePatient, Patient } from '../types';
 
 // Importing the patient data:
 import patients from '../data/patients';
