@@ -42,8 +42,23 @@ const PatientPage = () => {
           {patient.gender === "female" && <Female />}
           {patient.gender === "other" && <Transgender />}
         </Box>
-        <Typography variant="h6">- Gender: {patient.gender}</Typography>
+        <Typography variant="h6">- SSN: {patient.ssn}</Typography>
         <Typography variant="h6">- Occupation: {patient.occupation}</Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }} style={{ marginTop: "1em" }}>
+          <Typography variant="h6"><strong>Entries:</strong></Typography>
+          {patient.entries.map((entry) => (
+            <div key={entry.id}>
+              <Typography variant="h6">{entry.date}: {entry.description}</Typography>
+              <ul>
+                {entry.diagnosisCodes?.map((code) => (
+                  <li key={code}>
+                    <Typography variant="h6">{code}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </Box>
       </Box>
     </div>
   );

@@ -10,6 +10,7 @@ The exercises corresponding to this project are:
 - **Exercise 9.13**: Patientor Backend (Step 6).
 - **Exercise 9.14**: Patientor Backend (Step 7).
 - **Exercise 9.21**: Patientor (Step 1).
+- **Exercise 9.23**: Patientor (Step 3).
 
 ---
 ---
