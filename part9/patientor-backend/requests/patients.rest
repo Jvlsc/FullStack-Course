@@ -1,19 +1,68 @@
-### GET all patients
+### GET all Patients
 GET http://localhost:3001/api/patients
 
 
-### GET a patient by ID
-GET http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667
+### GET a Patient by ID
+GET http://localhost:3001/api/patients/d27736ec-f723-11e9-8f0b-362b9e155667
 
 
-### POST a patient
+### POST a Patient
 POST http://localhost:3001/api/patients
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "dateOfBirth": "1990-01-01",
-    "gender": "male",
-    "ssn": "1234567890",
-    "occupation": "Software Engineer"
+  "name": "John Doe",
+  "dateOfBirth": "1990-01-01",
+  "gender": "male",
+  "ssn": "1234567890",
+  "occupation": "Software Engineer"
+}
+
+
+### POST an Entry (HealthCheck):
+POST http://localhost:3001/api/patients/d27736ec-f723-11e9-8f0b-362b9e155667/entries
+Content-Type: application/json
+
+{
+  "description": "Migraine",
+  "date": "2021-01-01",
+  "specialist": "Dr. John Doe",
+  "diagnosisCodes": ["M54.2"],
+  "type": "HealthCheck",
+  "healthCheckRating": 6
+}
+
+
+### POST an Entry (Hospital):
+POST http://localhost:3001/api/patients/d27736ec-f723-11e9-8f0b-362b9e155667/entries
+Content-Type: application/json
+
+{
+  "description": "Migraine",
+  "date": "2021-01-01",
+  "specialist": "Dr. John Doe",
+  "diagnosisCodes": ["M54.2"],
+  "type": "Hospital",
+  "discharge": {
+    "date": "2020-01-01",
+    "criteria": "Migraine"
+  }
+}
+
+
+### POST an Entry (Occupational Healthcare):
+POST http://localhost:3001/api/patients/d27736ec-f723-11e9-8f0b-362b9e155667/entries
+Content-Type: application/json
+
+{
+  "description": "Migraine",
+  "date": "2021-01-01",
+  "specialist": "Dr. John Doe",
+  "diagnosisCodes": ["M54.2"],
+  "type": "OccupationalHealthcare",
+  "employerName": "Acme Inc.",
+  "sickLeave": {
+    "startDate": "2021-01-01",
+    "endDate": "2021-01-01"
+  }
 }

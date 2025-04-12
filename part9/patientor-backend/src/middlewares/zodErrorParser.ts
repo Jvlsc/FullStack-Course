@@ -7,8 +7,10 @@ import { ZodError } from "zod";
 // Middleware to parse Zod errors:
 const zodErrorParser = (error: unknown, _req: Request, res: Response, next: NextFunction) => { 
   if (error instanceof ZodError) {
-    console.log('[Express] ZodError: ', error.issues[0].message);
-    res.status(400).send(error.issues[0].message);
+    const path = error.issues[0].path.join('.');
+    const message = error.issues[0].message;
+    console.log(`[Express] ZodError: ${path} - ${message}`);
+    res.status(400).send(`${path} - ${message}`);
   } else {
     next(error);
   }

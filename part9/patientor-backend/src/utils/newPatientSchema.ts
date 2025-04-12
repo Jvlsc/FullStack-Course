@@ -10,8 +10,7 @@ const NewPatientSchema = z.object({
   dateOfBirth: z.string().date(),
   ssn: z.string().min(1, "SSN is required"),
   gender: z.nativeEnum(Gender),
-  occupation: z.string().min(1, "Occupation is required"),
-  entries: z.array(z.object({}))
+  occupation: z.string().min(1, "Occupation is required")
 });
 
 // Exporting the NewPatientSchema:
