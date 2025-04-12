@@ -9,8 +9,8 @@ const zodErrorParser = (error: unknown, _req: Request, res: Response, next: Next
   if (error instanceof ZodError) {
     const path = error.issues[0].path.join('.');
     const message = error.issues[0].message;
-    console.log(`[Express] ZodError: ${path} - ${message}`);
-    res.status(400).send(`${path} - ${message}`);
+    console.log(`[Express] ZodError: Path ${path} - ${message}`);
+    res.status(400).send(`${message} (Path: ${path})`);
   } else {
     next(error);
   }
