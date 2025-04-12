@@ -4,6 +4,7 @@ The exercises corresponding to this project are:
 
 - **Exercise 9.22**: Patientor (Step 2).
 - **Exercise 9.24**: Patientor (Step 4).
+- **Exercise 9.25**: Patientor (Step 5).
 
 ---
 ---

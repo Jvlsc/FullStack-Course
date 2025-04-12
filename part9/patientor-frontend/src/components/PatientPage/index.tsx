@@ -6,9 +6,10 @@ import { useParams } from "react-router-dom";
 
 // Importing Patient Service:
 import patientService from "../../services/patients";
+import diagnosisService from "../../services/diagnoses";
 
 // Importing Patient Type:
-import { Patient } from "../../types";
+import { Patient, Diagnosis } from "../../types";
 
 // Importing Material-UI Components:
 import { Box, Divider, Typography } from "@mui/material";
@@ -18,14 +19,21 @@ import { Male, Female, Transgender } from "@mui/icons-material";
 const PatientPage = () => {
   const { id } = useParams();
   const [patient, setPatient] = useState<Patient | null>(null);
+  const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
 
   useEffect(() => {
     void fetchPatient();
+    void fetchDiagnosis();
   }, [id]);
 
   const fetchPatient = async () => {
     const patient = await patientService.getById(id);
     setPatient(patient);
+  };
+
+  const fetchDiagnosis = async () => {
+    const diagnoses = await diagnosisService.getAll();
+    setDiagnoses(diagnoses);
   };
 
   if (!patient) {
@@ -50,11 +58,14 @@ const PatientPage = () => {
             <div key={entry.id}>
               <Typography variant="h6">{entry.date}: {entry.description}</Typography>
               <ul>
-                {entry.diagnosisCodes?.map((code) => (
-                  <li key={code}>
-                    <Typography variant="h6">{code}</Typography>
-                  </li>
-                ))}
+                {entry.diagnosisCodes?.map((code) => {
+                  const diagnosesName = diagnoses.find((d) => d.code === code)?.name || "";
+                  return (
+                    <li key={code}>
+                      <Typography variant="h6"><strong>{code}</strong> - {diagnosesName}</Typography>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
