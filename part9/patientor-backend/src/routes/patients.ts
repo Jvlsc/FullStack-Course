@@ -29,6 +29,23 @@ router.get('/', (_req, res) => {
   }
 });
 
+// GET Route (Fetching a patient by ID):
+router.get('/:id', (req: Request, res: Response) => {
+  try {
+    console.log('[Express] Fetching a patient by ID...');
+    const patient = patientService.getPatientById(req.params.id);
+    console.log('[Express] Patient fetched successfully!');
+    res.json(patient);
+  } catch (error: unknown) {
+    let errorMessage = '[Express] Something went wrong.';
+    if (error instanceof Error) {
+      errorMessage += ' Error: ' + error.message;
+    }
+    console.error(errorMessage);
+    res.status(400).send(errorMessage);
+  }
+});
+
 // POST Route (Saving a patient):
 router.post('/', newPatientParser, (req: Request<unknown, unknown, NewPatient>, res: Response<Patient>) => {
   console.log('[Express] Saving a patient...');

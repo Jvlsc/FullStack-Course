@@ -2,6 +2,10 @@
 GET http://localhost:3001/api/patients
 
 
+### GET a patient by ID
+GET http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667
+
+
 ### POST a patient
 POST http://localhost:3001/api/patients
 Content-Type: application/json

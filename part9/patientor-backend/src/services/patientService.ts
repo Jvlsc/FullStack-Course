@@ -11,6 +11,12 @@ const getPatients = (): Patient[] => {
   return patients;
 };
 
+// Function to get a patient by ID:
+const getPatientById = (id: string): Patient | undefined => {
+  const patient = patients.find(patient => patient.id === id);
+  return patient;
+};
+
 // Function to get all patients (Non-Sensitive Data):
 const getNonSensitivePatients = (): NonSensitivePatient[] => {
   return patients.map(patient => ({
@@ -35,6 +41,7 @@ const addPatient = (patient: NewPatient): Patient => {
 // Exporting the functions:
 export default {
   getPatients,
+  getPatientById,
   getNonSensitivePatients,
   addPatient
 };
