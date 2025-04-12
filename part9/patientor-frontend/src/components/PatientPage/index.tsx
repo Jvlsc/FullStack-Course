@@ -33,6 +33,16 @@ const PatientPage = () => {
     void fetchDiagnosis();
   }, [id]);
 
+  const fetchPatient = async () => {
+    const patient = await patientService.getById(id);
+    setPatient(patient);
+  };
+
+  const fetchDiagnosis = async () => {
+    const diagnoses = await diagnosisService.getAll();
+    setDiagnoses(diagnoses);
+  };
+  
   const openModal = (): void => {
     setModalOpen(true);
   };
@@ -65,16 +75,6 @@ const PatientPage = () => {
     }
   };
 
-  const fetchPatient = async () => {
-    const patient = await patientService.getById(id);
-    setPatient(patient);
-  };
-
-  const fetchDiagnosis = async () => {
-    const diagnoses = await diagnosisService.getAll();
-    setDiagnoses(diagnoses);
-  };
-
   if (!patient || !diagnoses) {
     return <div>Loading Patients data...</div>;
   }
@@ -93,7 +93,7 @@ const PatientPage = () => {
         <Typography variant="h6">- Occupation: {patient.occupation}</Typography>
       </Box>
       <div style={{ marginTop: "1.5em", marginBottom: "1.5em" }}>
-        <AddEntryModal modalOpen={modalOpen} onClose={closeModal} onSubmit={submitNewEntry} error={error} />
+        <AddEntryModal diagnoses={diagnoses} modalOpen={modalOpen} onClose={closeModal} onSubmit={submitNewEntry} error={error} />
         <Button variant="contained" onClick={openModal}>Add Entry</Button> 
       </div>
       <div>

@@ -2,12 +2,12 @@
 import { useState } from "react";
 
 // Import Types:
-import { EntryType, EntryWithoutId } from "../../types";
+import { EntryType, EntryWithoutId, Diagnosis } from "../../types";
 
 // Import Components:
-import AddHospitalForm from "./AddHospitalForm";
-import AddHealthForm from "./addHealthForm";
-import AddOccupationalForm from "./AddOccupationalForm";
+import HospitalForm from "./HospitalForm";
+import HealthForm from "./HealthForm";
+import OccupationalForm from "./OccupationalForm";
 
 // Import Material UI Components:
 import {
@@ -25,6 +25,7 @@ import {
 
 // Props Type:
 interface Props {
+  diagnoses: Diagnosis[];
   modalOpen: boolean;
   onClose: () => void;
   onSubmit: (values: EntryWithoutId) => void;
@@ -32,7 +33,7 @@ interface Props {
 }
 
 // AddEntryModal Component:
-const AddEntryModal = ({ modalOpen, onClose, onSubmit, error }: Props) => {
+const AddEntryModal = ({ diagnoses, modalOpen, onClose, onSubmit, error }: Props) => {
 
   const [entryType, setEntryType] = useState<EntryType | ''>('');
 
@@ -44,13 +45,13 @@ const AddEntryModal = ({ modalOpen, onClose, onSubmit, error }: Props) => {
   const EntryTypeForm = () => {
     switch(entryType) {
       case EntryType.HealthCheck: {
-        return <AddHealthForm onSubmit={onSubmit} onCancel={handleClose} />;
+        return <HealthForm diagnoses={diagnoses} onSubmit={onSubmit} onCancel={handleClose} />;
       }
       case EntryType.Hospital: {
-        return <AddHospitalForm onSubmit={onSubmit} onCancel={handleClose} />;
+        return <HospitalForm diagnoses={diagnoses} onSubmit={onSubmit} onCancel={handleClose} />;
       }
       case EntryType.OccupationalHealthcare: {
-        return <AddOccupationalForm onSubmit={onSubmit} onCancel={handleClose} />;
+        return <OccupationalForm diagnoses={diagnoses} onSubmit={onSubmit} onCancel={handleClose} />;
       }
       default:
         return null;
