@@ -11,6 +11,9 @@ import diagnosisService from "../../services/diagnoses";
 // Importing Patient Type:
 import { Patient, Diagnosis } from "../../types";
 
+// Import Components:
+import EntriesList from "./EntriesList";
+
 // Importing Material-UI Components:
 import { Box, Divider, Typography } from "@mui/material";
 import { Male, Female, Transgender } from "@mui/icons-material";
@@ -52,24 +55,7 @@ const PatientPage = () => {
         </Box>
         <Typography variant="h6">- SSN: {patient.ssn}</Typography>
         <Typography variant="h6">- Occupation: {patient.occupation}</Typography>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }} style={{ marginTop: "1em" }}>
-          <Typography variant="h6"><strong>Entries:</strong></Typography>
-          {patient.entries.map((entry) => (
-            <div key={entry.id}>
-              <Typography variant="h6">{entry.date}: {entry.description}</Typography>
-              <ul>
-                {entry.diagnosisCodes?.map((code) => {
-                  const diagnosesName = diagnoses.find((d) => d.code === code)?.name || "";
-                  return (
-                    <li key={code}>
-                      <Typography variant="h6"><strong>{code}</strong> - {diagnosesName}</Typography>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ))}
-        </Box>
+        <EntriesList entries={patient.entries} diagnoses={diagnoses} />
       </Box>
     </div>
   );
