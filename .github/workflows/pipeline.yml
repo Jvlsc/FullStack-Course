@@ -13,9 +13,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Move to Project Directory
-        run: cd ./part11/Pokedex
       - name: Install Dependencies 
+        working-directory: ./part11/Pokedex
         run: npm install  
       - name: Check Style
+        working-directory: ./part11/Pokedex
         run: npm run eslint
