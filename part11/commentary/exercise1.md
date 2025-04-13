@@ -21,9 +21,7 @@ Let's take an example of a Node.js project. Using Git Hooks with [Husky](https:/
 
 With this setup, the code will be linted and formatted before every commit and the tests will be run before every push. Once in the repository, this tests could be run again in the CI pipeline. This could be done periodically, before a release or any other defined condition. The repository is a shared resource, the goal is to is to have a clean code that is easy to maintain and easy to test. Sometimes good practices force developers to sacrifice some creativity and flexibility, but in the long run, it will save time and money.
 
-When it comes to CI alternatives beyond `Jenkins` and `GitHub Actions`, there are several robust options available in the market: [GitLab](https://docs.gitlab.com/ci/) has its own CI/CD, [Bitbucket](https://www.atlassian.com/software/bitbucket/features/pipelines) has its own CI/CD, [CircleCI](https://circleci.com/) or [Octopus](https://octopus.com/) are also good options.
-
-Regarding the choice between self-hosted or cloud-based environments, the decision largely depends on specific project requirements.
+When it comes to CI alternatives beyond `Jenkins` and `GitHub Actions`, there are several robust options available in the market: [GitLab](https://docs.gitlab.com/ci/) has its own CI/CD, [Bitbucket](https://www.atlassian.com/software/bitbucket/features/pipelines) has its own CI/CD, [CircleCI](https://circleci.com/) or [Octopus](https://octopus.com/) are also good options. Regarding the choice between self-hosted or cloud-based environments, the decision largely depends on specific project requirements.
 
 - A **cloud-based solution** would be more suitable for starting projects and small/medium size projects. It offers a reduced maintenance overhead, automatic scaling capabilities, and no need for infrastructure management.
 - A **self-hosted solution** would be more suitable for large projects with high security requirements. It offers more control over the infrastructure and the data.
