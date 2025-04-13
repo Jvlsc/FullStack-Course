@@ -20,11 +20,11 @@ Doing all the above manually is a pain and doesn't scale well for a larger team.
 
 ## Introduction to CI/CD:
 
-In [this chapter](https://fullstackopen.com/en/part11/introduction_to_ci_cd), we will
+In [this chapter](https://fullstackopen.com/en/part11/introduction_to_ci_cd), we will learn about the importance of CI/CD and how it can help us to improve the quality of our code and the speed of our development process.
 
 ### Exercises:
 
-- [Exercise 11.1](): Warming Up.
+- [Exercise 11.1](https://github.com/Jvlsc/FullStack-Course/blob/8afa6064c7de080a4a75320727d138f106397516/part11/commentary/exercise1.md): Warming Up.
 
 ---
 ---
