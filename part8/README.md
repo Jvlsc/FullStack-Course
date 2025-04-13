@@ -1,6 +1,6 @@
 # Part 8 - GraphQL
 
-This part of the course is about GraphQL, Facebook's alternative to REST for communication between browser and server.
+In [this part](https://fullstackopen.com/en/part8), we will learn about GraphQL, Facebook's alternative to REST for communication between browser and server.
 
 ---
 ---
