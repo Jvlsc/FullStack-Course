@@ -35,7 +35,7 @@ In [this chapter](https://fullstackopen.com/en/part8/graph_ql_server), we will l
 
 ## React and GraphQL
 
-In [this chapter](https://fullstackopen.com/en/part8/react_and_graph_ql), 
+In [this chapter](https://fullstackopen.com/en/part8/react_and_graph_ql), we will learn how to use GraphQL in a React application.
 
 ### Exercises:
 
@@ -50,7 +50,7 @@ In [this chapter](https://fullstackopen.com/en/part8/react_and_graph_ql),
 
 ## Database and user administration
 
-In [this chapter](https://fullstackopen.com/en/part8/database_and_user_administration), 
+In [this chapter](https://fullstackopen.com/en/part8/database_and_user_administration), we will learn how to create and manage a database and user administration for the GraphQL server and MongoDB.
 
 ### Exercises:
 
@@ -64,7 +64,7 @@ In [this chapter](https://fullstackopen.com/en/part8/database_and_user_administr
 
 ## Login and updating the cache
 
-In [this chapter](https://fullstackopen.com/en/part8/login_and_updating_the_cache), 
+In [this chapter](https://fullstackopen.com/en/part8/login_and_updating_the_cache), we will learn how to implement a login system and update the cache when is needed.
 
 ### Exercises:
 
@@ -80,7 +80,7 @@ In [this chapter](https://fullstackopen.com/en/part8/login_and_updating_the_cach
 
 ## Fragments and subscriptions
 
-In [this chapter](https://fullstackopen.com/en/part8/fragments_and_subscriptions), 
+In [this chapter](https://fullstackopen.com/en/part8/fragments_and_subscriptions), we will learn how to use fragments and subscriptions in a React application.
 
 ### Exercises:
 
