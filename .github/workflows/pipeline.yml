@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '20'
       - name: Move to Project Directory
-        run: cd part11/Pokedex
+        run: cd ./part11/Pokedex
       - name: Install Dependencies 
         run: npm install  
       - name: Check Style
