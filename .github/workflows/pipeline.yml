@@ -35,3 +35,9 @@ jobs:
           name: playwright-report
           path: ./part11/Pokedex/playwright-report/
           retention-days: 30
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy to Fly.io
+        working-directory: ./part11/Pokedex
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
