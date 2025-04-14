@@ -8,6 +8,9 @@ on:
     branches: [main]
     types: [opened, synchronize]
 
+env:
+  DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
+
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
@@ -39,13 +42,27 @@ jobs:
           path: ./part11/pokedex/playwright-report/
           retention-days: 30
       - uses: superfly/flyctl-actions/setup-flyctl@master
-        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        if: ${{ env.DEPLOY_CONDITION == 'true' }}
       - name: Deploy to Fly.io
-        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        if: ${{ env.DEPLOY_CONDITION == 'true' }}
         working-directory: ./part11/pokedex
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Discord Webhook Notify (Success)
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: ${{ env.DEPLOY_CONDITION == 'true' && success() }}
+        with:
+          severity: info
+          details: New Deployment!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Discord Webhook Notify (Failure)
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: ${{ env.DEPLOY_CONDITION == 'true' && failure() }}
+        with:
+          severity: error
+          details: Deployment Failed!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
