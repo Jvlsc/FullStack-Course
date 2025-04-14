@@ -5,19 +5,20 @@ on:
     branches:
       - main
 
-env:
-  GITHUB_CONTEXT: ${{ toJson(github) }}
-  COMMITS: ${{ toJson(github.event.commits) }}
-  COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-
 jobs:
   a_test_job:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
-      - name: Github Context
+      - name: github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: Commits
+      - name: commits
+        env:
+          COMMITS: ${{ toJson(github.event.commits) }}
         run: echo "$COMMITS"
-      - name: Commit Messages
+      - name: commit messages
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
