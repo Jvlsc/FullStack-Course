@@ -16,6 +16,12 @@ jobs:
       - name: Install Dependencies 
         working-directory: ./part11/Pokedex
         run: npm install  
-      - name: Check Style
+      - name: Lint
         working-directory: ./part11/Pokedex
         run: npm run eslint
+      - name: Build
+        working-directory: ./part11/Pokedex
+        run: npm run build
+      - name: Test
+        working-directory: ./part11/Pokedex
+        run: npm run test
