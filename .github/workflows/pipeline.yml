@@ -8,6 +8,9 @@ on:
     branches: [main]
     types: [opened, synchronize]
 
+env:
+  DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
+
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
@@ -17,35 +20,49 @@ jobs:
         with:
           node-version: '20'
       - name: Install Dependencies 
-        working-directory: ./part11/Pokedex
+        working-directory: part11/pokedex-cicd
         run: npm install && npx playwright install --with-deps 
       - name: Lint
-        working-directory: ./part11/Pokedex
+        working-directory: part11/pokedex-cicd
         run: npm run eslint
       - name: Build
-        working-directory: ./part11/Pokedex
+        working-directory: part11/pokedex-cicd
         run: npm run build
       - name: Test
-        working-directory: ./part11/Pokedex
+        working-directory: part11/pokedex-cicd
         run: npm run test
       - name: Test E2E
-        working-directory: ./part11/Pokedex
+        working-directory: part11/pokedex-cicd
         run: npm run test:e2e
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
-          path: ./part11/Pokedex/playwright-report/
+          path: part11/pokedex-cicd/playwright-report/
           retention-days: 30
       - uses: superfly/flyctl-actions/setup-flyctl@master
-        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        if: ${{ env.DEPLOY_CONDITION == 'true' }}
       - name: Deploy to Fly.io
-        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
-        working-directory: ./part11/Pokedex
+        if: ${{ env.DEPLOY_CONDITION == 'true' }}
+        working-directory: part11/pokedex-cicd
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Discord Webhook Notify (Success)
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: ${{ env.DEPLOY_CONDITION == 'true' && success() }}
+        with:
+          severity: info
+          details: New Deployment!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Discord Webhook Notify (Failure)
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: ${{ env.DEPLOY_CONDITION == 'true' && failure() }}
+        with:
+          severity: error
+          details: Deployment Failed!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
