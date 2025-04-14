@@ -73,6 +73,7 @@ jobs:
   notify_discord:
     name: Discord Notification
     needs: [simple_deployment_pipeline, tag_release]
+    if: always()
     runs-on: ubuntu-20.04
     steps:
       - name: Discord Webhook Notify (Success)
