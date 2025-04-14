@@ -8,6 +8,9 @@ on:
     branches: [main]
     types: [opened, synchronize]
 
+env:
+  DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
@@ -39,19 +42,26 @@ jobs:
           path: ./part11/Pokedex/playwright-report/
           retention-days: 30
       - uses: superfly/flyctl-actions/setup-flyctl@master
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ env.DEPLOY_CONDITION == 'true' }}
       - name: Deploy to Fly.io
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ env.DEPLOY_CONDITION == 'true' }}
         working-directory: ./part11/Pokedex
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
   tag_release:
     needs: [simple_deployment_pipeline]
+    if: ${{ github.env.DEPLOY_CONDITION == 'true' }}
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          fetch-depth: '0'
       - name: Bump Version and Push Tag
-        if: ${{ github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
