@@ -13,6 +13,7 @@ env:
 
 jobs:
   simple_deployment_pipeline:
+    name: Build + Deployment
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -51,8 +52,9 @@ jobs:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
   tag_release:
+    name: Bump Version + Tag Release
     needs: [simple_deployment_pipeline]
-    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+    if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
     runs-on: ubuntu-20.04
     permissions:
       contents: write
@@ -68,7 +70,7 @@ jobs:
           WITH_V: true
           DEFAULT_BUMP: patch
 
-  notify:
+  notify_discord:
     name: Discord Notification
     needs: [simple_deployment_pipeline, tag_release]
     runs-on: ubuntu-20.04
