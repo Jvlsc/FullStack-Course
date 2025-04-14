@@ -4,6 +4,8 @@ So you have a fresh feature ready to be shipped. What happens next? Do you uploa
 
 Doing all the above manually is a pain and doesn't scale well for a larger team. That's why we have Continuous Integration / Continuous Delivery systems, in short CI/CD systems. In [this part](https://fullstackopen.com/en/part11), you will gain an understanding of why you should use a CI/CD system, what can one do for you, and how to get started with GitHub Actions which is available to all GitHub users by default.
 
+[Pokedex Deployment Link](https://pokedex-divine-water-3533.fly.dev)
+
 ---
 ---
 
@@ -31,7 +33,7 @@ In [this chapter](https://fullstackopen.com/en/part11/introduction_to_ci_cd), we
 
 ## Getting Started with GitHub Actions:
 
-In [this chapter](https://fullstackopen.com/en/part11/getting_started_with_git_hub_actions), we will
+In [this chapter](https://fullstackopen.com/en/part11/getting_started_with_git_hub_actions), we will learn how to get started with GitHub Actions.
 
 ### Exercises:
 
@@ -49,7 +51,7 @@ In [this chapter](https://fullstackopen.com/en/part11/getting_started_with_git_h
 
 ## Deployment:
 
-In [this chapter](https://fullstackopen.com/en/part11/deployment), we will
+In [this chapter](https://fullstackopen.com/en/part11/deployment), we will learn how to deploy our application to Fly.io using GitHub Actions.
 
 ### Exercises:
 

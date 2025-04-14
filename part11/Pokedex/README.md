@@ -1,15 +1,65 @@
-# Full Stack open CI/CD
+# Pokedex CI/CD Project:
 
-This repository is used for the CI/CD module of the Full stack open course
+The exercises corresponding to this project are:
 
-Fork the repository to complete course exercises
+- **Exercise 11.2**: The Example Project.
+- **Exercise 11.3**: Hello World!
+- **Exercise 11.4**: Date and Directory Contents.
+- **Exercise 11.5**: Linting Workflow.
+- **Exercise 11.6**: Fix the Code.
+- **Exercise 11.7**: Building and Testing.
+- **Exercise 11.8**: Back to Green.
+- **Exercise 11.9**: Simple End-to-End Tests.
+- **Exercise 11.10**: Deploying the Application (Fly.io).
+- **Exercise 11.11**: Automatic Deployments (Fly.io).
+- **Exercise 11.12**: Health Check (Fly.io).
 
-## Commands
+---
+---
 
-Start by running `npm install` inside the project folder
+## Quick Start:
 
-`npm start` to run the webpack dev server
-`npm test` to run tests
-`npm run eslint` to run eslint
-`npm run build` to make a production build
-`npm run start-prod` to run your production build
+**Install Dependencies:**
+
+```bash
+npm install
+```
+
+**Build the Frontend:**
+
+```bash
+npm run build
+```
+
+**Run (Development):**
+
+```bash
+npm run start
+```
+
+**Run (Production):**
+
+```bash
+npm run start-prod
+```
+
+**Run Linting:**
+
+```bash
+npm run eslint
+```
+
+**Run Tests:**
+
+```bash
+npm run test
+```
+
+**Run End-to-End Tests:**
+
+```bash
+npm run test:e2e
+```
+
+---
+---
