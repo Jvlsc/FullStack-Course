@@ -17,6 +17,5 @@ describe('Pokedex', () => {
     // Verify Ivysaur's habilities:
     await expect(page.getByText('chlorophyll')).toBeVisible()
     await expect(page.getByText('overgrow')).toBeVisible()
-    await expect(page.getByText('IntentionalError')).toBeVisible()
   })
 })
