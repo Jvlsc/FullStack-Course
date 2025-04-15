@@ -1,5 +1,6 @@
 # Ignore Directories:
 node_modules
+test-results
 dist
 
 # Ignore Files:

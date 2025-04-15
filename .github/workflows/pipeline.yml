@@ -1,12 +1,13 @@
 name: Deployment pipeline
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize]
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches: [main]
+  #   types: [opened, synchronize]
 
 env:
   DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
