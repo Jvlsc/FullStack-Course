@@ -85,8 +85,8 @@ In [this chapter](https://fullstackopen.com/en/part11/expanding_further), we wil
 
 - [Exercise 11.18](https://github.com/Jvlsc/FullStack-Course/blob/f759e917ea36eb50a88dc0112a51160459c880a3/.github/workflows/pipeline.yml): Build Success/Failure Notification Action.
 - [Exercise 11.19](https://github.com/Jvlsc/FullStack-Course/blob/5a27c6892750ea7e77d15f0428ba00b2cbafc6c8/.github/workflows/health.yml): Periodic Health Check.
-- [Exercise 11.20](): Your own Pipeline.
-- [Exercise 11.21](): Protect main Branch + Ask for Pull-Request.
+- [Exercise 11.20](https://github.com/Jvlsc/FullStack-Course/blob/08221ce8b8ab3d91c3379bb7d75943c294c829a5/.github/workflows/bloglist.yml): Your own Pipeline -> Project Bloglist Backend + Frontend (with E2E tests).
+- [Exercise 11.21](https://github.com/Jvlsc/FullStack-Course/pull/22): Protect main Branch + Ask for Pull-Request.
 
 ---
 ---
