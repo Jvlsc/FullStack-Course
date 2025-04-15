@@ -18,7 +18,7 @@ We will utilize containers to create immutable execution environments for our No
 
 ## Introduction to Containers
 
-In [this chapter](https://fullstackopen.com/en/part12/introduction_to_containers), we will 
+In [this chapter](https://fullstackopen.com/en/part12/introduction_to_containers), we will learn some container and docker basics, installing docker, creating a container, and running a container.
 
 ### Exercises:
 

@@ -65,7 +65,7 @@ In [this chapter](https://fullstackopen.com/en/part11/deployment), we will learn
 
 ## Keeping Green:
 
-In [this chapter](https://fullstackopen.com/en/part11/keeping_green), we will
+In [this chapter](https://fullstackopen.com/en/part11/keeping_green), we will learn how to keep our application green.
 
 ### Exercises:
 
@@ -80,7 +80,7 @@ In [this chapter](https://fullstackopen.com/en/part11/keeping_green), we will
 
 ## Expanding Further:
 
-In [this chapter](https://fullstackopen.com/en/part11/expanding_further), we will
+In [this chapter](https://fullstackopen.com/en/part11/expanding_further), we will create a notification action and a periodic health check. Additionally, we will create our own pipeline for the project bloglist.
 
 ### Exercises:
 
