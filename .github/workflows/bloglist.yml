@@ -1,0 +1,57 @@
+name: Bloglist Deployment Pipeline
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches: [main]
+  #   types: [opened, synchronize]
+
+jobs:
+  simple_deployment_pipeline:
+    name: Build + Deployment
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies (Frontend)
+        working-directory: part5/bloglist-frontend
+        run: npm install && npx playwright install --with-deps 
+      - name: Lint (Frontend)
+        working-directory: part5/bloglist-frontend
+        run: npm run lint
+      - name: Test (Frontend)
+        working-directory: part5/bloglist-frontend
+        run: npm run test
+
+      - name: Install Dependencies (Backend)
+        working-directory: part4/bloglist-backend
+        run: npm install
+      - name: Lint (Backend)
+        working-directory: part4/bloglist-backend
+        run: npm run lint
+      - name: Test (Backend)
+        working-directory: part4/bloglist-backend
+        run: npm run test:all
+
+      - name: Integration Test (E2E)
+        run: |
+          cd part4/bloglist-backend
+          npm run start:test &
+          cd ../../part5/bloglist-frontend
+          npm run test:e2e
+        
+      - name: Build Frontend
+        working-directory: part5/bloglist-frontend
+        run: npm run build
+      - name: Copy Frontend Build to Backend
+        working-directory: part4/bloglist-backend
+        run: |
+          mkdir -p dist
+          cp -r ../../part5/bloglist-frontend/dist dist
+
