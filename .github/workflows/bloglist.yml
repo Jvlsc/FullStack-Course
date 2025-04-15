@@ -10,9 +10,21 @@ on:
   #   types: [opened, synchronize]
 
 jobs:
-  simple_deployment_pipeline:
-    name: Build + Deployment
+  test_and_build:
+    name: Test + Build
     runs-on: ubuntu-20.04
+    env:
+      TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
+      TEST_MONGODB_PASSWORD: ${{ secrets.TEST_MONGODB_PASSWORD }}
+      TEST_MONGODB_CLUSTER: ${{ secrets.TEST_MONGODB_CLUSTER }}
+      TEST_MONGODB_DATABASE: ${{ secrets.TEST_MONGODB_DATABASE }}
+      TEST_MONGODB_APPNAME: ${{ secrets.TEST_MONGODB_APPNAME }}
+      TEST_MONGODB_BLOGS_COLLECTION: ${{ secrets.TEST_MONGODB_BLOGS_COLLECTION }}
+      TEST_MONGODB_BLOGS_MODEL: ${{ secrets.TEST_MONGODB_BLOGS_MODEL }}
+      TEST_MONGODB_USERS_COLLECTION: ${{ secrets.TEST_MONGODB_USERS_COLLECTION }}
+      TEST_MONGODB_USERS_MODEL: ${{ secrets.TEST_MONGODB_USERS_MODEL }}
+      TEST_SERVER_PORT: ${{ secrets.TEST_SERVER_PORT }}
+      TEST_SERVER_SECRET: ${{ secrets.TEST_SERVER_SECRET }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
