@@ -45,7 +45,7 @@ app.use(express.json())
 app.use(requestLogger)
 
 // Middleware - Static Files:
-app.use(express.static('public'))
+app.use(express.static('dist'))
 
 // Middleware - Token Extractor:
 app.use(tokenExtractor)
