@@ -3,7 +3,7 @@ const healthRouter = require('express').Router()
 require('express-async-errors')
 
 // [GET] Route - Health Check:
-healthRouter.get('/health', (request, response) => {
+healthRouter.get('/status', (request, response) => {
   response.send('ok')
 })
 
