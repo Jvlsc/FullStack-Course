@@ -1,6 +1,6 @@
 # Ignore Directories:
 node_modules
-public
+dist
 
 # Ignore Files:
 .env
