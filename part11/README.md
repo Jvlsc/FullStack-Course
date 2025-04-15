@@ -5,6 +5,7 @@ So you have a fresh feature ready to be shipped. What happens next? Do you uploa
 Doing all the above manually is a pain and doesn't scale well for a larger team. That's why we have Continuous Integration / Continuous Delivery systems, in short CI/CD systems. In [this part](https://fullstackopen.com/en/part11), you will gain an understanding of why you should use a CI/CD system, what can one do for you, and how to get started with GitHub Actions which is available to all GitHub users by default.
 
 [Pokedex Deployment Link](https://pokedex-divine-water-3533.fly.dev)
+[bloglist Deployment Link](https://bloglist-backend-old-voice-389.fly.dev)
 
 ---
 ---
