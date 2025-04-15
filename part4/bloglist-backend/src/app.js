@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const loginRouter = require('./controllers/login')
 const userRouter = require('./controllers/users')
 const blogRouter = require('./controllers/blogs')
+const healthRouter = require('./controllers/health')
 
 // Import Middlewares:
 const errorHandler = require('./middlewares/errorHandler')
@@ -54,6 +55,7 @@ app.use(tokenExtractor)
 app.use('/api/login', loginRouter)
 app.use('/api/users', userRouter)
 app.use('/api/blogs', blogRouter)
+app.use('/api/health', healthRouter)
 
 // Routes - Testing:
 if (process.env.NODE_ENV === 'test') {
