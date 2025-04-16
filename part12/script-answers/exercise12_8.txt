@@ -1,6 +1,6 @@
 Script started on 2025-04-16 18:46:59+02:00 [TERM="dumb" TTY="/dev/pts/0" COLUMNS="148" LINES="43"]
 
-javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ cleardocker compose -f docker-compose.dev.yml up -d
+javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ docker compose -f docker-compose.dev.yml up -d
 [+] Running 0/1 Container todo-backend-mongo-1  Starting                                          0.1s
 [+] Running 0/1 Container todo-backend-mongo-1  Starting                                          0.2s
 [+] Running 0/1 Container todo-backend-mongo-1  Starting                                          0.3s
@@ -10,6 +10,7 @@ javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ d
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                     NAMES
 0bed508a3b9f   mongo     "docker-entrypoint.s"   38 seconds ago   Up 20 seconds   0.0.0.0:3456->27017/tcp   todo-backend-mongo-1
 javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ docker exec -it todo-backend-mongo-1 bash
+root@0bed508a3b9f:/#
 root@0bed508a3b9f:/# mongosh -u root -p example
 mongosh mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000Current Mongosh Log ID:	67ffdfad90138ffcfdd861df
 Connecting to:		mmongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0
@@ -59,7 +60,6 @@ the_database> db.todos.insertOne( {"text": "New CLI Note!", "done": false} )
 }
 
 the_database> db.todos.find({})
-
 [
   {
     _id: ObjectId('67ffdf1a53ee36cf2dd861e0'),
