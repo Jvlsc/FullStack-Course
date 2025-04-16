@@ -9,7 +9,7 @@ POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-  "text": "New Todo"
+  "text": "New Todo for Redis CLI"
 }
 
 ### Update todo

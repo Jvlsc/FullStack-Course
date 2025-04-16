@@ -1,0 +1,34 @@
+Script started on 2025-04-16 20:36:20+02:00 [TERM="dumb" TTY="/dev/pts/0" COLUMNS="148" LINES="16"]
+
+javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ docker ps                                
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                     NAMES
+f721ac7c1974   redis     "docker-entrypoint.s"   13 minutes ago   Up 13 minutes   0.0.0.0:6379->6379/tcp    todo-backend-redis-1
+c710af44852d   mongo     "docker-entrypoint.s"   13 minutes ago   Up 13 minutes   0.0.0.0:3456->27017/tcp   todo-backend-mongo-1
+javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ docker exec -it todo-backend-redis-1  bash
+root@f721ac7c1974:/data# redis-cli
+127.0.0.1:6379> 
+127.0.0.1:6379> KEYS todos
+(empty array)
+127.0.0.1:6379> KEYS added_todos
+1) "added_todos"
+127.0.0.1:6379> KEYS added_*
+1) "added_todos"
+127.0.0.1:6379> GET added_todos
+"1"
+127.0.0.1:6379> SET added_todos 9001
+OK
+127.0.0.1:6379> GET added_todos
+"9001"
+127.0.0.1:6379> GET added_todos
+"9002"
+127.0.0.1:6379> DEL added_todos
+(integer) 1
+127.0.0.1:6379> GET added_todos
+(nil)
+root@f721ac7c1974:/data# exit
+exit
+
+javier@Matrix:/mnt/c/Users/Javier/Coding/FullStack-Course/part12/todo-backend$ exit
+exit
+
+Script done on 2025-04-16 20:40:38+02:00 [COMMAND_EXIT_CODE="0"]
