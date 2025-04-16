@@ -13,11 +13,12 @@ Content-Type: application/json
 }
 
 ### Update todo
-PUT http://localhost:3000/todos/67ffd9bdacbba926acfafe6e
+PUT http://localhost:3000/todos/67ffdd65f35dee61587ac120
 Content-Type: application/json
 
 {
-  "text": "Updated Todo"
+  "text": "Updated Todo",
+  "done": true
 }
 
 ### Delete todo
