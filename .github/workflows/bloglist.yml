@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: Show Environment Variables
         run: |
-          echo "CI_CONDITION: ${{ vars.CI_CONDITION }}"
-          echo "DEPLOY_CONDITION: ${{ vars.DEPLOY_CONDITION }}"
+          echo "CI_CONDITION: ${{ vars.env.CI_CONDITION }}"
+          echo "DEPLOY_CONDITION: ${{ vars.env.DEPLOY_CONDITION }}"
           echo "--- All Environment Variables ---"
           env | sort
   
