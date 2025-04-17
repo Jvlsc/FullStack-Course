@@ -24,8 +24,8 @@ The exercises corresponding to this project are:
 
 ## List of Projects:
 
-- [Todo App Frontend](./todo-frontend)
-- [Todo App Backend](./todo-backend)
+- **[Todo App Frontend](./todo-frontend)**
+- **[Todo App Backend](./todo-backend)**
 
 ---
 ---

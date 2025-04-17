@@ -10,8 +10,8 @@ The exercises corresponding to this project are:
 
 ## List of Projects:
 
-- [Blog List App Frontend](./bloglist-frontend)
-- [Blog List App Backend](./bloglist-backend)
+- **[Blog List App Frontend](./bloglist-frontend)**
+- **[Blog List App Backend](./bloglist-backend)**
 
 ---
 ---
