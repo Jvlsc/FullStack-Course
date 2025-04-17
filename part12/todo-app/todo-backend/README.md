@@ -1,19 +1,38 @@
-# Express application
+# Todo Backend (Express application)
 
-Install dependencies with `npm install`
+This backend is built with [Express.js](https://expressjs.com/).
 
-Run with `npm start`
+---
+---
 
-Or in development mode with `npm run dev`
+## Quick Start:
 
-# Visit counter
+Install dependencies:
 
-When running the server, visit http://localhost:3000 to see visit counter, or give environment variable `PORT` to change the port.
+```bash
+npm install
+```
 
-# MongoDB
+Run Server (Dev):
 
-The application has /todos crud which requires a MongoDB. Pass connection url with env `MONGO_URL`
+```bash
+npm run dev
+```
 
-# Redis
+Run Server (Prod):
 
-Pass connection url with env `REDIS_URL`
+```bash
+npm run start
+```
+
+---
+---
+
+## Environment Variables:
+
+- `PORT`: Change the port.
+- `MONGO_URL`: Change the MongoDB connection URL.
+- `REDIS_URL`: Change the Redis connection URL.
+
+---
+---

@@ -1,0 +1,42 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node src/index.js",
+    "start:test": "cross-env NODE_ENV=test node src/index.js",
+    "dev": "cross-env NODE_ENV=development node --watch src/index.js",
+    "debug": "cross-env NODE_ENV=development node --inspect src/index.js",
+    "test:all": "cross-env  NODE_ENV=test node --test --test-concurrency=1",
+    "test:api": "cross-env NODE_ENV=test node --test --test-concurrency=1 tests/blogs_api.test.js tests/users_api.test.js",
+    "test:api:blogs": "cross-env NODE_ENV=test node --test tests/blogs_api.test.js",
+    "test:api:users": "cross-env NODE_ENV=test node --test tests/users_api.test.js",
+    "test:models": "cross-env NODE_ENV=test node --test --test-concurrency=1 tests/blog_model.test.js tests/user_model.test.js",
+    "test:model:blog": "cross-env NODE_ENV=test node --test tests/blog_model.test.js",
+    "test:model:user": "cross-env NODE_ENV=test node --test tests/user_model.test.js",
+    "test:list": "cross-env NODE_ENV=test node --test tests/list_helper.test.js",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@flydotio/dockerfile": "^0.7.10",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
+    "eslint": "^9.23.0",
+    "supertest": "^7.1.0"
+  }
+}
