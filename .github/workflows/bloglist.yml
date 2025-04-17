@@ -15,7 +15,7 @@ env:
 jobs:
   test_build_deploy:
     name: Test + Build + Deploy
-    if: ${{ github.env.CI_CONDITION == 'true' }}
+    if: ${{ github.workflow.env.CI_CONDITION == 'true' }}
     runs-on: ubuntu-22.04
     env:
       TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
@@ -92,7 +92,7 @@ jobs:
   tag_release:
     name: Bump Version + Tag Release
     needs: [test_build_deploy]
-    if: ${{ github.env.CI_CONDITION == 'true' || github.env.DEPLOY_CONDITION == 'true' }}
+    if: ${{ github.workflow.env.CI_CONDITION == 'true' || github.workflow.env.DEPLOY_CONDITION == 'true' }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -111,7 +111,7 @@ jobs:
   notify_discord:
     name: Discord Notification
     needs: [test_build_deploy, tag_release]
-    if: ${{ github.env.CI_CONDITION == 'true' || github.env.DEPLOY_CONDITION == 'true' }}
+    if: ${{ github.workflow.env.CI_CONDITION == 'true' || github.workflow.env.DEPLOY_CONDITION == 'true' }}
     runs-on: ubuntu-22.04
     steps:
       - name: Discord Webhook Notify (Success)
