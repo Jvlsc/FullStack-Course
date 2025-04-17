@@ -19,10 +19,20 @@ COPY --from=test-stage /usr/src/app/ .
 
 RUN npm ci
 
-ENV VITE_BACKEND_URL="http://host.docker.internal:3000"
+ENV VITE_BACKEND_URL="/api"
 
 RUN npm run build
 
+
+# Stage 3: Production Stage
+FROM node:20 AS production-stage
+
+WORKDIR /usr/src/app
+
+COPY --from=build-stage /usr/src/app/dist ./dist
+
 RUN npm install -g serve
 
-CMD ["serve", "dist"]
+EXPOSE 3000
+
+CMD ["serve", "dist", "-l", "3000"]
