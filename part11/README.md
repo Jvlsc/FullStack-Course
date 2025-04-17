@@ -5,6 +5,7 @@ So you have a fresh feature ready to be shipped. What happens next? Do you uploa
 Doing all the above manually is a pain and doesn't scale well for a larger team. That's why we have Continuous Integration / Continuous Delivery systems, in short CI/CD systems. In [this part](https://fullstackopen.com/en/part11), you will gain an understanding of why you should use a CI/CD system, what can one do for you, and how to get started with GitHub Actions which is available to all GitHub users by default.
 
 [Pokedex Deployment Link](https://pokedex-divine-water-3533.fly.dev)
+[bloglist Deployment Link](https://bloglist-backend-old-voice-389.fly.dev)
 
 ---
 ---
@@ -64,7 +65,7 @@ In [this chapter](https://fullstackopen.com/en/part11/deployment), we will learn
 
 ## Keeping Green:
 
-In [this chapter](https://fullstackopen.com/en/part11/keeping_green), we will
+In [this chapter](https://fullstackopen.com/en/part11/keeping_green), we will learn how to keep our application green.
 
 ### Exercises:
 
@@ -79,14 +80,14 @@ In [this chapter](https://fullstackopen.com/en/part11/keeping_green), we will
 
 ## Expanding Further:
 
-In [this chapter](https://fullstackopen.com/en/part11/expanding_further), we will
+In [this chapter](https://fullstackopen.com/en/part11/expanding_further), we will create a notification action and a periodic health check. Additionally, we will create our own pipeline for the project bloglist.
 
 ### Exercises:
 
 - [Exercise 11.18](https://github.com/Jvlsc/FullStack-Course/blob/f759e917ea36eb50a88dc0112a51160459c880a3/.github/workflows/pipeline.yml): Build Success/Failure Notification Action.
 - [Exercise 11.19](https://github.com/Jvlsc/FullStack-Course/blob/5a27c6892750ea7e77d15f0428ba00b2cbafc6c8/.github/workflows/health.yml): Periodic Health Check.
-- [Exercise 11.20](): Your own Pipeline.
-- [Exercise 11.21](): Protect main Branch + Ask for Pull-Request.
+- [Exercise 11.20](https://github.com/Jvlsc/FullStack-Course/blob/08221ce8b8ab3d91c3379bb7d75943c294c829a5/.github/workflows/bloglist.yml): Your own Pipeline -> Project Bloglist Backend + Frontend (with E2E tests).
+- [Exercise 11.21](https://github.com/Jvlsc/FullStack-Course/pull/22): Protect main Branch + Ask for Pull-Request.
 
 ---
 ---

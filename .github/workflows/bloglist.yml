@@ -14,7 +14,7 @@ env:
 jobs:
   test_build_deploy:
     name: Test + Build + Deploy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
       TEST_MONGODB_PASSWORD: ${{ secrets.TEST_MONGODB_PASSWORD }}
@@ -91,7 +91,7 @@ jobs:
     name: Bump Version + Tag Release
     needs: [test_build_deploy]
     if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
@@ -110,7 +110,7 @@ jobs:
     name: Discord Notification
     needs: [test_build_deploy, tag_release]
     if: always()
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Discord Webhook Notify (Success)
         uses: Ilshidur/action-discord@master
