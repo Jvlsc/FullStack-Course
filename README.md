@@ -33,7 +33,7 @@ This repository will contain the solutions for the exercises and projects of the
 - **[Part 9 - TypeScript](./part9)**
 - **Part 10 - React Native**
 - **[Part 11 - CI/CD](./part11)**
-- **Part 12 - Containers**
+- **[Part 12 - Containers](./part12/)**
 - **Part 13 - Using Relational Databases**
 
 ---
