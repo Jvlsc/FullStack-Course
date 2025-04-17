@@ -20,6 +20,7 @@ jobs:
       - name: Show Environment Variables
         run: |
           echo "VARS: ${{ toJSON(vars) }}"
+          echo "ENV: ${{ toJSON(env) }}"
           echo "GITHUB: ${{ toJSON(github) }}"
           echo "--- All Environment Variables ---"
           env | sort
