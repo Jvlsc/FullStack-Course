@@ -14,22 +14,19 @@ env:
 
 jobs:
   debug:
-    name: Debug Environment
+    name: Debug
     runs-on: ubuntu-22.04
     steps:
       - name: Show Environment Variables
         run: |
-          echo "CI_CONDITION: ${{ github.env.CI_CONDITION }}"
-          echo "DEPLOY_CONDITION: ${{ github.env.DEPLOY_CONDITION }}"
-          echo "Event Name: ${{ github.event_name }}"
-          echo "Commit Message: ${{ join(toJson(github.event.commits.*.message), ' ') }}"
+          echo "CI_CONDITION: ${{ vars.CI_CONDITION }}"
+          echo "DEPLOY_CONDITION: ${{ vars.DEPLOY_CONDITION }}"
           echo "--- All Environment Variables ---"
           env | sort
-
+  
   test_build_deploy:
     name: Test + Build + Deploy
-    needs: [debug]
-    if: ${{ github.workflow.env.CI_CONDITION == 'true' }}
+    if: ${{ vars.CI_CONDITION == 'true' }}
     runs-on: ubuntu-22.04
     env:
       TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
@@ -106,7 +103,7 @@ jobs:
   tag_release:
     name: Bump Version + Tag Release
     needs: [test_build_deploy]
-    if: ${{ github.workflow.env.CI_CONDITION == 'true' || github.workflow.env.DEPLOY_CONDITION == 'true' }}
+    if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -125,7 +122,7 @@ jobs:
   notify_discord:
     name: Discord Notification
     needs: [test_build_deploy, tag_release]
-    if: ${{ always() && github.workflow.env.DEPLOY_CONDITION == 'true' }}
+    if: ${{ always() && github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') }}
     runs-on: ubuntu-22.04
     steps:
       - name: Discord Webhook Notify (Success)
