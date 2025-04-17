@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Show Environment Variables
         run: |
-          echo "CI_CONDITION: ${{ vars }}"
+          echo "CI_CONDITION: ${{ toJSON(vars) }}"
           echo "DEPLOY_CONDITION: ${{ vars.env.DEPLOY_CONDITION }}"
           echo "--- All Environment Variables ---"
           env | sort
