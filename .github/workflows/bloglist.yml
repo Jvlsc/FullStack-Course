@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "DEPLOY_CONDITION: ${{ env.DEPLOY_CONDITION }}"
           echo "CI_CONDITION: ${{ env.CI_CONDITION }}"
-          echo "Commit Message: ${{ join(toJson(github.event.commits.*.message), ' ')}}"
+          echo "Commit Message: ${{ join(toJson(github.event.commits), ' ')}}"
   
   test_build_deploy:
     name: Test + Build + Deploy
