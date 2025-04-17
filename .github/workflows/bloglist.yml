@@ -13,21 +13,23 @@ env:
   CI_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') }}
 
 jobs:
-  debug:
-    name: Debug
+  setup:
+    name: Setup Environment Variables
     runs-on: ubuntu-22.04
+    outputs:
+      deploy_condition: ${{ env.DEPLOY_CONDITION }}
+      ci_condition: ${{ env.CI_CONDITION }}
     steps:
-      - name: Show Environment Variables
+      - name: Set Deploy Condition
+        id: deploy_condition
         run: |
-          echo "VARS: ${{ toJSON(vars) }}"
-          echo "ENV: ${{ toJSON(env) }}"
-          echo "GITHUB: ${{ toJSON(github.env) }}"
-          echo "--- All Environment Variables ---"
-          env | sort
+          echo "DEPLOY_CONDITION: ${{ env.DEPLOY_CONDITION }}"
+          echo "CI_CONDITION: ${{ env.CI_CONDITION }}"
   
   test_build_deploy:
     name: Test + Build + Deploy
-    if: ${{ vars.CI_CONDITION == 'true' }}
+    needs: [setup]
+    if: ${{ needs.setup.outputs.ci_condition == 'true' }}
     runs-on: ubuntu-22.04
     env:
       TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
@@ -103,8 +105,8 @@ jobs:
 
   tag_release:
     name: Bump Version + Tag Release
-    needs: [test_build_deploy]
-    if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') }}
+    needs: [setup, test_build_deploy]
+    if: ${{ needs.setup.outputs.ci_condition == 'true' && needs.setup.outputs.deploy_condition == 'true' }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -122,8 +124,8 @@ jobs:
         
   notify_discord:
     name: Discord Notification
-    needs: [test_build_deploy, tag_release]
-    if: ${{ always() && github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') }}
+    needs: [setup, test_build_deploy, tag_release]
+    if: ${{ always() && needs.setup.outputs.ci_condition == 'true' && needs.setup.outputs.deploy_condition == 'true' }}
     runs-on: ubuntu-22.04
     steps:
       - name: Discord Webhook Notify (Success)
