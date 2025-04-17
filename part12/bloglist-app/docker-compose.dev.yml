@@ -5,7 +5,7 @@ services:
       - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
-    container_name: bloglist-reverse-proxy
+    container_name: bloglist-reverse-proxy-dev
     depends_on:
       - app
 
