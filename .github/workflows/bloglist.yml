@@ -10,7 +10,7 @@ on:
 
 env:
   DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') }}
-  CI_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') }}
+  CI_CONDITION: ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') }}
 
 jobs:
   setup:
@@ -29,6 +29,7 @@ jobs:
   test_build_deploy:
     name: Test + Build + Deploy
     needs: [setup]
+    if: ${{ needs.setup.outputs.ci_condition == 'true' }}
     runs-on: ubuntu-22.04
     env:
       TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
