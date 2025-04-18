@@ -1,24 +1,30 @@
 // Import Config:
 require('dotenv').config()
 
-// Import Sequelize:
-const { Sequelize, QueryTypes } = require('sequelize')
+// Import App:
+const app = require('./app')
 
-// Initialize Sequelize:
-const sequelize = new Sequelize(process.env.DATABASE_URL)
+// Import Database Tools:
+const { connectToDatabase } = require('./config/database')
 
-// Main Function:
-const main = async () => {
+// Start Backend Function:
+const startBackend = async () => {
   try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-    const blogs = await sequelize.query("SELECT * FROM blogs", { type: QueryTypes.SELECT })
-    blogs.forEach(blog => console.log(`${blog.author}: '${blog.title}', ${blog.likes} likes`))
-    sequelize.close()
+    // Connect to Database:
+    await connectToDatabase()
+    
+    // Start Express Server:
+    console.log('[Express] Starting Express Server...')
+    app.listen(process.env.EXPRESS_PORT || 3001, () => {
+      console.log(`[Express] Server Running: http://localhost:${process.env.EXPRESS_PORT || 3001}`)
+    })
   } catch (error) {
-    console.error('Unable to connect to the database:', error)
+    console.error('[Express] Error Starting Express Server:', error)
+    await sequelize.close()
+    await app.close()
+    process.exit(1)
   }
 }
 
-// Run Main Function:
-main()
+// Start Backend:
+startBackend()
