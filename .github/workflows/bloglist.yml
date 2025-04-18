@@ -132,14 +132,14 @@ jobs:
     steps:
       - name: Discord Webhook Notify (Success)
         uses: Ilshidur/action-discord@master
-        if: ${{ env.DEPLOY_CONDITION == 'true' && success() && !contains(needs.*.result, 'failure') }}
+        if: ${{ success() && !contains(needs.*.result, 'failure') }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: 'Bloglist has been deployed! 🚀'
       - name: Discord Webhook Notify (Success)
         uses: Ilshidur/action-discord@master
-        if: ${{ env.DEPLOY_CONDITION == 'true' && (failure() || contains(needs.*.result, 'failure')) }}
+        if: ${{ failure() || contains(needs.*.result, 'failure') }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
