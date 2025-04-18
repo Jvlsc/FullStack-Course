@@ -9,13 +9,29 @@ on:
     types: [opened, synchronize]
 
 env:
-  DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') }}
-  CI_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') }}
+  DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') && !contains(github.event.pull_request.title, '#skip-deploy') }}
+  CI_CONDITION: ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(github.event.pull_request.title, '#skip-ci') }}
 
 jobs:
+  setup:
+    name: Setup Environment Variables
+    runs-on: ubuntu-22.04
+    outputs:
+      deploy_condition: ${{ env.DEPLOY_CONDITION }}
+      ci_condition: ${{ env.CI_CONDITION }}
+    steps:
+      - name: Set Deploy Condition
+        id: deploy_condition
+        run: |
+          echo "DEPLOY_CONDITION: ${{ env.DEPLOY_CONDITION }}"
+          echo "CI_CONDITION: ${{ env.CI_CONDITION }}"
+          echo "PR Title: ${{ github.event.pull_request.title }}"
+          echo "Commit Message: ${{ join(toJson(github.event.head_commit.message), ' ')}}"
+  
   test_build_deploy:
     name: Test + Build + Deploy
-    if: ${{ github.workflow.env.CI_CONDITION == 'true' }}
+    needs: [setup]
+    if: ${{ needs.setup.outputs.ci_condition == 'true' }}
     runs-on: ubuntu-22.04
     env:
       TEST_MONGODB_USER: ${{ secrets.TEST_MONGODB_USER }}
@@ -91,8 +107,8 @@ jobs:
 
   tag_release:
     name: Bump Version + Tag Release
-    needs: [test_build_deploy]
-    if: ${{ github.workflow.env.CI_CONDITION == 'true' || github.workflow.env.DEPLOY_CONDITION == 'true' }}
+    needs: [setup, test_build_deploy]
+    if: ${{ needs.setup.outputs.ci_condition == 'true' && needs.setup.outputs.deploy_condition == 'true' }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -110,20 +126,20 @@ jobs:
         
   notify_discord:
     name: Discord Notification
-    needs: [test_build_deploy, tag_release]
-    if: ${{ github.workflow.env.CI_CONDITION == 'true' || github.workflow.env.DEPLOY_CONDITION == 'true' }}
+    needs: [setup, test_build_deploy, tag_release]
+    if: ${{ always() && needs.setup.outputs.ci_condition == 'true' && needs.setup.outputs.deploy_condition == 'true' }}
     runs-on: ubuntu-22.04
     steps:
       - name: Discord Webhook Notify (Success)
         uses: Ilshidur/action-discord@master
-        if: ${{ env.DEPLOY_CONDITION == 'true' && success() && !contains(needs.*.result, 'failure') }}
+        if: ${{ success() && !contains(needs.*.result, 'failure') }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: 'Bloglist has been deployed! 🚀'
       - name: Discord Webhook Notify (Success)
         uses: Ilshidur/action-discord@master
-        if: ${{ env.DEPLOY_CONDITION == 'true' && (failure() || contains(needs.*.result, 'failure')) }}
+        if: ${{ failure() || contains(needs.*.result, 'failure') }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
