@@ -1,8 +1,11 @@
+// Import Sequelize:
 const { Model, DataTypes } = require('sequelize')
+
+// Import Sequelize Instance:
 const { sequelize } = require('../config/database')
 
+// Blog Model:
 class Blog extends Model {}
-
 Blog.init({
   id: {
     type: DataTypes.INTEGER,
@@ -33,4 +36,5 @@ Blog.init({
   modelName: 'blog'
 })
 
+// Export Blog Model:
 module.exports = Blog

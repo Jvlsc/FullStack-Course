@@ -10,10 +10,8 @@ const requestLogger = require('./middlewares/requestLogger')
 // Express Instance:
 const app = express()
 
-// Middleware - JSON Parser:
+// Middlewares:
 app.use(express.json())
-
-// Middleware - Request Logger:
 app.use(requestLogger)
 
 // Setup Routes:

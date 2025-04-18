@@ -1,10 +1,15 @@
-require('dotenv').config()
+// Import Config:
+const config = require('./config')
+
+// Import Sequelize:
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+// Sequelize Instance:
+const sequelize = new Sequelize(config.DATABASE_URL, {
   logging: (msg) => console.log('[PostgreSQL]', msg)
 })
 
+// Connect to Database:
 const connectToDatabase = async () => {
   try {
     console.log('[PostgreSQL] Connecting to the Database...')
@@ -18,4 +23,5 @@ const connectToDatabase = async () => {
   }
 }
 
+// Export Database Tools:
 module.exports = { sequelize, connectToDatabase } 

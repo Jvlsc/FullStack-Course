@@ -1,5 +1,5 @@
 // Import Config:
-require('dotenv').config()
+const config = require('./config/config')
 
 // Import App:
 const app = require('./app')
@@ -15,8 +15,8 @@ const startBackend = async () => {
     
     // Start Express Server:
     console.log('[Express] Starting Express Server...')
-    app.listen(process.env.EXPRESS_PORT || 3001, () => {
-      console.log(`[Express] Server Running: http://localhost:${process.env.EXPRESS_PORT || 3001}`)
+    app.listen(config.SERVER_PORT, () => {
+      console.log(`[Express] Server Running: http://localhost:${config.SERVER_PORT}`)
     })
   } catch (error) {
     console.error('[Express] Error Starting Express Server:', error)
