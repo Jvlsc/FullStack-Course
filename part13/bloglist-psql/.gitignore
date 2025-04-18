@@ -1,0 +1,6 @@
+# Directories:
+node_modules
+postgres-data
+
+# Files:
+.env
