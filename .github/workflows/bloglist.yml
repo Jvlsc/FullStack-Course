@@ -10,7 +10,7 @@ on:
 
 env:
   DEPLOY_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-deploy') && !contains(github.event.pull_request.title, '#skip-deploy') }}
-  CI_CONDITION: ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(github.event.pull_request.title, '#skip-ci') }}
+  CI_CONDITION: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip-ci') && !contains(github.event.pull_request.title, '#skip-ci') }}
 
 jobs:
   setup:
