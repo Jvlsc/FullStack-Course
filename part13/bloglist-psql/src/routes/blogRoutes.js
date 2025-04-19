@@ -32,7 +32,10 @@ blogRouter.get('/', async (req, res) => {
     include: {
       model: User,
       attributes: ['id', 'name', 'username']
-    }
+    },
+    order: [
+      ['likes', 'DESC']
+    ]
   })
   logger.info('[Express] Blogs Fetched:', JSON.stringify(blogs))
   res.json(blogs)
