@@ -7,22 +7,22 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-    "username": "test2",
+    "username": "test2@test.com",
     "name": "Test User",
     "password": "testpassword"
 }
 
 
 ### Update User:
-PUT http://localhost:3001/api/users/test
+PUT http://localhost:3001/api/users/updatedTest
 Content-Type: application/json
 
 {
-    "username": "updatedTest"
+    "username": "test@matrix.com"
 }
 
 
 ### Delete User:
-DELETE http://localhost:3001/api/users/test2
+DELETE http://localhost:3001/api/users/updatedTest@test.com
 
 

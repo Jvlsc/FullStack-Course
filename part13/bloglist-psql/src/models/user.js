@@ -17,9 +17,8 @@ User.init({
     allowNull: false,
     unique: true,
     validate: {
-      is: {
-        args: /^[a-zA-Z0-9._-]+$/,
-        msg: 'Username can only contain letters, numbers, dots, hyphens and underscores'
+      isEmail: {
+        msg: 'Username must be a valid email address'
       }
     }
   },
