@@ -13,7 +13,7 @@ GET http://localhost:3001/api/blogs/8
 ### [POST] Create Blog:
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAbWF0cml4LmNvbSIsImlkIjo2LCJpYXQiOjE3NDUwNjg1MzksImV4cCI6MTc0NTA3MjEzOX0.7KLMGU_ABeoPTthHNdPXJw66NwqsnToei82a5BFO4Uo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAbWF0cml4LmNvbSIsImlkIjoxLCJpYXQiOjE3NDUwODExMDIsImV4cCI6MTc0NTA4NDcwMn0.XPp-ASdfIr0Q3PzGr3bKt4FLTHmouEsIkyUkNST4Bpc
 
 {
     "title": "New Tech",
@@ -24,7 +24,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb
 
 
 ### [PUT] Update Blog:
-PUT http://localhost:3001/api/blogs/12
+PUT http://localhost:3001/api/blogs/2
 Content-Type: application/json
 
 {

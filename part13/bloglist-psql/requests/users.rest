@@ -7,9 +7,9 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-    "username": "test2@test.com",
-    "name": "Test User",
-    "password": "testpassword"
+    "username": "root@matrix.com",
+    "name": "Root User",
+    "password": "rootpassword"
 }
 
 

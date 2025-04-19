@@ -1,8 +1,9 @@
 // Import Config:
 const config = require('./config')
 
-// Import Sequelize:
+// Import Sequelize & Umzug:
 const { Sequelize } = require('sequelize')
+const { Umzug, SequelizeStorage } = require('umzug')
 
 // Import Logger:
 const logger = require('../utils/logger')
@@ -17,7 +18,7 @@ const connectToDatabase = async () => {
   try {
     logger.info('[PostgreSQL] Connecting to the Database...')
     await sequelize.authenticate()
-    //await sequelize.sync()
+    await runMigrations()
     logger.info('[PostgreSQL] Database Connected Successfully')
   } catch (error) {
     logger.error('[PostgreSQL] Unable to Connect to the Database:', error)
@@ -26,5 +27,31 @@ const connectToDatabase = async () => {
   }
 }
 
-// Export Database Tools:
-module.exports = { sequelize, connectToDatabase } 
+// Migration Configuration:
+const migrationConf = {
+  migrations: {
+    glob: 'src/migrations/*.js',
+  },
+  storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),
+  context: sequelize.getQueryInterface(),
+  logger: console,
+}
+  
+// Run Migrations:
+const runMigrations = async () => {
+  const migrator = new Umzug(migrationConf)
+  const migrations = await migrator.up()
+  console.log('Migrations up to date', {
+    files: migrations.map((mig) => mig.name),
+  })
+}
+
+// Rollback Migrations:
+const rollbackMigration = async () => {
+  await sequelize.authenticate()
+  const migrator = new Umzug(migrationConf)
+  await migrator.down()
+}
+
+// Export Sequelize Instance:
+module.exports = { sequelize, connectToDatabase, runMigrations, rollbackMigration } 

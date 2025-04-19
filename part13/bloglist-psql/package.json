@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migration:up": "node src/utils/migrations.js",
+    "migration:down": "node src/utils/migrationsRollback.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -19,6 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.14.1",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "umzug": "^3.8.2"
   }
 }
