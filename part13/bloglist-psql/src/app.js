@@ -5,6 +5,7 @@ const express = require('express')
 const userRoutes = require('./routes/userRoutes')
 const loginRoutes = require('./routes/loginRoutes')
 const blogRoutes = require('./routes/blogRoutes')
+const authorRoutes = require('./routes/authorRoutes')
 
 // Import Middleware:
 const requestLogger = require('./middlewares/requestLogger')
@@ -21,6 +22,7 @@ app.use(requestLogger)
 app.use('/api/users', userRoutes)
 app.use('/api/login', loginRoutes)
 app.use('/api/blogs', blogRoutes)
+app.use('/api/authors', authorRoutes)
 
 // Middleware - Error Handler:
 app.use(errorHandler)
