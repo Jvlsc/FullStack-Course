@@ -2,6 +2,10 @@
 GET http://localhost:3001/api/blogs
 
 
+### [GET] Get All Blogs with Search:
+GET http://localhost:3001/api/blogs?search=new
+
+
 ### [GET] Get Blog by ID:
 GET http://localhost:3001/api/blogs/8
 
@@ -12,7 +16,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAbWF0cml4LmNvbSIsImlkIjo2LCJpYXQiOjE3NDUwNjg1MzksImV4cCI6MTc0NTA3MjEzOX0.7KLMGU_ABeoPTthHNdPXJw66NwqsnToei82a5BFO4Uo
 
 {
-    "title": "Test Blog 4",
+    "title": "New Blog",
     "author": "John Doe",
     "url": "https://www.test4.com",
     "likes": 10

@@ -2,6 +2,9 @@
 const blogRouter = require('express').Router()
 require('express-async-errors')
 
+// Import Sequelize Operators:
+const { Op } = require('sequelize')
+
 // Import Token Extractor:
 const tokenExtractor = require('../middlewares/tokenExtractor')
 
@@ -14,7 +17,16 @@ const logger = require('../utils/logger')
 // [GET] Get All Blogs:
 blogRouter.get('/', async (req, res) => {
   logger.info('[Express] Getting All Blogs...')
+  
+  const where = {}
+  if (req.query.search) {
+    where.title = {
+      [Op.iLike]: `%${req.query.search}%`
+    }
+  }
+
   const blogs = await Blog.findAll({
+    where,
     attributes: { exclude: ['userId'] },
     include: {
       model: User,
