@@ -18,7 +18,7 @@ blogRouter.get('/', async (req, res) => {
     attributes: { exclude: ['userId'] },
     include: {
       model: User,
-      attributes: ['name']
+      attributes: ['id', 'name', 'username']
     }
   })
   logger.info('[Express] Blogs Fetched:', JSON.stringify(blogs))
