@@ -2,8 +2,9 @@
 const express = require('express')
 
 // Import Routes:
-const blogRoutes = require('./routes/blogRoutes')
 const userRoutes = require('./routes/userRoutes')
+const loginRoutes = require('./routes/loginRoutes')
+const blogRoutes = require('./routes/blogRoutes')
 
 // Import Middleware:
 const requestLogger = require('./middlewares/requestLogger')
@@ -17,8 +18,9 @@ app.use(express.json())
 app.use(requestLogger)
 
 // Setup Routes:
-app.use('/api/blogs', blogRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/login', loginRoutes)
+app.use('/api/blogs', blogRoutes)
 
 // Middleware - Error Handler:
 app.use(errorHandler)

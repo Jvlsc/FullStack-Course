@@ -14,15 +14,15 @@ Content-Type: application/json
 
 
 ### Update User:
-PUT http://localhost:3001/api/users/updatedTest
+PUT http://localhost:3001/api/users/test2@matrix.com
 Content-Type: application/json
 
 {
-    "username": "test@matrix.com"
+    "username": "test3@matrix.com"
 }
 
 
 ### Delete User:
-DELETE http://localhost:3001/api/users/updatedTest@test.com
+DELETE http://localhost:3001/api/users/test3@matrix.com
 
 

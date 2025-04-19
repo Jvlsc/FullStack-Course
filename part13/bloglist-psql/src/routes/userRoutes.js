@@ -6,7 +6,7 @@ require('express-async-errors')
 const bcrypt = require('bcrypt')
 
 // Import User Model:
-const User = require('../models/user')
+const { User, Blog } = require('../models')
 
 // Import Logger:
 const logger = require('../utils/logger')
@@ -14,7 +14,12 @@ const logger = require('../utils/logger')
 // [GET] Get All Users:
 userRouter.get('/', async (req, res) => {
   logger.info('[Express] Getting All Users...')
-  const users = await User.findAll()
+  const users = await User.findAll({
+    include: {
+      model: Blog,
+      attributes: { exclude: ['userId'] }
+    }
+  })
   logger.info('[Express] Users Fetched:', JSON.stringify(users))
   res.json(users)
 })

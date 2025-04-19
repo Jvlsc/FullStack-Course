@@ -17,7 +17,7 @@ const connectToDatabase = async () => {
   try {
     logger.info('[PostgreSQL] Connecting to the Database...')
     await sequelize.authenticate()
-    await sequelize.sync()
+    //await sequelize.sync()
     logger.info('[PostgreSQL] Database Connected Successfully')
   } catch (error) {
     logger.error('[PostgreSQL] Unable to Connect to the Database:', error)

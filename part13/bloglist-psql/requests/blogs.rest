@@ -3,29 +3,30 @@ GET http://localhost:3001/api/blogs
 
 
 ### [GET] Get Blog by ID:
-GET http://localhost:3001/api/blogs/1
+GET http://localhost:3001/api/blogs/8
 
 
 ### [POST] Create Blog:
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAbWF0cml4LmNvbSIsImlkIjo2LCJpYXQiOjE3NDUwNjg1MzksImV4cCI6MTc0NTA3MjEzOX0.7KLMGU_ABeoPTthHNdPXJw66NwqsnToei82a5BFO4Uo
 
 {
-    "title": "Test Blog",
+    "title": "Test Blog 4",
     "author": "John Doe",
-    "url": "https://www.test.com",
+    "url": "https://www.test4.com",
     "likes": 10
 }
 
 
 ### [PUT] Update Blog:
-PUT http://localhost:3001/api/blogs/5
+PUT http://localhost:3001/api/blogs/8
 Content-Type: application/json
 
 {
-    "likes": 1
+    "likes": 100
 }
 
 
 ### [DELETE] Delete Blog:
-DELETE http://localhost:3001/api/blogs/3
+DELETE http://localhost:3001/api/blogs/9

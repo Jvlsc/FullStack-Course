@@ -12,6 +12,10 @@ User.init({
     primaryKey: true,
     autoIncrement: true
   },
+  name: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
   username: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -21,10 +25,6 @@ User.init({
         msg: 'Username must be a valid email address'
       }
     }
-  },
-  name: {
-    type: DataTypes.TEXT,
-    allowNull: false
   },
   passwordHash: {
     type: DataTypes.TEXT,

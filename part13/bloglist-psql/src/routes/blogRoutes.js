@@ -2,8 +2,11 @@
 const blogRouter = require('express').Router()
 require('express-async-errors')
 
+// Import Token Extractor:
+const tokenExtractor = require('../middlewares/tokenExtractor')
+
 // Import Blog Model:
-const Blog = require('../models/blog')
+const { Blog, User } = require('../models')
 
 // Import Logger:
 const logger = require('../utils/logger')
@@ -11,7 +14,13 @@ const logger = require('../utils/logger')
 // [GET] Get All Blogs:
 blogRouter.get('/', async (req, res) => {
   logger.info('[Express] Getting All Blogs...')
-  const blogs = await Blog.findAll()
+  const blogs = await Blog.findAll({
+    attributes: { exclude: ['userId'] },
+    include: {
+      model: User,
+      attributes: ['name']
+    }
+  })
   logger.info('[Express] Blogs Fetched:', JSON.stringify(blogs))
   res.json(blogs)
 })
@@ -30,9 +39,14 @@ blogRouter.get('/:id', async (req, res) => {
 })
 
 // [POST] Create Blog:
-blogRouter.post('/', async (req, res) => {
+blogRouter.post('/', tokenExtractor, async (req, res) => {
   logger.info('[Express] Creating Blog...')
-  const blog = await Blog.create(req.body)
+  const user = await User.findByPk(req.decodedToken.id)
+  if (!user) {
+    logger.error('[Express] User Not Found')
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  const blog = await Blog.create({ ...req.body, userId: user.id })
   logger.info('[Express] Blog Created: ', JSON.stringify(blog))
   res.json(blog)
 })
