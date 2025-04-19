@@ -68,8 +68,16 @@ blogRouter.put('/:id', async (req, res) => {
 })
 
 // [DELETE] Delete Blog:
-blogRouter.delete('/:id', async (req, res) => { 
+blogRouter.delete('/:id', tokenExtractor, async (req, res) => { 
   logger.info('[Express] Deleting Blog...')
+
+  const user = await User.findByPk(req.decodedToken.id)
+  const blog = await Blog.findByPk(req.params.id)
+  if (!user || blog.userId !== user.id) {
+    logger.error('[Express] User Not Found or Not Authorized')
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+
   await Blog.destroy({ where: { id: req.params.id } })
   logger.info('[Express] Blog Deleted')
   res.status(204).end()

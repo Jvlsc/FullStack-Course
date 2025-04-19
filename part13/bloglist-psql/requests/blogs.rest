@@ -29,4 +29,5 @@ Content-Type: application/json
 
 
 ### [DELETE] Delete Blog:
-DELETE http://localhost:3001/api/blogs/9
+DELETE http://localhost:3001/api/blogs/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAbWF0cml4LmNvbSIsImlkIjo2LCJpYXQiOjE3NDUwNjkxNzksImV4cCI6MTc0NTA3Mjc3OX0.S0KqQc2bOFlAmiZ6czJRbucpgYT0sP6XZ7kPknxgIvg
